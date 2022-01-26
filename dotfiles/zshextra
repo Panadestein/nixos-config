@@ -1,0 +1,56 @@
+#--------------------------------------------------
+#                _________  _   _ 
+#               |__  / ___|| | | |
+#                 / /\___ \| |_| |
+#                / /_ ___) |  _  |
+#               /____|____/|_| |_|
+#
+# Additional ZSH configuration
+#--------------------------------------------------
+
+# Export environmental variables
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# My custom theme for ZSH, with a bit of LISP :)
+
+PROMPT="%B(%B%{$fg[red]%}%n%{$reset_color%} %B. %{$fg[yellow]%}%1d%{$reset_color%}%B)%{$reset_color%} "
+PROMPT+='$(git_prompt_info)'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[cyan]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%})"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+
+zstyle ':omz:update' mode reminder
+
+# Autocompletion options
+
+HYPHEN_INSENSITIVE="true"
+
+# Command auto-correction and eye candy completion
+
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+
+# User side configuration
+
+export MANPATH="/usr/local/man:$MANPATH"
+export LANG=en_US.UTF-8
+
+# Functions
+
+isrun() { ps -A | grep $1;}
+
+tpy() {
+    # Create Bash, Python and Emacs session
+    tmux new-session -d 'emacs -nw'$1
+    tmux new-window ''
+    tmux split-window -h
+    tmux split-window -v 'ipython'
+    tmux -2 attach-session -d
+}
+
+# Give me a nice and warm welcome (this is slow)
+
+figlet -t "$(hostname)" | lolcat

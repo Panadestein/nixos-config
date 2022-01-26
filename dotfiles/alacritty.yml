@@ -1,0 +1,20 @@
+# A simple Alacritty config
+
+# Environment variables
+
+env:
+    TERM: alacritty-direct
+
+# Window properties
+
+window:
+  title: Alacritty
+
+# General properties
+
+scrolling:
+  history: 5000
+
+# Color schemes
+
+
