@@ -118,6 +118,8 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  nixpkgs.config.pulseaudio = true;
   sound.mediaKeys.enable = true;
 
   # Bluetooth support
@@ -165,8 +167,10 @@
     inxi
     figlet
     lolcat
-    maim 
+    maim
+    xorg.libxcb
     pciutils
+    pavucontrol
     # Programming languages
     ghc
     (let
@@ -178,7 +182,9 @@
         matplotlib
         jupyter
         ipython
-        pyqt5
+        pygobject3
+        pycairo
+        sphinx
         # Linters
         pylint
         flake8
@@ -210,6 +216,9 @@
     nitrogen
     xmobar
     # GTK packages
+    gtk3
+    cairo
+    gobject-introspection
     arc-theme
     pantheon.elementary-icon-theme
     gnome.adwaita-icon-theme

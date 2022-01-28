@@ -49,8 +49,8 @@ myConfig = def
     , ("M-r" , spawn "rofi -show drun")
     , ("M-e" , spawn "emacsclient -c")
       -- Multiple screens
-    , ("M-m" , spawn "xrandr --output HDMI-A-0 --auto --output eDP --off")
-    , ("M-S-m" , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off")
+    , ("M-m" , spawn "xrandr --output HDMI-A-0 --auto --output eDP --off && nitrogen --restore &")
+    , ("M-S-m" , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off && nitrogen --restore &")
       -- Helpful commands
     , ("M-S-l" , spawn "dm-tool lock")
     , ("<XF86AudioLowerVolume>" , spawn "amixer set Master 5%- unmute")

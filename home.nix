@@ -20,9 +20,11 @@ in
       pkgs.gnome.eog
       pkgs.neovide
       pkgs.guake
+      pkgs.code-minimap
       pkgs.tdesktop
       pkgs.skype
       pkgs.slack
+      pkgs.mattermost-desktop
       pkgs.zoom
       pkgs.libreoffice
     ];
