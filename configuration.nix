@@ -27,8 +27,13 @@
   # Load AMD CPU microcode
   hardware.cpu.amd.updateMicrocode = true;
 
+  # Keychron K2
+  boot.extraModprobeConfig = ''
+    options hid_apple fnmode=2
+  '';
+
   # Kernel parameters and modules
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ "amdgpu" "hid-apple"];
   boot.kernelParams = [
     "quiet"
     "loglevel=3"
@@ -162,14 +167,36 @@
     lolcat
     maim 
     pciutils
+    # Programming languages
     ghc
+    (let
+      my-python-packages = python-packages: with python-packages; [
+        # Libraries
+        pandas
+        numpy
+        scipy
+        matplotlib
+        jupyter
+        ipython
+        pyqt5
+        # Linters
+        pylint
+        flake8
+        jedi
+        autopep8
+      ];
+      python-with-my-packages = python3.withPackages my-python-packages;
+    in
+      python-with-my-packages)
+    # Science utilities
+    gnuplot
     # Terminal and CLI utilities
     alacritty
     zsh
     # File browser
     ranger
     # Text editors and office
-    vim 
+    vim_configurable
     neovim
     emacs
     evince

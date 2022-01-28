@@ -44,6 +44,7 @@ myConfig = def
     [
       -- Keybinding for useful programs
       ("M-<Return>" , spawn "alacritty")
+    , ("M-S-<Return>" , spawn "alacritty -e jupyter-console")
     , ("M-w" , spawn "firefox")
     , ("M-r" , spawn "rofi -show drun")
     , ("M-e" , spawn "emacsclient -c")

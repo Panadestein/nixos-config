@@ -19,7 +19,7 @@ Config { overrideRedirect = False
                         , "--normal", "green"
                         ] 10
                     , Run Alsa "default" "Master"
-                        [ "--template", "<volumestatus>"
+                        [ "--template", "Vol: <volumestatus>"
                         , "--suffix"  , "True"
                         , "--"
                         , "--on", ""
@@ -27,8 +27,22 @@ Config { overrideRedirect = False
                     , Run Memory ["--template", "Mem: <usedratio>%"] 10
                     , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
                     , Run StdinReader
+		    , Run Battery        [ "--template" , "Batt: <acstatus>"
+		                         , "--Low"      , "10"        -- units: %
+					 , "--High"     , "80"        -- units: %
+					 , "--low"      , "darkred"
+					 , "--normal"   , "darkorange"
+					 , "--high"     , "darkgreen"
+                                         , "--" -- battery specific options
+					        -- discharging status
+						, "-o"	       , "<left>% (<timeleft>)"
+						-- AC "on" status
+						, "-O"	   , "<fc=#dAA520>Charging</fc>"
+						-- charged status
+						, "-i"	   , "<fc=#006000>Charged</fc>"
+					] 50
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "<icon=haskell_20.xpm/> %StdinReader% }{ %alsa:default:Master% | %cpu% | %memory% | %EGPF% | %date% "
+       , template = "<icon=haskell_20.xpm/> %StdinReader% }{%battery% | %alsa:default:Master% | %cpu% | %memory% | %EGPF% | %date% "
        }

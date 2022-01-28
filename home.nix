@@ -22,6 +22,7 @@ in
       pkgs.guake
       pkgs.tdesktop
       pkgs.skype
+      pkgs.slack
       pkgs.zoom
       pkgs.libreoffice
     ];
@@ -51,16 +52,30 @@ in
     };
 
     # Xmobar
-    xdg.configFile."xmobar/.xmobarrc".source = ./dotfiles/.xmobarrc;
+    xdg.configFile."xmobar/.xmobarrc".source = ./dotfiles/xmobarrc;
     programs.xmobar = {
       enable = true;
     };
+
+    # Vim and Neovim
+    home.file.".vimrc".source = ./dotfiles/vimrc;
+    xdg.configFile."nvim/init.vim".source = ./dotfiles/init.vim;
+
+    # Ipython
+    home.file.".ipython/profile_default/ipython_config.py".source = ./dotfiles/ipython_config.py;
 
     # Picom
     services.picom = {
       enable = true;
       activeOpacity = "1.0";
       inactiveOpacity = "0.8";
+      noDockShadow = true;
+      noDNDShadow = true;
+      menuOpacity = "1.0";
+      opacityRule = [
+        "100:class_g = 'Firefox' && argb"
+        "100:class_g = 'Rofi' && argb"
+      ];
       backend = "glx";
     };
 
