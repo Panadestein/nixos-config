@@ -15,6 +15,9 @@ import XMonad.Util.SpawnOnce
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 
+-- Layouts
+import XMonad.Layout.Spacing
+
 -- Xmobar related imports
 import XMonad.Hooks.DynamicLog
 import XMonad.Util.Loggers
@@ -29,7 +32,7 @@ main = xmonad
     toggleStrutsKey XConfig{ modMask = m } = (m, xK_b)
 
 -- Define layout
-myLayout = Tall 1 (3/100) (1/2) ||| Full
+myLayout = spacingWithEdge 5 $ Tall 1 (3/100) (1/2) ||| Full
 
 -- Configuration
 myConfig = def
@@ -48,6 +51,7 @@ myConfig = def
     , ("M-w" , spawn "firefox")
     , ("M-r" , spawn "rofi -show drun")
     , ("M-e" , spawn "emacsclient -c")
+    , ("M-f" , spawn "nautilus")
       -- Multiple screens
     , ("M-m" , spawn "xrandr --output HDMI-A-0 --auto --output eDP --off && nitrogen --restore &")
     , ("M-S-m" , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off && nitrogen --restore &")

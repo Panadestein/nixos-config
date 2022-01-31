@@ -101,10 +101,10 @@
     xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      extraPackages = hpkgs: [ 
-        hpkgs.xmonad
-        hpkgs.xmonad-contrib
-        hpkgs.xmonad-extras
+      extraPackages = haskellPackages: [
+        haskellPackages.xmonad
+        haskellPackages.xmonad-contrib
+        haskellPackages.xmonad-extras
       ];
     };
   };
@@ -146,44 +146,47 @@
   environment.systemPackages = with pkgs; [
     # General utilities
     acpi
+    autorandr
+    bat
     binutils
     cacert
     coreutils
     curl
     dmidecode
+    figlet
     file
+    git
+    htop
+    inxi
+    lolcat
+    maim
+    pavucontrol
+    pciutils
     poetry
     rsync
+    sshfs
     unrar
     unzip
     usbutils
+    wget
     which
     xclip
     xdg-utils
-    bat
-    git
-    wget
-    htop
-    inxi
-    figlet
-    lolcat
-    maim
-    xorg.libxcb
-    pciutils
-    pavucontrol
     # Programming languages
     ghc
+    qt5Full
     (let
       my-python-packages = python-packages: with python-packages; [
-        # Libraries
+        # Scientific libraries
         pandas
         numpy
         scipy
         matplotlib
         jupyter
         ipython
-        pygobject3
-        pycairo
+        # Qt backend
+        pyqt5
+        # Documentation
         sphinx
         # Linters
         pylint
@@ -201,6 +204,7 @@
     zsh
     # File browser
     ranger
+    dropbox-cli
     # Text editors and office
     vim_configurable
     neovim
@@ -217,6 +221,7 @@
     xmobar
     # GTK packages
     gtk3
+    glib
     cairo
     gobject-introspection
     arc-theme
@@ -262,6 +267,7 @@
 
   # Services
   services.actkbd.enable = true;
+  services.gvfs.enable = true;
   services.openssh.enable = true;
   services.emacs.enable = true;
   services.upower.enable = true;
@@ -269,7 +275,24 @@
   services.dbus = {
     enable = true;
     packages = [ pkgs.gnome3.dconf ];
-  }; 
+  };
+  systemd.user.services.dropbox = {
+    description = "Dropbox";
+    wantedBy = [ "graphical-session.target" ];
+    environment = {
+      QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
+      QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
+    };
+    serviceConfig = {
+      ExecStart = "${pkgs.dropbox.out}/bin/dropbox";
+      ExecReload = "${pkgs.coreutils.out}/bin/kill -HUP $MAINPID";
+      KillMode = "control-group"; # upstream recommends process
+      Restart = "on-failure";
+      PrivateTmp = true;
+      ProtectSystem = "full";
+      Nice = 10;
+    };
+  };
 
   # State version
   system.stateVersion = "21.11";

@@ -10,6 +10,7 @@ in
   ];
 
   home-manager.users.loren = {
+    nixpkgs.config.allowUnfree = true;
     home.packages = [
       pkgs.brightnessctl
       pkgs.gnome.nautilus
@@ -65,6 +66,8 @@ in
 
     # Ipython
     home.file.".ipython/profile_default/ipython_config.py".source = ./dotfiles/ipython_config.py;
+    # Matplotlib (ensure Qt backend)
+    home.file.".config/matplotlib/matplotlibrc".source = ./dotfiles/matplotlibrc;
 
     # Picom
     services.picom = {
@@ -76,7 +79,11 @@ in
       menuOpacity = "1.0";
       opacityRule = [
         "100:class_g = 'Firefox' && argb"
-        "100:class_g = 'Rofi' && argb"
+        "100:class_g = 'Slack'"
+        "100:class_g = 'Mattermost'"
+        "100:class_g = 'TelegramDesktop'"
+        "100:class_g = 'Rofi'"
+        "80:class_g = 'Alacritty'"
       ];
       backend = "glx";
     };
