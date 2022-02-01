@@ -229,6 +229,8 @@
     pantheon.elementary-icon-theme
     gnome.adwaita-icon-theme
     dconf
+    # Latex
+    texlive.combined.scheme-medium
     # Spell checkers and dictionaries
     aspell
     hunspell
