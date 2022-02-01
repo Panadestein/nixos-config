@@ -13,21 +13,22 @@ in
     nixpkgs.config.allowUnfree = true;
     home.packages = [
       pkgs.brightnessctl
-      pkgs.gnome.nautilus
       pkgs.chicken
-      pkgs.inkscape
-      pkgs.imagemagick
+      pkgs.code-minimap
       pkgs.gimp
       pkgs.gnome.eog
-      pkgs.neovide
+      pkgs.gnome.nautilus
       pkgs.guake
-      pkgs.code-minimap
-      pkgs.tdesktop
+      pkgs.imagemagick
+      pkgs.inkscape
+      pkgs.libreoffice
+      pkgs.mattermost-desktop
+      pkgs.neovide
       pkgs.skype
       pkgs.slack
-      pkgs.mattermost-desktop
-      pkgs.zoom
-      pkgs.libreoffice
+      pkgs.tdesktop
+      pkgs.ueberzug
+      pkgs.zoom-us
     ];
 
     # Git
@@ -64,8 +65,12 @@ in
     home.file.".vimrc".source = ./dotfiles/vimrc;
     xdg.configFile."nvim/init.vim".source = ./dotfiles/init.vim;
 
+    # Ranger
+    xdg.configFile."ranger/rc.conf".source = ./dotfiles/rc.conf;
+
     # Ipython
     home.file.".ipython/profile_default/ipython_config.py".source = ./dotfiles/ipython_config.py;
+
     # Matplotlib (ensure Qt backend)
     home.file.".config/matplotlib/matplotlibrc".source = ./dotfiles/matplotlibrc;
 
@@ -110,7 +115,7 @@ in
         package = pkgs.pantheon.elementary-icon-theme;
       };
       theme = {
-        name = "Arc-Darker";
+        name = "Arc-Dark";
         package = pkgs.arc-theme;
       };
     };

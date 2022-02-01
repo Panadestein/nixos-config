@@ -172,6 +172,7 @@
     which
     xclip
     xdg-utils
+    xdotool
     # Programming languages
     ghc
     qt5Full
@@ -244,16 +245,18 @@
 
   # Fonts
   fonts.fonts = with pkgs; [
+    dina-font
+    fira-code
+    fira-code-symbols
+    font-awesome-ttf
+    liberation_ttf
+    mplus-outline-fonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts
-    source-code-pro
-    dina-font
     proggyfonts
+    source-code-pro
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
   # Gnome apps configuration

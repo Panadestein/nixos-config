@@ -15,6 +15,10 @@ import XMonad.Util.SpawnOnce
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 
+-- Data
+import Data.Maybe (fromJust)
+import qualified Data.Map as M
+
 -- Layouts
 import XMonad.Layout.Spacing
 
@@ -32,26 +36,40 @@ main = xmonad
     toggleStrutsKey XConfig{ modMask = m } = (m, xK_b)
 
 -- Define layout
-myLayout = spacingWithEdge 5 $ Tall 1 (3/100) (1/2) ||| Full
+myLayout = Tall 1 (3/100) (1/2) ||| Full
+
+-- Change focused color
+myFocusedBorderColor = "#267CB9"
+
+-- Worspaces
+myWorkspaces = ["dev", "www", "comm", "doc", "term", "art", "rnd"]
+myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
+
+clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
+           where i = fromJust $ M.lookup ws myWorkspaceIndices
 
 -- Configuration
 myConfig = def
     {
       modMask = mod4Mask -- Rebind Mod to Super key
-    , layoutHook = myLayout
-    , handleEventHook = fullscreenEventHook
-    , startupHook = myStartupHook
-    , manageHook = myManageHook
+    , layoutHook = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
+                 $ myLayout
+    , handleEventHook    = fullscreenEventHook
+    , startupHook        = myStartupHook
+    , manageHook         = myManageHook
+    , focusedBorderColor = myFocusedBorderColor
+    , workspaces         = myWorkspaces
     }
     `additionalKeysP`
     [
       -- Keybinding for useful programs
       ("M-<Return>" , spawn "alacritty")
-    , ("M-S-<Return>" , spawn "alacritty -e jupyter-console")
+    , ("M-S-<Return>" , spawn "alacritty -e ipython")
     , ("M-w" , spawn "firefox")
     , ("M-r" , spawn "rofi -show drun")
     , ("M-e" , spawn "emacsclient -c")
     , ("M-f" , spawn "nautilus")
+    , ("<Print>" , spawn "maim -s | xclip -selection clipboard -t image/png")
       -- Multiple screens
     , ("M-m" , spawn "xrandr --output HDMI-A-0 --auto --output eDP --off && nitrogen --restore &")
     , ("M-S-m" , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off && nitrogen --restore &")
@@ -86,18 +104,17 @@ myXmobarPP :: PP
 myXmobarPP = def
     { ppSep             = magenta " • "
     , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap (blue "[") (blue "]")
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    , ppTitle           = blued . shorten 30
+    , ppCurrent         = blued . wrap (blue "[") (blue "]")
+    , ppHidden          = blued . wrap " " "" . clickable
+    , ppHiddenNoWindows = lowWhite . wrap " " "" . clickable
     , ppUrgent          = red . wrap (yellow "!") (yellow "!")
     }
   where
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
-
     blue, lowWhite, magenta, red, white, yellow :: String -> String
     magenta  = xmobarColor "#ff79c6" ""
     blue     = xmobarColor "#bd93f9" ""
+    blued    = xmobarColor "#267CB9" ""
     white    = xmobarColor "#f8f8f2" ""
     yellow   = xmobarColor "#f1fa8c" ""
     red      = xmobarColor "#ff5555" ""
