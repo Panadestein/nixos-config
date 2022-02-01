@@ -114,6 +114,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
 
   # Enable sound.
   sound.enable = true;
@@ -123,7 +125,12 @@
   sound.mediaKeys.enable = true;
 
   # Bluetooth support
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      Policy = { Autoenable = false;};
+    };
+  };
   services.blueman.enable = true;
 
   # Enable touchpad support
@@ -274,7 +281,10 @@
   services.actkbd.enable = true;
   services.gvfs.enable = true;
   services.openssh.enable = true;
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+    defaultEditor = true;
+  };
   services.upower.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.dbus = {

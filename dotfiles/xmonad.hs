@@ -42,7 +42,7 @@ myLayout = Tall 1 (3/100) (1/2) ||| Full
 myFocusedBorderColor = "#267CB9"
 
 -- Worspaces
-myWorkspaces = ["dev", "www", "comm", "doc", "term", "art", "rnd"]
+myWorkspaces = ["dev", "tty", "doc", "www", "msg", "art", "rnd"]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -89,9 +89,12 @@ myConfig = def
 -- Manage hook
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "Gimp" --> doFloat
+    [ className =? "Gimp"            --> doFloat
     , className =? "TelegramDesktop" --> doFloat 
-    , isDialog            --> doFloat
+    , isDialog                       --> doFloat
+    , className =? "Firefox"         --> doShift ( myWorkspaces !! 3 )
+    , className =? "Slack"           --> doShift ( myWorkspaces !! 4 )
+    , className =? "Mattermost"      --> doShift ( myWorkspaces !! 4 )
     ]
 
 -- Startup hook
@@ -105,7 +108,7 @@ myXmobarPP = def
     { ppSep             = magenta " • "
     , ppTitleSanitize   = xmobarStrip
     , ppTitle           = blued . shorten 30
-    , ppCurrent         = blued . wrap (blue "[") (blue "]")
+    , ppCurrent         = blue . wrap (blue "[") (blue "]")
     , ppHidden          = blued . wrap " " "" . clickable
     , ppHiddenNoWindows = lowWhite . wrap " " "" . clickable
     , ppUrgent          = red . wrap (yellow "!") (yellow "!")
