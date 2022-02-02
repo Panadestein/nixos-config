@@ -14,6 +14,7 @@ import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
+import XMonad.Actions.CycleWS
 
 -- Data
 import Data.Maybe (fromJust)
@@ -76,6 +77,8 @@ myConfig = def
     , ("M-S-m" , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off && nitrogen --restore &")
       -- Helpful commands
     , ("M-S-l" , spawn "dm-tool lock")
+    , ("M-<Left>" , prevWS)
+    , ("M-<Right>" , nextWS)
     , ("<XF86AudioLowerVolume>" , spawn "amixer set Master 5%- unmute")
     , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master 5%+ unmute")
     , ("<XF86MonBrightnessDown>" , spawn "brightnessctl -q s 10%-")
