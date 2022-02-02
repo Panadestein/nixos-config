@@ -12,23 +12,30 @@ in
   home-manager.users.loren = {
     nixpkgs.config.allowUnfree = true;
     home.packages = [
+      # General utilities
       pkgs.brightnessctl
-      pkgs.chicken
       pkgs.code-minimap
-      pkgs.gimp
       pkgs.gnome.eog
       pkgs.gnome.nautilus
-      pkgs.guake
+      pkgs.ueberzug
+      # Image editing
+      pkgs.pdftk
       pkgs.imagemagick
       pkgs.inkscape
+      pkgs.gimp
+      # Office
       pkgs.libreoffice
-      pkgs.mattermost-desktop
+      # Programming
+      pkgs.chicken
       pkgs.neovide
+      # Communications
+      pkgs.tdesktop
+      pkgs.mattermost-desktop
       pkgs.skype
       pkgs.slack
-      pkgs.tdesktop
-      pkgs.ueberzug
       pkgs.zoom-us
+      # Leisure
+      pkgs.retroarch
     ];
 
     # Git
