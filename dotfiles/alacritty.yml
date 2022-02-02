@@ -29,7 +29,7 @@ font:
   bold_italic:
     family: Fira Code
     style: Bold Italic
-  size: 14
+  size: 20
 
 # Colors (Oceanic Next)
 colors:

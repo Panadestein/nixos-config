@@ -113,7 +113,12 @@
   services.xserver.layout = "us";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    clientConf = ''
+      ServerName cpcs04.chm.tu-dresden.de 
+    '';
+  };
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
 
@@ -128,7 +133,7 @@
   hardware.bluetooth = {
     enable = true;
     settings = {
-      Policy = { Autoenable = false;};
+      Policy = { AutoEnable = false;};
     };
   };
   services.blueman.enable = true;

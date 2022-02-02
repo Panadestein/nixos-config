@@ -68,7 +68,8 @@ myConfig = def
     , ("M-w" , spawn "firefox")
     , ("M-r" , spawn "rofi -show drun")
     , ("M-e" , spawn "emacsclient -c")
-    , ("M-f" , spawn "nautilus")
+    , ("M-S-f" , spawn "nautilus")
+    , ("M-f" , spawn "alacritty -e ranger")
     , ("<Print>" , spawn "maim -s | xclip -selection clipboard -t image/png")
       -- Multiple screens
     , ("M-m" , spawn "xrandr --output HDMI-A-0 --auto --output eDP --off && nitrogen --restore &")
