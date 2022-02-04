@@ -217,44 +217,44 @@
     alacritty
     zsh
     # File browser
-    ranger
     dropbox-cli
+    ranger
     # Text editors and office
-    vim_configurable
-    neovim
     emacs
     evince
+    neovim
     pandoc
+    vim_configurable
     # Internet and communications
     firefox
     # Windowm manager utilities
-    picom
-    rofi
     dmenu
     nitrogen
+    picom
+    rofi
     xmobar
     # GTK packages
-    gtk3
-    glib
-    cairo
-    gobject-introspection
     arc-theme
-    pantheon.elementary-icon-theme
-    gnome.adwaita-icon-theme
+    cairo
     dconf
+    glib
+    gnome.adwaita-icon-theme
+    gobject-introspection
+    gtk3
+    pantheon.elementary-icon-theme
     # Latex
     texlive.combined.scheme-medium
     # Spell checkers and dictionaries
     aspell
-    hunspell
-    hunspellDicts.fr-moderne
-    hunspellDicts.en_US
-    hunspellDicts.de_DE
-    hunspellDicts.de_DE
-    aspellDicts.en
-    aspellDicts.fr
-    aspellDicts.es
     aspellDicts.de
+    aspellDicts.en
+    aspellDicts.es
+    aspellDicts.fr
+    hunspell
+    hunspellDicts.de_DE
+    hunspellDicts.de_DE
+    hunspellDicts.en_US
+    hunspellDicts.fr-moderne
     languagetool
   ];
 

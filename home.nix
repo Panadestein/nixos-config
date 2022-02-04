@@ -68,6 +68,7 @@ in
 
     # Xmobar
     xdg.configFile."xmobar/.xmobarrc".source = ./dotfiles/xmobarrc;
+    home.file.".xmonad/xpm/haskell_20.xpm".source = dotfiles/xpm/haskell_20.xpm;
     programs.xmobar = {
       enable = true;
     };

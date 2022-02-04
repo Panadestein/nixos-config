@@ -15,7 +15,7 @@ Plugin 'lervag/vimtex'
 Plugin 'fatih/vim-go'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 
 call vundle#end()          
 filetype plugin indent on  

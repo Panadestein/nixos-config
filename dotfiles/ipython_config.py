@@ -1,5 +1,7 @@
-# Ipython configuration file (eye candy-comfy version)
-#   ".ipython/profile_default/ipython_config.py"
+""" Ipython configuration file
+    (eye candy-comfy version)
+    Place it in .ipython/profile_default/ipython_config.py
+"""
 
 import re
 import os

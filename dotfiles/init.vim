@@ -202,4 +202,3 @@ let fortran_linter=1
 let g:tex_flavor='latex'
 let g:vimtex_compiler_latexmk = { 'continuous' : 0 }
 let g:vimtex_compiler_latexmk_engines = {  '_' : '-pdf'}
-
