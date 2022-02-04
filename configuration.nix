@@ -191,21 +191,22 @@
     (let
       my-python-packages = python-packages: with python-packages; [
         # Scientific libraries
-        pandas
-        numpy
-        scipy
-        matplotlib
-        jupyter
         ipython
+        jupyter
+        matplotlib
+        numpy
+        pandas
+        scipy
+        sympy
         # Qt backend
         pyqt5
         # Documentation
         sphinx
         # Linters
-        pylint
+        autopep8
         flake8
         jedi
-        autopep8
+        pylint
       ];
       python-with-my-packages = python3.withPackages my-python-packages;
     in

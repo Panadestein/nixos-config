@@ -42,7 +42,7 @@ myLayout = Tall 1 (3/100) (1/2) ||| Full
 -- Change focused color
 myFocusedBorderColor = "#267CB9"
 
--- Worspaces
+-- Workspaces
 myWorkspaces = ["dev", "tty", "doc", "www", "msg", "art", "rnd"]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 

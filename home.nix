@@ -18,21 +18,25 @@ in
       pkgs.gnome.eog
       pkgs.gnome.nautilus
       pkgs.ueberzug
+      # Science
+      pkgs.avogadro2
+      pkgs.molden
+      pkgs.sage
       # Image editing
-      pkgs.pdftk
+      pkgs.gimp
       pkgs.imagemagick
       pkgs.inkscape
-      pkgs.gimp
+      pkgs.pdftk
       # Office
       pkgs.libreoffice
       # Programming
       pkgs.chicken
       pkgs.neovide
       # Communications
-      pkgs.tdesktop
       pkgs.mattermost-desktop
       pkgs.skype
       pkgs.slack
+      pkgs.tdesktop
       pkgs.zoom-us
       # Leisure
       pkgs.retroarch
@@ -148,7 +152,6 @@ in
         v = "nvim";
         n = "neovide --maximized";
         r = "ranger";
-        sbl = "subl";
         sb = "source ~/.bashrc";
         sz = "source ~/.zshrc";
         ka = "killall";
@@ -165,10 +168,7 @@ in
         cfn = "neovide --maximized ~/.config/nvim/init.vim";
         # Less useful aliases
         wo = ''figlet -t "$(hostname)"'';
-        nf = "clear && neofetch";
         jnb = "jupyter notebook";
-        mopac = "/home/rpanades/bin/MOPACMINE/MOPAC2016.exe";
-        unix72 = "docker run --rm -it bahamat/unix-1st-ed";
         starwars = "telnet towel.blinkenlights.nl";
         # Aliases for remote machines
         sakura = "ssh -Y ramon@sakura.univ-lille1.fr";
