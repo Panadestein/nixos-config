@@ -37,7 +37,9 @@ main = xmonad
     toggleStrutsKey XConfig{ modMask = m } = (m, xK_b)
 
 -- Define layout
-myLayout = Tall 1 (3/100) (1/2) ||| Full
+myLayout = Tall 1 (3/100) (1/2)
+        ||| Mirror (Tall 1 (3/100) (1/2))
+        ||| Full
 
 -- Change focused color
 myFocusedBorderColor = "#267CB9"
