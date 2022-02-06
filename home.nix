@@ -32,6 +32,7 @@ in
       # Programming
       pkgs.chicken
       pkgs.neovide
+      pkgs.shellcheck
       # Communications
       pkgs.mattermost-desktop
       pkgs.skype
@@ -51,6 +52,18 @@ in
         credential.helper = "${
           pkgs.git.override { withLibsecret = true; }
         }/bin/git-credential-libsecret";};
+    };
+
+    # Emacs configuration
+    home.file.".emacs.d/" = {
+      source = pkgs.fetchFromGitHub {
+        owner = "Panadestein";
+        repo = "emacsd";
+        rev = "a81dbdc3385101644959a6dd6f44131a011cae80";
+        sha256 = "08pqq0rg0z2c2jmgadn26xcb12nzqw6vh68vnw29bx9wlqp20f8c"; 
+      };
+      recursive = true;
+      onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
     };
 
     # Rofi

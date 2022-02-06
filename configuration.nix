@@ -27,11 +27,6 @@
   # Load AMD CPU microcode
   hardware.cpu.amd.updateMicrocode = true;
 
-  # Keychron K2
-  boot.extraModprobeConfig = ''
-    options hid_apple fnmode=2
-  '';
-
   # Kernel parameters and modules
   boot.initrd.kernelModules = [ "amdgpu" "hid-apple"];
   boot.kernelParams = [
@@ -39,6 +34,7 @@
     "loglevel=3"
     "rd.systemd.show_status=auto"
     "rd.udev.log_level=3"
+    "hid_apple.fnmode=0"
   ];
   boot.initrd.verbose = false;
   boot.plymouth.enable = true;
