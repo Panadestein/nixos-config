@@ -29,6 +29,7 @@ in
       pkgs.pdftk
       # Office
       pkgs.libreoffice
+      pkgs.pandoc
       # Programming
       pkgs.chicken
       pkgs.neovide
@@ -131,6 +132,9 @@ in
         config = ./dotfiles/xmonad.hs;
       };
     };
+
+    # Script to control plugged monitors
+    home.file.".config/scripts/randr_conf.sh".source = ./dotfiles/randr_conf.sh;
 
     # GTk theme
     gtk = {

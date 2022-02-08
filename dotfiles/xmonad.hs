@@ -75,8 +75,7 @@ myConfig = def
     , ("M-f" , spawn "alacritty -e ranger")
     , ("<Print>" , spawn "maim -s | xclip -selection clipboard -t image/png")
       -- Multiple screens
-    , ("M-m" , spawn "xrandr --output HDMI-A-0 --auto --output eDP --off && nitrogen --restore &")
-    , ("M-S-m" , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off && nitrogen --restore &")
+    , ("M-m" , spawn "$HOME/.config/scripts/randr_conf.sh && nitrogen --restore &")
       -- Helpful commands
     , ("M-S-l" , spawn "dm-tool lock")
     , ("M-<Left>" , prevWS)

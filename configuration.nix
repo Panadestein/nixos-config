@@ -154,7 +154,6 @@
   environment.systemPackages = with pkgs; [
     # General utilities
     acpi
-    autorandr
     bat
     binutils
     cacert
@@ -239,7 +238,7 @@
     gtk3
     pantheon.elementary-icon-theme
     # Latex
-    texlive.combined.scheme-medium
+    texlive.combined.scheme-full
     # Spell checkers and dictionaries
     aspell
     aspellDicts.de
