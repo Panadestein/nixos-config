@@ -100,6 +100,8 @@ myManageHook = composeAll
     , className =? "Firefox"         --> doShift ( myWorkspaces !! 3 )
     , className =? "Slack"           --> doShift ( myWorkspaces !! 4 )
     , className =? "Mattermost"      --> doShift ( myWorkspaces !! 4 )
+    , className =? "Skype"           --> doShift ( myWorkspaces !! 6 )
+    , className =? "zoom"            --> doShift ( myWorkspaces !! 6 )
     ]
 
 -- Startup hook

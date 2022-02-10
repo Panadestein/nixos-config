@@ -14,9 +14,11 @@ in
     home.packages = [
       # General utilities
       pkgs.brightnessctl
+      pkgs.busybox
       pkgs.code-minimap
       pkgs.gnome.eog
       pkgs.gnome.nautilus
+      pkgs.poppler_utils
       pkgs.ueberzug
       # Science
       pkgs.avogadro2
