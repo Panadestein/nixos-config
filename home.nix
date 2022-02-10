@@ -114,6 +114,10 @@ in
         "100:class_g = 'Mattermost'"
         "100:class_g = 'TelegramDesktop'"
         "100:class_g = 'Rofi'"
+        "100:class_g = 'Skype'"
+        "100:class_g = 'Evince'"
+        "100:class_g = 'zoom'"
+        "100:class_g = 'Gimp-2.10'"
         "80:class_g = 'Alacritty'"
       ];
       backend = "glx";
