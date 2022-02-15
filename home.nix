@@ -14,7 +14,6 @@ in
     home.packages = [
       # General utilities
       pkgs.brightnessctl
-      pkgs.busybox
       pkgs.ccls
       pkgs.code-minimap
       pkgs.gnome.eog
