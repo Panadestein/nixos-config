@@ -15,6 +15,7 @@ in
       # General utilities
       pkgs.brightnessctl
       pkgs.busybox
+      pkgs.ccls
       pkgs.code-minimap
       pkgs.gnome.eog
       pkgs.gnome.nautilus
@@ -36,8 +37,6 @@ in
       pkgs.chicken
       pkgs.neovide
       pkgs.shellcheck
-      # Internet
-      pkgs.brave
       # Communications
       pkgs.mattermost-desktop
       pkgs.skype
