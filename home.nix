@@ -36,6 +36,8 @@ in
       pkgs.chicken
       pkgs.neovide
       pkgs.shellcheck
+      # Internet
+      pkgs.brave
       # Communications
       pkgs.mattermost-desktop
       pkgs.skype
