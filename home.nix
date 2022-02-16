@@ -32,6 +32,7 @@ in
       # Office
       pkgs.libreoffice
       pkgs.pandoc
+      pkgs.xournalpp
       # Programming
       pkgs.chicken
       pkgs.neovide
