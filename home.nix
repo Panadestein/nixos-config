@@ -20,6 +20,7 @@ in
       pkgs.gnome.nautilus
       pkgs.poppler_utils
       pkgs.ueberzug
+      pkgs.universal-ctags
       # Science
       pkgs.avogadro2
       pkgs.molden
