@@ -122,7 +122,9 @@ in
         "100:class_g = 'Evince'"
         "100:class_g = 'zoom'"
         "100:class_g = 'Gimp-2.10'"
-        "80:class_g = 'Alacritty'"
+        "100:class_g = 'Inkscape'"
+        "100:class_g = 'Xournalpp'"
+         "80:class_g = 'Alacritty'"
       ];
       backend = "glx";
     };
