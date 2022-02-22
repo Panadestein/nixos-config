@@ -25,6 +25,7 @@ in
       pkgs.avogadro2
       pkgs.molden
       pkgs.sage
+      pkgs.zotero
       # Image editing
       pkgs.gimp
       pkgs.imagemagick
@@ -113,18 +114,19 @@ in
       noDNDShadow = true;
       menuOpacity = "1.0";
       opacityRule = [
-        "100:class_g = 'Firefox' && argb"
-        "100:class_g = 'Slack'"
-        "100:class_g = 'Mattermost'"
-        "100:class_g = 'TelegramDesktop'"
-        "100:class_g = 'Rofi'"
-        "100:class_g = 'Skype'"
+         "80:class_g = 'Alacritty'"
         "100:class_g = 'Evince'"
-        "100:class_g = 'zoom'"
+        "100:class_g = 'Firefox' && argb"
         "100:class_g = 'Gimp-2.10'"
         "100:class_g = 'Inkscape'"
+        "100:class_g = 'Mattermost'"
+        "100:class_g = 'Rofi'"
+        "100:class_g = 'Skype'"
+        "100:class_g = 'Slack'"
+        "100:class_g = 'TelegramDesktop'"
         "100:class_g = 'Xournalpp'"
-         "80:class_g = 'Alacritty'"
+        "100:class_g = 'Zotero'"
+        "100:class_g = 'zoom'"
       ];
       backend = "glx";
     };
