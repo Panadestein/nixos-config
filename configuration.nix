@@ -184,6 +184,7 @@
     xdg-utils
     xdotool
     # Programming languages
+    cmake
     ghc
     qt5Full
     (let
