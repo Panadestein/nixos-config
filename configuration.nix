@@ -168,6 +168,7 @@
     git
     htop
     inxi
+    libtool
     lolcat
     maim
     pavucontrol
@@ -185,7 +186,10 @@
     xdotool
     # Programming languages
     cmake
+    gcc
+    gfortran
     ghc
+    gnumake
     qt5Full
     (let
       my-python-packages = python-packages: with python-packages; [
