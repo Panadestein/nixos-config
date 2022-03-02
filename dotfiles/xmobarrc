@@ -2,7 +2,7 @@ Config { overrideRedirect = False
        , font     = "xft:Fira Code-11"
        , bgColor  = "#2D2A2E"
        , fgColor  = "#FCFCFA"
-       , position = TopW L 100
+       , position = TopW L 97
        , iconRoot     = ".xmonad/xpm/"  -- default: "."
        , commands = [ Run Weather "EGPF"
                         [ "--template", "<weather> <tempC>°C"

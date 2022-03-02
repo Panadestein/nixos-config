@@ -66,6 +66,7 @@
   networking.interfaces.enp2s0f0.useDHCP = true;
   networking.interfaces.enp5s0.useDHCP = true;
   networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -168,6 +169,7 @@
     git
     htop
     inxi
+    killall
     libtool
     lolcat
     maim

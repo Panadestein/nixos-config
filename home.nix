@@ -20,8 +20,10 @@ in
       pkgs.gnome.eog
       pkgs.gnome.nautilus
       pkgs.poppler_utils
+      pkgs.trayer
       pkgs.ueberzug
       pkgs.universal-ctags
+      pkgs.volumeicon
       # Science
       pkgs.avogadro2
       pkgs.molden
