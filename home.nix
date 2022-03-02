@@ -90,7 +90,7 @@ in
 
     # Xmobar
     xdg.configFile."xmobar/.xmobarrc".source = ./dotfiles/xmobarrc;
-    home.file.".xmonad/xpm/haskell_20.xpm".source = dotfiles/xpm/haskell_20.xpm;
+    home.file.".xmonad/xpm/haskell_20.xpm".source = dotfiles/images/haskell_20.xpm;
     programs.xmobar = {
       enable = true;
     };
@@ -147,6 +147,7 @@ in
         config = ./dotfiles/xmonad.hs;
       };
     };
+    home.file."/var/lib/AccountsService/icons/loren.png".source = dotfiles/images/cfd_DWudN.png;
 
     # Script to control plugged monitors
     home.file.".config/scripts/randr_conf.sh".source = ./dotfiles/randr_conf.sh;
