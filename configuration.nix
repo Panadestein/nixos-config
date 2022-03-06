@@ -163,6 +163,7 @@
     cacert
     coreutils
     curl
+    djvulibre
     dmidecode
     figlet
     file
