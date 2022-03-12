@@ -120,7 +120,7 @@ in
       opacityRule = [
          "80:class_g = 'Alacritty'"
         "100:class_g = 'Evince'"
-        "100:class_g = 'Navigator' && argb"
+        "100:class_g = 'firefox-default' && argb"
         "100:class_g = 'Gimp-2.10'"
         "100:class_g = 'Inkscape'"
         "100:class_g = 'Mattermost'"
