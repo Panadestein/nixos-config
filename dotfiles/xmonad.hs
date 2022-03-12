@@ -98,7 +98,7 @@ myManageHook = composeAll
     , className =? "TelegramDesktop" --> doFloat 
     , isDialog                       --> doFloat
     , isFullscreen                   --> doFullFloat
-    , className =? "Firefox"         --> doShift ( myWorkspaces !! 3 )
+    , className =? "Navigator"       --> doShift ( myWorkspaces !! 3 )
     , className =? "Slack"           --> doShift ( myWorkspaces !! 4 )
     , className =? "Mattermost"      --> doShift ( myWorkspaces !! 4 )
     , className =? "Skype"           --> doShift ( myWorkspaces !! 6 )
@@ -109,7 +109,7 @@ myManageHook = composeAll
 myStartupHook :: X ()
 myStartupHook = do
   spawn "killall trayer"
-  spawn ("sleep 2 && trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 3 --transparent true --tint 0x5f5f5f --height 21 --iconspacing 1")
+  spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 22") 
   spawnOnce "nitrogen --restore &"
   spawnOnce "volumeicon"
 

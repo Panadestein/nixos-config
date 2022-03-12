@@ -91,6 +91,7 @@ in
     # Xmobar
     xdg.configFile."xmobar/.xmobarrc".source = ./dotfiles/xmobarrc;
     home.file.".xmonad/xpm/haskell_20.xpm".source = dotfiles/images/haskell_20.xpm;
+    home.file.".xmonad/trayer_padding.sh".source = dotfiles/trayer_padding.sh;
     programs.xmobar = {
       enable = true;
     };
@@ -119,7 +120,7 @@ in
       opacityRule = [
          "80:class_g = 'Alacritty'"
         "100:class_g = 'Evince'"
-        "100:class_g = 'Firefox' && argb"
+        "100:class_g = 'Navigator' && argb"
         "100:class_g = 'Gimp-2.10'"
         "100:class_g = 'Inkscape'"
         "100:class_g = 'Mattermost'"
@@ -147,7 +148,8 @@ in
         config = ./dotfiles/xmonad.hs;
       };
     };
-    home.file."/var/lib/AccountsService/icons/loren.png".source = dotfiles/images/cfd_DWudN.png;
+    # Set LightDM avatar (https://wiki.archlinux.org/title/LightDM#Changing_your_avatar)
+    home.file.".face".source = dotfiles/images/cfd_DWudN.png;
 
     # Script to control plugged monitors
     home.file.".config/scripts/randr_conf.sh".source = ./dotfiles/randr_conf.sh;

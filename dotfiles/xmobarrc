@@ -2,7 +2,7 @@ Config { overrideRedirect = False
        , font     = "xft:Fira Code-11"
        , bgColor  = "#2D2A2E"
        , fgColor  = "#FCFCFA"
-       , position = TopW L 97
+       , position = TopW L 100 24
        , iconRoot     = ".xmonad/xpm/"  -- default: "."
        , commands = [ Run Weather "EGPF"
                         [ "--template", "<weather> <tempC>°C"
@@ -40,9 +40,10 @@ Config { overrideRedirect = False
 						-- charged status
 						, "-i"	   , "<fc=#006000>Charged</fc>"
 					] 50
+		    , Run Com ".xmonad/trayer_padding.sh" [] "trayerpad" 24
                     , Run UnsafeStdinReader
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader% }{%battery% | %alsa:default:Master% | %cpu% | %memory% | %EGPF% | %date% "
+       , template = "<icon=haskell_20.xpm/> %UnsafeStdinReader% }{%battery% | %alsa:default:Master% | %cpu% | %memory% | %EGPF% | %date% %trayerpad%"
        }
