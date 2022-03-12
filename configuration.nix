@@ -293,6 +293,7 @@
   services.actkbd.enable = true;
   services.gvfs.enable = true;
   services.openssh.enable = true;
+  services.teamviewer.enable = true;
   services.emacs = {
     enable = true;
     defaultEditor = true;
