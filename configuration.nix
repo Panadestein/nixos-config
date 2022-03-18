@@ -193,6 +193,7 @@
     gfortran
     ghc
     gnumake
+    mpich
     qt5Full
     (let
       my-python-packages = python-packages: with python-packages; [
