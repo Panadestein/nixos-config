@@ -137,11 +137,6 @@ in
 
     # Extra Xsession config
     xsession = {
-      pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-      size = 25;
-      };
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
@@ -160,6 +155,11 @@ in
       iconTheme = {
         name = "elementary";
         package = pkgs.pantheon.elementary-icon-theme;
+      };
+      cursorTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+      size = 25;
       };
       theme = {
         name = "Arc-Dark";
@@ -211,10 +211,11 @@ in
         sssara = "ssh -Y panades@doornode.surfsara.nl";
         ccpgate = "ssh -Y panades@ccpgate.tnw.utwente.nl";
         tau = "ssh -Y rapa157d@taurus.hrsk.tu-dresden.de";
+        mah = "ssh rpanades@mahti.csc.fi";
         tume = "ssh -Y rbarrueta@cpch06.chm.tu-dresden.de";
         lsts0 = "ssh -Y rbarrueta@141.30.9.190";
         lsts1 = "ssh -Y rbarrueta@141.30.9.191";
-        tukup = "sftp rbarrueta@cpch06.chm.tu-dresden.de";
+        tukup = "OBsftp rbarrueta@cpch06.chm.tu-dresden.de";
         sakup = "sftp ramon@sakura.univ-lille1.fr";
         toul = "ssh panades@lpqsv11.ups-tlse.fr";
       };
