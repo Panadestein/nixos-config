@@ -137,6 +137,11 @@ in
 
     # Extra Xsession config
     xsession = {
+      pointerCursor = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+      size = 25;
+      };
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
