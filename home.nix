@@ -14,11 +14,11 @@ in
     home.packages = [
       # General utilities
       pkgs.brightnessctl
-      pkgs.calcurse
       pkgs.ccls
       pkgs.code-minimap
       pkgs.gnome.eog
       pkgs.gnome.nautilus
+      pkgs.gnome.gnome-calendar
       pkgs.poppler_utils
       pkgs.trayer
       pkgs.ueberzug
