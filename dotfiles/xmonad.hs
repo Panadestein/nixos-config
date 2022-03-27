@@ -71,6 +71,7 @@ myConfig = def
     , ("M-w" , spawn "firefox")
     , ("M-r" , spawn "rofi -show drun")
     , ("M-e" , spawn "emacsclient -c")
+    , ("M-v" , spawn "neovide")
     , ("M-S-f" , spawn "nautilus")
     , ("M-f" , spawn "alacritty -e ranger")
     , ("<Print>" , spawn "maim -s | xclip -selection clipboard -t image/png")

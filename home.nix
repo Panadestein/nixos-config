@@ -124,6 +124,7 @@ in
         "100:class_g = 'Gimp-2.10'"
         "100:class_g = 'Inkscape'"
         "100:class_g = 'Mattermost'"
+        "100:class_g = 'neovide'"
         "100:class_g = 'Rofi'"
         "100:class_g = 'Skype'"
         "100:class_g = 'Slack'"
