@@ -200,6 +200,7 @@
         matplotlib
         numpy
         pandas
+        scikit-learn
         scipy
         sympy
         # Qt backend
