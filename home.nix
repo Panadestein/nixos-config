@@ -47,7 +47,6 @@ in
       pkgs.skype
       pkgs.slack
       pkgs.tdesktop
-      pkgs.zoom-us
       # Leisure
       pkgs.retroarch
     ];
@@ -120,7 +119,7 @@ in
       opacityRule = [
          "80:class_g = 'Alacritty'"
         "100:class_g = 'Evince'"
-        "100:class_g = 'firefox-default' && argb"
+        "100:class_g = 'firefox' && argb"
         "100:class_g = 'Gimp-2.10'"
         "100:class_g = 'Inkscape'"
         "100:class_g = 'Mattermost'"

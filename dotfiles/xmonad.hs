@@ -99,7 +99,7 @@ myManageHook = composeAll
     , className =? "TelegramDesktop" --> doFloat 
     , isDialog                       --> doFloat
     , isFullscreen                   --> doFullFloat
-    , className =? "firefox-default" --> doShift ( myWorkspaces !! 3 )
+    , className =? "firefox"         --> doShift ( myWorkspaces !! 3 )
     , className =? "Slack"           --> doShift ( myWorkspaces !! 4 )
     , className =? "Mattermost"      --> doShift ( myWorkspaces !! 4 )
     , className =? "Skype"           --> doShift ( myWorkspaces !! 6 )

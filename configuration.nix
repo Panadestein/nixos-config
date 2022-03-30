@@ -263,6 +263,15 @@
     languagetool
   ];
 
+  # Use Flatpak
+  # Every now and then some apps annoy you with versions (e.g. Zoom)
+  # https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable =  true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   # Fonts
   fonts.fonts = with pkgs; [
     dina-font
