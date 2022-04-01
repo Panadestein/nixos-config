@@ -218,6 +218,8 @@ in {
         flake8
         jedi
         pylint
+        # Language server
+        python-lsp-server
       ];
       python-with-my-packages = python3.withPackages my-python-packages;
     in
