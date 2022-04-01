@@ -108,10 +108,6 @@ in {
         haskellPackages.xmonad-extras
       ];
     };
-    qtile = {
-      enable = true;
-      #package = unstable.qtile;
-    };
   };
 
   # Configure keymap in X11
@@ -200,6 +196,8 @@ in {
     qt5Full
     (let
       my-python-packages = python-packages: with python-packages; [
+        # Language server
+        python-lsp-server
         # Scientific libraries
         ipython
         jupyter
@@ -218,8 +216,6 @@ in {
         flake8
         jedi
         pylint
-        # Language server
-        python-lsp-server
       ];
       python-with-my-packages = python3.withPackages my-python-packages;
     in
