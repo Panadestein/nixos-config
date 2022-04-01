@@ -27,7 +27,6 @@ in
       # Science
       pkgs.avogadro2
       pkgs.molden
-      pkgs.sage
       pkgs.zotero
       # Image editing
       pkgs.gimp
@@ -43,6 +42,7 @@ in
       pkgs.neovide
       pkgs.shellcheck
       # Communications
+      pkgs.brave
       pkgs.mattermost-desktop
       pkgs.skype
       pkgs.slack

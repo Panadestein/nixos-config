@@ -69,7 +69,7 @@ myConfig = def
       ("M-<Return>" , spawn "alacritty")
     , ("M-S-<Return>" , spawn "alacritty -e ipython")
     , ("M-w" , spawn "firefox")
-    , ("M-r" , spawn "rofi -show drun")
+    , ("M-r" , spawn "rofi -show drun -show-icons")
     , ("M-e" , spawn "emacsclient -c")
     , ("M-v" , spawn "neovide")
     , ("M-S-f" , spawn "nautilus")

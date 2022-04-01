@@ -9,8 +9,9 @@
 #-----------------------------
 
 { config, pkgs, ... }:
-
-{
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -107,6 +108,10 @@
         haskellPackages.xmonad-extras
       ];
     };
+    qtile = {
+      enable = true;
+      #package = unstable.qtile;
+    };
   };
 
   # Configure keymap in X11
@@ -156,6 +161,7 @@
     # General utilities
     acpi
     bat
+    bc
     binutils
     cacert
     coreutils
@@ -232,6 +238,7 @@
     vim_configurable
     # Internet and communications
     firefox
+    unstable.zoom-us
     # Windowm manager utilities
     dmenu
     nitrogen
@@ -263,9 +270,7 @@
     languagetool
   ];
 
-  # Use Flatpak
-  # Every now and then some apps annoy you with versions (e.g. Zoom)
-  # https://nixos.org/manual/nixos/stable/index.html#module-services-flatpak
+  # Use Flatpak, just in case
   services.flatpak.enable = true;
   xdg.portal = {
     enable =  true;
