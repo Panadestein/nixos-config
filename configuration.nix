@@ -108,6 +108,9 @@ in {
         haskellPackages.xmonad-extras
       ];
     };
+    qtile = {
+      enable = false;
+    };
   };
 
   # Configure keymap in X11
@@ -194,32 +197,6 @@ in {
     gnumake
     mpich
     qt5Full
-    (let
-      my-python-packages = python-packages: with python-packages; [
-        # Language server
-        python-lsp-server
-        # Scientific libraries
-        ipython
-        jupyter
-        matplotlib
-        numpy
-        pandas
-        scikit-learn
-        scipy
-        sympy
-        # Qt backend
-        pyqt5
-        # Documentation
-        sphinx
-        # Linters
-        autopep8
-        flake8
-        jedi
-        pylint
-      ];
-      python-with-my-packages = python3.withPackages my-python-packages;
-    in
-      python-with-my-packages)
     # Science utilities
     gnuplot
     # Terminal and CLI utilities

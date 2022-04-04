@@ -3,6 +3,7 @@
 { config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
   imports = [
@@ -11,44 +12,70 @@ in
 
   home-manager.users.loren = {
     nixpkgs.config.allowUnfree = true;
-    home.packages = [
+    home.packages = with pkgs; [
       # General utilities
-      pkgs.brightnessctl
-      pkgs.ccls
-      pkgs.code-minimap
-      pkgs.gnome.eog
-      pkgs.gnome.nautilus
-      pkgs.gnome.gnome-calendar
-      pkgs.poppler_utils
-      pkgs.trayer
-      pkgs.ueberzug
-      pkgs.universal-ctags
-      pkgs.volumeicon
+      brightnessctl
+      ccls
+      code-minimap
+      gnome.eog
+      gnome.nautilus
+      gnome.gnome-calendar
+      poppler_utils
+      trayer
+      ueberzug
+      universal-ctags
+      volumeicon
       # Science
-      pkgs.avogadro2
-      pkgs.molden
-      pkgs.zotero
+      avogadro2
+      molden
+      zotero
       # Image editing
-      pkgs.gimp
-      pkgs.imagemagick
-      pkgs.inkscape
-      pkgs.pdftk
+      gimp
+      imagemagick
+      inkscape
+      pdftk
       # Office
-      pkgs.libreoffice
-      pkgs.pandoc
-      pkgs.xournalpp
+      libreoffice
+      pandoc
+      xournalpp
       # Programming
-      pkgs.chicken
-      pkgs.neovide
-      pkgs.shellcheck
+      chicken
+      neovide
+      shellcheck
+      (let
+        my-python-packages = python-packages: with python-packages; [
+          # Language server
+          python-lsp-server
+          # Scientific libraries
+          ipython
+          jupyter
+          matplotlib
+          numpy
+          pandas
+          scikit-learn
+          scipy
+          sympy
+          # Qt backend
+          pyqt5
+          # Documentation
+          sphinx
+          # Linters
+          autopep8
+          flake8
+          jedi
+          pylint
+        ];
+        python-with-my-packages = python3.withPackages my-python-packages;
+      in
+        python-with-my-packages)
       # Communications
-      pkgs.brave
-      pkgs.mattermost-desktop
-      pkgs.skype
-      pkgs.slack
-      pkgs.tdesktop
+      brave
+      mattermost-desktop
+      skype
+      slack
+      tdesktop
       # Leisure
-      pkgs.retroarch
+      retroarch
     ];
 
     # Git
@@ -142,10 +169,12 @@ in
       package = pkgs.gnome.adwaita-icon-theme;
       size = 25;
       };
-      windowManager.xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-        config = ./dotfiles/xmonad.hs;
+      windowManager = {
+        xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+          config = ./dotfiles/xmonad.hs;
+        };
       };
     };
     # Set LightDM avatar (https://wiki.archlinux.org/title/LightDM#Changing_your_avatar)
