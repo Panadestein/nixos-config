@@ -139,25 +139,12 @@ in
     services.picom = {
       enable = true;
       activeOpacity = "1.0";
-      inactiveOpacity = "0.8";
+      inactiveOpacity = "1.0";
       noDockShadow = true;
       noDNDShadow = true;
       menuOpacity = "1.0";
       opacityRule = [
          "80:class_g = 'Alacritty'"
-        "100:class_g = 'Evince'"
-        "100:class_g = 'firefox' && argb"
-        "100:class_g = 'Gimp-2.10'"
-        "100:class_g = 'Inkscape'"
-        "100:class_g = 'Mattermost'"
-        "100:class_g = 'neovide'"
-        "100:class_g = 'Rofi'"
-        "100:class_g = 'Skype'"
-        "100:class_g = 'Slack'"
-        "100:class_g = 'TelegramDesktop'"
-        "100:class_g = 'Xournalpp'"
-        "100:class_g = 'Zotero'"
-        "100:class_g = 'zoom'"
       ];
       backend = "glx";
     };

@@ -57,7 +57,7 @@ myConfig = def
       modMask = mod4Mask -- Rebind Mod to Super key
     , layoutHook = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
                  $ myLayout
-    , handleEventHook    = fullscreenEventHook
+    , handleEventHook    = handleEventHook def <+> fullscreenEventHook
     , startupHook        = myStartupHook
     , manageHook         = myManageHook
     , focusedBorderColor = myFocusedBorderColor
