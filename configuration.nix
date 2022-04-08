@@ -19,6 +19,13 @@ in {
       ./home.nix
     ];
 
+  # Define overlays
+  nixpkgs.overlays = [
+    (self: super: {
+      qtile = unstable.qtile;
+    })
+  ];
+
   # Enable unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -109,7 +116,7 @@ in {
       ];
     };
     qtile = {
-      enable = false;
+      enable = true;
     };
   };
 
