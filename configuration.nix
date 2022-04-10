@@ -12,11 +12,14 @@
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
+  disabledModules = [ "services/x11/window-managers/qtile.nix" ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       # Use home-manager
       ./home.nix
+      # Use latest version of Qtile service
+      <nixos-unstable/nixos/modules/services/x11/window-managers/qtile.nix>
     ];
 
   # Define overlays
