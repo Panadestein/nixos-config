@@ -37,8 +37,8 @@ with lib.hm.gvariant;
 
     "apps/guake/style/font" = {
       allow-bold = true;
-      palette = "#1F1F1F1F1F1F:#F7F711111818:#2C2CC5C55D5D:#ECECB9B90F0F:#2A2A8484D2D2:#4E4E5959B7B7:#0F0F8080D5D5:#D6D6DADAE4E4:#D6D6DADAE4E4:#DEDE34342E2E:#1D1DD2D26060:#F2F2BDBD0909:#0F0F8080D5D5:#52524F4FB9B9:#0F0F7C7CDADA:#FFFFFFFFFFFF:#D6D6DADAE4E4:#131313131313";
-      palette-name = "Brogrammer";
+      palette = "#343438383535:#CECE3E3E6060:#7B7BB7B75B5B:#E8E8B3B32A2A:#4C4C9999D3D3:#A5A57F7FC4C4:#38389A9AACAC:#F9F9FAFAF6F6:#58585A5A5858:#D1D18E8EA6A6:#76767E7E2B2B:#777759592E2E:#131358587979:#5F5F41419090:#7676BBBBCACA:#B1B1B5B5AEAE:#F7F7F6F6ECEC:#1D1D1D1D1D1D";
+      palette-name = "Japanesque";
       style = "Fira Code 24";
     };
 
@@ -62,6 +62,11 @@ with lib.hm.gvariant;
       recent-connections = "[{'adapter': 'C8:94:02:7D:D3:A2', 'address': '0C:AE:7D:B1:5C:18', 'alias': 'Bose SoundTouch AAA277', 'icon': 'audio-card', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1649935474.0410156'}]";
     };
 
+    "org/gnome/Console" = {
+      font-scale = 2.200000000000001;
+      theme = "auto";
+    };
+
     "org/gnome/Geary" = {
       migrated-config = true;
     };
@@ -74,12 +79,21 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "keyboard";
-      window-state = mkTuple [ 1346 1006 ];
+      last-panel = "wifi";
+      window-state = mkTuple [ 1149 806 ];
     };
 
     "org/gnome/desktop/app-folders" = {
       folder-children = [ "Utilities" "YaST" ];
+    };
+
+    "org/gnome/desktop/background" = {
+      color-shading-type = "solid";
+      picture-options = "zoom";
+      picture-uri = "file:///home/loren/.local/share/backgrounds/2022-04-15-00-12-26-tc-feynman.png";
+      picture-uri-dark = "file:///home/loren/.local/share/backgrounds/2022-04-15-00-12-26-tc-feynman.png";
+      primary-color = "#000000000000";
+      secondary-color = "#000000000000";
     };
 
     "org/gnome/desktop/calendar" = {
@@ -92,12 +106,33 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
       cursor-size = 25;
       cursor-theme = "Adwaita";
       font-antialiasing = "grayscale";
       font-hinting = "slight";
       gtk-theme = "Arc-Dark";
       icon-theme = "elementary";
+    };
+
+    "org/gnome/desktop/notifications" = {
+      application-children = [ "guake" "emacsclient" ];
+    };
+
+    "org/gnome/desktop/notifications/application/emacsclient" = {
+      application-id = "emacsclient.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/guake" = {
+      application-id = "guake.desktop";
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      color-shading-type = "solid";
+      picture-options = "zoom";
+      picture-uri = "file:///home/loren/.local/share/backgrounds/2022-04-15-00-12-26-tc-feynman.png";
+      primary-color = "#000000000000";
+      secondary-color = "#000000000000";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
@@ -134,7 +169,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/evince/default" = {
-      window-ratio = mkTuple [ 5.877483443708609 2.1621373352788753 ];
+      window-ratio = mkTuple [ 5.877483 2.162137 ];
     };
 
     "org/gnome/evolution-data-server" = {
@@ -157,7 +192,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/nautilus/window-state" = {
-      initial-size = mkTuple [ 1261 1080 ];
+      initial-size = mkTuple [ 997 677 ];
       maximized = false;
     };
 
@@ -203,7 +238,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell" = {
-      favorite-apps = [ "firefox.desktop" "com.github.xournalpp.xournalpp.desktop" "telegramdesktop.desktop" "Mattermost.desktop" "slack.desktop" ];
+      favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.desktop" "slack.desktop" "Mattermost.desktop" "telegramdesktop.desktop" ];
       welcome-dialog-last-shown-version = "42.0";
     };
 
@@ -224,6 +259,20 @@ with lib.hm.gvariant;
 
     "org/gnome/tweaks" = {
       show-extensions-notice = false;
+    };
+
+    "org/gtk/gtk4/settings/file-chooser" = {
+      date-format = "regular";
+      location-mode = "path-bar";
+      show-hidden = false;
+      show-size-column = true;
+      show-type-column = true;
+      sidebar-width = 169;
+      sort-column = "name";
+      sort-directories-first = false;
+      sort-order = "ascending";
+      type-format = "category";
+      window-size = mkTuple [ 1010 449 ];
     };
 
     "org/gtk/settings/color-chooser" = {
