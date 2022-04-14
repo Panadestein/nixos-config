@@ -18,16 +18,7 @@ in {
       ./hardware-configuration.nix
       # Use home-manager
       ./home.nix
-      # Use latest version of Qtile service
-      <nixos-unstable/nixos/modules/services/x11/window-managers/qtile.nix>
     ];
-
-  # Define overlays
-  nixpkgs.overlays = [
-    (self: super: {
-      qtile = unstable.qtile;
-    })
-  ];
 
   # Enable unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -100,13 +91,21 @@ in {
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
 
   # Desktop
-  services.xserver.displayManager.defaultSession = "none+xmonad";
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    greeters.enso = {
-      enable = true;
-    }; 
+  
+  services.xserver.displayManager = {
+    gdm = {
+      enable = true; 
+      wayland = false;
+    };
+    lightdm = {
+      enable = false;
+      greeters.enso = {
+        enable = true;
+      }; 
+    };
   };
+
+  services.xserver.desktopManager.gnome.enable = true;
 
   services.xserver.windowManager = {
     xmonad = {
@@ -117,9 +116,6 @@ in {
         haskellPackages.xmonad-contrib
         haskellPackages.xmonad-extras
       ];
-    };
-    qtile = {
-      enable = true;
     };
   };
 
@@ -257,19 +253,15 @@ in {
 
   # Use Flatpak, just in case
   services.flatpak.enable = true;
-  xdg.portal = {
-    enable =  true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
 
   # Fonts
   fonts.fonts = with pkgs; [
     dina-font
     fira-code
     fira-code-symbols
-    font-awesome-ttf
+    font-awesome
     liberation_ttf
-    mplus-outline-fonts
+    #mplus-outline-fonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -300,7 +292,7 @@ in {
   services.gnome.gnome-keyring.enable = true;
   services.dbus = {
     enable = true;
-    packages = [ pkgs.gnome3.dconf ];
+    packages = [ pkgs.dconf ];
   };
   systemd.user.services.dropbox = {
     description = "Dropbox";

@@ -12,14 +12,19 @@ in
 
   home-manager.users.loren = {
     nixpkgs.config.allowUnfree = true;
+
+    # Dconf settings for Gnome
+    imports = [ ./dotfiles/dconf.nix ];
+
+    # User packages
     home.packages = with pkgs; [
       # General utilities
       brightnessctl
       ccls
       code-minimap
-      gnome.eog
-      gnome.nautilus
-      gnome.gnome-calendar
+      dconf2nix
+      guake
+      gnome.gnome-tweaks
       poppler_utils
       trayer
       ueberzug
@@ -71,7 +76,7 @@ in
       # Communications
       brave
       mattermost-desktop
-      skype
+      skypeforlinux
       slack
       tdesktop
       # Leisure
@@ -137,7 +142,7 @@ in
 
     # Picom
     services.picom = {
-      enable = true;
+      enable = false;
       activeOpacity = "1.0";
       inactiveOpacity = "1.0";
       noDockShadow = true;
