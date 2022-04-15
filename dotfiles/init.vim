@@ -47,7 +47,7 @@ au BufWinEnter ?* silent! loadview
 "----------------------------------------
 
 let g:neovide_refresh_rate=140
-let g:neovide_transparency=0.1
+let g:neovide_transparency=0.95
 let neovide_remember_window_size = v:true
 let g:neovide_input_use_logo=v:true
 let g:neovide_cursor_animation_length=0.13
