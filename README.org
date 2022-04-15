@@ -1,5 +1,14 @@
 * NixOS configuration
 
-Welcome to my [[https://nixos.org/][NixOS]] configuration using [[https://nix-community.github.io/home-manager/][home-manager]]. This minimalist config should generate a
-production-ready system (at least for my taste) with the [[https://xmonad.org/][xmonad]] tiling window manager and related goodies.
-Some parts are tailored to my AMD hardware and need to be adjusted depending on the current machine.
+Welcome to my [[https://nixos.org/][NixOS]] configuration using [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration generates a
+production-ready system (at least for my taste) with the [[https://xmonad.org/][xmonad]] tiling window manager
+and the [[https://release.gnome.org/][gnome]] desktop environment.
+
+** Remarks:
+
+- The config is tailored to AMD hardware and need to be adjusted to other machines.
+- I am using the nixos-unstable channel:
+  #+begin_src bash
+    sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+    sudo nixos-rebuild switch --upgrade
+  #+end_src
