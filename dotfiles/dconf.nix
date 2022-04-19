@@ -79,8 +79,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "display";
-      window-state = mkTuple [ 1398 933 ];
+      last-panel = "wifi";
+      window-state = mkTuple [ 1102 762 ];
     };
 
     "org/gnome/desktop/app-folders" = {
@@ -127,6 +127,10 @@ with lib.hm.gvariant;
       application-id = "firefox.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/gnome-power-panel" = {
+      application-id = "gnome-power-panel.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/guake" = {
       application-id = "guake.desktop";
     };
@@ -135,8 +139,21 @@ with lib.hm.gvariant;
       application-id = "neovide.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/slack" = {
+      application-id = "slack.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/telegramdesktop" = {
+      application-id = "telegramdesktop.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/zoom" = {
       application-id = "Zoom.desktop";
+    };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+      two-finger-scrolling-enabled = true;
     };
 
     "org/gnome/desktop/screensaver" = {
@@ -212,6 +229,11 @@ with lib.hm.gvariant;
       maximized = false;
     };
 
+    "org/gnome/nm-applet/eap/ce654d28-ba24-4919-ad58-971e5652104c" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" ];
       www = [ "<Super>w" ];
@@ -258,6 +280,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell" = {
+      command-history = [ "console" "gnome-console" ];
       enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
       favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.desktop" "slack.desktop" "Mattermost.desktop" "telegramdesktop.desktop" ];
       welcome-dialog-last-shown-version = "42.0";
