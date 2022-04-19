@@ -63,7 +63,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/Console" = {
-      font-scale = 2.200000000000001;
+      font-scale = 2.2;
       theme = "auto";
     };
 
@@ -79,8 +79,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "wifi";
-      window-state = mkTuple [ 1149 806 ];
+      last-panel = "display";
+      window-state = mkTuple [ 1398 933 ];
     };
 
     "org/gnome/desktop/app-folders" = {
@@ -116,15 +116,27 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "guake" "emacsclient" ];
+      application-children = [ "guake" "emacsclient" "firefox" ];
     };
 
     "org/gnome/desktop/notifications/application/emacsclient" = {
       application-id = "emacsclient.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/firefox" = {
+      application-id = "firefox.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/guake" = {
       application-id = "guake.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/neovide" = {
+      application-id = "neovide.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/zoom" = {
+      application-id = "Zoom.desktop";
     };
 
     "org/gnome/desktop/screensaver" = {
@@ -133,6 +145,10 @@ with lib.hm.gvariant;
       picture-uri = "file:///home/loren/.local/share/backgrounds/2022-04-15-00-12-26-tc-feynman.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
+    };
+
+    "org/gnome/desktop/session" = {
+      idle-delay = mkUint32 300;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
@@ -237,9 +253,18 @@ with lib.hm.gvariant;
       name = "Naut";
     };
 
+    "org/gnome/settings-daemon/plugins/power" = {
+      power-button-action = "suspend";
+    };
+
     "org/gnome/shell" = {
+      enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
       favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.desktop" "slack.desktop" "Mattermost.desktop" "telegramdesktop.desktop" ];
       welcome-dialog-last-shown-version = "42.0";
+    };
+
+    "org/gnome/shell/extensions/auto-move-windows" = {
+      application-list = [ "slack.desktop:2" "Mattermost.desktop:2" "telegramdesktop.desktop:2" ];
     };
 
     "org/gnome/shell/keybindings" = {
@@ -254,6 +279,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
+      check-timestamp = mkInt64 1650356892;
       first-run = false;
     };
 
@@ -292,6 +318,10 @@ with lib.hm.gvariant;
       type-format = "category";
       window-position = mkTuple [ 479 199 ];
       window-size = mkTuple [ 962 658 ];
+    };
+
+    "system/proxy" = {
+      mode = "none";
     };
 
   };

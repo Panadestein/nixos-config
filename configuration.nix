@@ -209,7 +209,7 @@ in {
     alacritty
     zsh
     # File browser
-    dropbox-cli
+    dropbox-cli.nautilusExtension
     ranger
     # Text editors and office
     emacs
