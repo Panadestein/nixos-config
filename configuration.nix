@@ -12,7 +12,6 @@
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
-  disabledModules = [ "services/x11/window-managers/qtile.nix" ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -203,6 +202,32 @@ in {
     gnumake
     mpich
     qt5Full
+    (let
+      my-python-packages = python-packages: with python-packages; [
+        # Language server
+        python-lsp-server
+        # Scientific libraries
+        ipython
+        jupyter
+        matplotlib
+        numpy
+        pandas
+        scikit-learn
+        scipy
+        sympy
+        # Qt backend
+        pyqt5
+        # Documentation
+        sphinx
+        # Linters
+        autopep8
+        flake8
+        jedi
+        pylint
+      ];
+      python-with-my-packages = python3.withPackages my-python-packages;
+    in
+      python-with-my-packages)
     # Science utilities
     gnuplot
     # Terminal and CLI utilities
