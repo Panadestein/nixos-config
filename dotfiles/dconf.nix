@@ -81,7 +81,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "keyboard";
+      last-panel = "info-overview";
       window-state = mkTuple [ 1102 762 ];
     };
 
@@ -204,7 +204,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/evince/default" = {
-      window-ratio = mkTuple [ 5.877483 2.162137 ];
+      window-ratio = mkTuple [ 5.826524341671029 2.1136634531376197 ];
     };
 
     "org/gnome/evolution-data-server" = {
@@ -242,7 +242,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" ];
+      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/" ];
       www = [ "<Super>w" ];
     };
 
@@ -280,6 +280,18 @@ with lib.hm.gvariant;
       binding = "<Shift><Super>f";
       command = "nautilus";
       name = "Naut";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
+      binding = "<Super>e";
+      command = "emacsclient -c";
+      name = "Emacs";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" = {
+      binding = "<Super>d";
+      command = "neovide";
+      name = "Neovide";
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
