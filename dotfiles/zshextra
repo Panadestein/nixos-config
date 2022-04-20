@@ -14,13 +14,36 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # My custom theme for ZSH, with a bit of LISP :)
 
-PROMPT="%B(%B%{$fg[red]%}%n%{$reset_color%} %B. %{$fg[yellow]%}%1d%{$reset_color%}%B)%{$reset_color%} "
+prompt_nix_shell() {
+    if [[ -n "$IN_NIX_SHELL" ]]; then
+	if [[ -n $NIX_SHELL_PACKAGES ]]; then
+	    local package_names=""
+	    local packages=($NIX_SHELL_PACKAGES)
+	    for package in $packages; do
+		package_names+="${package##*.}"
+	    done
+	    echo -n "%B%{$fg_bold[blue]%}(%{$fg[green]%}$package_names%{$fg_bold[blue]%}%B)%{$reset_color%} "
+	elif [[ -n $name ]]; then
+	    local stripnam=${name#interactive-}
+	    stripnam=${stripnam%-environment}
+            stripnam=$(echo "$stripnam" | cut -d "-" -f 1)
+	    echo -n "%B%{$fg_bold[blue]%}(%{$fg[cyan]%}$stripnam%{$fg_bold[blue]%}%B)%{$reset_color%} "
+	else
+	    echo -n "%B(%{$fg[blue]%}nix-shell%{$reset_color%}%B) "
+	fi
+    fi
+}
+
+PROMPT='$(prompt_nix_shell)'
+PROMPT+="%B(%B%{$fg[red]%}%n%{$reset_color%} %B. %{$fg[yellow]%}%1d%{$reset_color%}%B)%{$reset_color%} "
 PROMPT+='$(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[cyan]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%})"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+
+# Update style
 
 zstyle ':omz:update' mode reminder
 
