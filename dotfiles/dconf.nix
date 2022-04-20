@@ -9,6 +9,7 @@ with lib.hm.gvariant;
       abbreviate-tab-names = false;
       compat-delete = "delete-sequence";
       display-n = 0;
+      gtk-theme-name = "Adwaita";
       history-size = 10000;
       max-tab-name-length = 100;
       mouse-display = true;
@@ -19,6 +20,7 @@ with lib.hm.gvariant;
       restore-tabs-startup = true;
       save-tabs-when-changed = true;
       scroll-keystroke = true;
+      start-at-login = true;
       use-default-font = false;
       use-popup = true;
       use-scrollbar = false;
@@ -79,7 +81,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "wifi";
+      last-panel = "keyboard";
       window-state = mkTuple [ 1102 762 ];
     };
 
@@ -229,6 +231,11 @@ with lib.hm.gvariant;
       maximized = false;
     };
 
+    "org/gnome/nm-applet/eap/1931c61a-f848-4188-84b6-c62c0a062fa5" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
     "org/gnome/nm-applet/eap/ce654d28-ba24-4919-ad58-971e5652104c" = {
       ignore-ca-cert = false;
       ignore-phase2-ca-cert = false;
@@ -302,7 +309,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1650356892;
+      check-timestamp = mkInt64 1650449127;
       first-run = false;
     };
 
