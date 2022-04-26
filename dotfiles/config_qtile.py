@@ -27,6 +27,7 @@ terminal = guess_terminal()
 dgroups_key_binder = simple_key_binder("mod4")
 ranp = f"{Path.home()}/.config/scripts/randr_conf.sh"
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+cmdh = 'python -c "print(`qtile cmd-obj -o cmd -f display_kb`)" | rofi -dmenu'
 
 # Useful colors
 # https://www.schemecolor.com/python-logo-colors.php
@@ -40,6 +41,9 @@ cl_pal = {
 # Define keybindings
 
 keys = [
+    # Get help
+    Key([mod], "F1", lazy.spawn(cmdh, shell=True)),
+
     # Applications
     Key([mod], "Return", lazy.spawn(terminal),
         desc="Launches detected terminal"),
