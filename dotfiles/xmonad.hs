@@ -25,11 +25,14 @@ import XMonad.Layout.Spacing
 
 -- Xmobar related imports
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.Loggers
 
 -- Main function
 main :: IO ()
 main = xmonad
+     . ewmhFullscreen
      . ewmh
    =<< statusBar "xmobar" myXmobarPP toggleStrutsKey myConfig
   where
@@ -57,7 +60,6 @@ myConfig = def
       modMask = mod4Mask -- Rebind Mod to Super key
     , layoutHook = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True
                  $ myLayout
-    , handleEventHook    = handleEventHook def <+> fullscreenEventHook
     , startupHook        = myStartupHook
     , manageHook         = myManageHook
     , focusedBorderColor = myFocusedBorderColor

@@ -36,3 +36,7 @@ else
 	   --output "$ARB" --off\
 	   --output "$HAU" --off
 fi
+
+# Restore wall paper whatever outcome
+
+nitrogen --restore

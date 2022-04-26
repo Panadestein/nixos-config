@@ -20,11 +20,14 @@ in
     home.packages = with pkgs; [
       # General utilities
       brightnessctl
+      calcurse
       ccls
       code-minimap
       dconf2nix
       guake
       gnome.gnome-tweaks
+      gnome.eog
+      gnome.nautilus
       poppler_utils
       trayer
       ueberzug
@@ -32,7 +35,6 @@ in
       volumeicon
       # Science
       avogadro2
-      molden
       zotero
       # Image editing
       gimp
@@ -116,14 +118,14 @@ in
 
     # Picom
     services.picom = {
-      enable = false;
+      enable = true;
       activeOpacity = "1.0";
       inactiveOpacity = "1.0";
       noDockShadow = true;
       noDNDShadow = true;
       menuOpacity = "1.0";
       opacityRule = [
-         "80:class_g = 'Alacritty'"
+         "90:class_g = 'Alacritty'"
       ];
       backend = "glx";
     };
@@ -143,6 +145,12 @@ in
         };
       };
     };
+
+    # Qtile configuration
+    xdg.configFile."qtile/config.py".source = ./dotfiles/config_qtile.py;
+    home.file.".config/scripts/qtile_autostart.sh".source = ./dotfiles/qtile_autostart.sh;
+    home.file.".config/qtile/python_icon.png".source = ./dotfiles/images/python_icon.png;
+
     # Set LightDM avatar (https://wiki.archlinux.org/title/LightDM#Changing_your_avatar)
     home.file.".face".source = dotfiles/images/cfd_DWudN.png;
 

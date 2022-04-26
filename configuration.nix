@@ -19,11 +19,25 @@ in {
       ./home.nix
     ];
 
+  # Overlays
+  nixpkgs.overlays = [
+    (self: super: {
+      qtile = super.qtile.overrideAttrs(oldAttrs: {
+        propagatedBuildInputs =
+          oldAttrs.passthru.unwrapped.propagatedBuildInputs
+          ++ (with self.python3Packages; [
+          # Extra Python packages for Qtile widgets
+          dbus-next
+        ]);
+      });
+    })
+  ];
+
   # Enable unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Use the latest linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_5_15;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Load AMD CPU microcode
   hardware.cpu.amd.updateMicrocode = true;
@@ -90,22 +104,23 @@ in {
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
 
   # Desktop
-  
+
+  # Display manager
   services.xserver.displayManager = {
+    defaultSession = "none+qtile";
     gdm = {
-      enable = true; 
+      enable = false;
       wayland = false;
     };
     lightdm = {
-      enable = false;
+      enable = true;
       greeters.enso = {
         enable = true;
       }; 
     };
   };
 
-  services.xserver.desktopManager.gnome.enable = true;
-
+  # Window managers :fire:
   services.xserver.windowManager = {
     xmonad = {
       enable = true;
@@ -116,7 +131,13 @@ in {
         haskellPackages.xmonad-extras
       ];
     };
+    qtile = {
+      enable = true;
+    };
   };
+
+  # In case we need Gnome at some point
+  services.xserver.desktopManager.gnome.enable = false;
 
   # Configure keymap in X11
   services.xserver.layout = "us";
@@ -244,7 +265,7 @@ in {
     vim_configurable
     # Internet and communications
     firefox
-    unstable.zoom-us
+    zoom-us
     # Windowm manager utilities
     dmenu
     nitrogen
@@ -278,6 +299,8 @@ in {
 
   # Use Flatpak, just in case
   services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Fonts
   fonts.fonts = with pkgs; [

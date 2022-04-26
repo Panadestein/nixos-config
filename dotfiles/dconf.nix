@@ -121,6 +121,10 @@ with lib.hm.gvariant;
       application-children = [ "guake" "emacsclient" "firefox" ];
     };
 
+    "org/gnome/desktop/notifications/application/alacritty" = {
+      application-id = "Alacritty.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/emacsclient" = {
       application-id = "emacsclient.desktop";
     };
@@ -139,6 +143,10 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/notifications/application/neovide" = {
       application-id = "neovide.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-nautilus" = {
+      application-id = "org.gnome.Nautilus.desktop";
     };
 
     "org/gnome/desktop/notifications/application/slack" = {
@@ -204,12 +212,26 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/evince/default" = {
-      window-ratio = mkTuple [ 5.826524341671029 2.1136634531376197 ];
+      window-ratio = mkTuple [ 5.826524 2.113663 ];
     };
 
     "org/gnome/evolution-data-server" = {
       migrated = true;
       network-monitor-gio-name = "";
+    };
+
+    "org/gnome/file-roller/listing" = {
+      list-mode = "as-folder";
+      name-column-width = 250;
+      show-path = false;
+      sort-method = "name";
+      sort-type = "ascending";
+    };
+
+    "org/gnome/file-roller/ui" = {
+      sidebar-width = 200;
+      window-height = 480;
+      window-width = 600;
     };
 
     "org/gnome/mutter" = {
