@@ -89,7 +89,7 @@ keys = [
     Key([mod, "shift"], "x", lazy.spawn("shutdown now"),
         desc="Shutdown the box"),
     Key([mod, "shift"], "BackSpace", lazy.spawn("reboot"),
-        desc="Shutdown the box"),
+        desc="Reboot the box"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
@@ -248,6 +248,7 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = True
+
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
