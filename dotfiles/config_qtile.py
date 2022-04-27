@@ -15,7 +15,8 @@ from typing import List
 from pathlib import Path
 from libqtile import qtile
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import (
+    Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown)
 from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -65,9 +66,12 @@ keys = [
         desc="Launches the Ranger file browser"),
     Key([mod], "f", lazy.spawn("alacritty -e ranger"),
         desc="Launches the Ranger file browser"),
-    Key([], "Print",
+    Key([mod], "Print",
         lazy.spawn("maim -s | xclip -selection clipboard -t image/png"),
         desc="Takes a screenshot with the Maim utility"),
+
+    # Dropdown terminal
+    Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
 
     # Media Keys
     Key([], 'XF86AudioLowerVolume', lazy.spawn("amixer set Master 5%- unmute"),
@@ -124,22 +128,31 @@ keys = [
 
 # Define groups (workspaces)
 
-groups = [Group("dev", layout='monadtall'),
-          Group("tty", layout='monadtall'),
-          Group("doc", layout='monadtall'),
-          Group("www", layout='monadtall',
-                matches=[Match(wm_class=["firefox"])]),
-          Group("msg", layout='monadtall',
-                matches=[Match(wm_class=["Mattermost",
-                                         "Slack",
-                                         "TelegramDesktop"])]),
-          Group("com", layout='monadtall',
-                matches=[Match(wm_class=["Skype",
-                                         "zoom"])]),
-          Group("rnd", layout='monadtall'),
-          Group("art", layout='floating',
-                matches=[Match(wm_class=["gimp-2.10"])])
-          ]
+groups = [
+    ScratchPad("scratchpad", [
+        DropDown("term", "alacritty",
+                 x=0.0,
+                 y=0.0,
+                 width=1.0,
+                 height=1.0,
+                 opacity=0.9,
+                 on_focus_lost_hide=True)]),
+    Group("dev", layout='monadtall'),
+    Group("tty", layout='monadtall'),
+    Group("doc", layout='monadtall'),
+    Group("www", layout='monadtall',
+          matches=[Match(wm_class=["firefox"])]),
+    Group("msg", layout='monadtall',
+          matches=[Match(wm_class=["Mattermost",
+                                   "Slack",
+                                   "TelegramDesktop"])]),
+    Group("com", layout='monadtall',
+          matches=[Match(wm_class=["Skype",
+                                   "zoom"])]),
+    Group("rnd", layout='monadtall'),
+    Group("art", layout='floating',
+          matches=[Match(wm_class=["gimp-2.10"])])
+]
 
 # Layouts
 
