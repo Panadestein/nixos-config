@@ -66,8 +66,7 @@ keys = [
         desc="Launches the Ranger file browser"),
     Key([mod], "f", lazy.spawn("alacritty -e ranger"),
         desc="Launches the Ranger file browser"),
-    Key([mod], "Print",
-        lazy.spawn("maim -s | xclip -selection clipboard -t image/png"),
+    Key([], "Print", lazy.spawn("gnome-screenshot -i"),
         desc="Takes a screenshot with the Maim utility"),
 
     # Dropdown terminal
@@ -270,7 +269,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
-    Match(title='guake'),  # A drop-down terminal
+    Match(wm_class='Gnome-screenshot'),  # A screenshot utility
 ])
 
 auto_fullscreen = True

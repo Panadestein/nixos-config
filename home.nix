@@ -24,10 +24,11 @@ in
       ccls
       code-minimap
       dconf2nix
-      guake
-      gnome.gnome-tweaks
       gnome.eog
+      gnome.gnome-screenshot
+      gnome.gnome-tweaks
       gnome.nautilus
+      guake
       poppler_utils
       trayer
       ueberzug
