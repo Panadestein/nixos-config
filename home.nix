@@ -149,8 +149,8 @@ in
 
     # Qtile configuration
     xdg.configFile."qtile/config.py".source = ./dotfiles/config_qtile.py;
-    home.file.".config/scripts/qtile_autostart.sh".source = ./dotfiles/qtile_autostart.sh;
     home.file.".config/qtile/python_icon.png".source = ./dotfiles/images/python_icon.png;
+    home.file.".config/qtile/tc_feyn.png".source = ./dotfiles/images/tc_feyn.png;
 
     # Set LightDM avatar (https://wiki.archlinux.org/title/LightDM#Changing_your_avatar)
     home.file.".face".source = dotfiles/images/cfd_DWudN.png;

@@ -163,7 +163,7 @@ layout_theme = {
 }
 
 layouts = [
-    # No need more than this
+    # No need for more than this
     layout.Max(**layout_theme),
     layout.MonadTall(**layout_theme, single_border_width=0,
                      single_margin=0, new_client_position='bottom'),
@@ -241,6 +241,8 @@ screens = [
             ],
             25,
         ),
+        wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
+        wallpaper_mode="fill",
     ),
 ]
 
@@ -270,6 +272,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
     Match(wm_class='Gnome-screenshot'),  # A screenshot utility
+    Match(wm_class="matplotlib"),  # It is all about plotting
 ])
 
 auto_fullscreen = True
@@ -280,10 +283,14 @@ auto_minimize = True
 # Startup processes
 
 
-@hook.subscribe.startup_once
-def start_once():
-    """Startup processes."""
-    subprocess.call([f"{Path.home()}/.config/scripts/qtile_autostart.sh"])
+@hook.subscribe.screen_change
+def screen_event(ev):
+    """Reload Qtile configuration in case of screen changes.
+
+    It ensures that only one screen is in use at the time,
+    which is a personal preference.
+    """
+    subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh"])
 
 
 # Dirty Java hack
