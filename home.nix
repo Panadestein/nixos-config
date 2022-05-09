@@ -24,6 +24,7 @@ in
       ccls
       code-minimap
       dconf2nix
+      fzf
       gnome.eog
       gnome.gnome-screenshot
       gnome.gnome-tweaks
@@ -133,11 +134,6 @@ in
 
     # Extra Xsession config
     xsession = {
-      pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-      size = 25;
-      };
       windowManager = {
         xmonad = {
           enable = true;
@@ -145,6 +141,14 @@ in
           config = ./dotfiles/xmonad.hs;
         };
       };
+    };
+
+    # Pointer cursor
+    home.pointerCursor = {
+      x11.enable = true;
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+      size = 25;
     };
 
     # Qtile configuration
@@ -221,6 +225,7 @@ in
         ccpgate = "ssh -Y panades@ccpgate.tnw.utwente.nl";
         tau = "ssh -Y rapa157d@taurus.hrsk.tu-dresden.de";
         mah = "ssh rpanades@mahti.csc.fi";
+        jul = "ssh -i ~/.ssh/id_ed25519 panadesbarrueta1@juwels-cluster.fz-juelich.de";
         tume = "ssh -Y rbarrueta@cpch06.chm.tu-dresden.de";
         lsts0 = "ssh -Y rbarrueta@141.30.9.190";
         lsts1 = "ssh -Y rbarrueta@141.30.9.191";
