@@ -96,6 +96,12 @@ keys = [
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
+    # Groups control
+    Key([mod], "Right", lazy.screen.prev_group(),
+        desc="Move to the group on the right"),
+    Key([mod], "Left", lazy.screen.next_group(),
+        desc="Move to the group on the left"),
+
     # Window control
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),

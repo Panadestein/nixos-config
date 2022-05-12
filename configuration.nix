@@ -33,8 +33,13 @@ in {
     })
   ];
 
-  # Enable unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Nixpkgs configuration
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      inxi = pkgs.inxi.override { withRecommends = true; };
+    };
+  };
 
   # Use the latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -309,7 +314,6 @@ in {
     fira-code-symbols
     font-awesome
     liberation_ttf
-    #mplus-outline-fonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
