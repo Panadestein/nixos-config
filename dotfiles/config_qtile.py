@@ -237,7 +237,10 @@ screens = [
                 ),
                 widget.TextBox("|", foreground='#ffe873'),
                 widget.Battery(
-                    format="Bat: {percent:2.0%} {hour:d}:{min:02d}",
+                    format="Bat{char}: {percent:2.0%} {hour:d}:{min:02d}",
+                    charge_char="+",
+                    discharge_char="-",
+                    empty_char="=",
                     low_foreground='FF0000',
                     notify_below=0.1,
                     low_percentage=0.2),
