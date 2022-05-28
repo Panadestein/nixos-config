@@ -102,8 +102,12 @@ keys = [
     Key([mod], "Left", lazy.screen.next_group(),
         desc="Move to the group on the left"),
 
-    # Window control
+    # Window and layout control
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "u",
+        lazy.window.toggle_fullscreen(),
+        desc="Toggles fullscreen when window is not floating"),
+
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -126,8 +130,6 @@ keys = [
         desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-
-    # Layouts control
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
 ]
 
