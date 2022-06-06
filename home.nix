@@ -197,6 +197,7 @@ in
       shellAliases = {
         # General aliases
         e = "emacsclient";
+        en = "emacsclient -c -nw";
         E = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit";
         v = "nvim";
         n = "neovide --maximized";
