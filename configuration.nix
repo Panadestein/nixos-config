@@ -331,6 +331,9 @@ in {
     enableSSHSupport = true;
   };
 
+  # Enable docker (rarely needed but still)
+  virtualisation.docker.enable = true;
+
   # Services
   services.actkbd.enable = true;
   services.gvfs.enable = true;
