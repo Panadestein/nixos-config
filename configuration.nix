@@ -236,6 +236,7 @@ in {
         ipython
         jupyter
         matplotlib
+        mpmath
         numpy
         pandas
         scikit-learn
@@ -250,6 +251,8 @@ in {
         flake8
         jedi
         pylint
+        # Web
+        tornado
       ];
       python-with-my-packages = python3.withPackages my-python-packages;
     in

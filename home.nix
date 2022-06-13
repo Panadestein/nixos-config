@@ -78,8 +78,8 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "8007291165149806fde7a7cde4db590255b7e628";
-        sha256 = "00s4qdgsx1s8wj00pd94xp01wb8nk51k2zipqwad3jal90ii74ws"; 
+        rev = "84cfd794b6d4bf15364f8da6bd0a3ebd65956e47";
+        sha256 = "1q8k455zvfppnl4lm67ln51zifpymhwcqk33m4mwasxa4bqi12ic"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
@@ -227,7 +227,7 @@ in
         ccpgate = "ssh -Y panades@ccpgate.tnw.utwente.nl";
         tau = "ssh -Y rapa157d@taurus.hrsk.tu-dresden.de";
         mah = "ssh rpanades@mahti.csc.fi";
-        jul = "ssh -i ~/.ssh/id_ed25519 -X panadesbarrueta1@juwels-cluster.fz-juelich.de";
+        jul = "ssh -i ~/.ssh/id_ed25519 -Y panadesbarrueta1@juwels-cluster.fz-juelich.de";
         tume = "ssh -Y rbarrueta@cpch06.chm.tu-dresden.de";
         lsts0 = "ssh -Y rbarrueta@141.30.9.190";
         lsts1 = "ssh -Y rbarrueta@141.30.9.191";
