@@ -17,6 +17,7 @@ in
     imports = [ ./dotfiles/dconf.nix ];
 
     # User packages
+    home.stateVersion = "22.05";
     home.packages = with pkgs; [
       # General utilities
       brightnessctl
@@ -38,6 +39,7 @@ in
       volumeicon
       # Science
       avogadro2
+      molden
       zotero
       # Image editing
       gimp
@@ -78,8 +80,8 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "84cfd794b6d4bf15364f8da6bd0a3ebd65956e47";
-        sha256 = "1q8k455zvfppnl4lm67ln51zifpymhwcqk33m4mwasxa4bqi12ic"; 
+        rev = "282082f3df4f815f485f80d0cb24aa2dad85d67e";
+        sha256 = "1i9bk6k4naai6w845zqnzp7606h7jwdp5cfa6j8zk3505sg0ia3a"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;

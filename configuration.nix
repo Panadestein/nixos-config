@@ -239,9 +239,11 @@ in {
         mpmath
         numpy
         pandas
+        seaborn
         scikit-learn
         scipy
         sympy
+        tensorly
         # Qt backend
         pyqt5
         # Documentation
@@ -371,6 +373,6 @@ in {
   };
 
   # State version
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 }
 

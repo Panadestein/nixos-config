@@ -155,7 +155,7 @@ groups = [
                                    "TelegramDesktop"])]),
     Group("com", layout='monadtall',
           matches=[Match(wm_class=["Skype",
-                                   "zoom"])]),
+                                   ".zoom "])]),
     Group("rnd", layout='monadtall'),
     Group("art", layout='floating',
           matches=[Match(wm_class=["gimp-2.10"])])
