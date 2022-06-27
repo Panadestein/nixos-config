@@ -255,7 +255,10 @@ screens = [
                                  'Button1':
                                  lambda: qtile.cmd_spawn(
                                      "alacritty -e calcurse")
-                             })
+                             }),
+                widget.TextBox("|", foreground='#ffe873'),
+                widget.KeyboardLayout(configured_keyboards=['us', 'de'],
+                                      foreground=cl_pal["sunglow"])
             ],
             25,
         ),

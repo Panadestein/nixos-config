@@ -145,7 +145,7 @@ in {
   services.xserver.desktopManager.gnome.enable = false;
 
   # Configure keymap in X11
-  services.xserver.layout = "us";
+  services.xserver.layout = "us,de";
 
   # Enable CUPS to print documents.
   services.printing = {
