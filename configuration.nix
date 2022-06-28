@@ -146,6 +146,7 @@ in {
 
   # Configure keymap in X11
   services.xserver.layout = "us,de";
+  services.xserver.xkbVariant = "altgr-intl";
 
   # Enable CUPS to print documents.
   services.printing = {

@@ -69,6 +69,10 @@ keys = [
     Key([], "Print", lazy.spawn("gnome-screenshot -i"),
         desc="Takes a screenshot with the Maim utility"),
 
+    # Language
+    Key([mod], 'i', lazy.widget["keyboardlayout"].next_keyboard(),
+        desc="Cycle through keyboard layouts"),
+
     # Dropdown terminal
     Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
 
@@ -257,8 +261,9 @@ screens = [
                                      "alacritty -e calcurse")
                              }),
                 widget.TextBox("|", foreground='#ffe873'),
-                widget.KeyboardLayout(configured_keyboards=['us', 'de'],
-                                      foreground=cl_pal["sunglow"])
+                widget.KeyboardLayout(
+                    configured_keyboards=['us', 'de', 'us altgr-intl'],
+                    foreground=cl_pal["sunglow"])
             ],
             25,
         ),
