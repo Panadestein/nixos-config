@@ -133,6 +133,9 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(),
         desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "s", lazy.layout.toggle_split()),
+    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
+    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
 ]
@@ -148,9 +151,9 @@ groups = [
                  height=1.0,
                  opacity=0.9,
                  on_focus_lost_hide=True)]),
-    Group("dev", layout='monadtall'),
-    Group("tty", layout='monadtall'),
-    Group("doc", layout='monadtall'),
+    Group("dev", layout='columns'),
+    Group("tty", layout='columns'),
+    Group("doc", layout='columns'),
     Group("www", layout='monadtall',
           matches=[Match(wm_class=["firefox"])]),
     Group("msg", layout='monadtall',
@@ -160,7 +163,7 @@ groups = [
     Group("com", layout='monadtall',
           matches=[Match(wm_class=["Skype",
                                    ".zoom "])]),
-    Group("rnd", layout='monadtall'),
+    Group("rnd", layout='columns'),
     Group("art", layout='floating',
           matches=[Match(wm_class=["gimp-2.10"])])
 ]
@@ -169,7 +172,6 @@ groups = [
 
 layout_theme = {
     "border_width": 1,
-    "margin": 6,
     "border_focus": "#8f3d3d",
     "border_normal": "#267CB9"
 }
@@ -177,9 +179,14 @@ layout_theme = {
 layouts = [
     # No need for more than this
     layout.Max(**layout_theme),
-    layout.MonadTall(**layout_theme, single_border_width=0,
-                     single_margin=0, new_client_position='bottom'),
-    layout.Columns(**layout_theme),
+    layout.MonadTall(**layout_theme,
+                     single_border_width=0,
+                     single_margin=0,
+                     margin=6,
+                     new_client_position='bottom'),
+    layout.Columns(**layout_theme,
+                   margin=4,
+                   margin_on_single=0),
     layout.Floating(**layout_theme)
 ]
 
@@ -187,7 +194,7 @@ layouts = [
 
 widget_defaults = dict(
     font='Fira Code',
-    fontsize=12,
+    fontsize=14,
     padding=3,
 )
 
@@ -223,7 +230,7 @@ screens = [
                 ),
                 widget.TextBox("|", foreground='#ffe873'),
                 widget.Prompt(),
-                widget.WindowName(),
+                widget.WindowName(max_chars=50),
                 widget.CurrentLayout(
                     padding=5,
                     foreground=cl_pal["sunglow"]
