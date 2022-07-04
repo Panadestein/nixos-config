@@ -52,7 +52,7 @@ in
       xournalpp
       # Programming
       chicken
-      neovide
+      #  neovide
       shellcheck
       # Communications
       brave

@@ -224,6 +224,7 @@ in {
     # Programming languages
     cmake
     gcc
+    gdb
     gfortran
     ghc
     gnumake
