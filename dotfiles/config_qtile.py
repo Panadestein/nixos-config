@@ -152,7 +152,7 @@ groups = [
                  opacity=0.9,
                  on_focus_lost_hide=True)]),
     Group("dev", layout='columns'),
-    Group("tty", layout='columns'),
+    Group("tty", layout='max'),
     Group("doc", layout='columns'),
     Group("www", layout='monadtall',
           matches=[Match(wm_class=["firefox"])]),
