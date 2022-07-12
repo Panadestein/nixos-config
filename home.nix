@@ -124,12 +124,14 @@ in
     # Picom
     services.picom = {
       enable = true;
-      activeOpacity = "1.0";
-      inactiveOpacity = "1.0";
-      noDockShadow = true;
-      noDNDShadow = true;
-      menuOpacity = "1.0";
-      opacityRule = [
+      activeOpacity = 1.0;
+      inactiveOpacity = 1.0;
+      menuOpacity = 1.0;
+      wintypes = {
+        dock = { shadow = false; };
+        dnd = { shadow = false; };
+      };
+      opacityRules = [
          "90:class_g = 'Alacritty'"
       ];
       backend = "glx";
