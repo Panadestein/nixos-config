@@ -87,6 +87,11 @@ in
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
     };
 
+    # VScode configuration
+    programs.vscode = {
+      enable = true;
+    };
+
     # Rofi
     programs.rofi = {
       enable = true;
