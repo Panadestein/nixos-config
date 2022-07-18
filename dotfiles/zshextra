@@ -74,6 +74,16 @@ tpy() {
     tmux -2 attach-session -d
 }
 
+ldiff() {
+    if [ -z "$1" ] || [ -z "$2" ]; then return; fi
+    f1=$(basename "$1")
+    f2=$(basename "$2")
+    cat -n "$1" > "/tmp/$f1"
+    cat -n "$2" > "/tmp/$f2"
+    nvim -d "/tmp/$f1" "/tmp/$f2"
+    rm "/tmp/$f1" "/tmp/$f2"
+}
+
 # Give me a nice and warm welcome (this is slow)
 
 figlet -t "$(hostname)" | lolcat
