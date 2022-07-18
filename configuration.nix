@@ -228,6 +228,7 @@ in {
     gfortran
     ghc
     gnumake
+    jdk11
     mpich
     qt5Full
     (let
@@ -308,6 +309,9 @@ in {
     hunspellDicts.fr-moderne
     languagetool
   ];
+
+  # Enable Java
+  programs.java.enable = true;
 
   # Use Flatpak, just in case
   services.flatpak.enable = true;

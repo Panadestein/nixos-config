@@ -90,6 +90,7 @@ in
     # VScode configuration
     programs.vscode = {
       enable = true;
+      package = pkgs.vscode.fhs;
     };
 
     # Rofi
@@ -196,6 +197,9 @@ in
       tray = "always";
     };
 
+    # Set file with extra configuration for zsh
+    home.file.".config/zsh/zshextra".source = ./dotfiles/zshextra;
+
     # Zsh config
     programs.zsh = {
       enable = true;
@@ -209,6 +213,7 @@ in
         e = "emacsclient";
         en = "emacsclient -c -nw";
         E = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit";
+        c = "code -r";
         v = "nvim";
         n = "neovide --maximized";
         r = "ranger";
@@ -251,7 +256,7 @@ in
       };
 
       initExtra = ''
-      source /etc/nixos/dotfiles/zshextra
+      source .config/zsh/zshextra
       '';
 
       oh-my-zsh = {
