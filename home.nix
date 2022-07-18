@@ -197,9 +197,6 @@ in
       tray = "always";
     };
 
-    # Set file with extra configuration for zsh
-    home.file.".config/zsh/zshextra".source = ./dotfiles/zshextra;
-
     # Zsh config
     programs.zsh = {
       enable = true;
@@ -255,9 +252,7 @@ in
         size = 10000000;
       };
 
-      initExtra = ''
-      source .config/zsh/zshextra
-      '';
+      initExtra = builtins.readFile ./dotfiles/zshextra;
 
       oh-my-zsh = {
         enable = true;
