@@ -1,5 +1,4 @@
 # Home manager configuration
-
 { config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
@@ -90,7 +89,7 @@ in
     # VScode configuration
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.fhs;
+      package = pkgs.vscode.fhsWithPackages (ps: with ps; [ fortran-language-server ]);
     };
 
     # Rofi
