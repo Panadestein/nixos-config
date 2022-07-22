@@ -21,6 +21,7 @@ in {
 
   # Overlays
   nixpkgs.overlays = [
+    # Qtile overlay
     (self: super: {
       qtile = super.qtile.overrideAttrs(oldAttrs: {
         propagatedBuildInputs =
@@ -31,6 +32,11 @@ in {
         ]);
       });
     })
+
+    # Emacs overlay
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
   ];
 
   # Nixpkgs configuration
@@ -38,6 +44,23 @@ in {
     allowUnfree = true;
     packageOverrides = pkgs: {
       inxi = pkgs.inxi.override { withRecommends = true; };
+    };
+  };
+
+  # Nix configuration
+  nix = {
+    settings = {
+      substituters = [
+        "https://nix-community.cachix.org/"
+        "https://cache.nixos.org/"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      trusted-users = [
+        "root"
+        "loren"
+      ];
     };
   };
 
@@ -172,7 +195,14 @@ in {
   services.blueman.enable = true;
 
   # Enable touchpad support
-  services.xserver.libinput.enable = true;
+  services.xserver.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = true;
+      naturalScrolling = true;
+      scrollMethod = "twofinger";
+    };
+  };
 
   # User account and configuration
   users.users.loren = {
@@ -223,6 +253,7 @@ in {
     xdotool
     # Programming languages
     cmake
+    fortran-language-server
     gcc
     gdb
     gfortran
@@ -271,7 +302,7 @@ in {
     dropbox-cli.nautilusExtension
     ranger
     # Text editors and office
-    emacs
+    emacsGitNativeComp
     evince
     neovim
     pandoc
@@ -309,6 +340,13 @@ in {
     hunspellDicts.fr-moderne
     languagetool
   ];
+
+  # Emacs configuration
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacsGitNativeComp;
+    defaultEditor = true;
+  };
 
   # Enable Java
   programs.java.enable = true;
@@ -350,10 +388,6 @@ in {
   services.gvfs.enable = true;
   services.openssh.enable = true;
   services.teamviewer.enable = true;
-  services.emacs = {
-    enable = true;
-    defaultEditor = true;
-  };
   services.upower.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.dbus = {
