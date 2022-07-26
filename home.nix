@@ -50,7 +50,6 @@ in
       pandoc
       xournalpp
       # Programming
-      chicken
       neovide
       shellcheck
       # Communications
@@ -79,9 +78,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "f0bfb1934839a97ae26611b7c066a5d877a1108a";
+        rev = "9dcb78f17c21eb0b1e605c029c877818d9c77430";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "0cpvsm2xhdk9qi8carvvg5a0vq4ph9c0nh0arnzs6vax4hbmfv95"; 
+        sha256 = "0z351xha4krwapmf4ar5m6v0lzi3qaf6s9pq38jias33vbh92bvf"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;

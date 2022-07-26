@@ -252,6 +252,7 @@ in {
     xdg-utils
     xdotool
     # Programming languages
+    chez
     cmake
     fortran-language-server
     gcc
