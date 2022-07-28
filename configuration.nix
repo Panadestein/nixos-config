@@ -262,6 +262,7 @@ in {
     gnumake
     jdk11
     mpich
+    racket
     qt5Full
     (let
       my-python-packages = python-packages: with python-packages; [
