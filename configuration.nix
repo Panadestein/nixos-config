@@ -27,9 +27,9 @@ in {
         propagatedBuildInputs =
           oldAttrs.passthru.unwrapped.propagatedBuildInputs
           ++ (with self.python3Packages; [
-          # Extra Python packages for Qtile widgets
-          dbus-next
-        ]);
+            # Extra Python packages for Qtile widgets
+            dbus-next
+          ]);
       });
     })
 
@@ -37,6 +37,21 @@ in {
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
     }))
+
+    # Stumpwm overlay
+    (self: super: {
+      stumpwm = super.stumpwm.overrideAttrs(oldAttrs: {
+        propagatedBuildInputs =
+          oldAttrs.passthru.unwrapped.propagatedBuildInputs
+          ++ ( with self.lispPackages; [
+            # Extra Common Lisp packages for Stumpwm
+            clx-truetype
+            xkeyboard
+            xembed
+            clx
+          ]);
+      });
+    })
   ];
 
   # Nixpkgs configuration
@@ -148,7 +163,7 @@ in {
     };
   };
 
-  # Window managers :fire:
+  # Window managers
   services.xserver.windowManager = {
     xmonad = {
       enable = true;
@@ -160,6 +175,9 @@ in {
       ];
     };
     qtile = {
+      enable = true;
+    };
+    stumpwm = {
       enable = true;
     };
   };
@@ -265,9 +283,10 @@ in {
     racket
     sbcl
     qt5Full
+    # Python and Hy
     (let
       my-python-packages = python-packages: with python-packages; [
-        # Language server
+        # Language server protocol
         python-lsp-server
         # Scientific libraries
         ipython
@@ -280,7 +299,6 @@ in {
         scikit-learn
         scipy
         sympy
-        tensorly
         # Qt backend
         pyqt5
         # Documentation
@@ -296,6 +314,16 @@ in {
       python-with-my-packages = python3.withPackages my-python-packages;
     in
       python-with-my-packages)
+    (hy.withPackages (py-packages: with py-packages; [
+      # Scientific libraries
+      numpy
+      matplotlib
+      pandas
+      scipy
+      sympy
+      # Qt backend
+      pyqt5
+    ]))
     # Science utilities
     gnuplot
     # Terminal and CLI utilities
@@ -312,6 +340,7 @@ in {
     vim_configurable
     # Internet and communications
     firefox
+    nyxt
     zoom-us
     # Windowm manager utilities
     dmenu
