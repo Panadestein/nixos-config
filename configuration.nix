@@ -247,6 +247,7 @@ in {
     curl
     djvulibre
     dmidecode
+    exercism
     figlet
     file
     git
