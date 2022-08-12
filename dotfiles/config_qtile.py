@@ -275,7 +275,7 @@ screens = [
             ],
             25,
         ),
-        wallpaper=f"{Path.home()}/.config/qtile/cc_tram.jpg",
+        wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
         wallpaper_mode="fill",
     ),
 ]

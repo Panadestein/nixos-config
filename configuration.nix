@@ -272,6 +272,7 @@ in {
     xdotool
     # Programming languages
     chez
+    clojure
     cmake
     fortran-language-server
     gcc
@@ -280,6 +281,7 @@ in {
     ghc
     gnumake
     jdk11
+    leiningen
     mpich
     racket
     sbcl
