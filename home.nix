@@ -48,6 +48,7 @@ in
       # Office
       libreoffice
       pandoc
+      translate-shell
       xournalpp
       # Programming
       neovide
@@ -58,6 +59,7 @@ in
       skypeforlinux
       slack
       tdesktop
+      whatsapp-for-linux
       # Leisure
       retroarch
     ];
@@ -207,44 +209,45 @@ in
 
       shellAliases = {
         # General aliases
-        e = "emacsclient";
-        en = "emacsclient -c -nw";
-        E = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit";
         c = "code -r";
-        v = "nvim";
+        e = "emacsclient";
+        E = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit";
+        en = "emacsclient -c -nw";
+        jour1 = "journalctl -p 3 -xb";
+        jour2 = "journalctl -xb | grep rror";
+        ka = "killall";
         n = "neovide --maximized";
         r = "ranger";
         sb = "source ~/.bashrc";
-        sz = "source ~/.zshrc";
-        ka = "killall";
         sv = "sudo nvim";
-        jour1 = "journalctl -p 3 -xb";
-        jour2 = "journalctl -xb | grep rror";
+        sz = "source ~/.zshrc";
+        trd = "trans de:";
+        v = "nvim";
         # Aliases for configuration files
+        cde = "cd ~/.emacs.d/";
         cfb = "e ~/.bashrc";
+        cfe = "e ~/.emacs.d/init.el";
+        cfn = "neovide --maximized ~/.config/nvim/init.vim";
+        cfv = "vim ~/.vimrc";
         vb = "nvim ~/.bashrc";
         vz = "nvim ~/.zshrc";
-        cfe = "e ~/.emacs.d/init.el";
-        cde = "cd ~/.emacs.d/";
-        cfv = "vim ~/.vimrc";
-        cfn = "neovide --maximized ~/.config/nvim/init.vim";
         # Less useful aliases
-        wo = ''figlet -t "$(hostname)"'';
         jnb = "jupyter notebook";
         starwars = "telnet towel.blinkenlights.nl";
+        wo = ''figlet -t "$(hostname)"'';
         # Aliases for remote machines
-        sakura = "ssh -Y ramon@sakura.univ-lille1.fr";
-        sssara = "ssh -Y panades@doornode.surfsara.nl";
         ccpgate = "ssh -Y panades@ccpgate.tnw.utwente.nl";
-        tau = "ssh -Y rapa157d@taurus.hrsk.tu-dresden.de";
-        mah = "ssh rpanades@mahti.csc.fi";
         jul = "ssh -i ~/.ssh/id_ed25519 -Y panadesbarrueta1@juwels-cluster.fz-juelich.de";
-        tume = "ssh -Y rbarrueta@cpch06.chm.tu-dresden.de";
         lsts0 = "ssh -Y rbarrueta@141.30.9.190";
         lsts1 = "ssh -Y rbarrueta@141.30.9.191";
-        tukup = "OBsftp rbarrueta@cpch06.chm.tu-dresden.de";
+        mah = "ssh rpanades@mahti.csc.fi";
         sakup = "sftp ramon@sakura.univ-lille1.fr";
+        sakura = "ssh -Y ramon@sakura.univ-lille1.fr";
+        sssara = "ssh -Y panades@doornode.surfsara.nl";
+        tau = "ssh -Y rapa157d@taurus.hrsk.tu-dresden.de";
         toul = "ssh panades@lpqsv11.ups-tlse.fr";
+        tukup = "OBsftp rbarrueta@cpch06.chm.tu-dresden.de";
+        tume = "ssh -Y rbarrueta@cpch06.chm.tu-dresden.de";
       };
 
       history = {
