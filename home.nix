@@ -128,6 +128,10 @@ in
     # Matplotlib (ensure Qt backend)
     home.file.".config/matplotlib/matplotlibrc".source = ./dotfiles/matplotlibrc;
 
+    # Translate Shell
+    xdg.configFile."translate-shell/init.trans".source = ./dotfiles/init.trans;
+    home.file.".config/translate-shell/happiness.trans".source = ./dotfiles/happiness.trans;
+
     # Picom
     services.picom = {
       enable = true;
@@ -221,7 +225,7 @@ in
         sb = "source ~/.bashrc";
         sv = "sudo nvim";
         sz = "source ~/.zshrc";
-        trd = "trans de:";
+        t = "trans";
         v = "nvim";
         # Aliases for configuration files
         cde = "cd ~/.emacs.d/";
