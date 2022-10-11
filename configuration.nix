@@ -252,6 +252,7 @@ in {
     file
     git
     htop
+    hugo
     inxi
     killall
     libtool
@@ -259,7 +260,6 @@ in {
     maim
     pavucontrol
     pciutils
-    poetry
     rsync
     sshfs
     unrar
