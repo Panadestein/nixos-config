@@ -283,6 +283,7 @@ in {
     jdk11
     leiningen
     mpich
+    nodejs
     racket
     sbcl
     qt5Full
@@ -310,6 +311,7 @@ in {
         autopep8
         flake8
         jedi
+        pydocstyle
         pylint
         # Web
         tornado
