@@ -239,6 +239,7 @@ in {
   environment.systemPackages = with pkgs; [
     # General utilities
     acpi
+    asciidoctor
     bat
     bc
     binutils
