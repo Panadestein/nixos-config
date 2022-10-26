@@ -60,7 +60,7 @@ keys = [
         desc="Launches an emacsclient frame"),
     Key([mod], "v", lazy.spawn("code"),
         desc="Launches VS Code"),
-    Key([mod, "shift"], "f", lazy.spawn("nautilus"),
+    Key([mod, "shift"], "f", lazy.spawn("thunar"),
         desc="Launches the Nautilus file browser"),
     Key([mod], "f", lazy.spawn("alacritty -e ranger"),
         desc="Launches the Ranger file browser"),

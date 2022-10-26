@@ -36,6 +36,7 @@ in
       ueberzug
       universal-ctags
       volumeicon
+      xfce.thunar
       # Science
       avogadro2
       molden
@@ -80,9 +81,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "120040e562e93d5c2b569d8b19a6fb3fc526d5ef";
+        rev = "bd69a8ec2c86789174ced217533f1e854af36b45";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "1q7j4cwyqh8gydiahnph7ya9hwwcr32j5ihh2m8drkzhw7hy392g"; 
+        sha256 = "09dl1i5wdw1qgs53wh6q8k0gvv6g8dbmj5v1vqaj1lpfdvi52cpd"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
