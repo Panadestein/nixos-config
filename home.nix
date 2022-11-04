@@ -50,7 +50,7 @@ in
       inkscape
       pdftk
       # Office
-      libreoffice
+      libreoffice-fresh
       pandoc
       translate-shell
       xournalpp
@@ -84,9 +84,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "d86b5ff23c65947de342e939a0e5dc56d82c3fed";
+        rev = "77393c7cdcac216ec3d9f79e767f07b71871fc4e";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "0nx6g0vhvv1icp42fd687q66ah9p4475ficsyhgbxqbk609spply"; 
+        sha256 = "1a40n8jijiq02q0cww6bmhgzfkl8l7iyi73jgxpmzjzv788x5g84"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
