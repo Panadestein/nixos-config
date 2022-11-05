@@ -39,11 +39,15 @@ in
       # File manager
       xfce.exo
       xfce.thunar
+      xfce.thunar-archive-plugin
       xfce.xfconf
       # Science
       avogadro2
       molden
       zotero
+      # Videos
+      mpv
+      youtube-dl
       # Image editing
       gimp
       imagemagick
@@ -84,9 +88,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "15e596710539bc68756831217327157a175ca1b1";
+        rev = "eeae5c1dc5b9200295a38d3728f310f8e22f9434";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "0l67fz6z29m54mmh6ag8jjk3pz3dk7b780zqqx5y5ayjaqj0a9ib"; 
+        sha256 = "00v2ydl3nx71mrg7gyl7ph86f13bdxyacynbi2agahga35iffh6d"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
