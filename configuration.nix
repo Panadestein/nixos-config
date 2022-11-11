@@ -21,29 +21,6 @@ in {
 
   # Overlays
   nixpkgs.overlays = [
-    # Temporary dbus-next fix (annoying bug)
-    (self: super: {
-      python3Packages = super.python3Packages.override {
-        overrides = pfinal: pprev: {
-          dbus-next = pprev.dbus-next.overridePythonAttrs (old: {
-            checkPhase = builtins.replaceStrings ["not test_peer_interface"] ["not test_peer_interface and not test_tcp_connection_with_forwarding"] old.checkPhase;
-          });
-        };
-      };
-    })
-
-    # Qtile overlay
-    (self: super: {
-      qtile = super.qtile.overrideAttrs(oldAttrs: {
-        propagatedBuildInputs =
-          oldAttrs.passthru.unwrapped.propagatedBuildInputs
-          ++ (with self.python3Packages; [
-            # Extra Python packages for Qtile widgets
-            dbus-next
-          ]);
-      });
-    })
-
     # Emacs overlay
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
@@ -312,7 +289,7 @@ in {
         numpy
         pandas
         seaborn
-        scikit-learn
+        #scikit-learn
         scipy
         sympy
         # Qt backend
