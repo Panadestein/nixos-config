@@ -32,6 +32,7 @@ in
       guake
       poppler_utils
       tmate
+      tmux
       trayer
       ueberzug
       universal-ctags
@@ -88,9 +89,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "81d2ceb8f108aba671f1358871c019461f3d8402";
+        rev = "26845f31887ebae3bbe7ff2d3ae8568344def651";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "0l0xiwwhrsx8wy3k4jpzw6klpdysy1c67qn2ah0hcd4kkmykhy8y"; 
+        sha256 = "0ym09f8m9b6zp2d5mspiwar7hxgw0024ifdm9nnqwx47fswrf68a"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;

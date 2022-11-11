@@ -67,7 +67,7 @@ isrun() { ps -A | grep $1;}
 
 tpy() {
     # Create Bash, Python and Emacs session
-    tmux new-session -d 'emacs -nw'$1
+    tmux new-session -d 'emacsclient -c'$1
     tmux new-window ''
     tmux split-window -h
     tmux split-window -v 'ipython'
@@ -82,6 +82,10 @@ ldiff() {
     cat -n "$2" > "/tmp/$f2"
     nvim -d "/tmp/$f1" "/tmp/$f2"
     rm "/tmp/$f1" "/tmp/$f2"
+}
+
+function yta() {
+    mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
 }
 
 # Give me a nice and warm welcome (this is slow)

@@ -151,18 +151,20 @@ groups = [
                  height=1.0,
                  opacity=0.9,
                  on_focus_lost_hide=True)]),
-    Group("dev", layout='max'),
+    Group("dev", layout='monadtall'),
     Group("tty", layout='max'),
     Group("doc", layout='columns'),
     Group("www", layout='monadtall',
-          matches=[Match(wm_class=["firefox"])]),
+          matches=[Match(wm_class=["firefox",
+                                   "Brave-browser",
+                                   "Nyxt"])]),
     Group("msg", layout='monadtall',
           matches=[Match(wm_class=["Mattermost",
                                    "Slack",
                                    "TelegramDesktop"])]),
     Group("com", layout='monadtall',
           matches=[Match(wm_class=["Skype",
-                                   ".zoom "])]),
+                                   "zoom "])]),
     Group("rnd", layout='columns'),
     Group("art", layout='floating',
           matches=[Match(wm_class=["gimp-2.10"])])
@@ -306,7 +308,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
     Match(wm_class='Gnome-screenshot'),  # A screenshot utility
-    Match(wm_class="matplotlib"),  # It is all about plotting
+    Match(wm_class='mpv'),  # A powerful media player
+    Match(wm_class='matplotlib'),  # It is all about plotting
 ])
 
 auto_fullscreen = True
