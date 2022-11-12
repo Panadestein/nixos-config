@@ -65,6 +65,7 @@ in
       # Communications
       brave
       mattermost-desktop
+      nyxt
       skypeforlinux
       slack
       tdesktop

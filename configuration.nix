@@ -25,21 +25,6 @@ in {
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
     }))
-
-    # Stumpwm overlay
-    (self: super: {
-      stumpwm = super.stumpwm.overrideAttrs(oldAttrs: {
-        propagatedBuildInputs =
-          oldAttrs.passthru.unwrapped.propagatedBuildInputs
-          ++ ( with self.lispPackages; [
-            # Extra Common Lisp packages for Stumpwm
-            clx-truetype
-            xkeyboard
-            xembed
-            clx
-          ]);
-      });
-    })
   ];
 
   # Nixpkgs configuration
@@ -165,8 +150,8 @@ in {
     qtile = {
       enable = true;
     };
-    stumpwm = {
-      enable = false;
+    herbstluftwm = {
+      enable = true;
     };
   };
 
@@ -289,7 +274,7 @@ in {
         numpy
         pandas
         seaborn
-        #scikit-learn
+        scikit-learn
         scipy
         sympy
         # Qt backend
@@ -304,6 +289,8 @@ in {
         pylint
         # Web
         tornado
+        # Hy utilities
+        hy
         # Misc
         watermark
       ];
@@ -336,7 +323,6 @@ in {
     vim_configurable
     # Internet and communications
     firefox
-    nyxt
     zoom-us
     # Windowm manager utilities
     dmenu
