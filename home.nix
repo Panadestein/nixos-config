@@ -90,9 +90,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "475e3a824d9fea87a5ad4f58f5bdfad32eac620d";
+        rev = "8fa4fa8be7394eab2d55a33efc899e0d15cc8592";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "1pv66c2kgkdcwn8crpqhyhl50ywykgs6w9mi110arfmm5zgph9ah"; 
+        sha256 = "1bpq4a9gl0dffnm9mkga6nrc6z2vam48sij8zf6pp3gyk2am15jl"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
