@@ -65,7 +65,7 @@ in
       # Communications
       brave
       mattermost-desktop
-      nyxt
+      #nyxt
       skypeforlinux
       slack
       tdesktop
@@ -90,9 +90,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "8fa4fa8be7394eab2d55a33efc899e0d15cc8592";
+        rev = "f738bbcf4472701a58dffb6ad0642a5539eaa92c";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "1bpq4a9gl0dffnm9mkga6nrc6z2vam48sij8zf6pp3gyk2am15jl"; 
+        sha256 = "118jaisnf73awkkn9q2zw39j5m85vkdbmx5c5r732lwy7r8265ac"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;

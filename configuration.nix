@@ -323,6 +323,7 @@ in {
     vim_configurable
     # Internet and communications
     firefox
+    nyxt
     zoom-us
     # Windowm manager utilities
     dmenu
