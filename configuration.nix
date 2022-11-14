@@ -92,6 +92,9 @@ in {
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
+  # Enable fish shell
+  programs.fish.enable = true;
+
   # Network configuration
   networking.useDHCP = false;
   networking.interfaces.enp2s0f0.useDHCP = true;
