@@ -153,9 +153,6 @@ in {
     qtile = {
       enable = true;
     };
-    herbstluftwm = {
-      enable = true;
-    };
   };
 
   # In case we need Gnome at some point
