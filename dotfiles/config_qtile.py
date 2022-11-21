@@ -202,79 +202,81 @@ widget_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
-# Status bar configuration
+# Screens configuration
+
+WIDGETS = [
+    widget.Image(
+        filename="~/.config/qtile/python_icon.png",
+        scale="True",
+        mouse_callbacks={
+            'Button1':
+            lambda: qtile.cmd_spawn("alacritty -e ipython")}
+    ),
+    widget.Sep(linewidth=0, padding=6),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.GroupBox(
+        fontsize=15,
+        margin_y=3,
+        margin_x=0,
+        padding_y=5,
+        padding_x=3,
+        active=cl_pal["cazure"],
+        inactive=cl_pal["sunglow"],
+        highlight_method="block",
+        block_highlight_text_color=cl_pal["amag"],
+        borderwidth=3,
+        rounded=True
+    ),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.Prompt(),
+    widget.WindowName(max_chars=50),
+    widget.CurrentLayout(
+        padding=5,
+        foreground=cl_pal["sunglow"]
+    ),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.Volume(
+        fmt='Vol: {}',
+        padding=5
+    ),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.CPU(
+        format="CPU {load_percent}%",
+        mouse_callbacks={
+            'Button1':
+            lambda: qtile.cmd_spawn("alacritty -e htop")
+        }
+    ),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.Battery(
+        format="Bat{char}: {percent:2.0%}",
+        charge_char="+",
+        discharge_char="-",
+        empty_char="!",
+        unknown_char="#",
+        foreground=cl_pal["sunglow"],
+        low_foreground='FF0000',
+        notify_below=0.1,
+        low_percentage=0.2),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.Systray(),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.Clock(format='%d.%m %a %I:%M %p',
+                 mouse_callbacks={
+                     'Button1':
+                     lambda: qtile.cmd_spawn(
+                         "alacritty -e calcurse")
+                 }),
+    widget.TextBox("|", foreground='#ffe873'),
+    widget.KeyboardLayout(
+        configured_keyboards=['us', 'de', 'us altgr-intl'],
+        foreground=cl_pal["sunglow"])
+]
 
 screens = [
     Screen(
         top=bar.Bar(
-            [
-                widget.Image(
-                    filename="~/.config/qtile/python_icon.png",
-                    scale="True",
-                    mouse_callbacks={
-                        'Button1':
-                        lambda: qtile.cmd_spawn("alacritty -e ipython")}
-                ),
-                widget.Sep(linewidth=0, padding=6),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.GroupBox(
-                    fontsize=15,
-                    margin_y=3,
-                    margin_x=0,
-                    padding_y=5,
-                    padding_x=3,
-                    active=cl_pal["cazure"],
-                    inactive=cl_pal["sunglow"],
-                    highlight_method="block",
-                    block_highlight_text_color=cl_pal["amag"],
-                    borderwidth=3,
-                    rounded=True
-                ),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.Prompt(),
-                widget.WindowName(max_chars=50),
-                widget.CurrentLayout(
-                    padding=5,
-                    foreground=cl_pal["sunglow"]
-                ),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.Volume(
-                    fmt='Vol: {}',
-                    padding=5
-                ),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.CPU(
-                    format="CPU {load_percent}%",
-                    mouse_callbacks={
-                        'Button1':
-                        lambda: qtile.cmd_spawn("alacritty -e htop")
-                    }
-                ),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.Battery(
-                    format="Bat{char}: {percent:2.0%}",
-                    charge_char="+",
-                    discharge_char="-",
-                    empty_char="!",
-                    unknown_char="#",
-                    foreground=cl_pal["sunglow"],
-                    low_foreground='FF0000',
-                    notify_below=0.1,
-                    low_percentage=0.2),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.Systray(),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.Clock(format='%d.%m %a %I:%M %p',
-                             mouse_callbacks={
-                                 'Button1':
-                                 lambda: qtile.cmd_spawn(
-                                     "alacritty -e calcurse")
-                             }),
-                widget.TextBox("|", foreground='#ffe873'),
-                widget.KeyboardLayout(
-                    configured_keyboards=['us', 'de', 'us altgr-intl'],
-                    foreground=cl_pal["sunglow"])
-            ],
+            WIDGETS,
             25,
         ),
         wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
@@ -322,7 +324,7 @@ auto_minimize = True
 
 @hook.subscribe.screen_change
 def screen_event(ev):
-    """Reload Qtile configuration in case of screen changes.
+    """Reload xrandr configuration in case of screen changes.
 
     It ensures that only one screen is in use at the time,
     which is a personal preference.

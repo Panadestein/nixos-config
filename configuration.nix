@@ -52,6 +52,11 @@ in {
     };
   };
 
+  # Nixpkgs configuration
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebkit-5.212.0-alpha4"
+  ];
+
   # Use the latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -121,8 +126,6 @@ in {
    rocm-opencl-runtime
   ];
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
-
-  # Desktop
 
   # Display manager
   services.xserver.displayManager = {
