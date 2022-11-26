@@ -25,10 +25,6 @@ in
       code-minimap
       dconf2nix
       fzf
-      gnome.eog
-      gnome.gnome-screenshot
-      gnome.gnome-tweaks
-      gnome.nautilus
       guake
       poppler_utils
       tmate
@@ -37,11 +33,6 @@ in
       ueberzug
       universal-ctags
       volumeicon
-      # File manager
-      xfce.exo
-      xfce.thunar
-      xfce.thunar-archive-plugin
-      xfce.xfconf
       # Science
       avogadro2
       molden
@@ -65,7 +56,7 @@ in
       # Communications
       brave
       mattermost-desktop
-      #nyxt
+      qutebrowser
       skypeforlinux
       slack
       tdesktop
@@ -90,9 +81,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "365c02cee3986b52d7fd3e9392ca11900508e0e7";
+        rev = "a300242a4403a7b96d012d320468acf72dacd5bb";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "0nsyk87x98vq4ps618mrb3xhs3pip8xyk868iz4dpykqcgz8wjjq"; 
+        sha256 = "018dx8cn614nz1xkjch2bxmxnzs2x4aagkrn8ajfgcqvsj77phjn"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;

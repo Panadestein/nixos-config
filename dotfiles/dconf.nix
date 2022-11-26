@@ -9,8 +9,12 @@ with lib.hm.gvariant;
       abbreviate-tab-names = false;
       compat-delete = "delete-sequence";
       display-n = 0;
+      display-tab-names = 0;
       gtk-theme-name = "Adwaita";
+      gtk-use-system-default-theme = true;
+      hide-tabs-if-one-tab = false;
       history-size = 10000;
+      load-guake-yml = true;
       max-tab-name-length = 100;
       mouse-display = true;
       open-tab-cwd = true;
@@ -19,8 +23,10 @@ with lib.hm.gvariant;
       restore-tabs-notify = true;
       restore-tabs-startup = true;
       save-tabs-when-changed = true;
+      schema-version = "3.9.0";
       scroll-keystroke = true;
       start-at-login = true;
+      start-fullscreen = true;
       use-default-font = false;
       use-popup = true;
       use-scrollbar = false;
@@ -34,13 +40,13 @@ with lib.hm.gvariant;
     };
 
     "apps/guake/style/background" = {
-      transparency = 96;
+      transparency = 87;
     };
 
     "apps/guake/style/font" = {
       allow-bold = true;
-      palette = "#343438383535:#CECE3E3E6060:#7B7BB7B75B5B:#E8E8B3B32A2A:#4C4C9999D3D3:#A5A57F7FC4C4:#38389A9AACAC:#F9F9FAFAF6F6:#58585A5A5858:#D1D18E8EA6A6:#76767E7E2B2B:#777759592E2E:#131358587979:#5F5F41419090:#7676BBBBCACA:#B1B1B5B5AEAE:#F7F7F6F6ECEC:#1D1D1D1D1D1D";
-      palette-name = "Japanesque";
+      palette = "#222222222222:#FFFF00000F0F:#8C8CE0E00A0A:#FFFFB9B90000:#00008D8DF8F8:#6C6C4343A5A5:#0000D7D7EBEB:#FFFFFFFFFFFF:#444444444444:#FFFF27273F3F:#ABABE0E05A5A:#FFFFD1D14141:#00009292FFFF:#9A9A5F5FEBEB:#6767FFFFEFEF:#FFFFFFFFFFFF:#FFFFFAFAF3F3:#0D0D0F0F1818";
+      palette-name = "Argonaut";
       style = "Fira Code 24";
     };
 
@@ -81,8 +87,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "info-overview";
-      window-state = mkTuple [ 1102 762 ];
+      last-panel = "multitasking";
+      window-state = mkTuple [ 980 640 ];
     };
 
     "org/gnome/desktop/app-folders" = {
@@ -103,8 +109,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) ];
-      xkb-options = [ "terminate:ctrl_alt_bksp" ];
+      sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "de" ]) ];
+      xkb-options = [ "terminate:ctrl_alt_bksp" "lv3:ralt_switch" "compose:ralt" ];
     };
 
     "org/gnome/desktop/interface" = {
@@ -145,6 +151,10 @@ with lib.hm.gvariant;
       application-id = "neovide.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/org-gnome-evince" = {
+      application-id = "org.gnome.Evince.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/org-gnome-nautilus" = {
       application-id = "org.gnome.Nautilus.desktop";
     };
@@ -180,12 +190,19 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
-      move-to-workspace-1 = [ "<Shift><Super>exclam" ];
-      move-to-workspace-2 = [ "<Shift><Super>at" ];
+      move-to-workspace-1 = [ "<Shift><Super>1" ];
+      move-to-workspace-2 = [ "<Shift><Super>2" ];
+      move-to-workspace-3 = [ "<Shift><Super>3" ];
+      move-to-workspace-4 = [ "<Shift><Super>4" ];
+      panel-run-dialog = [ "<Super>r" ];
       switch-to-workspace-1 = [ "<Super>1" ];
       switch-to-workspace-2 = [ "<Super>2" ];
-      switch-to-workspace-3 = [];
-      switch-to-workspace-4 = [];
+      switch-to-workspace-3 = [ "<Super>3" ];
+      switch-to-workspace-4 = [ "<Super>4" ];
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      num-workspaces = 3;
     };
 
     "org/gnome/eog/ui" = {
@@ -234,6 +251,25 @@ with lib.hm.gvariant;
       window-width = 600;
     };
 
+    "org/gnome/gnome-screenshot" = {
+      delay = 0;
+      include-pointer = false;
+      last-save-directory = "file:///home/loren/Documents/Arbeit/GERMANY/PRES/AIMS_GW_MEETING/OCT22/figures";
+    };
+
+    "org/gnome/gnome-system-monitor" = {
+      maximized = false;
+      network-total-in-bits = false;
+      show-dependencies = false;
+      show-whose-processes = "user";
+      window-state = mkTuple [ 700 500 ];
+    };
+
+    "org/gnome/gnome-system-monitor/disktreenew" = {
+      col-6-visible = true;
+      col-6-width = 0;
+    };
+
     "org/gnome/mutter" = {
       attach-modal-dialogs = true;
       dynamic-workspaces = true;
@@ -242,8 +278,13 @@ with lib.hm.gvariant;
       workspaces-only-on-primary = true;
     };
 
+    "org/gnome/nautilus/icon-view" = {
+      default-zoom-level = "medium";
+    };
+
     "org/gnome/nautilus/preferences" = {
       default-folder-viewer = "icon-view";
+      migrated-gtk-settings = true;
       search-filter-time-type = "last_modified";
       search-view = "list-view";
     };
@@ -258,7 +299,47 @@ with lib.hm.gvariant;
       ignore-phase2-ca-cert = false;
     };
 
+    "org/gnome/nm-applet/eap/233f112c-eee9-4efd-babf-007576431e39" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/9735e3fe-42b9-40ac-9cda-79b1a46206ba" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/9c1f1740-442b-483c-b441-b32d361bc3a4" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/9ec81f93-4f75-441b-9e09-10354a1ea148" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/a2a536cf-c616-4785-b350-2b8c0eec70b5" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/b375e865-ca22-4371-bb7c-b517b2680e56" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
     "org/gnome/nm-applet/eap/ce654d28-ba24-4919-ad58-971e5652104c" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/e92c66f9-4d14-469c-aaf2-d123fddcdc7e" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/f99a8d43-90e1-4f4b-b10b-6dd217b90974" = {
       ignore-ca-cert = false;
       ignore-phase2-ca-cert = false;
     };
@@ -270,19 +351,19 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
-      command = "alacritty";
+      command = "kgx";
       name = "Terminal";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Shift><Super>Return";
-      command = "alacritty -e ipython";
+      command = "kgx -e ipython";
       name = "Ipython";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-      binding = "<Super>f";
-      command = "alacritty -e ranger";
+      binding = "<Shift><Super>f";
+      command = "kgx -e ranger";
       name = "Ranger";
     };
 
@@ -299,7 +380,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5" = {
-      binding = "<Shift><Super>f";
+      binding = "<Super>f";
       command = "nautilus";
       name = "Naut";
     };
@@ -343,7 +424,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1650449127;
+      check-timestamp = mkInt64 1669416046;
       first-run = false;
     };
 
@@ -366,6 +447,7 @@ with lib.hm.gvariant;
     };
 
     "org/gtk/settings/color-chooser" = {
+      custom-colors = [ (mkTuple [ 1.0 1.0 ]) ];
       selected-color = mkTuple [ true 1.0 ];
     };
 
