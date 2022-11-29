@@ -229,7 +229,6 @@ in {
     file
     git
     htop
-    hugo
     inxi
     killall
     libtool
@@ -320,7 +319,6 @@ in {
     ranger
     # Text editors and office
     emacsGitNativeComp
-    evince
     neovim
     pandoc
     vim_configurable
@@ -339,10 +337,9 @@ in {
     cairo
     dconf
     glib
-    gnome.adwaita-icon-theme
+    gnome.gnome-tweaks
     gobject-introspection
     gtk3
-    pantheon.elementary-icon-theme
     # Latex
     texlive.combined.scheme-full
     # Spell checkers and dictionaries

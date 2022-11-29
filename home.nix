@@ -63,6 +63,9 @@ in
       whatsapp-for-linux
       # Leisure
       retroarch
+      # Web
+      bundler
+      hugo
     ];
 
     # Git
@@ -81,9 +84,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "a300242a4403a7b96d012d320468acf72dacd5bb";
+        rev = "fb3f6577066ddc74939f0176bd95b542333e87ae";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "018dx8cn614nz1xkjch2bxmxnzs2x4aagkrn8ajfgcqvsj77phjn"; 
+        sha256 = "00ipn5ihqc4maix5hgj28q7r2q1ih41kw0i52rnibcd7js5ybyr9"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
@@ -135,7 +138,7 @@ in
 
     # Picom
     services.picom = {
-      enable = true;
+      enable = false;
       activeOpacity = 1.0;
       inactiveOpacity = 1.0;
       menuOpacity = 1.0;
@@ -182,7 +185,7 @@ in
 
     # GTk theme
     gtk = {
-      enable = true;
+      enable = false;
       iconTheme = {
         name = "elementary";
         package = pkgs.pantheon.elementary-icon-theme;

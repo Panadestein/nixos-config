@@ -19,7 +19,8 @@ with lib.hm.gvariant;
       mouse-display = true;
       open-tab-cwd = true;
       prompt-on-quit = false;
-      quick-open-command-line = "gedit %(file_path)s";
+      quick-open-command-line = "emacsclient -c %(file_path)s";
+      quick-open-enable = true;
       restore-tabs-notify = true;
       restore-tabs-startup = true;
       save-tabs-when-changed = true;
@@ -79,6 +80,11 @@ with lib.hm.gvariant;
       migrated-config = true;
     };
 
+    "org/gnome/Totem" = {
+      active-plugins = [ "skipto" "screensaver" "variable-rate" "vimeo" "apple-trailers" "rotation" "open-directory" "mpris" "save-file" "recent" "autoload-subtitles" "movie-properties" "screenshot" ];
+      subtitle-encoding = "UTF-8";
+    };
+
     "org/gnome/calendar" = {
       active-view = "month";
       window-maximized = true;
@@ -87,7 +93,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "multitasking";
+      last-panel = "info-overview";
       window-state = mkTuple [ 980 640 ];
     };
 
@@ -120,15 +126,19 @@ with lib.hm.gvariant;
       font-antialiasing = "grayscale";
       font-hinting = "slight";
       gtk-theme = "Arc-Dark";
-      icon-theme = "elementary";
+      icon-theme = "Adwaita";
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "guake" "emacsclient" "firefox" ];
+      application-children = [ "guake" "emacsclient" "firefox" "gnome-power-panel" "mattermost" "org-gnome-nautilus" "org-gnome-evince" "telegramdesktop" ];
     };
 
     "org/gnome/desktop/notifications/application/alacritty" = {
       application-id = "Alacritty.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/code" = {
+      application-id = "code.desktop";
     };
 
     "org/gnome/desktop/notifications/application/emacsclient" = {
@@ -147,6 +157,10 @@ with lib.hm.gvariant;
       application-id = "guake.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/mattermost" = {
+      application-id = "Mattermost.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/neovide" = {
       application-id = "neovide.desktop";
     };
@@ -159,6 +173,10 @@ with lib.hm.gvariant;
       application-id = "org.gnome.Nautilus.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/org-gnome-settings" = {
+      application-id = "org.gnome.Settings.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/slack" = {
       application-id = "slack.desktop";
     };
@@ -167,11 +185,22 @@ with lib.hm.gvariant;
       application-id = "telegramdesktop.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/yelp" = {
+      application-id = "yelp.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/zoom" = {
       application-id = "Zoom.desktop";
     };
 
+    "org/gnome/desktop/peripherals/mouse" = {
+      left-handed = false;
+    };
+
     "org/gnome/desktop/peripherals/touchpad" = {
+      edge-scrolling-enabled = false;
+      natural-scroll = true;
+      send-events = "enabled";
       tap-to-click = true;
       two-finger-scrolling-enabled = true;
     };
@@ -186,6 +215,11 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/session" = {
       idle-delay = mkUint32 300;
+    };
+
+    "org/gnome/desktop/sound" = {
+      event-sounds = true;
+      theme-name = "__custom";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
@@ -229,7 +263,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/evince/default" = {
-      window-ratio = mkTuple [ 5.826524 2.113663 ];
+      window-ratio = mkTuple [ 4.446428571428571 2.0855855855855854 ];
     };
 
     "org/gnome/evolution-data-server" = {
@@ -268,6 +302,14 @@ with lib.hm.gvariant;
     "org/gnome/gnome-system-monitor/disktreenew" = {
       col-6-visible = true;
       col-6-width = 0;
+    };
+
+    "org/gnome/maps" = {
+      last-viewed-location = [ 49.937577 6.669774 ];
+      map-type = "MapsStreetSource";
+      transportation-type = "pedestrian";
+      window-maximized = true;
+      zoom-level = 8;
     };
 
     "org/gnome/mutter" = {
@@ -344,6 +386,10 @@ with lib.hm.gvariant;
       ignore-phase2-ca-cert = false;
     };
 
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-enabled = false;
+    };
+
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/" ];
       www = [ "<Super>w" ];
@@ -404,7 +450,7 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       command-history = [ "console" "gnome-console" ];
       enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
-      favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.desktop" "slack.desktop" "Mattermost.desktop" "telegramdesktop.desktop" ];
+      favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.18.desktop" "slack.desktop" "Mattermost.desktop" "telegramdesktop.desktop" ];
       welcome-dialog-last-shown-version = "42.0";
     };
 
@@ -424,7 +470,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1669416046;
+      check-timestamp = mkInt64 1669721381;
       first-run = false;
     };
 
@@ -462,7 +508,7 @@ with lib.hm.gvariant;
       sort-directories-first = false;
       sort-order = "ascending";
       type-format = "category";
-      window-position = mkTuple [ 479 199 ];
+      window-position = mkTuple [ 799 386 ];
       window-size = mkTuple [ 962 658 ];
     };
 
