@@ -137,6 +137,14 @@ with lib.hm.gvariant;
       application-id = "Alacritty.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/avogadro2" = {
+      application-id = "avogadro2.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/brave-browser" = {
+      application-id = "brave-browser.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/code" = {
       application-id = "code.desktop";
     };
@@ -193,6 +201,10 @@ with lib.hm.gvariant;
       application-id = "Zoom.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/zotero-6-0-18" = {
+      application-id = "zotero-6.0.18.desktop";
+    };
+
     "org/gnome/desktop/peripherals/mouse" = {
       left-handed = false;
     };
@@ -203,6 +215,11 @@ with lib.hm.gvariant;
       send-events = "enabled";
       tap-to-click = true;
       two-finger-scrolling-enabled = true;
+    };
+
+    "org/gnome/desktop/privacy" = {
+      old-files-age = mkUint32 30;
+      recent-files-max-age = -1;
     };
 
     "org/gnome/desktop/screensaver" = {
@@ -263,7 +280,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/evince/default" = {
-      window-ratio = mkTuple [ 4.446428571428571 2.0855855855855854 ];
+      window-ratio = mkTuple [ 4.446429 2.085586 ];
     };
 
     "org/gnome/evolution-data-server" = {
@@ -450,7 +467,7 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       command-history = [ "console" "gnome-console" ];
       enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
-      favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.18.desktop" "slack.desktop" "Mattermost.desktop" "telegramdesktop.desktop" ];
+      favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.18.desktop" "slack.desktop" "Mattermost.desktop" "org.telegram.desktop.desktop" ];
       welcome-dialog-last-shown-version = "42.0";
     };
 
@@ -470,7 +487,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1669721381;
+      check-timestamp = mkInt64 1670258837;
       first-run = false;
     };
 

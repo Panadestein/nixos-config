@@ -101,10 +101,12 @@ in {
   programs.fish.enable = true;
 
   # Network configuration
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0f0.useDHCP = true;
-  networking.interfaces.enp5s0.useDHCP = true;
-  networking.networkmanager.enable = true;
+  networking = {
+    useDHCP = false;
+    interfaces.enp2s0f0.useDHCP = true;
+    interfaces.enp5s0.useDHCP = true;
+    networkmanager.enable = true;
+  };
   programs.nm-applet.enable = true;
 
   # Select internationalisation properties.
@@ -121,9 +123,9 @@ in {
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.opengl.driSupport = true;
   hardware.opengl.extraPackages = with pkgs; [
-   amdvlk
-   rocm-opencl-icd
-   rocm-opencl-runtime
+    amdvlk
+    #rocm-opencl-icd
+    #rocm-opencl-runtime
   ];
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
 
@@ -158,7 +160,7 @@ in {
     };
   };
 
-  # Genome
+  # Desktop environment
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -215,25 +217,16 @@ in {
   environment.systemPackages = with pkgs; [
     # General utilities
     acpi
-    asciidoctor
-    bat
-    bc
     binutils
     cacert
     coreutils
     curl
-    djvulibre
     dmidecode
-    exercism
-    figlet
     file
     git
-    htop
     inxi
     killall
     libtool
-    lolcat
-    maim
     pavucontrol
     pciutils
     rsync
@@ -243,27 +236,15 @@ in {
     usbutils
     wget
     which
-    xclip
-    xdg-utils
-    xdotool
-    # Programming languages
-    chez
-    clojure
-    cmake
-    fortran-language-server
-    gcc
-    gdb
+    # Terminal and CLI utilities
+    zsh
+    # File browser
+    dropbox-cli.nautilusExtension
+    # Text editors and office
+    emacsGit
+    vim_configurable
+    #Programming languages
     gfortran
-    ghc
-    gnumake
-    jdk11
-    leiningen
-    mpich
-    nodejs
-    racket
-    sbcl
-    qt5Full
-    # Python and Hy
     (let
       my-python-packages = python-packages: with python-packages; [
         # Language server protocol
@@ -309,37 +290,6 @@ in {
       # Qt backend
       pyqt5
     ]))
-    # Science utilities
-    gnuplot
-    # Terminal and CLI utilities
-    alacritty
-    zsh
-    # File browser
-    dropbox-cli.nautilusExtension
-    ranger
-    # Text editors and office
-    emacsGitNativeComp
-    neovim
-    pandoc
-    vim_configurable
-    # Internet and communications
-    firefox
-    nyxt
-    zoom-us
-    # Windowm manager utilities
-    dmenu
-    nitrogen
-    picom
-    rofi
-    xmobar
-    # GTK packages
-    arc-theme
-    cairo
-    dconf
-    glib
-    gnome.gnome-tweaks
-    gobject-introspection
-    gtk3
     # Latex
     texlive.combined.scheme-full
     # Spell checkers and dictionaries
@@ -359,7 +309,7 @@ in {
   # Emacs configuration
   services.emacs = {
     enable = true;
-    package = pkgs.emacsGitNativeComp;
+    package = pkgs.emacsGit;
     defaultEditor = true;
   };
 
@@ -386,6 +336,12 @@ in {
 
   # Gnome apps configuration
   programs.dconf.enable = true;
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-tour
+  ]) ++ (with pkgs.gnome; [
+    cheese
+    gnome-music
+  ]);
 
   # Gnupg configuration
   programs.gnupg.agent = {
@@ -396,7 +352,7 @@ in {
   # Enable docker (rarely needed but still)
   virtualisation.docker.enable = true;
 
-  # Services
+  # Additional services
   services.actkbd.enable = true;
   services.gvfs.enable = true;
   services.openssh.enable = true;
@@ -426,6 +382,6 @@ in {
   };
 
   # State version
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }
 

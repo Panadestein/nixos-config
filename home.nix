@@ -19,13 +19,19 @@ in
     home.stateVersion = "22.05";
     home.packages = with pkgs; [
       # General utilities
+      asciidoctor
+      bat
+      bc
       brightnessctl
       calcurse
       ccls
       code-minimap
       dconf2nix
+      figlet
       fzf
       guake
+      htop
+      lolcat
       poppler_utils
       tmate
       tmux
@@ -33,10 +39,39 @@ in
       ueberzug
       universal-ctags
       volumeicon
+      xclip
+      xdg-utils
+      xdotool
+      # Windowm manager utilities
+      dmenu
+      nitrogen
+      maim
+      picom
+      rofi
+      xmobar
+      # GTK packages
+      arc-theme
+      cairo
+      glib
+      gnome.gnome-tweaks
+      gobject-introspection
+      gtk3
+      # Terminal based apps
+      alacritty
+      ranger
+      # Text editors
+      neovim
       # Science
       avogadro2
+      gnuplot
       molden
       zotero
+      # Office
+      djvulibre
+      libreoffice-fresh
+      pandoc
+      translate-shell
+      xournalpp
       # Videos
       mpv
       youtube-dl
@@ -45,22 +80,37 @@ in
       imagemagick
       inkscape
       pdftk
-      # Office
-      libreoffice-fresh
-      pandoc
-      translate-shell
-      xournalpp
-      # Programming
+      # Programming utilities
+      exercism
       neovide
       shellcheck
-      # Communications
+      # Programming languages
+      chez
+      clojure
+      cmake
+      fortran-language-server
+      gcc
+      gdb
+      ghc
+      gnumake
+      jdk11
+      leiningen
+      mpich
+      nodejs
+      racket
+      sbcl
+      qt5Full
+      # Internet and communications
       brave
+      firefox
       mattermost-desktop
+      nyxt
       qutebrowser
       skypeforlinux
       slack
       tdesktop
       whatsapp-for-linux
+      zoom-us
       # Leisure
       retroarch
       # Web
