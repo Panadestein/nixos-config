@@ -81,14 +81,15 @@ in
       inkscape
       pdftk
       # Programming utilities
+      cmake
       exercism
+      fortran-language-server
       neovide
       shellcheck
+      valgrind
       # Programming languages
       chez
       clojure
-      cmake
-      fortran-language-server
       gcc
       gdb
       ghc
@@ -186,7 +187,7 @@ in
     xdg.configFile."translate-shell/init.trans".source = ./dotfiles/init.trans;
     home.file.".config/translate-shell/happiness.trans".source = ./dotfiles/happiness.trans;
 
-    # Picom
+    # Picom, disables if not using a WM
     services.picom = {
       enable = false;
       activeOpacity = 1.0;
@@ -233,7 +234,7 @@ in
     # Script to control plugged monitors
     home.file.".config/scripts/randr_conf.sh".source = ./dotfiles/randr_conf.sh;
 
-    # GTk theme
+    # GTk theme, disabled if using Gnome
     gtk = {
       enable = false;
       iconTheme = {

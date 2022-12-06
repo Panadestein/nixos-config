@@ -19,6 +19,8 @@ pkgs.mkShell {
     pkgs.doxygen
     pkgs.lapack-reference
     pkgs.cmake
+    pkgs.valgrind
+    pkgs.linuxKernel.packages.linux_6_0.perf
   ];
 }
 
