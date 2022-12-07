@@ -20,6 +20,27 @@ from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+# Define helper functions
+
+
+def parse_keys(keys_obj):
+    """Format string of defined keybindings."""
+    key_help = ""
+    for k in keys_obj:
+        mods = ""
+        for m in k.modifiers:
+            if m == "mod4":
+                mods += "Super + "
+            else:
+                mods += m.capitalize() + " + "
+        if len(k.key) > 1:
+            mods += k.key.capitalize()
+        else:
+            mods += k.key
+        key_help += f"{mods:<50}{k.desc}\n"
+    return key_help
+
+
 # Define global variables
 
 mod = "mod4"
@@ -27,7 +48,6 @@ terminal = guess_terminal()
 dgroups_key_binder = simple_key_binder("mod4")
 ranp = f"{Path.home()}/.config/scripts/randr_conf.sh"
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
-cmdh = 'python -c "print(`qtile cmd-obj -o cmd -f display_kb`)" | rofi -dmenu'
 
 # Useful colors
 # https://www.schemecolor.com/python-logo-colors.php
@@ -41,9 +61,6 @@ cl_pal = {
 # Define keybindings
 
 keys = [
-    # Get help
-    Key([mod], "F1", lazy.spawn(cmdh, shell=True)),
-
     # Applications
     Key([mod], "Return", lazy.spawn(terminal),
         desc="Launches detected terminal"),
@@ -63,17 +80,16 @@ keys = [
         desc="Launches the Nautilus file browser"),
     Key([mod], "f", lazy.spawn("alacritty -e ranger"),
         desc="Launches the Ranger file browser"),
-    Key([mod], "f", lazy.spawn("alacritty -e ranger"),
-        desc="Launches the Ranger file browser"),
     Key([], "Print", lazy.spawn("gnome-screenshot -i"),
-        desc="Takes a screenshot with the Maim utility"),
+        desc="Takes a screenshot"),
 
     # Language
     Key([mod], 'i', lazy.widget["keyboardlayout"].next_keyboard(),
         desc="Cycle through keyboard layouts"),
 
     # Dropdown terminal
-    Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term'),
+        desc="Toggles scratchpad terminal"),
 
     # Media Keys
     Key([], 'XF86AudioLowerVolume', lazy.spawn("amixer set Master 5%- unmute"),
@@ -134,12 +150,22 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(),
         desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod, "control"], "s", lazy.layout.toggle_split()),
-    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
-    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
+    Key([mod, "control"], "s", lazy.layout.toggle_split(),
+        desc="Toggle between split and unsplit sides of stack"),
+    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left(),
+        desc="Swaps the current window stack to the left"),
+    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right(),
+        desc="Swaps the current window stack to the right"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
 ]
+
+# Get help
+
+cmdh = f'echo "{parse_keys(keys)}" | rofi -dmenu -i -mesg "Keyboard shortcuts"'
+keys.extend([Key([mod], "F1",
+                 lazy.spawn(cmdh, shell=True),
+                 desc="Display defined keybindings")])
 
 # Define groups (workspaces)
 
