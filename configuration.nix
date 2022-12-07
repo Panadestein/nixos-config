@@ -131,13 +131,13 @@ in {
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "gnome";
+    defaultSession = "none+qtile";
     gdm = {
-      enable = true;
+      enable = false;
       wayland = false;
     };
     lightdm = {
-      enable = false;
+      enable = true;
       greeters.enso = {
         enable = true;
       }; 
@@ -161,7 +161,7 @@ in {
   };
 
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = false;
 
   # Configure keymap in X11
   services.xserver.layout = "us,de";
@@ -318,6 +318,8 @@ in {
 
   # Use Flatpak, just in case
   services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Fonts
   fonts.fonts = with pkgs; [

@@ -10,11 +10,10 @@ r"""Qtile configuration.
 """
 import os
 import socket
-import subprocess
 from typing import List
 from pathlib import Path
 from libqtile import qtile
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget
 from libqtile.config import (
     Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown)
 from libqtile.dgroups import simple_key_binder
@@ -91,6 +90,8 @@ keys = [
         desc="Locks the screen"),
     Key([mod], "m",
         lazy.spawn(ranp), desc="Ensures external monitor usage"),
+    Key([mod, "shift"], "m",
+        lazy.spawn(ranp + " refresh"), desc="Refreshes xrandr configuration"),
 
     # Session control
     Key([mod, "shift"], "x", lazy.spawn("shutdown now"),
@@ -164,7 +165,7 @@ groups = [
                                    "TelegramDesktop"])]),
     Group("com", layout='monadtall',
           matches=[Match(wm_class=["Skype",
-                                   "zoom "])]),
+                                   "zoom"])]),
     Group("rnd", layout='columns'),
     Group("art", layout='floating',
           matches=[Match(wm_class=["gimp-2.10"])])
@@ -282,6 +283,10 @@ screens = [
         wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
         wallpaper_mode="fill",
     ),
+    Screen(
+        wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
+        wallpaper_mode="fill",
+    )
 ]
 
 # Floating window control
@@ -318,19 +323,6 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
-
-# Startup processes
-
-
-@hook.subscribe.screen_change
-def screen_event(ev):
-    """Reload xrandr configuration in case of screen changes.
-
-    It ensures that only one screen is in use at the time,
-    which is a personal preference.
-    """
-    subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh"])
-
 
 # Dirty Java hack
 

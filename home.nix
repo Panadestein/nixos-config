@@ -52,8 +52,11 @@ in
       # GTK packages
       arc-theme
       cairo
+      evince
       glib
-      gnome.gnome-tweaks
+      gnome.eog
+      gnome.gnome-screenshot
+      gnome.nautilus
       gobject-introspection
       gtk3
       # Terminal based apps
@@ -189,7 +192,7 @@ in
 
     # Picom, disables if not using a WM
     services.picom = {
-      enable = false;
+      enable = true;
       activeOpacity = 1.0;
       inactiveOpacity = 1.0;
       menuOpacity = 1.0;
@@ -236,10 +239,10 @@ in
 
     # GTk theme, disabled if using Gnome
     gtk = {
-      enable = false;
+      enable = true;
       iconTheme = {
-        name = "elementary";
-        package = pkgs.pantheon.elementary-icon-theme;
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
       };
       cursorTheme = {
       name = "Adwaita";
