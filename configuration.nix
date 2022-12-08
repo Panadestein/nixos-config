@@ -52,11 +52,6 @@ in {
     };
   };
 
-  # Nixpkgs configuration
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebkit-5.212.0-alpha4"
-  ];
-
   # Use the latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -124,8 +119,6 @@ in {
   hardware.opengl.driSupport = true;
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
-    #rocm-opencl-icd
-    #rocm-opencl-runtime
   ];
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
 
@@ -238,13 +231,12 @@ in {
     which
     # Terminal and CLI utilities
     zsh
-    # File browser
-    dropbox-cli.nautilusExtension
     # Text editors and office
     emacsGit
     vim_configurable
     #Programming languages
     gfortran
+    qt6.full
     (let
       my-python-packages = python-packages: with python-packages; [
         # Language server protocol
@@ -261,7 +253,7 @@ in {
         scipy
         sympy
         # Qt backend
-        pyqt5
+        pyqt6
         # Documentation
         sphinx
         # Linters
@@ -288,7 +280,7 @@ in {
       scipy
       sympy
       # Qt backend
-      pyqt5
+      pyqt6
     ]))
     # Latex
     texlive.combined.scheme-full
@@ -365,17 +357,11 @@ in {
     enable = true;
     packages = [ pkgs.dconf ];
   };
-  systemd.user.services.dropbox = {
-    description = "Dropbox";
+  systemd.user.services.maestral = {
+    description = "Maestral";
     wantedBy = [ "graphical-session.target" ];
-    environment = {
-      QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
-      QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
-    };
     serviceConfig = {
-      ExecStart = "${pkgs.dropbox.out}/bin/dropbox";
-      ExecReload = "${pkgs.coreutils.out}/bin/kill -HUP $MAINPID";
-      KillMode = "control-group"; # upstream recommends process
+      ExecStart = "${pkgs.maestral-gui}/bin/maestral_qt";
       Restart = "on-failure";
       PrivateTmp = true;
       ProtectSystem = "full";

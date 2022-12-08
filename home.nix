@@ -68,6 +68,7 @@ in
       avogadro2
       gnuplot
       molden
+      pymol
       zotero
       # Office
       djvulibre
@@ -103,7 +104,6 @@ in
       nodejs
       racket
       sbcl
-      qt5Full
       # Internet and communications
       brave
       firefox

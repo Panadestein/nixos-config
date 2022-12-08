@@ -84,8 +84,13 @@ ldiff() {
     rm "/tmp/$f1" "/tmp/$f2"
 }
 
-function yta() {
+yta() {
     mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
+}
+
+xpcon() {
+    xrandr --output eDP --primary --auto\
+	   --output DisplayPort-"$1" --left-of eDP --auto
 }
 
 # Give me a nice and warm welcome (this is slow)
