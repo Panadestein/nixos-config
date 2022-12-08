@@ -308,7 +308,7 @@ in
         sssara = "ssh -Y panades@doornode.surfsara.nl";
         tau = "ssh -Y rapa157d@taurus.hrsk.tu-dresden.de";
         toul = "ssh panades@lpqsv11.ups-tlse.fr";
-        tukup = "OBsftp rbarrueta@cpch06.chm.tu-dresden.de";
+        tukup = "sftp rbarrueta@cpch06.chm.tu-dresden.de";
         tume = "ssh -Y rbarrueta@cpch06.chm.tu-dresden.de";
       };
 
