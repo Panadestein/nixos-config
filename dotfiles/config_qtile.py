@@ -47,7 +47,7 @@ def parse_keys(keys_obj):
 mod = "mod4"
 terminal = guess_terminal()
 dgroups_key_binder = simple_key_binder("mod4")
-ranp = f"{Path.home()}/.config/scripts/randr_conf.sh"
+xrancmd = f"{Path.home()}/.config/scripts/randr_conf.sh"
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 # Useful colors
@@ -105,10 +105,8 @@ keys = [
     # Display Manager
     Key([mod], "o", lazy.spawn("dm-tool lock"),
         desc="Locks the screen"),
-    Key([mod], "m",
-        lazy.spawn(ranp + " extmon"), desc="Ensures external monitor usage"),
-    Key([mod, "shift"], "m",
-        lazy.spawn(ranp + " refresh"), desc="Refreshes xrandr configuration"),
+    Key([mod], "m", lazy.spawn(xrancmd),
+        desc="Ensures external monitor usage"),
 
     # Session control
     Key([mod, "shift"], "x", lazy.spawn("shutdown now"),
@@ -358,10 +356,10 @@ auto_minimize = True
 def screen_event(ev):
     """Reload xrandr configuration in case of screen changes.
 
-    This hook is used to ensure that the laptop screen is on
-    when it is the only one connected.
+    This hook ensures that only one monitor will be used at the time,
+    defaulting to external.
     """
-    subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh", "lapmon"])
+    subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh"])
 
 # Dirty Java hack
 

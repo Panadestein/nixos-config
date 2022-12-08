@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 : '
-A script to setup a multihead ensuring two or one monitor
+A script to setup a multihead ensuring one monitor
 at the time, defaulting to external monitors.
 The script is unfortunately hardware dependent,
 and implements a particular setup I prefer.
@@ -21,45 +21,23 @@ MONS=$(xrandr -q | grep -c " connected")
 # Check connected monitors and apply configuration
 
 if [ "$MONS" -gt 2 ]; then
-    if [ "$1" = "refresh" ]; then
-	xrandr --output "$LAP" --primary --auto\
-               --output "$DP0" --left-of "$LAP" --auto\
-               --output "$DP1" --off\
-               --output "$HDMI" --off
-    elif [ "$1" = "extmon" ]; then
-	xrandr --output "$LAP" --off\
-	       --output "$HDMI" --off\
-	       --output "$DP0" --auto
-    fi
+    xrandr --output "$LAP" --off\
+	   --output "$HDMI" --off\
+	   --output "$DP0" --auto
 elif [ "$MONS" -eq 2 ]; then
-    if [ "$1" = "refresh" ]; then
-	if xrandr | grep "$DP0 connected"; then
-	    xrandr --output "$LAP" --primary --auto\
-		   --output "$DP0" --right-of "$LAP" --auto
-	elif xrandr | grep "$DP1 connected"; then
-	    xrandr --output "$LAP" --primary --auto\
-		   --output "$DP1" --right-of "$LAP" --auto
-	elif xrandr | grep "$HDMI connected"; then
-	    xrandr --output "$LAP" --primary --auto\
-		   --output "$HDMI" --right-of "$LAP" --auto
-	fi
-    elif [ "$1" = "extmon" ]; then
-	if xrandr | grep "$DP0 connected"; then
-	    xrandr --output "$LAP" --off\
-		   --output "$DP0" --auto
-	elif xrandr | grep "$DP1 connected"; then
-	    xrandr --output "$LAP" --off\
-		   --output "$DP1" --auto
-	elif xrandr | grep "$HDMI connected"; then
-	    xrandr --output "$LAP" --off\
-		   --output "$HDMI" --auto
-	fi
+    if xrandr | grep "$DP0 connected"; then
+	xrandr --output "$LAP" --off\
+	       --output "$DP0" --auto
+    elif xrandr | grep "$DP1 connected"; then
+	xrandr --output "$LAP" --off\
+	       --output "$DP1" --auto
+    elif xrandr | grep "$HDMI connected"; then
+	xrandr --output "$LAP" --off\
+	       --output "$HDMI" --auto
     fi
 else
-    if [ "$1" = "lapmon" ]; then
-	xrandr --output "$LAP" --auto\
-	       --output "$DP0" --off\
-	       --output "$DP1" --off\
-	       --output "$HDMI" --off
-    fi
+    xrandr --output "$LAP" --auto\
+	   --output "$DP0" --off\
+	   --output "$DP1" --off\
+	   --output "$HDMI" --off
 fi
