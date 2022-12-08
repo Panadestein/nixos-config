@@ -234,7 +234,7 @@ in {
     # Text editors and office
     emacsGit
     vim_configurable
-    #Programming languages
+    # Programming languages
     gfortran
     qt6.full
     (let
