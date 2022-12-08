@@ -10,10 +10,11 @@ r"""Qtile configuration.
 """
 import os
 import socket
+import subprocess
 from typing import List
 from pathlib import Path
 from libqtile import qtile
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import (
     Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown)
 from libqtile.dgroups import simple_key_binder
@@ -105,7 +106,7 @@ keys = [
     Key([mod], "o", lazy.spawn("dm-tool lock"),
         desc="Locks the screen"),
     Key([mod], "m",
-        lazy.spawn(ranp), desc="Ensures external monitor usage"),
+        lazy.spawn(ranp + " extmon"), desc="Ensures external monitor usage"),
     Key([mod, "shift"], "m",
         lazy.spawn(ranp + " refresh"), desc="Refreshes xrandr configuration"),
 
@@ -350,6 +351,19 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
 
+# Screen event hook
+
+
+@hook.subscribe.screen_change
+def screen_event(ev):
+    """Reload xrandr configuration in case of screen changes.
+
+    This hook is used to ensure that the laptop screen is on
+    when it is the only one connected.
+    """
+    subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh", "lapmon"])
+
 # Dirty Java hack
+
 
 wmname = "LG3D"

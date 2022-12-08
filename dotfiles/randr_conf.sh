@@ -26,7 +26,7 @@ if [ "$MONS" -gt 2 ]; then
                --output "$DP0" --left-of "$LAP" --auto\
                --output "$DP1" --off\
                --output "$HDMI" --off
-    else
+    elif [ "$1" = "extmon" ]; then
 	xrandr --output "$LAP" --off\
 	       --output "$HDMI" --off\
 	       --output "$DP0" --auto
@@ -35,15 +35,15 @@ elif [ "$MONS" -eq 2 ]; then
     if [ "$1" = "refresh" ]; then
 	if xrandr | grep "$DP0 connected"; then
 	    xrandr --output "$LAP" --primary --auto\
-		   --output "$DP0" --left-of "$LAP" --auto
+		   --output "$DP0" --right-of "$LAP" --auto
 	elif xrandr | grep "$DP1 connected"; then
 	    xrandr --output "$LAP" --primary --auto\
-		   --output "$DP1" --left-of "$LAP" --auto
+		   --output "$DP1" --right-of "$LAP" --auto
 	elif xrandr | grep "$HDMI connected"; then
 	    xrandr --output "$LAP" --primary --auto\
-		   --output "$HDMI" --left-of "$LAP" --auto
+		   --output "$HDMI" --right-of "$LAP" --auto
 	fi
-    else
+    elif [ "$1" = "extmon" ]; then
 	if xrandr | grep "$DP0 connected"; then
 	    xrandr --output "$LAP" --off\
 		   --output "$DP0" --auto
@@ -56,8 +56,10 @@ elif [ "$MONS" -eq 2 ]; then
 	fi
     fi
 else
-    xrandr --output "$LAP" --auto\
-	   --output "$DP0" --off\
-	   --output "$DP1" --off\
-	   --output "$HDMI" --off
+    if [ "$1" = "lapmon" ]; then
+	xrandr --output "$LAP" --auto\
+	       --output "$DP0" --off\
+	       --output "$DP1" --off\
+	       --output "$HDMI" --off
+    fi
 fi
