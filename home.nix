@@ -56,9 +56,13 @@ in
       glib
       gnome.eog
       gnome.gnome-screenshot
-      gnome.nautilus
       gobject-introspection
       gtk3
+      # Xfce packages
+      xfce.exo
+      xfce.thunar
+      xfce.thunar-archive-plugin
+      xfce.xfconf
       # Terminal based apps
       alacritty
       ranger
