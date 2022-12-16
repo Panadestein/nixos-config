@@ -52,7 +52,6 @@ in
       # GTK packages
       arc-theme
       cairo
-      evince
       glib
       gnome.eog
       gnome.gnome-screenshot
@@ -75,7 +74,9 @@ in
       pymol
       zotero
       # Office
+      calibre
       djvulibre
+      evince
       libreoffice-fresh
       pandoc
       translate-shell
@@ -142,9 +143,9 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "Panadestein";
         repo = "emacsd";
-        rev = "fb3f6577066ddc74939f0176bd95b542333e87ae";
+        rev = "67e3ab5ba6f584fa12283bf4dd9b34f8c6676590";
         # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-        sha256 = "00ipn5ihqc4maix5hgj28q7r2q1ih41kw0i52rnibcd7js5ybyr9"; 
+        sha256 = "0hx555cal8hz1fwmmv8hcy1jkj4xfhhcpsqj8xdddsb7nsdskksr"; 
       };
       recursive = true;
       onChange = builtins.readFile /etc/nixos/dotfiles/set_emacs.sh;
@@ -183,6 +184,9 @@ in
 
     # Ranger
     xdg.configFile."ranger/rc.conf".source = ./dotfiles/rc.conf;
+
+    # Thunar
+    xdg.configFile."xfce4/helpers.rc".source = ./dotfiles/helpers_xfce.rc;
 
     # Ipython
     home.file.".ipython/profile_default/ipython_config.py".source = ./dotfiles/ipython_config.py;
