@@ -111,6 +111,16 @@ in
       nodejs
       racket
       sbcl
+      (hy.withPackages (py-packages: with py-packages; [
+        # Scientific libraries
+        numpy
+        matplotlib
+        pandas
+        scipy
+        sympy
+        # Qt backend
+        pyqt6
+      ]))
       # Internet and communications
       brave
       firefox
@@ -127,6 +137,26 @@ in
       # Web
       bundler
       hugo
+      # Latex
+      (texlive.combine {
+        scheme-full = pkgs.texlive.scheme-full // {
+          pkgs = pkgs.lib.filter
+            (x: (x.pname != "xindy"))
+            pkgs.texlive.scheme-full.pkgs;
+        };
+      })
+      # Spell checkers and dictionaries
+      aspell
+      aspellDicts.de
+      aspellDicts.en
+      aspellDicts.es
+      aspellDicts.fr
+      hunspell
+      hunspellDicts.de_DE
+      hunspellDicts.de_DE
+      hunspellDicts.en_US
+      hunspellDicts.fr-moderne
+      languagetool
     ];
 
     # Git

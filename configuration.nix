@@ -49,6 +49,7 @@ in {
         "root"
         "loren"
       ];
+      experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
@@ -206,7 +207,7 @@ in {
                     "video"];
   };
 
-  # Global packages
+  # Global packages, minimal to avoid polluting environment
   environment.systemPackages = with pkgs; [
     # General utilities
     acpi
@@ -272,30 +273,6 @@ in {
       python-with-my-packages = python3.withPackages my-python-packages;
     in
       python-with-my-packages)
-    (hy.withPackages (py-packages: with py-packages; [
-      # Scientific libraries
-      numpy
-      matplotlib
-      pandas
-      scipy
-      sympy
-      # Qt backend
-      pyqt6
-    ]))
-    # Latex
-    texlive.combined.scheme-full
-    # Spell checkers and dictionaries
-    aspell
-    aspellDicts.de
-    aspellDicts.en
-    aspellDicts.es
-    aspellDicts.fr
-    hunspell
-    hunspellDicts.de_DE
-    hunspellDicts.de_DE
-    hunspellDicts.en_US
-    hunspellDicts.fr-moderne
-    languagetool
   ];
 
   # Emacs configuration
