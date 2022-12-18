@@ -26,8 +26,11 @@ in
       calcurse
       ccls
       code-minimap
+      cowsay
       dconf2nix
+      fd
       figlet
+      fortune
       fzf
       guake
       htop
@@ -47,7 +50,6 @@ in
       nitrogen
       maim
       picom
-      rofi
       xmobar
       # GTK packages
       arc-theme
@@ -160,9 +162,14 @@ in
     # Rofi
     programs.rofi = {
       enable = true;
+      package = pkgs.rofi.override { plugins = [ pkgs.rofi-file-browser ]; };
       terminal = "${pkgs.alacritty}/bin/alacritty";
       theme = "arthur";
+      extraConfig = {
+        modi = "window,drun,run,ssh,file-browser-extended";
+      };
     };
+    xdg.configFile."rofi/file-browser".source = ./dotfiles/rofi_browser;
 
     # Alacritty
     xdg.configFile."alacritty/alacritty.yml".source = ./dotfiles/alacritty.yml;
@@ -280,6 +287,7 @@ in
       shellAliases = {
         # General aliases
         c = "code -r";
+        cow = "fortune | cowsay";
         e = "emacsclient";
         E = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit";
         en = "emacsclient -c -nw";
@@ -304,7 +312,7 @@ in
         # Less useful aliases
         jnb = "jupyter notebook";
         starwars = "telnet towel.blinkenlights.nl";
-        wo = ''figlet -t "$(hostname)"'';
+        wo = ''figlet -t "$(hostname)" | lolcat'';
         # Aliases for remote machines
         ccpgate = "ssh -Y panades@ccpgate.tnw.utwente.nl";
         jul = "ssh -i ~/.ssh/id_ed25519 -Y panadesbarrueta1@juwels-cluster.fz-juelich.de";

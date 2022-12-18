@@ -1,0 +1,5 @@
+cmd        "exo-open"
+oc-cmd     "evince;icon:evince"
+oc-cmd     "gimp;icon:gimp"
+oc-cmd     "eog;icon:eog"
+oc-cmd     "emacsclient;icon:emacs"

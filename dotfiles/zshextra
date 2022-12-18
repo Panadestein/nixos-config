@@ -35,7 +35,7 @@ prompt_nix_shell() {
 }
 
 PROMPT='$(prompt_nix_shell)'
-PROMPT+="%B(%B%{$fg[red]%}%n%{$reset_color%} %B. %{$fg[yellow]%}%1d%{$reset_color%}%B)%{$reset_color%} "
+PROMPT+="%B(%B%{$fg[blue]%}λ%{$reset_color%} %B. %{$fg[yellow]%}%1d%{$reset_color%}%B)%{$reset_color%} "
 PROMPT+='$(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[cyan]%}"
@@ -63,10 +63,13 @@ export LANG=en_US.UTF-8
 
 # Functions
 
-isrun() { ps -A | grep $1;}
+isrun() {
+    # Check if program is running
+    ps -A | grep $1;
+}
 
 tpy() {
-    # Create Bash, Python and Emacs session
+    # Create Bash, Python and Emacs session with tmux
     tmux new-session -d 'emacsclient -c'$1
     tmux new-window ''
     tmux split-window -h
@@ -85,14 +88,17 @@ ldiff() {
 }
 
 yta() {
+    # Play a YouTube video sound with MPV
     mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
 }
 
 xpcon() {
+    # Set external displayport monitor
     xrandr --output eDP --primary --auto\
 	   --output DisplayPort-"$1" --left-of eDP --auto
 }
 
-# Give me a nice and warm welcome (this is slow)
-
-figlet -t "$(hostname)" | lolcat
+cls() {
+    # Who doesn't do this?
+    cd "$1"; ls;
+}

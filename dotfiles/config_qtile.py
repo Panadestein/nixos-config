@@ -49,6 +49,10 @@ terminal = guess_terminal()
 dgroups_key_binder = simple_key_binder("mod4")
 xrancmd = f"{Path.home()}/.config/scripts/randr_conf.sh"
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+rofifm = (
+    "fd | rofi -show-icons -display-file-browser-extended 'Search' "
+    "-show file-browser-extended -file-browser-stdin"
+)
 
 # Useful colors
 # https://www.schemecolor.com/python-logo-colors.php
@@ -69,6 +73,8 @@ keys = [
         desc="Launches a handy Ipython session"),
     Key([mod], "r", lazy.spawn("rofi -show drun -show-icons"),
         desc="Triggers the Rofi launcher"),
+    Key([mod], "b", lazy.spawn(["sh", "-c", rofifm]),
+        desc="Launches the Rofi file browser"),
     Key([mod, "shift"], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
     Key([mod], "w", lazy.spawn("firefox"),
