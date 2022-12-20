@@ -244,6 +244,7 @@ in {
         python-lsp-server
         # Scientific libraries
         ipython
+        ipykernel
         jupyter
         matplotlib
         mpmath
@@ -273,8 +274,18 @@ in {
       python-with-my-packages = python3.withPackages my-python-packages;
     in
       python-with-my-packages)
+    (hy.withPackages (py-packages: with py-packages; [
+      # Scientific libraries
+      numpy
+      matplotlib
+      pandas
+      scipy
+      sympy
+      # Qt backend
+      pyqt6
+    ]))
   ];
-
+  
   # Emacs configuration
   services.emacs = {
     enable = true;

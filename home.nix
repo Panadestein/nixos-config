@@ -111,16 +111,6 @@ in
       nodejs
       racket
       sbcl
-      (hy.withPackages (py-packages: with py-packages; [
-        # Scientific libraries
-        numpy
-        matplotlib
-        pandas
-        scipy
-        sympy
-        # Qt backend
-        pyqt6
-      ]))
       # Internet and communications
       brave
       firefox
