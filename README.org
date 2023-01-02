@@ -12,28 +12,41 @@ The config is tailored to AMD hardware and need to be adjusted to other machines
 
 Nix [[https://www.tweag.io/blog/2020-07-31-nixos-flakes/][flakes]] is the preferred way to use this configuration. With flakes we can maximize the reproducibility
 of the system, and also easily add support for several machines within the =flake.nix= file.
-In NixOS (=cyrus=), I build the home and system configuration together as follows:
+
+**** NixOS
+
+My NixOS machine is called [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]]. Here I build the home and system configuration together as follows:
 
 #+begin_src bash
-sudo nixos-rebuild --flake .#<HOSTNAME> switch
+  sudo nixos-rebuild --flake .#<HOSTNAME> switch
 #+end_src
 
-Upgrading the system implies updating the inputs:
+Upgrading the system implies updating the inputs one at the time:
 
 #+begin_src bash
-sudo nix flake lock --update-input <INPUT>
+  sudo nix flake lock --update-input <INPUT>
 #+end_src
 
-In a non-NixOS system (=atabey=), I could build the home configuration like this:
+or all of them together:
 
 #+begin_src bash
-nix build .#<USERNAME>
+  nix flake update
+#+end_src
+
+**** Non-NixOS
+
+I maintain a second configuration for non-NixOS hosts (tested in Guix System so far), which is
+called [[https://en.wikipedia.org/wiki/Atabey_(goddess)][atabey]]. Here I build only the home configuration:
+
+#+begin_src bash
+  nix build .#<USERNAME>
+  ./result/activate
 #+end_src
 
 *** Using nix-channels
 
-This configuration can be easily adapted to use nix-channels as well. For example, if you want to use
-the =nixos-unstable= you could do:
+The flake configuration can be easily transformed into a non-flake, channel based one.
+For example, if you want to use the =nixos-unstable= you could do:
 
 #+begin_src bash
   sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
@@ -42,4 +55,4 @@ the =nixos-unstable= you could do:
 
 ** TODO
 
-- Prune =atabey='s configuration.
+- Prune =atabey='s configuration of unused packages.
