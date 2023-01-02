@@ -27,6 +27,7 @@ in
     htop
     lolcat
     poppler_utils
+    qemu
     tmate
     tmux
     trayer

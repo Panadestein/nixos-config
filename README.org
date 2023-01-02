@@ -1,15 +1,35 @@
-* NixOS configuration
+* Panadestein's Nix/NixOS
 
-Welcome to my [[https://nixos.org/][NixOS]] configuration using [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration generates a
-production-ready system (at least for my taste) with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]] tiling window managers.
+Welcome to my flake [[https://nixos.org/][Nix/NixOS]] configuration using [[https://nix-community.github.io/home-manager/][home-manager]]. The generated system should be
+production-ready (at least for my taste), and ships with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]] tiling window managers.
 I also have a declarative configuration of the [[https://release.gnome.org/][gnome]] desktop environment, although I rarely use it.
 
 ** Remarks:
 
-- The config is tailored to AMD hardware and need to be adjusted to other machines.
-- I am using the nixos-unstable channel:
-  
-  #+begin_src bash
-    sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-    sudo nixos-rebuild switch --upgrade
-  #+end_src
+The config is tailored to AMD hardware and need to be adjusted to other machines.
+
+*** Using flakes
+
+Nix [[https://www.tweag.io/blog/2020-07-31-nixos-flakes/][flakes]] is the preferred way to use this configuration. With flakes we can maximize the reproducibility
+of the system, and also easily add support for several machines within the =flake.nix= file.
+In NixOS, I build the home and system configuration together as follows:
+
+#+begin_src bash
+sudo nixos-rebuild --flake .#<HOSTNAME> switch
+#+end_src
+
+In a non-NixOS system, I could build the home configuration like this:
+
+#+begin_src bash
+nix build .#<USERNAME>
+#+end_src
+
+*** Using nix-channels
+
+This configuration can be easily adapted to use nix-channels as well. For example, if you want to use
+the =nixos-unstable= you could do:
+
+#+begin_src bash
+  sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+  sudo nixos-rebuild switch --upgrade
+#+end_src
