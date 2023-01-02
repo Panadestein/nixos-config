@@ -12,7 +12,7 @@ The config is tailored to AMD hardware and need to be adjusted to other machines
 
 Nix [[https://www.tweag.io/blog/2020-07-31-nixos-flakes/][flakes]] is the preferred way to use this configuration. With flakes we can maximize the reproducibility
 of the system, and also easily add support for several machines within the =flake.nix= file.
-In NixOS, I build the home and system configuration together as follows:
+In NixOS (=cyrus=), I build the home and system configuration together as follows:
 
 #+begin_src bash
 sudo nixos-rebuild --flake .#<HOSTNAME> switch
@@ -24,7 +24,7 @@ Upgrading the system implies updating the inputs:
 sudo nix flake lock --update-input <INPUT>
 #+end_src
 
-In a non-NixOS system, I could build the home configuration like this:
+In a non-NixOS system (=atabey=), I could build the home configuration like this:
 
 #+begin_src bash
 nix build .#<USERNAME>
