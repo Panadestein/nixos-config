@@ -102,3 +102,8 @@ cls() {
     # Who doesn't do this?
     cd "$1"; ls;
 }
+
+pathll() {
+    # Print the $PATH environment variable line by line
+    echo $PATH | tr : '\n'
+}
