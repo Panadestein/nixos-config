@@ -18,6 +18,12 @@ In NixOS, I build the home and system configuration together as follows:
 sudo nixos-rebuild --flake .#<HOSTNAME> switch
 #+end_src
 
+Upgrading the system implies updating the inputs:
+
+#+begin_src bash
+sudo nix flake lock --update-input <INPUT>
+#+end_src
+
 In a non-NixOS system, I could build the home configuration like this:
 
 #+begin_src bash

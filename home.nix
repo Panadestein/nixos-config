@@ -157,9 +157,9 @@ in
     source = pkgs.fetchFromGitHub {
       owner = "Panadestein";
       repo = "emacsd";
-      rev = "f14358b8074f384abb77aebb26b7198cc9bb5160";
+      rev = "a4b6880232749550a6d72016c6f472efc5a42060";
       # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-      sha256 = "12c817zci2b8a8skw4zhvggkym18wq9qfcr42z9v57xbihnr8agb"; 
+      sha256 = "0ykb1cxg8g5y09jyzjxybpv1556rlp2i50gffn2jfpa31lc1h9v0"; 
     };
     recursive = true;
     onChange = builtins.readFile ./dotfiles/set_emacs.sh;
