@@ -25,20 +25,20 @@
 
       # Systems and users
       persona = "loren";
-      rechner-nixos = "cyrus";
-      rechner-non-nixos = "atabey";
+      rechnerNixOS = "cyrus";
+      rechnerNonNixOS = "atabey";
     in
       {
         nixosConfigurations = {
-          ${rechner-nixos} = nixpkgs.lib.nixosSystem {
+          ${rechnerNixOS} = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
-              ./systems/${rechner-nixos}/configuration.nix
+              ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
-                home-manager.users.${persona} = ./home/${rechner-nixos}/home.nix;
+                home-manager.users.${persona} = ./home/${rechnerNixOS}/home.nix;
               }
             ];
           };
@@ -47,7 +47,7 @@
         homeConfigurations.${persona} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/${rechner-non-nixos}/home.nix ];
+          modules = [ ./home/${rechnerNonNixOS}/home.nix ];
         };
 
         packages.${system}.${persona} = self.homeConfigurations.${persona}.activationPackage;

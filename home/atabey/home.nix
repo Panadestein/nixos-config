@@ -4,6 +4,10 @@ let
   hm = inputs.home-manager.lib.hm;
 in
 {
+  # Non NixOS setup
+  home.username = "loren";
+  home.homeDirectory = "/home/atabey";
+
   # Dconf settings for Gnome
   imports = [ ../dotfiles/dconf.nix ];
 
