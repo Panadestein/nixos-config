@@ -8,23 +8,18 @@
 #      Panadestein's NixOS
 #-----------------------------
 
-{ config, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in {
+{ config, pkgs, inputs, ... }:
+{
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Hardware of current machine
       ./hardware-configuration.nix
-      # Use home-manager
-      ./home.nix
     ];
 
   # Overlays
   nixpkgs.overlays = [
     # Emacs overlay
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-    }))
+    (import inputs.emacs-overlay)
   ];
 
   # Nixpkgs configuration
@@ -361,4 +356,3 @@ in {
   # State version
   system.stateVersion = "22.11";
 }
-
