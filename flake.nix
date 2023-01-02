@@ -24,31 +24,32 @@
       };
 
       # Systems and users
-      unixes = "loren";
-      mnixos = "cyrus";
+      persona = "loren";
+      rechner-nixos = "cyrus";
+      rechner-non-nixos = "atabey";
     in
       {
         nixosConfigurations = {
-          ${mnixos} = nixpkgs.lib.nixosSystem {
+          ${rechner-nixos} = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
-              ./configuration.nix
+              ./systems/${rechner-nixos}/configuration.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
-                home-manager.users.${unixes} = ./home.nix;
+                home-manager.users.${persona} = ./home/${rechner-nixos}/home.nix;
               }
             ];
           };
         };
 
-        homeConfigurations.${unixes} = home-manager.lib.homeManagerConfiguration {
+        homeConfigurations.${persona} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home.nix ];
+          modules = [ ./home/${rechner-non-nixos}/home.nix ];
         };
 
-        packages.${system}.${unixes} = self.homeConfigurations.${unixes}.activationPackage;
+        packages.${system}.${persona} = self.homeConfigurations.${persona}.activationPackage;
       };
 }

@@ -191,8 +191,8 @@ in
 
   # Xmobar
   xdg.configFile."xmobar/.xmobarrc".source = ./dotfiles/xmobarrc;
-  home.file.".xmonad/xpm/haskell_20.xpm".source = dotfiles/images/haskell_20.xpm;
-  home.file.".xmonad/trayer_padding.sh".source = dotfiles/trayer_padding.sh;
+  home.file.".xmonad/xpm/haskell_20.xpm".source = ./dotfiles/images/haskell_20.xpm;
+  home.file.".xmonad/trayer_padding.sh".source = ./dotfiles/trayer_padding.sh;
   programs.xmobar = {
     enable = true;
   };
@@ -259,7 +259,7 @@ in
   home.file.".config/qtile/cc_tram.jpg".source = ./dotfiles/images/cc_tram.jpg;
 
   # Set LightDM avatar (https://wiki.archlinux.org/title/LightDM#Changing_your_avatar)
-  home.file.".face".source = dotfiles/images/cfd_DWudN.png;
+  home.file.".face".source = ./dotfiles/images/cfd_DWudN.png;
 
   # Script to control plugged monitors
   home.file.".config/scripts/randr_conf.sh".source = ./dotfiles/randr_conf.sh;
@@ -382,5 +382,3 @@ in
   # State version
   home.stateVersion = "22.05";
 }
-
-
