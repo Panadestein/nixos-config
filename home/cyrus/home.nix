@@ -5,7 +5,7 @@ let
 in
 {
   # Dconf settings for Gnome
-  imports = [ ./dotfiles/dconf.nix ];
+  imports = [ ../dotfiles/dconf.nix ];
 
   # User packages
   home.packages = with pkgs; [
@@ -162,7 +162,7 @@ in
       sha256 = "0ykb1cxg8g5y09jyzjxybpv1556rlp2i50gffn2jfpa31lc1h9v0"; 
     };
     recursive = true;
-    onChange = builtins.readFile ./dotfiles/set_emacs.sh;
+    onChange = builtins.readFile ../dotfiles/set_emacs.sh;
   };
 
   # VScode configuration
@@ -181,41 +181,41 @@ in
       modi = "window,drun,run,ssh,file-browser-extended";
     };
   };
-  xdg.configFile."rofi/file-browser".source = ./dotfiles/rofi_browser;
+  xdg.configFile."rofi/file-browser".source = ../dotfiles/rofi_browser;
 
   # Alacritty
-  xdg.configFile."alacritty/alacritty.yml".source = ./dotfiles/alacritty.yml;
+  xdg.configFile."alacritty/alacritty.yml".source = ../dotfiles/alacritty.yml;
   programs.alacritty = {
     enable = true;
   };
 
   # Xmobar
-  xdg.configFile."xmobar/.xmobarrc".source = ./dotfiles/xmobarrc;
-  home.file.".xmonad/xpm/haskell_20.xpm".source = ./dotfiles/images/haskell_20.xpm;
-  home.file.".xmonad/trayer_padding.sh".source = ./dotfiles/trayer_padding.sh;
+  xdg.configFile."xmobar/.xmobarrc".source = ../dotfiles/xmobarrc;
+  home.file.".xmonad/xpm/haskell_20.xpm".source = ../dotfiles/images/haskell_20.xpm;
+  home.file.".xmonad/trayer_padding.sh".source = ../dotfiles/trayer_padding.sh;
   programs.xmobar = {
     enable = true;
   };
 
   # Vim and Neovim
-  home.file.".vimrc".source = ./dotfiles/vimrc;
-  xdg.configFile."nvim/init.vim".source = ./dotfiles/init.vim;
+  home.file.".vimrc".source = ../dotfiles/vimrc;
+  xdg.configFile."nvim/init.vim".source = ../dotfiles/init.vim;
 
   # Ranger
-  xdg.configFile."ranger/rc.conf".source = ./dotfiles/rc.conf;
+  xdg.configFile."ranger/rc.conf".source = ../dotfiles/rc.conf;
 
   # Thunar
-  xdg.configFile."xfce4/helpers.rc".source = ./dotfiles/helpers_xfce.rc;
+  xdg.configFile."xfce4/helpers.rc".source = ../dotfiles/helpers_xfce.rc;
 
   # Ipython
-  home.file.".ipython/profile_default/ipython_config.py".source = ./dotfiles/ipython_config.py;
+  home.file.".ipython/profile_default/ipython_config.py".source = ../dotfiles/ipython_config.py;
 
   # Matplotlib (ensure Qt backend)
-  home.file.".config/matplotlib/matplotlibrc".source = ./dotfiles/matplotlibrc;
+  home.file.".config/matplotlib/matplotlibrc".source = ../dotfiles/matplotlibrc;
 
   # Translate Shell
-  xdg.configFile."translate-shell/init.trans".source = ./dotfiles/init.trans;
-  home.file.".config/translate-shell/happiness.trans".source = ./dotfiles/happiness.trans;
+  xdg.configFile."translate-shell/init.trans".source = ../dotfiles/init.trans;
+  home.file.".config/translate-shell/happiness.trans".source = ../dotfiles/happiness.trans;
 
   # Picom, disables if not using a WM
   services.picom = {
@@ -239,7 +239,7 @@ in
       xmonad = {
         enable = true;
         enableContribAndExtras = true;
-        config = ./dotfiles/xmonad.hs;
+        config = ../dotfiles/xmonad.hs;
       };
     };
   };
@@ -253,16 +253,16 @@ in
   };
 
   # Qtile configuration
-  xdg.configFile."qtile/config.py".source = ./dotfiles/config_qtile.py;
-  home.file.".config/qtile/python_icon.png".source = ./dotfiles/images/python_icon.png;
-  home.file.".config/qtile/tc_feyn.png".source = ./dotfiles/images/tc_feyn.png;
-  home.file.".config/qtile/cc_tram.jpg".source = ./dotfiles/images/cc_tram.jpg;
+  xdg.configFile."qtile/config.py".source = ../dotfiles/config_qtile.py;
+  home.file.".config/qtile/python_icon.png".source = ../dotfiles/images/python_icon.png;
+  home.file.".config/qtile/tc_feyn.png".source = ../dotfiles/images/tc_feyn.png;
+  home.file.".config/qtile/cc_tram.jpg".source = ../dotfiles/images/cc_tram.jpg;
 
   # Set LightDM avatar (https://wiki.archlinux.org/title/LightDM#Changing_your_avatar)
-  home.file.".face".source = ./dotfiles/images/cfd_DWudN.png;
+  home.file.".face".source = ../dotfiles/images/cfd_DWudN.png;
 
   # Script to control plugged monitors
-  home.file.".config/scripts/randr_conf.sh".source = ./dotfiles/randr_conf.sh;
+  home.file.".config/scripts/randr_conf.sh".source = ../dotfiles/randr_conf.sh;
 
   # GTk theme, disabled if using Gnome
   gtk = {
@@ -345,7 +345,7 @@ in
       size = 10000000;
     };
 
-    initExtra = builtins.readFile ./dotfiles/zshextra;
+    initExtra = builtins.readFile ../dotfiles/zshextra;
 
     oh-my-zsh = {
       enable = true;
