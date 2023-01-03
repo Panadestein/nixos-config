@@ -107,3 +107,8 @@ pathll() {
     # Print the $PATH environment variable line by line
     echo $PATH | tr : '\n'
 }
+
+nixvars() {
+    # Show nix environment variables
+    env |grep -i ^nix
+}

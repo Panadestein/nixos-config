@@ -53,6 +53,13 @@ For example, if you want to use the =nixos-unstable= you could do:
   sudo nixos-rebuild switch --upgrade
 #+end_src
 
+When using a hybrid workflow (e.g. to keep using =nix-shell= in a flake system)
+it is important to update the channels without rebuilding:
+
+#+begin_src bash
+  nix-channel --update
+#+end_src
+
 ** TODO
 
 - Prune =atabey='s configuration of unused packages.
