@@ -8,6 +8,9 @@ in
   home.username = "loren";
   home.homeDirectory = "/home/atabey";
 
+  # Let home-manager manage itself
+  programs.home-manager.enable = true;
+
   # Dconf settings for Gnome
   imports = [
     ../dotfiles/dconf.nix
