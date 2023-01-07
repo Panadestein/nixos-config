@@ -3,5 +3,5 @@
     ./emacs
     ./zsh
     ./dconf
-  ]
+  ];
 }
