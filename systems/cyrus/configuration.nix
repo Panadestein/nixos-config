@@ -159,9 +159,6 @@
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    #clientConf = ''
-    #  ServerName cpcs04.chm.tu-dresden.de 
-    #'';
     drivers = [ pkgs.epson-workforce-635-nx625-series ];
   };
   services.avahi.enable = true;
