@@ -11,8 +11,8 @@ in
   # Let home-manager manage itself
   programs.home-manager.enable = true;
 
-  # Dconf settings for Gnome
-  imports = [
+  # Import home-manager modules
+  imports = builtins.concatMap import [
     ../modules
   ];
 

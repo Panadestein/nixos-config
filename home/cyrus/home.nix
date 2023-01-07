@@ -4,7 +4,7 @@ let
   hm = inputs.home-manager.lib.hm;
 in
 {
-  # Dconf settings for Gnome
+  # Import home-manager modules
   imports = builtins.concatMap import [
     ../modules
   ];
