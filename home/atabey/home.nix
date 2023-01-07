@@ -13,8 +13,7 @@ in
 
   # Dconf settings for Gnome
   imports = [
-    ../dotfiles/dconf.nix
-    ../programs/zsh
+    ../modules
   ];
 
   # User packages
@@ -160,19 +159,6 @@ in
       credential.helper = "${
         pkgs.git.override { withLibsecret = true; }
       }/bin/git-credential-libsecret";};
-  };
-
-  # Emacs configuration
-  home.file.".emacs.d/" = {
-    source = pkgs.fetchFromGitHub {
-      owner = "Panadestein";
-      repo = "emacsd";
-      rev = "a4b6880232749550a6d72016c6f472efc5a42060";
-      # nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/rev.tar.gz
-      sha256 = "0ykb1cxg8g5y09jyzjxybpv1556rlp2i50gffn2jfpa31lc1h9v0"; 
-    };
-    recursive = true;
-    onChange = builtins.readFile ../dotfiles/set_emacs.sh;
   };
 
   # VScode configuration
