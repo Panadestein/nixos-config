@@ -5,7 +5,7 @@ let
 in
 {
   # Dconf settings for Gnome
-  imports = [
+  imports = builtins.concatMap import [
     ../modules
   ];
 
