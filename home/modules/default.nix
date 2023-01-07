@@ -1,5 +1,7 @@
-[
-  ./emacs
-  ./zsh
-  ./dconf
-]
+{
+  import =  [
+    ./emacs
+    ./zsh
+    ./dconf
+  ]
+}
