@@ -10,6 +10,6 @@
       sha256 = "12kx7mw9a66ppxcr45w7bhhdxkddgva5sy86pcpbh1np6pxwcw40"; 
     };
     recursive = true;
-    onChange = builtins.readFile ../dotfiles/set_emacs.sh;
+    onChange = builtins.readFile ../../dotfiles/set_emacs.sh;
   };
 }
