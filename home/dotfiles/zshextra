@@ -112,3 +112,8 @@ nixvars() {
     # Show nix environment variables
     env |grep -i ^nix
 }
+
+recscr() {
+    # Simple, silent screen record (for laptop's screen)
+    ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0 Videos/"$1"
+}
