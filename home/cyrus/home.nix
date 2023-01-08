@@ -78,6 +78,7 @@ in
     translate-shell
     xournalpp
     # Videos
+    ffmpeg
     mpv
     youtube-dl
     # Image editing
