@@ -163,6 +163,7 @@
   };
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
+  programs.system-config-printer.enable = true;
 
   # Enable sound.
   sound.enable = true;
