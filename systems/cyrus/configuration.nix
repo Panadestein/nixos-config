@@ -156,7 +156,7 @@
   services.xserver.layout = "us,de";
   services.xserver.xkbVariant = "altgr-intl";
 
-  # Enable CUPS to print documents.
+  # Printing support with CUPS
   services.printing = {
     enable = true;
     drivers = [ pkgs.epson-workforce-635-nx625-series ];
@@ -164,6 +164,9 @@
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   programs.system-config-printer.enable = true;
+
+  # Scanners
+  hardware.sane.enable = true;
 
   # Enable sound.
   sound.enable = true;

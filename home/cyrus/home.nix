@@ -51,6 +51,7 @@ in
     glib
     gnome.eog
     gnome.gnome-screenshot
+    gnome.simple-scan 
     gobject-introspection
     gtk3
     # Xfce packages
