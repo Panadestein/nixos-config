@@ -97,6 +97,8 @@ keys = [
     # Dropdown terminal
     Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term'),
         desc="Toggles scratchpad terminal"),
+    Key([mod], 'c', lazy.group['scratchpad'].dropdown_toggle('calculator'),
+        desc="Toggles the insect calculator"),
 
     # Media Keys
     Key([], 'XF86AudioLowerVolume', lazy.spawn("amixer set Master 5%- unmute"),
@@ -181,6 +183,9 @@ groups = [
                  y=0.0,
                  width=1.0,
                  height=1.0,
+                 opacity=0.9,
+                 on_focus_lost_hide=True),
+        DropDown("calculator", "alacritty -e insect",
                  opacity=0.9,
                  on_focus_lost_hide=True)]),
     Group("dev", layout='monadtall'),

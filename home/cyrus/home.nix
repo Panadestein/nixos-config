@@ -68,6 +68,7 @@ in
     avogadro2
     gnuplot
     molden
+    nodePackages.insect
     pymol
     zotero
     # Office
