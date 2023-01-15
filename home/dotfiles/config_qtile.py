@@ -186,7 +186,7 @@ groups = [
                  opacity=0.9,
                  on_focus_lost_hide=True),
         DropDown("calculator", "alacritty -e insect",
-                 y=0.5,
+                 y=0.3,
                  opacity=0.95,
                  on_focus_lost_hide=True)]),
     Group("dev", layout='monadtall'),
