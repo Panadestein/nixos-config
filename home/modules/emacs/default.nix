@@ -5,8 +5,8 @@
     source = pkgs.fetchFromGitHub {
       owner = "Panadestein";
       repo = "emacsd";
-      rev = "3527cd5a23558e6c3594915b0f1dfa1ab2720f44";
-      sha256 = "1xna9vmx9vqqxk7i8qwbzhld599jfi7gb36d5x0jczyg9b788gcd"; 
+      rev = "be8bf75ae12982bfdd990317fbe58fc61a34b5b7";
+      sha256 = "1k5699hm663q3bikch53mn8hz4b7a1digsaqwvm610n1cqb9ybpw"; 
     };
     recursive = true;
     onChange = builtins.readFile ../../dotfiles/set_emacs.sh;
