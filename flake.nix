@@ -12,7 +12,7 @@
     };
 
     # Nix User Repository
-    nur.url = github:nix-community/NUR;
+    nur.url = "github:nix-community/NUR";
 
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";

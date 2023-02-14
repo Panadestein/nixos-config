@@ -21,7 +21,7 @@
     # Emacs overlay
     (import inputs.emacs-overlay)
     # NUR
-    (import inputs.nur)
+    (import inputs.nur.overlay)
   ];
 
   # Nixpkgs configuration
