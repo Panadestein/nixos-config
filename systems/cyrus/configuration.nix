@@ -20,8 +20,6 @@
   nixpkgs.overlays = [
     # Emacs overlay
     (import inputs.emacs-overlay)
-    # NUR
-    (import inputs.nur.overlay)
   ];
 
   # Nixpkgs configuration
@@ -283,6 +281,8 @@
       # Qt backend
       pyqt6
     ]))
+    # NUR packages
+    config.nur.repos.qchem.vmd
   ];
   
   # Emacs configuration
