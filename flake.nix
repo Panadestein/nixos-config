@@ -11,11 +11,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nix User Repository
+    nur.url = github:nix-community/NUR;
+
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -40,6 +43,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.users.${persona} = ./home/${rechnerNixOS}/home.nix;
               }
+              nur.nixosModules.nur
             ];
           };
         };
