@@ -38,6 +38,11 @@
             specialArgs = { inherit inputs; };
             modules = [
               nur.nixosModules.nur
+              ({ config, ... }: {
+                environment.systemPackages = [
+                  config.nur.repos.qchem.vmd
+                ];
+              })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {

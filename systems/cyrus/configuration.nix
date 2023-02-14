@@ -281,10 +281,8 @@
       # Qt backend
       pyqt6
     ]))
-    # NUR packages
-    config.nur.repos.qchem.vmd
   ];
-  
+
   # Emacs configuration
   services.emacs = {
     enable = true;
