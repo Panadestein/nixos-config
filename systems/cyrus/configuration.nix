@@ -20,6 +20,8 @@
   nixpkgs.overlays = [
     # Emacs overlay
     (import inputs.emacs-overlay)
+    # NUR
+    (import inputs.nur)
   ];
 
   # Nixpkgs configuration

@@ -43,7 +43,6 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.users.${persona} = ./home/${rechnerNixOS}/home.nix;
               }
-              nur.nixosModules.nur
             ];
           };
         };
