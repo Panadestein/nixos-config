@@ -11,9 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nix User Repository
-    nur.url = "github:nix-community/NUR";
-
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
@@ -37,12 +34,6 @@
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
-              nur.nixosModules.nur
-              ({ config, ... }: {
-                environment.systemPackages = [
-                  config.nur.repos.qchem.vmd
-                ];
-              })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {
