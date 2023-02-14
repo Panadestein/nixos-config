@@ -76,7 +76,7 @@ myConfig = def
     , ("M-v" , spawn "neovide")
     , ("M-S-f" , spawn "nautilus")
     , ("M-f" , spawn "alacritty -e ranger")
-    , ("<Print>" , spawn "maim -s | xclip -selection clipboard -t image/png")
+    , ("<Print>" , spawn "gnome-screenshot -i")
       -- Multiple screens
     , ("M-m" , spawn "$HOME/.config/scripts/randr_conf.sh && nitrogen --restore &")
       -- Helpful commands
