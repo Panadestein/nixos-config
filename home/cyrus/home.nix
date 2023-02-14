@@ -42,7 +42,7 @@ in
     # Windowm manager utilities
     dmenu
     nitrogen
-    maim
+    # maim
     picom
     xmobar
     # GTK packages
