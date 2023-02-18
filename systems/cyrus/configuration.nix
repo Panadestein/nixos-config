@@ -20,6 +20,7 @@
   nixpkgs.overlays = [
     # Emacs overlay
     (import inputs.emacs-overlay)
+    (import inputs.qchem-overlay)
   ];
 
   # Nixpkgs configuration
