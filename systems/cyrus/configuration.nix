@@ -233,6 +233,8 @@
     # Text editors and office
     emacsGit
     vim_configurable
+    # Quantum Chemistry
+    qchem.vmd
     # Programming languages
     gfortran
     qt6.full
