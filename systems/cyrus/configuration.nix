@@ -20,7 +20,6 @@
   nixpkgs.overlays = [
     # Emacs overlay
     (import inputs.emacs-overlay)
-    (import inputs.qchem-overlay)
   ];
 
   # Nixpkgs configuration
@@ -233,8 +232,6 @@
     # Text editors and office
     emacsGit
     vim_configurable
-    # Quantum Chemistry
-    qchem.vmd
     # Programming languages
     gfortran
     qt6.full
