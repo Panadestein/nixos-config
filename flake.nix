@@ -13,9 +13,12 @@
 
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+
+    # The QChem flake. Contains several quantum chemistry packages
+    qchem.url = "github:Nix-QChem/NixOS-QChem";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, qchem, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {

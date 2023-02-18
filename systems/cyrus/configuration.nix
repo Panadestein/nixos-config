@@ -27,9 +27,6 @@
     allowUnfree = true;
     packageOverrides = pkgs: {
       inxi = pkgs.inxi.override { withRecommends = true; };
-      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
     };
   };
   
