@@ -54,9 +54,6 @@
   # Load AMD CPU microcode
   hardware.cpu.amd.updateMicrocode = true;
 
-  # Add HiDPI support
-  hardware.video.hidpi.enable = true;
-
   # Kernel parameters and modules
   boot.initrd.kernelModules = [ "amdgpu" "hid-apple"];
   boot.kernelParams = [
