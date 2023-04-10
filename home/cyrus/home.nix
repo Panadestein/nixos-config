@@ -72,6 +72,7 @@ in
     zotero
     # Office
     calibre
+    crow-translate
     djvulibre
     evince
     libreoffice-fresh
