@@ -239,6 +239,7 @@
         # Scientific libraries
         ipython
         ipykernel
+        ipympl
         jupyter
         matplotlib
         mpmath
