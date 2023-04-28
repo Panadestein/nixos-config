@@ -229,8 +229,9 @@
     # Text editors and office
     emacsGit
     vim_configurable
-    # Programming languages
+    # Programming languages (here to avoid environment clashes)
     gfortran
+    julia-bin
     qt6.full
     (let
       my-python-packages = python-packages: with python-packages; [
