@@ -196,6 +196,7 @@
     extraGroups = [ "wheel"
                     "audio"
                     "input"
+                    "docker"
                     "networkmanager" 
                     "systemd-journal" 
                     "video"];
