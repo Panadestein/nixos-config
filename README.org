@@ -10,6 +10,8 @@
 
 * Panadestein's Nix/NixOS
 
+[[file:./home/dotfiles/images/some_apps.png]]
+
 Welcome to my flake [[https://nixos.org/][Nix/NixOS]] configuration using [[https://nix-community.github.io/home-manager/][home-manager]]. The generated system should be
 production-ready (at least for my taste), and ships with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]] tiling window managers.
 I also have a declarative configuration of the [[https://release.gnome.org/][gnome]] desktop environment, although I rarely use it.
@@ -69,7 +71,3 @@ it is important to update the channels without rebuilding:
 #+begin_src bash
   nix-channel --update
 #+end_src
-
-** TODO
-
-- Prune =atabey='s configuration of unused packages.
