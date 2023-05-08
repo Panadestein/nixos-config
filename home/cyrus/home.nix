@@ -92,7 +92,7 @@ in
     # Programming utilities
     cmake
     exercism
-    fortran-language-server
+    fortls
     neovide
     shellcheck
     valgrind
