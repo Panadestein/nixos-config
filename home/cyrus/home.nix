@@ -113,7 +113,7 @@ in
     brave
     firefox
     mattermost-desktop
-    #  nyxt
+    nyxt
     qutebrowser
     skypeforlinux
     slack
