@@ -310,7 +310,7 @@
     noto-fonts-emoji
     proggyfonts
     source-code-pro
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" "SourceCodePro" ]; })
   ];
 
   # Gnome apps configuration
