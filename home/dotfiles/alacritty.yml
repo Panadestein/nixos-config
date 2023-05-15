@@ -18,16 +18,16 @@ scrolling:
 # Font config
 font:
   normal:
-    family: Fira Code
+    family: Source Code Pro
     style: Regular
   bold:
-    family: Fira Code
+    family: Source Code Pro
     style: Bold
   italic:
-    family: Fira Code
+    family: Source Code Pro
     style: Italic
   bold_italic:
-    family: Fira Code
+    family: Source Code Pro
     style: Bold Italic
   size: 20
 
