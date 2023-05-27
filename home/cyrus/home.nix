@@ -76,6 +76,7 @@ in
     djvulibre
     evince
     libreoffice-fresh
+    ltex-ls
     pandoc
     translate-shell
     xournalpp
