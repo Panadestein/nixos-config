@@ -66,9 +66,12 @@ in
     # Science
     avogadro2
     gnuplot
+    maxima
     molden
     nodePackages.insect
     pymol
+    sage
+    wolfram-engine
     zotero
     # Office
     calibre
