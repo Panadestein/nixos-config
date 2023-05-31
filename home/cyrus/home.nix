@@ -71,6 +71,7 @@ in
     nodePackages.insect
     pymol
     sage
+    wolfram-engine
     zotero
     # Office
     calibre
