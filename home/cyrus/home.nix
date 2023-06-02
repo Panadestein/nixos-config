@@ -129,7 +129,7 @@ in
     bundler
     hugo
     # Latex
-    texlive.scheme-full
+    texlive.combined.scheme-full
     #(texlive.combine {
     #  scheme-full = pkgs.texlive.scheme-full // {
     #    pkgs = pkgs.lib.filter
