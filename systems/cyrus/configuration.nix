@@ -228,7 +228,7 @@
     # Terminal and CLI utilities
     zsh
     # Text editors and office
-    emacsGit
+    emacs-git
     vim_configurable
     # Programming languages (here to avoid environment clashes)
     gfortran
