@@ -287,7 +287,7 @@
   # Emacs configuration
   services.emacs = {
     enable = true;
-    package = pkgs.emacsGit;
+    package = pkgs.emacs-git;
     defaultEditor = true;
   };
 
