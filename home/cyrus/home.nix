@@ -129,13 +129,14 @@ in
     bundler
     hugo
     # Latex
-    (texlive.combine {
-      scheme-full = pkgs.texlive.scheme-full // {
-        pkgs = pkgs.lib.filter
-          (x: (x.pname != "xindy"))
-          pkgs.texlive.scheme-full.pkgs;
-      };
-    })
+    texlive.scheme-full
+    #(texlive.combine {
+    #  scheme-full = pkgs.texlive.scheme-full // {
+    #    pkgs = pkgs.lib.filter
+    #      (x: (x.pname != "xindy"))
+    #      pkgs.texlive.scheme-full.pkgs;
+    #  };
+    #})
     # Spell checkers and dictionaries
     aspell
     aspellDicts.de
