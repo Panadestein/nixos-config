@@ -43,7 +43,7 @@
       lsts0 = "ssh -Y rbarrueta@141.30.9.190";
       lsts1 = "ssh -Y rbarrueta@141.30.9.191";
       mah = "ssh rpanades@mahti.csc.fi";
-      pader = "ssh -t -i ~/.ssh/id_rsa corexl01@sshgate.uni-paderborn.de"
+      pader = "ssh -t -i ~/.ssh/id_rsa corexl01@sshgate.uni-paderborn.de";
       sakup = "sftp ramon@sakura.univ-lille1.fr";
       sakura = "ssh -Y ramon@sakura.univ-lille1.fr";
       sssara = "ssh -Y panades@doornode.surfsara.nl";
