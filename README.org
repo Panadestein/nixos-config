@@ -8,22 +8,24 @@
 </a>
 #+END_HTML
 
-* Panadestein's Nix/NixOS
+* Panadestein's Nix/NixOS Configuration
 
 [[file:./home/dotfiles/images/some_apps.png]]
 
-Welcome to my flake [[https://nixos.org/][Nix/NixOS]] configuration using [[https://nix-community.github.io/home-manager/][home-manager]]. The generated system should be
-production-ready (at least for my taste), and ships with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]] tiling window managers.
-I also have a declarative configuration of the [[https://release.gnome.org/][gnome]] desktop environment, although I rarely use it.
+Welcome to my personal flake [[https://nixos.org/][Nix/NixOS]] configuration, powered by [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration
+is designed to be production-ready (according to my personal requirements) and comes with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]]
+tiling window managers. Additionally, I have a declarative configuration for the [[https://release.gnome.org/][gnome]]
+desktop environment, although it's not my primary environment.
 
 ** Remarks:
 
-The config is tailored to AMD hardware and need to be adjusted to other machines.
+This configuration is specifically tailored for AMD hardware, hence, modifications might
+be necessary to suit other machines.
 
 *** Using flakes
 
-Nix [[https://www.tweag.io/blog/2020-07-31-nixos-flakes/][flakes]] is the preferred way to use this configuration. With flakes we can maximize the reproducibility
-of the system, and also easily add support for several machines within the =flake.nix= file.
+Nix [[https://www.tweag.io/blog/2020-07-31-nixos-flakes/][flakes]] is the preferred way to utilize this configuration. The use of flakes enhances the reproducibility
+of the system and enables seamless support for multiple machines via the =flake.nix= file.
 
 **** NixOS
 
