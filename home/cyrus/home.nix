@@ -96,7 +96,6 @@ in
     exercism
     fortls
     haskell-language-server
-    haskellPackages.ghcup
     neovide
     shellcheck
     valgrind
