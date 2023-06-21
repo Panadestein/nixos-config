@@ -123,6 +123,11 @@ pab() {
     cat "$1" | nc termbin.com 9999
 }
 
+emhash() {
+    # Get the hash of my emacs repo
+    nix-prefetch-url --unpack https://github.com/Panadestein/emacsd/archive/"$1".tar.gz
+}
+
 # Emacs vterm support
 
 vterm_printf() {

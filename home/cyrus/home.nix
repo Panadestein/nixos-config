@@ -95,6 +95,7 @@ in
     cmake
     exercism
     fortls
+    haskell-language-server
     neovide
     shellcheck
     valgrind
