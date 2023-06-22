@@ -288,8 +288,8 @@
   # Emacs configuration
   services.emacs = {
     enable = true;
-    #package = pkgs.emacs-git;
-    package = with pkgs; ((emacsPackagesFor emacs-git).emacsWithPackages (epkgs: [ epkgs.jupyter ]))
+    package = with pkgs; ((emacsPackagesFor emacs-git).emacsWithPackages
+      (epkgs: [ epkgs.jupyter ]));
     defaultEditor = true;
   };
 
