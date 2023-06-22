@@ -241,7 +241,7 @@
         python-lsp-server
         # Scientific libraries
         ipython
-        ipykernel
+        #ipykernel
         ipympl
         jupyter
         matplotlib
