@@ -67,6 +67,7 @@ in
     avogadro2
     gnuplot
     maxima
+    molden
     nodePackages.insect
     pymol
     sage
