@@ -66,6 +66,7 @@ in
     # Science
     avogadro2
     gnuplot
+    graphviz
     maxima
     molden
     nodePackages.insect
@@ -129,6 +130,7 @@ in
     # Web
     bundler
     hugo
+    skribilo
     # Latex
     texlive.combined.scheme-full
     #(texlive.combine {
