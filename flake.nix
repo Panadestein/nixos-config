@@ -12,7 +12,7 @@
     };
 
     # The Emacs overlay
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.url = "github:nix-community/emacs-overlay/e74eb90";
 
     # The QChem flake. Contains several quantum chemistry packages
     qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
