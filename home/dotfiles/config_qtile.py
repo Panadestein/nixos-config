@@ -11,7 +11,6 @@ r"""Qtile configuration.
 import os
 import socket
 import subprocess
-from typing import List
 from pathlib import Path
 from libqtile import qtile
 from libqtile import bar, layout, widget, hook
@@ -188,9 +187,11 @@ groups = [
         DropDown("calculator", "alacritty -e insect",
                  opacity=0.95,
                  on_focus_lost_hide=True)]),
-    Group("dev", layout='monadtall'),
+    Group("dev", layout='monadtall',
+          matches=[Match(wm_class=["Code",
+                                   "Emacs"])]),
     Group("tty", layout='max'),
-    Group("doc", layout='columns'),
+    Group("doc", layout='monadtall'),
     Group("www", layout='monadtall',
           matches=[Match(wm_class=["firefox",
                                    "Brave-browser",
@@ -202,7 +203,7 @@ groups = [
     Group("com", layout='monadtall',
           matches=[Match(wm_class=["Skype",
                                    "zoom"])]),
-    Group("rnd", layout='columns'),
+    Group("rnd", layout='monadtall'),
     Group("art", layout='floating',
           matches=[Match(wm_class=["gimp-2.10"])])
 ]
@@ -337,7 +338,7 @@ mouse = [
 
 # Internal Qtile options
 
-dgroups_app_rules = []  # type: List
+dgroups_app_rules = []
 follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = True
@@ -372,7 +373,7 @@ def screen_event(ev):
     """
     subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh"])
 
-# Dirty Java hack
 
+# Dirty Java hack
 
 wmname = "LG3D"
