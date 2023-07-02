@@ -124,7 +124,7 @@ in
     slack
     tdesktop
     whatsapp-for-linux
-    # zoom-us
+    zoom-us
     # Leisure
     retroarch
     # Web
