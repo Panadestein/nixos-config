@@ -193,7 +193,7 @@ groups = [
     Group("tty", layout='max'),
     Group("doc", layout='monadtall'),
     Group("www", layout='monadtall',
-          matches=[Match(wm_class=["firefox-beta",
+          matches=[Match(wm_class=["firefox",
                                    "Brave-browser",
                                    "Nyxt"])]),
     Group("msg", layout='monadtall',

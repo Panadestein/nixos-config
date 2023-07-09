@@ -116,7 +116,7 @@ in
     sbcl
     # Internet and communications
     brave
-    firefox-beta-bin
+    firefox
     mattermost-desktop
     nyxt
     qutebrowser
