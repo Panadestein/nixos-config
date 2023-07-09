@@ -337,7 +337,6 @@
   services.actkbd.enable = true;
   services.gvfs.enable = true;
   services.openssh.enable = true;
-  services.teamviewer.enable = true;
   services.upower.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.dbus = {
