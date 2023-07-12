@@ -62,6 +62,7 @@
     "rd.systemd.show_status=auto"
     "rd.udev.log_level=3"
     "hid_apple.fnmode=0"
+    "psmouse.synaptics_intertouch=0"
   ];
   boot.initrd.verbose = false;
   boot.plymouth.enable = true;
