@@ -180,7 +180,7 @@
 
   # Enable touchpad support
   services.xserver.libinput = {
-    enable = true;
+    enable = false;
     touchpad = {
       tapping = true;
       naturalScrolling = true;
