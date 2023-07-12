@@ -298,7 +298,9 @@
 
   # Use Flatpak, just in case
   services.flatpak.enable = true;
-  xdg.portal.enable = false;
+
+  # If Gnome is not installed, this must be enabled
+  # xdg.portal.enable = true;
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Fonts
