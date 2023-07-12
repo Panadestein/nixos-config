@@ -299,7 +299,7 @@
   # Use Flatpak, just in case
   services.flatpak.enable = true;
   xdg.portal.enable = false;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Fonts
   fonts.fonts = with pkgs; [
