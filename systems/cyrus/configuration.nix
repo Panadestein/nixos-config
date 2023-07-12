@@ -120,11 +120,11 @@
   services.xserver.displayManager = {
     defaultSession = "none+qtile";
     gdm = {
-      enable = false;
+      enable = true;
       wayland = false;
     };
     lightdm = {
-      enable = true;
+      enable = false;
       greeters.enso = {
         enable = true;
       }; 
@@ -148,7 +148,7 @@
   };
 
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = false;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.layout = "us,de";
