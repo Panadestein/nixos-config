@@ -85,6 +85,21 @@ with lib.hm.gvariant;
       subtitle-encoding = "UTF-8";
     };
 
+    "org/gnome/calculator" = {
+      accuracy = 9;
+      angle-units = "degrees";
+      base = 10;
+      button-mode = "basic";
+      number-format = "automatic";
+      show-thousands = false;
+      show-zeroes = false;
+      source-currency = "";
+      source-units = "degree";
+      target-currency = "";
+      target-units = "radian";
+      word-size = 64;
+    };
+
     "org/gnome/calendar" = {
       active-view = "month";
       window-maximized = true;
@@ -130,7 +145,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "guake" "emacsclient" "firefox" "gnome-power-panel" "mattermost" "org-gnome-nautilus" "org-gnome-evince" "telegramdesktop" ];
+      application-children = [ "guake" "emacsclient" "firefox" "gnome-power-panel" "mattermost" "org-gnome-nautilus" "org-gnome-evince" "telegramdesktop" "zoom" "org-telegram-desktop" ];
     };
 
     "org/gnome/desktop/notifications/application/alacritty" = {
@@ -157,6 +172,10 @@ with lib.hm.gvariant;
       application-id = "firefox.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/gimp" = {
+      application-id = "gimp.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/gnome-power-panel" = {
       application-id = "gnome-power-panel.desktop";
     };
@@ -173,6 +192,10 @@ with lib.hm.gvariant;
       application-id = "neovide.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/org-gnome-eog" = {
+      application-id = "org.gnome.eog.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/org-gnome-evince" = {
       application-id = "org.gnome.Evince.desktop";
     };
@@ -183,6 +206,18 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/notifications/application/org-gnome-settings" = {
       application-id = "org.gnome.Settings.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-totem" = {
+      application-id = "org.gnome.Totem.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-inkscape-inkscape" = {
+      application-id = "org.inkscape.Inkscape.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-telegram-desktop" = {
+      application-id = "org.telegram.desktop.desktop";
     };
 
     "org/gnome/desktop/notifications/application/slack" = {
@@ -353,12 +388,47 @@ with lib.hm.gvariant;
       maximized = false;
     };
 
+    "org/gnome/nm-applet/eap/018ad212-4fd8-4a9c-84be-f7be3a9c6aa5" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
     "org/gnome/nm-applet/eap/1931c61a-f848-4188-84b6-c62c0a062fa5" = {
       ignore-ca-cert = false;
       ignore-phase2-ca-cert = false;
     };
 
+    "org/gnome/nm-applet/eap/20290588-f500-4fc7-ae72-41b7fdbee99c" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
     "org/gnome/nm-applet/eap/233f112c-eee9-4efd-babf-007576431e39" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/28082add-5100-4f84-bacc-67d041ce520b" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/382917de-92c1-45fa-a0be-2fb612a75bc5" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/4a2cffa8-20dc-41e7-a65e-7d637160c051" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/59df293f-6208-476a-8ecd-27a2dea10d69" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/7e3a817a-41f9-4bc1-88be-3affd9e9b447" = {
       ignore-ca-cert = false;
       ignore-phase2-ca-cert = false;
     };
@@ -388,7 +458,17 @@ with lib.hm.gvariant;
       ignore-phase2-ca-cert = false;
     };
 
+    "org/gnome/nm-applet/eap/c324af01-e0b3-47ff-a94d-c4c07c45acd4" = {
+      ignore-ca-cert = true;
+      ignore-phase2-ca-cert = false;
+    };
+
     "org/gnome/nm-applet/eap/ce654d28-ba24-4919-ad58-971e5652104c" = {
+      ignore-ca-cert = false;
+      ignore-phase2-ca-cert = false;
+    };
+
+    "org/gnome/nm-applet/eap/d9e73ea1-a871-495f-b4fd-8c50a055b9e6" = {
       ignore-ca-cert = false;
       ignore-phase2-ca-cert = false;
     };
@@ -465,9 +545,10 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell" = {
-      command-history = [ "console" "gnome-console" ];
+      command-history = [ "console" "gnome-console" "slack" ];
       enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
-      favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "com.github.xournalpp.xournalpp.desktop" "org.gnome.Nautilus.desktop" "zotero-6.0.18.desktop" "slack.desktop" "Mattermost.desktop" "org.telegram.desktop.desktop" ];
+      favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "code.desktop" "com.github.xournalpp.xournalpp.desktop" "zotero.desktop" "org.gnome.Nautilus.desktop" "slack.desktop" "Mattermost.desktop" "org.telegram.desktop.desktop" ];
+      last-selected-power-profile = "power-saver";
       welcome-dialog-last-shown-version = "42.0";
     };
 
@@ -486,9 +567,19 @@ with lib.hm.gvariant;
       locations = "@av []";
     };
 
+    "org/gnome/simple-scan" = {
+      document-type = "photo";
+      paper-height = 2970;
+      paper-width = 2100;
+      photo-dpi = 300;
+      save-directory = "file:///home/loren/Documents/";
+      text-dpi = 2400;
+    };
+
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1670258837;
+      check-timestamp = mkInt64 1689235346;
       first-run = false;
+      flatpak-purge-timestamp = mkInt64 1689246135;
     };
 
     "org/gnome/tweaks" = {
