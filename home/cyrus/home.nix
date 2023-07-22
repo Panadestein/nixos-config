@@ -68,7 +68,6 @@ in
     gnuplot
     graphviz
     maxima
-    molden
     nodePackages.insect
     pymol
     sage
