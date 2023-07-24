@@ -51,6 +51,15 @@ with lib.hm.gvariant;
       style = "Fira Code 24";
     };
 
+    "apps/seahorse/listing" = {
+      keyrings-selected = [ "gnupg://" ];
+    };
+
+    "apps/seahorse/windows/key-manager" = {
+      height = 634;
+      width = 949;
+    };
+
     "ca/desrt/dconf-editor" = {
       saved-pathbar-path = "/org/gnome/nautilus/window-state/";
       saved-view = "/org/gnome/";
@@ -76,6 +85,10 @@ with lib.hm.gvariant;
       theme = "auto";
     };
 
+    "org/gnome/GWeather4" = {
+      temperature-unit = "centigrade";
+    };
+
     "org/gnome/Geary" = {
       migrated-config = true;
     };
@@ -83,6 +96,10 @@ with lib.hm.gvariant;
     "org/gnome/Totem" = {
       active-plugins = [ "skipto" "screensaver" "variable-rate" "vimeo" "apple-trailers" "rotation" "open-directory" "mpris" "save-file" "recent" "autoload-subtitles" "movie-properties" "screenshot" ];
       subtitle-encoding = "UTF-8";
+    };
+
+    "org/gnome/Weather" = {
+      locations = "[<(uint32 2, <('Dresden', 'EDDC', true, [(0.89244501836866974, 0.23998277214922031)], [(0.8909905831431052, 0.23998277214922031)])>)>]";
     };
 
     "org/gnome/calculator" = {
@@ -131,7 +148,7 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "de" ]) ];
-      xkb-options = [ "terminate:ctrl_alt_bksp" "lv3:ralt_switch" "compose:ralt" ];
+      xkb-options = [ "terminate:ctrl_alt_bksp" "lv3:menu_switch" "compose:ralt" ];
     };
 
     "org/gnome/desktop/interface" = {
@@ -174,6 +191,10 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/notifications/application/gimp" = {
       application-id = "gimp.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/gnome-network-panel" = {
+      application-id = "gnome-network-panel.desktop";
     };
 
     "org/gnome/desktop/notifications/application/gnome-power-panel" = {
@@ -344,6 +365,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/gnome-system-monitor" = {
+      current-tab = "resources";
       maximized = false;
       network-total-in-bits = false;
       show-dependencies = false;
@@ -488,7 +510,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/" ];
+      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/" ];
       www = [ "<Super>w" ];
     };
 
@@ -500,13 +522,13 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Shift><Super>Return";
-      command = "kgx -e ipython";
+      command = "alacritty -e ipython";
       name = "Ipython";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
       binding = "<Shift><Super>f";
-      command = "kgx -e ranger";
+      command = "alacritty -e ranger";
       name = "Ranger";
     };
 
@@ -540,6 +562,12 @@ with lib.hm.gvariant;
       name = "Neovide";
     };
 
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8" = {
+      binding = "<Super>c";
+      command = "code";
+      name = "VS Code";
+    };
+
     "org/gnome/settings-daemon/plugins/power" = {
       power-button-action = "suspend";
     };
@@ -563,6 +591,11 @@ with lib.hm.gvariant;
       switch-to-application-4 = [];
     };
 
+    "org/gnome/shell/weather" = {
+      automatic-location = true;
+      locations = "[<(uint32 2, <('Dresden', 'EDDC', true, [(0.89244501836866974, 0.23998277214922031)], [(0.8909905831431052, 0.23998277214922031)])>)>]";
+    };
+
     "org/gnome/shell/world-clocks" = {
       locations = "@av []";
     };
@@ -577,9 +610,9 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1689235346;
+      check-timestamp = mkInt64 1690189324;
       first-run = false;
-      flatpak-purge-timestamp = mkInt64 1689246135;
+      flatpak-purge-timestamp = mkInt64 1690189264;
     };
 
     "org/gnome/tweaks" = {
@@ -597,6 +630,7 @@ with lib.hm.gvariant;
       sort-directories-first = false;
       sort-order = "ascending";
       type-format = "category";
+      view-type = "list";
       window-size = mkTuple [ 1010 449 ];
     };
 
