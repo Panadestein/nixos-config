@@ -304,7 +304,7 @@
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Fonts
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     dina-font
     fira-code
     fira-code-symbols
