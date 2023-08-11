@@ -249,7 +249,6 @@
         mpmath
         numpy
         pandas
-        seaborn
         scikit-learn
         scipy
         sympy
