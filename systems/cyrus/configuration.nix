@@ -143,7 +143,7 @@
       ];
     };
     qtile = {
-      enable = true;
+      enable = false;
     };
   };
 
