@@ -144,10 +144,6 @@
     };
     qtile = {
       enable = true;
-      backend = "x11";
-      extraPackages = python3Packages: with python3Packages; [
-        qtile-extras
-      ];
     };
   };
 
