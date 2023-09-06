@@ -144,6 +144,7 @@
     };
     qtile = {
       enable = true;
+      package = pkgs.stable.qtile;
     };
   };
 
