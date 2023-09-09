@@ -28,7 +28,7 @@
       };
       # Nest stable channel into default unstable
       overlay-stable = final: prev: {
-        nixpkgs-stable = import nixpkgs-stable {
+        nixpkgs-stable = import inputs.nixpkgs-stable {
           inherit system;
           config.allowUnfree = true;
         };
