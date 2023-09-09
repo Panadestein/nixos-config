@@ -2,7 +2,8 @@
   description = "My Nix/NixOS configuration";
 
   inputs = {
-    # The unstable nixpkgs channel
+    # The nixpkgs channels
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-manager following the unstable channel
@@ -25,6 +26,10 @@
         inherit system;
         config = { allowUnfree = true; };
       };
+      # Nest stable channel into default unstable
+      overlay-stable = final: prev: {
+        nixpkgs-stable = inputs.nixpkgs-stable.legacyPackages.${prev.system};
+      };
 
       # Systems and users
       persona = "loren";
@@ -37,6 +42,7 @@
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {
