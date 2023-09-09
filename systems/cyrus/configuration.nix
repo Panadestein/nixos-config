@@ -236,7 +236,7 @@
     gfortran
     julia-bin
     mono
-    qt6.qtbase
+    qt6.full
     (let
       my-python-packages = python-packages: with python-packages; [
         # Language server protocol
