@@ -53,6 +53,7 @@ in
     gnome.simple-scan 
     gobject-introspection
     gtk3
+    siglo
     # Xfce packages
     xfce.exo
     xfce.thunar
