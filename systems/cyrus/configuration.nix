@@ -118,7 +118,7 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "gnome";
+    defaultSession = "none+qtile";
     gdm = {
       enable = false;
       wayland = false;
