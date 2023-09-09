@@ -121,7 +121,7 @@ in
     nyxt
     qutebrowser
     skypeforlinux
-    slack
+    nixpkgs-stable.slack
     tdesktop
     whatsapp-for-linux
     zoom-us
