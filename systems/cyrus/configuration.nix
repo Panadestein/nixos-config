@@ -346,6 +346,7 @@
     packages = [ pkgs.dconf ];
   };
   systemd.user.services.maestral = {
+    enable = false;
     description = "Maestral";
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
