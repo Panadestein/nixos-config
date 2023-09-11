@@ -118,7 +118,6 @@ in
     brave
     firefox
     mattermost-desktop
-    nyxt
     qutebrowser
     skypeforlinux
     nixpkgs-stable.slack
