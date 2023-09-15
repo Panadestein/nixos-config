@@ -11,6 +11,7 @@
 # Export environmental variables
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT='-c'
 
 # My custom theme for ZSH, with a bit of LISP :)
 
