@@ -142,17 +142,10 @@
         haskellPackages.xmonad-extras
       ];
     };
-    # The current unstable qtile is broken
-    #qtile = {
-    #  enable = true;
-    #  package = pkgs.nixpkgs-stable.qtile;
-    #};
-    session = [{
-      name = "qtile";
-      start = ''
-        ${pkgs.nixpkgs-stable.qtile}/bin/qtile start -b x11 waitPID=$!
-      '';
-    }];
+    qtile = {
+      enable = false;
+      package = pkgs.nixpkgs-stable.qtile;
+    };
   };
 
   # Desktop environment
