@@ -143,10 +143,10 @@
       ];
     };
     # The current unstable qtile is broken
-    qtile = {
-      enable = true;
-      package = pkgs.nixpkgs-stable.qtile;
-    };
+    #qtile = {
+    #  enable = true;
+    #  package = pkgs.nixpkgs-stable.qtile;
+    #};
     session = [{
       name = "qtile";
       start = ''
