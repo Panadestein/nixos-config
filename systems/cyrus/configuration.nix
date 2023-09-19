@@ -145,6 +145,7 @@
     qtile = {
       enable = true;
       package = pkgs.nixpkgs-stable.qtile;
+      backend = "x11";
     };
   };
 
