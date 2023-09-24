@@ -149,6 +149,11 @@
     };
   };
 
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  
   # Desktop environment
   services.xserver.desktopManager.gnome.enable = true;
 
