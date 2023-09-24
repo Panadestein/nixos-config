@@ -45,8 +45,7 @@ in
     nitrogen
     picom
     pipewire
-    qt5-wayland
-    qt6-wayland
+    qt6.qtwayland
     xdg-desktop-portal-hyprland
     waybar
     xmobar
