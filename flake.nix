@@ -17,6 +17,9 @@
 
     # The QChem flake. Contains several quantum chemistry packages
     qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
+
+    # The hyprland flake
+    hyprland.url = "github:hyprwm/Hyprland"; 
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -34,7 +37,7 @@
         };
       };
 
-      # Systems and users
+      # Systems and users (Bergman's reference here)
       persona = "loren";
       rechnerNixOS = "cyrus";
       rechnerNonNixOS = "atabey";
@@ -59,7 +62,10 @@
         homeConfigurations.${persona} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/${rechnerNonNixOS}/home.nix ];
+          modules = [ ./home/${rechnerNonNixOS}/home.nix
+                      hyprland.homeManagerModules.default
+                      {wayland.windowManager.hyprland.enable = true;}
+                    ];
         };
 
         packages.${system}.${persona} = self.homeConfigurations.${persona}.activationPackage;

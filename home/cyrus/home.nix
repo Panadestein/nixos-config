@@ -41,8 +41,14 @@ in
     xdotool
     # Windowm manager utilities
     dmenu
+    mako
     nitrogen
     picom
+    pipewire
+    qt5-wayland
+    qt6-wayland
+    xdg-desktop-portal-hyprland
+    waybar
     xmobar
     # GTK packages
     arc-theme
@@ -61,6 +67,7 @@ in
     xfce.xfconf
     # Terminal based apps
     alacritty
+    kitty
     ranger
     # Text editors
     neovim
