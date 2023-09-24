@@ -48,6 +48,7 @@ in
     qt6.qtwayland
     xdg-desktop-portal-hyprland
     waybar
+    wofi
     xmobar
     # GTK packages
     arc-theme
