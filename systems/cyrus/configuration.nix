@@ -121,7 +121,7 @@
     defaultSession = "gnome";
     gdm = {
       enable = true;
-      wayland = true;
+      wayland = false;
     };
     lightdm = {
       enable = false;
@@ -145,13 +145,7 @@
     qtile = {
       enable = true;
       package = pkgs.nixpkgs-stable.qtile;
-      backend = "x11";
     };
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
   };
   
   # Desktop environment
