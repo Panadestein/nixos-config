@@ -33,7 +33,7 @@ in
     tmate
     tmux
     trayer
-    ueberzug
+    ueberzugpp
     universal-ctags
     volumeicon
     xclip
