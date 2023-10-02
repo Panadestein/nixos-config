@@ -144,7 +144,6 @@
     };
     qtile = {
       enable = true;
-      package = pkgs.nixpkgs-stable.qtile;
     };
   };
   
