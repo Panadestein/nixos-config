@@ -249,7 +249,7 @@
         mpmath
         numpy
         pandas
-        qiskit
+        nixpkgs-stable.qiskit
         scikit-learn
         scipy
         sympy
