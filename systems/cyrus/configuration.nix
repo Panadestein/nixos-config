@@ -118,13 +118,13 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "gnome";
+    defaultSession = "none+qtile";
     gdm = {
-      enable = true;
+      enable = false;
       wayland = false;
     };
     lightdm = {
-      enable = false;
+      enable = true;
       greeters.enso = {
         enable = true;
       }; 
@@ -148,7 +148,7 @@
   };
   
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = false;
 
   # Configure keymap in X11
   services.xserver.layout = "us,de";
@@ -249,7 +249,6 @@
         mpmath
         numpy
         pandas
-        nixpkgs-stable.qiskit
         scikit-learn
         scipy
         sympy
@@ -299,8 +298,8 @@
   services.flatpak.enable = true;
 
   # If Gnome is not installed, this must be enabled
-  #  xdg.portal.enable = true;
-  #  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Fonts
   fonts.packages = with pkgs; [
