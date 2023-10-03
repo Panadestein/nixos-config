@@ -70,6 +70,7 @@ in
     graphviz
     maxima
     nodePackages.insect
+    papis
     pymol
     sage
     zotero
