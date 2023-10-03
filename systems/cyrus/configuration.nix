@@ -249,6 +249,7 @@
         mpmath
         numpy
         pandas
+        qiskit
         scikit-learn
         scipy
         sympy
