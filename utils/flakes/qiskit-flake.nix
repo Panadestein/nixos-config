@@ -75,11 +75,61 @@
         };
       };
 
+      my_qiskit_aer = pkgs.python3Packages.buildPythonPackage rec {
+        version = "0.12.2";
+        pname = "qiskit-aer";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "Qiskit";
+          repo = "qiskit-aer";
+          rev = "0.12.2";
+          sha256 = "0w92ll0db5xsckj84m7gam8f7qqpa697h226fj3913zxb23jzh1b";
+        };
+
+        doCheck = false;
+
+        nativeBuildInputs = [
+          pkgs.cmake
+          pkgs.ninja
+          pkgs.python3Packages.scikit-build 
+        ];
+
+        buildInputs = [
+          pkgs.blas
+          pkgs.catch2
+          pkgs.nlohmann_json
+          pkgs.fmt
+          pkgs.muparserx
+          pkgs.spdlog
+        ];
+
+        propagatedBuildInputs = [
+          pkgs.python3Packages.cvxpy
+          pkgs.python3Packages.cython
+          pkgs.python3Packages.pybind11
+        ];
+
+        preBuild = ''
+          export DISABLE_CONAN=1
+        '';
+
+        dontUseCmakeConfigure = true;
+
+
+        meta = with pkgs.lib; {
+          homepage = "https://qiskit.org/";
+          description = "High-performance quantum computing simulator";
+        };
+      };
+
       my_python_env = pkgs.python3.withPackages (ps: [
         ps.numpy
         ps.scipy
         ps.matplotlib
+        ps.ipykernel
+        ps.pylatexenc
         my_qiskit
+        my_qiskit_aer
       ]);
 
     in
