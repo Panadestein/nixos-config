@@ -100,6 +100,7 @@ in
     fortls
     haskell-language-server
     neovide
+    nil
     shellcheck
     valgrind
     # Programming languages
