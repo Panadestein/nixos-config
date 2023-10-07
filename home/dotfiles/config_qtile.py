@@ -52,6 +52,7 @@ rofifm = (
     "fd | rofi -show-icons -display-file-browser-extended 'Search' "
     "-show file-browser-extended -file-browser-stdin"
 )
+rofiw = "rofi -show window -show-icons"
 
 # Useful colors
 # https://www.schemecolor.com/python-logo-colors.php
@@ -71,7 +72,9 @@ keys = [
     Key([mod, "shift"], "Return", lazy.spawn("alacritty -e ipython"),
         desc="Launches a handy Ipython session"),
     Key([mod], "r", lazy.spawn("rofi -show drun -show-icons"),
-        desc="Triggers the Rofi launcher"),
+        desc="Toggles the Rofi launcher"),
+    Key([mod], "Tab", lazy.spawn(rofiw),
+        desc="Toggles the Rofi window switcher"),
     Key([mod], "b", lazy.spawn(["sh", "-c", rofifm]),
         desc="Launches the Rofi file browser"),
     Key([mod, "shift"], "r", lazy.spawncmd(),
@@ -139,7 +142,7 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "Tab", lazy.layout.next(),
+    Key([mod, "shift"], "Tab", lazy.layout.next(),
         desc="Move window focus to the next window"),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
