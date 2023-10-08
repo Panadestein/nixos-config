@@ -49,7 +49,7 @@
   };
 
   # Use the latest linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Load AMD CPU microcode
   hardware.cpu.amd.updateMicrocode = true;
