@@ -28,7 +28,7 @@ in
     guake
     htop
     lolcat
-    nvtop
+    nvtop-amd
     poppler_utils
     qemu
     tmate
