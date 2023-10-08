@@ -54,11 +54,6 @@ in
     gobject-introspection
     gtk3
     siglo
-    # Xfce packages
-    xfce.exo
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.xfconf
     # Terminal based apps
     alacritty
     ranger
