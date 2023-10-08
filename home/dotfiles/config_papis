@@ -1,0 +1,15 @@
+# My all in all library
+
+[panalib]
+dir = ~/Documents/PAPIS/Panalib
+picktool = fzf
+
+# Papis behavior
+
+[settings]
+default-library = panalib
+opentool = rifle
+file-browser = ranger
+add-edit = True
+
+

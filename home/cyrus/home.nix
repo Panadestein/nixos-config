@@ -51,6 +51,7 @@ in
     glib
     gnome.eog
     gnome.gnome-screenshot
+    gnome.nautilus
     gnome.simple-scan 
     gobject-introspection
     gtk3
@@ -202,6 +203,9 @@ in
 
   # Matplotlib (ensure Qt backend)
   home.file.".config/matplotlib/matplotlibrc".source = ../dotfiles/matplotlibrc;
+
+  # Papis
+  home.file.".config/papis/config".source = ../dotfiles/config_papis;
 
   # Translate Shell
   xdg.configFile."translate-shell/init.trans".source = ../dotfiles/init.trans;
