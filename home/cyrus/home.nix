@@ -28,6 +28,7 @@ in
     guake
     htop
     lolcat
+    nvtop
     poppler_utils
     qemu
     tmate
