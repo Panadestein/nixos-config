@@ -56,6 +56,9 @@ in
     gobject-introspection
     gtk3
     siglo
+    # Xfce packages
+    xfce.exo
+    xfce.xfconf
     # Terminal based apps
     alacritty
     ranger
