@@ -1,3 +1,4 @@
+# Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 { lib, ... }:
 
 with lib.hm.gvariant;
@@ -178,7 +179,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "guake" "emacsclient" "firefox" "gnome-power-panel" "mattermost" "org-gnome-nautilus" "org-gnome-evince" "telegramdesktop" "zoom" "org-telegram-desktop" "org-gnome-settings" ];
+      application-children = [ "emacsclient" "firefox" "gnome-power-panel" "mattermost" "org-gnome-nautilus" "org-gnome-evince" "telegramdesktop" "zoom" "org-telegram-desktop" "org-gnome-settings" ];
     };
 
     "org/gnome/desktop/notifications/application/alacritty" = {
@@ -580,7 +581,7 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = false;
-      night-light-last-coordinates = mkTuple [ 51.03153477218843 13.7071108 ];
+      night-light-last-coordinates = mkTuple [ 51.031535 13.707111 ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -648,7 +649,8 @@ with lib.hm.gvariant;
 
     "org/gnome/shell" = {
       command-history = [ "console" "gnome-console" "slack" ];
-      enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "ddterm@amezin.github.com" ];
+      disabled-extensions = [];
+      enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
       favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "code.desktop" "com.github.xournalpp.xournalpp.desktop" "zotero.desktop" "org.gnome.Nautilus.desktop" "slack.desktop" "Mattermost.desktop" "org.telegram.desktop.desktop" ];
       last-selected-power-profile = "power-saver";
       looking-glass-history = [ "ls" ];

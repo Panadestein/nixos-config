@@ -6,6 +6,8 @@ env:
 
 # Window config
 window:
+  opacity: 0.9
+  decorations: none
   title: Alacritty
   class:
     instance: Alacritty
