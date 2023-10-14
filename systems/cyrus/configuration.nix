@@ -8,7 +8,7 @@
 #      Panadestein's NixOS
 #-----------------------------
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   imports =
     [
@@ -118,13 +118,13 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "none+qtile";
+    defaultSession = "gnome";
     gdm = {
-      enable = false;
-      wayland = false;
+      enable = true;
+      wayland = true;
     };
     lightdm = {
-      enable = true;
+      enable = false;
       greeters.enso = {
         enable = true;
       }; 
@@ -148,7 +148,7 @@
   };
   
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = false;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.layout = "us,de";
@@ -296,10 +296,6 @@
 
   # Use Flatpak, just in case
   services.flatpak.enable = true;
-
-  # If Gnome is not installed, this must be enabled
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Fonts
   fonts.packages = with pkgs; [
