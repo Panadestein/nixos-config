@@ -1,4 +1,3 @@
-# Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 { lib, ... }:
 
 with lib.hm.gvariant;
@@ -82,6 +81,7 @@ with lib.hm.gvariant;
 
     "org/gnome/Console" = {
       font-scale = 2.2;
+      last-window-size = mkTuple [ 1130 746 ];
       theme = "auto";
     };
 
@@ -100,6 +100,11 @@ with lib.hm.gvariant;
 
     "org/gnome/Weather" = {
       locations = "[<(uint32 2, <('Dresden', 'EDDC', true, [(0.89244501836866974, 0.23998277214922031)], [(0.8909905831431052, 0.23998277214922031)])>)>]";
+    };
+
+    "org/gnome/baobab/ui" = {
+      is-maximized = false;
+      window-size = mkTuple [ 1830 915 ];
     };
 
     "org/gnome/calculator" = {
@@ -124,8 +129,19 @@ with lib.hm.gvariant;
       window-size = mkTuple [ 1124 785 ];
     };
 
+    "org/gnome/clocks" = {
+      timers = "@aa{sv} []";
+      world-clocks = "@aa{sv} []";
+    };
+
+    "org/gnome/clocks/state/window" = {
+      maximized = false;
+      panel-id = "world";
+      size = mkTuple [ 870 690 ];
+    };
+
     "org/gnome/control-center" = {
-      last-panel = "info-overview";
+      last-panel = "search";
       window-state = mkTuple [ 980 640 ];
     };
 
@@ -162,7 +178,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "guake" "emacsclient" "firefox" "gnome-power-panel" "mattermost" "org-gnome-nautilus" "org-gnome-evince" "telegramdesktop" "zoom" "org-telegram-desktop" ];
+      application-children = [ "guake" "emacsclient" "firefox" "gnome-power-panel" "mattermost" "org-gnome-nautilus" "org-gnome-evince" "telegramdesktop" "zoom" "org-telegram-desktop" "org-gnome-settings" ];
     };
 
     "org/gnome/desktop/notifications/application/alacritty" = {
@@ -213,6 +229,18 @@ with lib.hm.gvariant;
       application-id = "neovide.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/org-gnome-baobab" = {
+      application-id = "org.gnome.baobab.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-calculator" = {
+      application-id = "org.gnome.Calculator.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-console" = {
+      application-id = "org.gnome.Console.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/org-gnome-eog" = {
       application-id = "org.gnome.eog.desktop";
     };
@@ -241,12 +269,24 @@ with lib.hm.gvariant;
       application-id = "org.telegram.desktop.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/skypeforlinux" = {
+      application-id = "skypeforlinux.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/slack" = {
       application-id = "slack.desktop";
     };
 
     "org/gnome/desktop/notifications/application/telegramdesktop" = {
       application-id = "telegramdesktop.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/thunar" = {
+      application-id = "thunar.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/writer" = {
+      application-id = "writer.desktop";
     };
 
     "org/gnome/desktop/notifications/application/yelp" = {
@@ -261,8 +301,21 @@ with lib.hm.gvariant;
       application-id = "zotero-6.0.18.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/zotero" = {
+      application-id = "zotero.desktop";
+    };
+
+    "org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state = true;
+    };
+
     "org/gnome/desktop/peripherals/mouse" = {
       left-handed = false;
+    };
+
+    "org/gnome/desktop/peripherals/tablets/056a:037a" = {
+      keep-aspect = false;
+      mapping = "absolute";
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
@@ -284,6 +337,11 @@ with lib.hm.gvariant;
       picture-uri = "file:///home/loren/.local/share/backgrounds/2022-04-15-00-12-26-tc-feynman.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
+    };
+
+    "org/gnome/desktop/search-providers" = {
+      disabled = [];
+      sort-order = [ "org.gnome.Contacts.desktop" "org.gnome.Documents.desktop" "org.gnome.Nautilus.desktop" ];
     };
 
     "org/gnome/desktop/session" = {
@@ -336,6 +394,16 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/evince/default" = {
+      continuous = true;
+      dual-page = false;
+      dual-page-odd-left = false;
+      enable-spellchecking = true;
+      fullscreen = false;
+      inverted-colors = false;
+      show-sidebar = true;
+      sidebar-page = "links";
+      sidebar-size = 144;
+      sizing-mode = "automatic";
       window-ratio = mkTuple [ 4.446429 2.085586 ];
     };
 
@@ -383,6 +451,7 @@ with lib.hm.gvariant;
       map-type = "MapsStreetSource";
       transportation-type = "pedestrian";
       window-maximized = true;
+      window-size = [ 1440 786 ];
       zoom-level = 8;
     };
 
@@ -392,6 +461,10 @@ with lib.hm.gvariant;
       edge-tiling = true;
       focus-change-on-pointer-rest = true;
       workspaces-only-on-primary = true;
+    };
+
+    "org/gnome/nautilus/compression" = {
+      default-compression-format = "tar.xz";
     };
 
     "org/gnome/nautilus/icon-view" = {
@@ -507,6 +580,7 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = false;
+      night-light-last-coordinates = mkTuple [ 51.03153477218843 13.7071108 ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -574,9 +648,10 @@ with lib.hm.gvariant;
 
     "org/gnome/shell" = {
       command-history = [ "console" "gnome-console" "slack" ];
-      enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
+      enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "ddterm@amezin.github.com" ];
       favorite-apps = [ "firefox.desktop" "emacsclient.desktop" "code.desktop" "com.github.xournalpp.xournalpp.desktop" "zotero.desktop" "org.gnome.Nautilus.desktop" "slack.desktop" "Mattermost.desktop" "org.telegram.desktop.desktop" ];
       last-selected-power-profile = "power-saver";
+      looking-glass-history = [ "ls" ];
       welcome-dialog-last-shown-version = "42.0";
     };
 
@@ -613,6 +688,10 @@ with lib.hm.gvariant;
       check-timestamp = mkInt64 1690189324;
       first-run = false;
       flatpak-purge-timestamp = mkInt64 1690189264;
+    };
+
+    "org/gnome/system/location" = {
+      enabled = false;
     };
 
     "org/gnome/tweaks" = {

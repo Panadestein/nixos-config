@@ -25,7 +25,7 @@ in
     figlet
     fortune
     fzf
-    guake
+    #guake
     htop
     lolcat
     nvtop-amd
