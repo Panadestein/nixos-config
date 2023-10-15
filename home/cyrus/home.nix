@@ -25,12 +25,12 @@ in
     figlet
     fortune
     fzf
+    guake
     htop
     lolcat
     nvtop-amd
     poppler_utils
     qemu
-    tdrop
     tmate
     tmux
     trayer

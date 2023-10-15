@@ -118,13 +118,13 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "gnome";
+    defaultSession = "none+qtile";
     gdm = {
-      enable = true;
-      wayland = true;
+      enable = false;
+      wayland = false;
     };
     lightdm = {
-      enable = false;
+      enable = true;
       greeters.enso = {
         enable = true;
       }; 
@@ -148,7 +148,13 @@
   };
   
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = false;
+  xdg.portal.enable = lib.mkIf
+    (!config.services.xserver.desktopManager.gnome.enable)
+    true;
+  xdg.portal.extraPortals = lib.mkIf
+    (!config.services.xserver.desktopManager.gnome.enable)
+    [ pkgs.xdg-desktop-portal-gtk ];
 
   # Configure keymap in X11
   services.xserver.layout = "us,de";
