@@ -258,7 +258,7 @@ WIDGETS: List[Any] = [
             lambda: qtile.spawn("alacritty -e ipython")}
     ),
     widget.Sep(linewidth=0, padding=6),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.GroupBox(
         fontsize=15,
         margin_y=3,
@@ -272,19 +272,21 @@ WIDGETS: List[Any] = [
         borderwidth=3,
         rounded=True
     ),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.Prompt(),
-    widget.WindowName(max_chars=50),
+    widget.WindowName(max_chars=50,
+                      foreground=cl_pal["cazure"],
+                      fontweight="bold"),
     widget.CurrentLayout(
         padding=5,
         foreground=cl_pal["sunglow"]
     ),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.Volume(
         fmt='Vol: {}',
         padding=5
     ),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.CPU(
         format="CPU {load_percent}%",
         mouse_callbacks={
@@ -292,27 +294,27 @@ WIDGETS: List[Any] = [
             lambda: qtile.spawn("alacritty -e htop")
         }
     ),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.Battery(
         format="Bat{char}: {percent:2.0%}",
-        charge_char="⚡",
+        charge_char="▲",
         discharge_char="▼",
         empty_char="∅",
-        unknown_char="❓",
+        unknown_char="◆",
         foreground=cl_pal["sunglow"],
         low_foreground='FF0000',
         notify_below=0.1,
         low_percentage=0.2),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.Systray(),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.Clock(format='%d.%m %a %I:%M %p',
                  mouse_callbacks={
                      'Button1':
                      lambda: qtile.spawn(
                          "alacritty -e calcurse")
                  }),
-    widget.TextBox("|", foreground='#ffe873'),
+    widget.TextBox("❘", foreground='#ffe873'),
     widget.KeyboardLayout(
         configured_keyboards=['us', 'de', 'us altgr-intl'],
         foreground=cl_pal["sunglow"])
@@ -322,7 +324,7 @@ screens: List[Screen] = [
     Screen(
         top=bar.Bar(
             WIDGETS,
-            25,
+            28,
         ),
         wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
         wallpaper_mode="fill",
