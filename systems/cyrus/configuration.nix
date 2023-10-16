@@ -266,6 +266,7 @@
         autopep8
         flake8
         jedi
+        mypy
         pydocstyle
         pylint
         # Web
