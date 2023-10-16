@@ -275,8 +275,7 @@ WIDGETS: List[Any] = [
     widget.TextBox("❘", foreground='#ffe873'),
     widget.Prompt(),
     widget.WindowName(max_chars=50,
-                      foreground=cl_pal["cazure"],
-                      fontweight="bold"),
+                      foreground=cl_pal["cazure"]),
     widget.CurrentLayout(
         padding=5,
         foreground=cl_pal["sunglow"]
