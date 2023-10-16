@@ -24,7 +24,7 @@ from libqtile.utils import guess_terminal
 # Define helper functions
 
 
-def parse_keys(keys_obj: List[Key]):
+def parse_keys(keys_obj: List[Key]) -> str:
     """Format string of defined keybindings."""
     key_help = ""
     for k in keys_obj:
@@ -223,7 +223,7 @@ layout_theme: Dict[str, Union[str, int]] = {
     "border_normal": "#267CB9"
 }
 
-layouts: List[layout.Layout] = [
+layouts: List[Any] = [
     # No need for more than this
     layout.Max(**layout_theme),
     layout.MonadTall(**layout_theme,
@@ -249,7 +249,7 @@ extension_defaults: Dict[str, Union[str, int]] = widget_defaults.copy()
 
 # Screens configuration
 
-WIDGETS: List[widget._Widget] = [
+WIDGETS: List[Any] = [
     widget.Image(
         filename="~/.config/qtile/python_icon.png",
         scale="True",
@@ -370,7 +370,7 @@ auto_minimize = True
 
 
 @ hook.subscribe.screen_change
-def screen_event(ev: Any):
+def screen_event(ev: Any) -> None:
     """Reload xrandr configuration in case of screen changes.
 
     This hook ensures that only one monitor will be used at the time,
