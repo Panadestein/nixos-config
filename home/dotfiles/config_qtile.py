@@ -8,6 +8,7 @@ r"""Qtile configuration.
 
 100% PEP8 compliant.
 """
+from typing import Any, Dict, List, Union
 import os
 import socket
 import subprocess
@@ -23,7 +24,7 @@ from libqtile.utils import guess_terminal
 # Define helper functions
 
 
-def parse_keys(keys_obj):
+def parse_keys(keys_obj: List[Key]):
     """Format string of defined keybindings."""
     key_help = ""
     for k in keys_obj:
@@ -43,21 +44,21 @@ def parse_keys(keys_obj):
 
 # Define global variables
 
-mod = "mod4"
-terminal = guess_terminal()
+mod: str = "mod4"
+terminal: str = guess_terminal()
 dgroups_key_binder = simple_key_binder("mod4")
-xrancmd = f"{Path.home()}/.config/scripts/randr_conf.sh"
-prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
-rofifm = (
+xrancmd: str = f"{Path.home()}/.config/scripts/randr_conf.sh"
+prompt: str = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+rofifm: str = (
     "fd | rofi -show-icons -display-file-browser-extended 'Search' "
     "-show file-browser-extended -file-browser-stdin"
 )
-rofiw = "rofi -show window -show-icons"
+rofiw: str = "rofi -show window -show-icons"
 
 # Useful colors
 # https://www.schemecolor.com/python-logo-colors.php
 
-cl_pal = {
+cl_pal: Dict[str, List[str]] = {
     "cazure": ["#4b8bbe", "#4b8bbe"],
     "sunglow": ["#ffe873", "#ffe873"],
     "amag": ["#c678dd", "#c678dd"]
@@ -65,7 +66,7 @@ cl_pal = {
 
 # Define keybindings
 
-keys = [
+keys: List[Key] = [
     # Applications
     Key([mod], "Return", lazy.spawn(terminal),
         desc="Launches detected terminal"),
@@ -137,6 +138,8 @@ keys = [
     Key([mod], "u",
         lazy.window.toggle_fullscreen(),
         desc="Toggles fullscreen when window is not floating"),
+    Key([mod], "t", lazy.window.toggle_floating(),
+        desc="Toggle floating"),
 
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -171,14 +174,15 @@ keys = [
 
 # Get help
 
-cmdh = f'echo "{parse_keys(keys)}" | rofi -dmenu -i -mesg "Keyboard shortcuts"'
+SUFIX_CMDH: str = 'rofi -dmenu -i -mesg "Keyboard shortcuts"'
+cmdh: str = f'echo "{parse_keys(keys)}" | {SUFIX_CMDH}'
 keys.extend([Key([mod], "F1",
                  lazy.spawn(cmdh, shell=True),
                  desc="Display defined keybindings")])
 
 # Define groups (workspaces)
 
-groups = [
+groups: List[Union[Group, ScratchPad]] = [
     ScratchPad("scratchpad", [
         DropDown("term", "alacritty",
                  x=0.0,
@@ -213,13 +217,13 @@ groups = [
 
 # Layouts
 
-layout_theme = {
+layout_theme: Dict[str, Union[str, int]] = {
     "border_width": 1,
     "border_focus": "#8f3d3d",
     "border_normal": "#267CB9"
 }
 
-layouts = [
+layouts: List[layout.Layout] = [
     # No need for more than this
     layout.Max(**layout_theme),
     layout.MonadTall(**layout_theme,
@@ -235,23 +239,23 @@ layouts = [
 
 # Widgets configuration
 
-widget_defaults = dict(
+widget_defaults: Dict[str, Union[str, int]] = dict(
     font='Fira Code',
     fontsize=14,
     padding=3,
 )
 
-extension_defaults = widget_defaults.copy()
+extension_defaults: Dict[str, Union[str, int]] = widget_defaults.copy()
 
 # Screens configuration
 
-WIDGETS = [
+WIDGETS: List[widget._Widget] = [
     widget.Image(
         filename="~/.config/qtile/python_icon.png",
         scale="True",
         mouse_callbacks={
             'Button1':
-            lambda: qtile.cmd_spawn("alacritty -e ipython")}
+            lambda: qtile.spawn("alacritty -e ipython")}
     ),
     widget.Sep(linewidth=0, padding=6),
     widget.TextBox("|", foreground='#ffe873'),
@@ -285,16 +289,16 @@ WIDGETS = [
         format="CPU {load_percent}%",
         mouse_callbacks={
             'Button1':
-            lambda: qtile.cmd_spawn("alacritty -e htop")
+            lambda: qtile.spawn("alacritty -e htop")
         }
     ),
     widget.TextBox("|", foreground='#ffe873'),
     widget.Battery(
         format="Bat{char}: {percent:2.0%}",
-        charge_char="+",
-        discharge_char="-",
-        empty_char="!",
-        unknown_char="#",
+        charge_char="⚡",
+        discharge_char="▼",
+        empty_char="∅",
+        unknown_char="❓",
         foreground=cl_pal["sunglow"],
         low_foreground='FF0000',
         notify_below=0.1,
@@ -305,7 +309,7 @@ WIDGETS = [
     widget.Clock(format='%d.%m %a %I:%M %p',
                  mouse_callbacks={
                      'Button1':
-                     lambda: qtile.cmd_spawn(
+                     lambda: qtile.spawn(
                          "alacritty -e calcurse")
                  }),
     widget.TextBox("|", foreground='#ffe873'),
@@ -314,7 +318,7 @@ WIDGETS = [
         foreground=cl_pal["sunglow"])
 ]
 
-screens = [
+screens: List[Screen] = [
     Screen(
         top=bar.Bar(
             WIDGETS,
@@ -331,7 +335,7 @@ screens = [
 
 # Floating window control
 
-mouse = [
+mouse: List[Union[Drag, Click]] = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
@@ -365,14 +369,17 @@ auto_minimize = True
 # Screen event hook
 
 
-@hook.subscribe.screen_change
-def screen_event(ev):
+@ hook.subscribe.screen_change
+def screen_event(ev: Any):
     """Reload xrandr configuration in case of screen changes.
 
     This hook ensures that only one monitor will be used at the time,
     defaulting to external.
     """
-    subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh"])
+    try:
+        subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh"])
+    except Exception as e:
+        print(f"Failed to execute xrandr hook: {e}")
 
 
 # Dirty Java hack
