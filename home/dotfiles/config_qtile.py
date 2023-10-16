@@ -346,7 +346,7 @@ mouse: List[Union[Drag, Click]] = [
 
 # Internal Qtile options
 
-dgroups_app_rules = []
+dgroups_app_rules: List[Any] = []
 follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = True
