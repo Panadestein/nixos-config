@@ -145,6 +145,9 @@
     qtile = {
       enable = true;
     };
+    stumpwm = {
+      enable = true;
+    };
   };
   
   # Desktop environment
