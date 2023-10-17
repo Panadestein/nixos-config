@@ -146,7 +146,7 @@
       enable = true;
     };
     stumpwm = {
-      enable = true;
+      enable = false;
     };
   };
   
