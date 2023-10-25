@@ -124,7 +124,7 @@
       wayland = true;
     };
     lightdm = {
-      enable = true;
+      enable = false;
       greeters.enso = {
         enable = true;
       }; 
