@@ -121,7 +121,7 @@
     defaultSession = "gnome";
     gdm = {
       enable = true;
-      wayland = true;
+      wayland = false;
     };
     lightdm = {
       enable = false;
@@ -146,7 +146,7 @@
       enable = true;
     };
     stumpwm = {
-      enable = false;
+      enable = true;
     };
   };
   
