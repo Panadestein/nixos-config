@@ -254,7 +254,6 @@
         ipykernel
         jupyter
         matplotlib
-        mayavi
         mpmath
         numpy
         pandas
