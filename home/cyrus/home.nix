@@ -280,7 +280,7 @@ in
 
   # Removable devices
   services.udiskie = {
-    enable = true;
+    enable = false;
     tray = "always";
   };
 
