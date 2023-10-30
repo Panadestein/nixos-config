@@ -73,7 +73,6 @@ in
     papis
     pymol
     sage
-    zotero
     # Office
     calibre
     crow-translate
