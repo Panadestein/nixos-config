@@ -118,13 +118,13 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "gnome";
+    defaultSession = "none+qtile";
     gdm = {
-      enable = true;
+      enable = false;
       wayland = false;
     };
     lightdm = {
-      enable = false;
+      enable = true;
       greeters.enso = {
         enable = true;
       }; 
