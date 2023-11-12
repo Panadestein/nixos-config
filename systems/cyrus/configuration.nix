@@ -118,13 +118,13 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "none+qtile";
+    defaultSession = "gnome";
     gdm = {
-      enable = false;
+      enable = true;
       wayland = false;
     };
     lightdm = {
-      enable = true;
+      enable = false;
       greeters.enso = {
         enable = true;
       }; 
@@ -145,9 +145,6 @@
     qtile = {
       enable = true;
       package = pkgs.python3Packages.qtile;
-      extraPackages = python3Packages: [
-        python3Packages.qtile-extras
-      ];
     };
     stumpwm = {
       enable = true;
@@ -155,7 +152,7 @@
   };
   
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = false;
+  services.xserver.desktopManager.gnome.enable = true;
   xdg.portal.enable = lib.mkIf
     (!config.services.xserver.desktopManager.gnome.enable)
     true;
