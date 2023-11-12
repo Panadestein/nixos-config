@@ -144,6 +144,9 @@
     };
     qtile = {
       enable = true;
+      extraPackages = python3Packages: [
+        python3Packages.qtile-extras
+      ];
     };
     stumpwm = {
       enable = true;

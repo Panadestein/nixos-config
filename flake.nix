@@ -33,6 +33,16 @@
           config.allowUnfree = true;
         };
       };
+      # qtile-extra disable tests
+      overlay-qtile-extras = self: super: {
+        python3Packages = super.python3Packages.override {
+          overrides = pythonSelf: pythonSuper: {
+            qtile-extras = pythonSuper.qtile-extras.overrideAttrs (oldAttrs: {
+              doCheck = false;
+            });
+          };
+        };
+      };
 
       # Systems and users (Bergman's reference here)
       persona = "loren";
@@ -45,7 +55,9 @@
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
-              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable
+                                                             overlay-qtile-extras
+                                                           ]; })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {
