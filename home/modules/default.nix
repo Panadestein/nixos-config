@@ -1,5 +1,5 @@
 [
   ./emacs
   ./zsh
-  ./dconf
+  #./dconf
 ]

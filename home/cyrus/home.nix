@@ -264,8 +264,8 @@ in
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme;
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
     };
     cursorTheme = {
       name = "Adwaita";
