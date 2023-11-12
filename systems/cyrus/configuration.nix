@@ -147,7 +147,7 @@
       package = pkgs.python3Packages.qtile;
     };
     stumpwm = {
-      enable = true;
+      enable = false;
     };
   };
   
