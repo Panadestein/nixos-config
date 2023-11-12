@@ -144,6 +144,7 @@
     };
     qtile = {
       enable = true;
+      package = pkgs.python3Packages.qtile;
       extraPackages = python3Packages: [
         python3Packages.qtile-extras
       ];
