@@ -126,7 +126,11 @@ in
     whatsapp-for-linux
     zoom-us
     # Leisure
-    retroarch
+    (retroarch.override {
+      cores = with libretro; [
+        snes9x
+      ];
+    })
     # Web
     bundler
     hugo
