@@ -156,7 +156,7 @@
   xdg.portal.enable = lib.mkIf
     (!config.services.xserver.desktopManager.gnome.enable)
     true;
-  xdg.portal.extraPortals = lib.mkIf
+  xdg.portal.config = lib.mkIf
     (!config.services.xserver.desktopManager.gnome.enable)
     [ pkgs.xdg-desktop-portal-gtk ];
 
