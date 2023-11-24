@@ -155,7 +155,7 @@ in
   ];
 
   # Enable the nix-index database
-  programs.nix-index.enable = true
+  programs.nix-index.enable = true;
 
   # Git
   programs.git = {
