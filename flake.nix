@@ -12,12 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # A packages' database
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
@@ -25,7 +19,7 @@
     qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-index-database, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -67,7 +61,6 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home/${rechnerNonNixOS}/home.nix
-            nix-index-database.hmModules.nix-index
           ];
         };
 
