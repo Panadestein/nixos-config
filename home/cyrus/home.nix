@@ -154,12 +154,6 @@ in
     languagetool
   ];
 
-  # Get the Nix package database suggestions
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-  
   # Git
   programs.git = {
     enable = true;
