@@ -154,6 +154,9 @@ in
     languagetool
   ];
 
+  # Enable the nix-index database
+  programs.nix-index.enable = true
+
   # Git
   programs.git = {
     enable = true;
