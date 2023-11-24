@@ -12,6 +12,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # A packages' database
+    nix-index-database.url = "github:Mic92/nix-index-database";
+
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
@@ -19,7 +22,7 @@
     qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-index-database, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -47,6 +50,7 @@
             modules = [
               ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
               ./systems/${rechnerNixOS}/configuration.nix
+              nix-index-database.nixosModules.nix-index
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
