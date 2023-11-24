@@ -51,13 +51,14 @@ in
     glib
     gnome.eog
     gnome.gnome-screenshot
-    gnome.nautilus
     gnome.simple-scan 
     gobject-introspection
     gtk3
     siglo
     # Xfce packages
     xfce.exo
+    xfce.thunar
+    xfce.thunar-archive-plugin
     xfce.xfconf
     # Terminal based apps
     alacritty
@@ -125,9 +126,11 @@ in
     tdesktop
     whatsapp-for-linux
     zoom-us
-    # Leisure
+    # Leisure (NES, SNES and N64)
     (retroarch.override {
       cores = with libretro; [
+        mupen64plus-next
+        nestopia
         snes9x
       ];
     })
@@ -151,6 +154,12 @@ in
     languagetool
   ];
 
+  # Get the Nix package database suggestions
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  
   # Git
   programs.git = {
     enable = true;

@@ -86,8 +86,8 @@ keys: List[Key] = [
         desc="Launches an emacsclient frame"),
     Key([mod], "v", lazy.spawn("code"),
         desc="Launches VS Code"),
-    Key([mod, "shift"], "f", lazy.spawn("nautilus"),
-        desc="Launches the Nautilus file browser"),
+    Key([mod, "shift"], "f", lazy.spawn("thunar"),
+        desc="Launches the Thunar file browser"),
     Key([mod], "f", lazy.spawn("alacritty -e ranger"),
         desc="Launches the Ranger file browser"),
     Key([], "Print", lazy.spawn("gnome-screenshot -i"),
@@ -358,7 +358,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='Gnome-screenshot'),  # A screenshot utility
     Match(wm_class='mpv'),  # A powerful media player
     Match(wm_class='matplotlib'),  # It is all about plotting
-    Match(wm_class="org.gnome.Nautilus"),  # Better float than sorry
+    Match(wm_class="thunar"),  # Better float than sorry
     Match(wm_class="File-roller"),  # Better float than sorry
 ])
 
