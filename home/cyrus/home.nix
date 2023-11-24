@@ -155,10 +155,10 @@ in
   ];
 
   # Enable the nix-index database
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  #programs.nix-index = {
+  #  enable = true;
+  #  enableZshIntegration = true;
+  #};
 
   # Git
   programs.git = {
