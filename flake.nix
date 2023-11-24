@@ -13,7 +13,10 @@
     };
 
     # A packages' database
-    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -50,7 +53,6 @@
             modules = [
               ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
               ./systems/${rechnerNixOS}/configuration.nix
-              nix-index-database.nixosModules.nix-index
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
@@ -63,7 +65,10 @@
         homeConfigurations.${persona} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/${rechnerNonNixOS}/home.nix ];
+          modules = [
+            ./home/${rechnerNonNixOS}/home.nix
+            nix-index-database.hmModules.nix-index
+          ];
         };
 
         packages.${system}.${persona} = self.homeConfigurations.${persona}.activationPackage;
