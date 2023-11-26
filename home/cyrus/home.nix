@@ -57,8 +57,9 @@ in
     siglo
     # Xfce packages
     xfce.exo
-    xfce.thunar
-    xfce.thunar-archive-plugin
+    (xfce.thunar.override {
+      thunarPlugins = [xfce.thunar-archive-plugin];
+    })
     xfce.xfconf
     # Terminal based apps
     alacritty

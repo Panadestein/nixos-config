@@ -358,7 +358,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='Gnome-screenshot'),  # A screenshot utility
     Match(wm_class='mpv'),  # A powerful media player
     Match(wm_class='matplotlib'),  # It is all about plotting
-    Match(wm_class="thunar"),  # Better float than sorry
+    Match(wm_class="Thunar"),  # Better float than sorry
     Match(wm_class="File-roller"),  # Better float than sorry
 ])
 
