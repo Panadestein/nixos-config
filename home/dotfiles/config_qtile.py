@@ -90,7 +90,7 @@ keys: List[Key] = [
         desc="Launches the Thunar file browser"),
     Key([mod], "f", lazy.spawn("alacritty -e ranger"),
         desc="Launches the Ranger file browser"),
-    Key([], "Print", lazy.spawn("flameshot"),
+    Key([], "Print", lazy.spawn("flameshot gui"),
         desc="Takes a screenshot"),
 
     # Language
