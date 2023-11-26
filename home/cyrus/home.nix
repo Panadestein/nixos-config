@@ -42,6 +42,7 @@ in
     xdotool
     # Windowm manager utilities
     dmenu
+    flameshot
     nitrogen
     picom
     xmobar
@@ -49,7 +50,6 @@ in
     arc-theme
     cairo
     glib
-    gnome.gnome-screenshot
     gnome.simple-scan
     gnome.gnome-software
     gobject-introspection
