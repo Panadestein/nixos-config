@@ -49,9 +49,9 @@ in
     arc-theme
     cairo
     glib
-    gnome.eog
     gnome.gnome-screenshot
-    gnome.simple-scan 
+    gnome.simple-scan
+    gnome.gnome-software
     gobject-introspection
     gtk3
     loupe
