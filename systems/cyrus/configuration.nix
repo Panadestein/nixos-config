@@ -118,9 +118,9 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "none+qtile";
+    defaultSession = "gnome";
     gdm = {
-      enable = false;
+      enable = true;
       wayland = false;
     };
     lightdm = {
@@ -152,7 +152,7 @@
   };
   
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = false;
+  services.xserver.desktopManager.gnome.enable = true;
   xdg.portal.enable = lib.mkIf
     (!config.services.xserver.desktopManager.gnome.enable)
     true;
