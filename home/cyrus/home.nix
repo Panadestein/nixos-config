@@ -51,6 +51,7 @@ in
     cairo
     glib
     gnome.simple-scan
+    gnomeExtensions.ddterm
     gobject-introspection
     gtk3
     loupe
