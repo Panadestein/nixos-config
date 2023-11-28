@@ -52,6 +52,7 @@ in
     gnome.simple-scan
     gobject-introspection
     gtk3
+    guake
     loupe
     siglo
     # Xfce packages
