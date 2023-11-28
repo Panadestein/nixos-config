@@ -194,10 +194,10 @@ groups: List[Union[Group, ScratchPad]] = [
         DropDown("calculator", "alacritty -e insect",
                  opacity=0.95,
                  on_focus_lost_hide=True)]),
-    Group("dev", layout='monadtall',
+    Group("dev", layout='max',
           matches=[Match(wm_class=["Code",
                                    "Emacs"])]),
-    Group("tty", layout='max'),
+    Group("tty", layout='monadtall'),
     Group("doc", layout='monadtall'),
     Group("www", layout='monadtall',
           matches=[Match(wm_class=["firefox",
@@ -210,9 +210,9 @@ groups: List[Union[Group, ScratchPad]] = [
     Group("com", layout='monadtall',
           matches=[Match(wm_class=["Skype",
                                    "zoom"])]),
-    Group("rnd", layout='monadtall'),
-    Group("art", layout='floating',
-          matches=[Match(wm_class=["gimp-2.10"])])
+    Group("rnd", layout='monadtall',
+          matches=[Match(wm_class=["retroarch"])]),
+    Group("art", layout='floating')
 ]
 
 # Layouts
