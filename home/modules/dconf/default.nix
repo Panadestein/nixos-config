@@ -150,6 +150,25 @@ with lib.hm.gvariant;
       folder-children = [ "Utilities" "YaST" ];
     };
 
+    "org/gnome/desktop/app-folders/folders/Pardus" = {
+      categories = [ "X-Pardus-Apps" ];
+      name = "X-Pardus-Apps.directory";
+      translate = true;
+    };
+
+    "org/gnome/desktop/app-folders/folders/Utilities" = {
+      apps = [ "gnome-abrt.desktop" "gnome-system-log.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.Dictionary.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.fonts.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.tweaks.desktop" "org.gnome.Usage.desktop" "vinagre.desktop" ];
+      categories = [ "X-GNOME-Utilities" ];
+      name = "X-GNOME-Utilities.directory";
+      translate = true;
+    };
+
+    "org/gnome/desktop/app-folders/folders/YaST" = {
+      categories = [ "X-SuSE-YaST" ];
+      name = "suse-yast.directory";
+      translate = true;
+    };
+
     "org/gnome/desktop/background" = {
       color-shading-type = "solid";
       picture-options = "zoom";
@@ -402,15 +421,21 @@ with lib.hm.gvariant;
       fullscreen = false;
       inverted-colors = false;
       show-sidebar = true;
-      sidebar-page = "links";
-      sidebar-size = 144;
-      sizing-mode = "automatic";
+      sidebar-page = "thumbnails";
+      sidebar-size = 132;
+      sizing-mode = "free";
       window-ratio = mkTuple [ 4.446429 2.085586 ];
+      zoom = 0.5787037037037037;
     };
 
     "org/gnome/evolution-data-server" = {
       migrated = true;
       network-monitor-gio-name = "";
+    };
+
+    "org/gnome/file-roller/dialogs/extract" = {
+      recreate-folders = true;
+      skip-newer = false;
     };
 
     "org/gnome/file-roller/listing" = {
@@ -585,7 +610,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/" ];
+      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/" ];
       www = [ "<Super>w" ];
     };
 
@@ -599,6 +624,12 @@ with lib.hm.gvariant;
       binding = "<Shift><Super>Return";
       command = "alacritty -e ipython";
       name = "Ipython";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10" = {
+      binding = "F12";
+      command = "guake-toggle";
+      name = "Guake";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
@@ -641,12 +672,6 @@ with lib.hm.gvariant;
       binding = "<Super>c";
       command = "code";
       name = "VS Code";
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9" = {
-      binding = "F12";
-      command = "guake-toggle";
-      name = "Guake";
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
@@ -693,7 +718,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1698244805;
+      check-timestamp = mkInt64 1701185158;
       first-run = false;
       flatpak-purge-timestamp = mkInt64 1690189264;
     };
