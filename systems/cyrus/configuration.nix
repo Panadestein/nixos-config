@@ -167,7 +167,10 @@
   # Printing support with CUPS
   services.printing = {
     enable = true;
-    drivers = [ pkgs.epson-workforce-635-nx625-series ];
+    drivers = [
+      pkgs.hplip
+      pkgs.hplipWithPlugin
+    ];
   };
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
