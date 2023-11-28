@@ -33,10 +33,11 @@
       cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
       vz = "nvim ~/.zshrc";
-      # Less useful aliases
+      # Less frequently used aliases
       jnb = "jupyter notebook";
       starwars = "telnet towel.blinkenlights.nl";
       wo = ''figlet -t "$(hostname)" | lolcat'';
+      meteo = "curl http://wttr.in";
       # Aliases for remote machines
       ccpgate = "ssh -Y panades@ccpgate.tnw.utwente.nl";
       jul = "ssh -i ~/.ssh/id_ed25519 -Y panadesbarrueta1@juwels-cluster.fz-juelich.de";
