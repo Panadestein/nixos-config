@@ -88,7 +88,7 @@ in
     # Videos
     ffmpeg
     mpv
-    youtube-dl
+    yt-dlp
     # Image editing
     gimp
     imagemagick
