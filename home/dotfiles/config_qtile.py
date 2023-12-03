@@ -101,7 +101,7 @@ keys: List[Key] = [
     Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term'),
         desc="Toggles scratchpad terminal"),
     Key([mod], 'c', lazy.group['scratchpad'].dropdown_toggle('calculator'),
-        desc="Toggles the insect calculator"),
+        desc="Toggles the numbat calculator"),
 
     # Media Keys
     Key([], 'XF86AudioLowerVolume', lazy.spawn("amixer set Master 5%- unmute"),
@@ -191,7 +191,7 @@ groups: List[Union[Group, ScratchPad]] = [
                  height=1.0,
                  opacity=0.9,
                  on_focus_lost_hide=True),
-        DropDown("calculator", "alacritty -e insect",
+        DropDown("calculator", "alacritty -e numbat",
                  opacity=0.95,
                  on_focus_lost_hide=True)]),
     Group("dev", layout='max',

@@ -71,7 +71,7 @@ in
     gnuplot
     graphviz
     maxima
-    nodePackages.insect
+    numbat
     papis
     pymol
     sage
