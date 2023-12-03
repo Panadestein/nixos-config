@@ -193,7 +193,7 @@ groups: List[Union[Group, ScratchPad]] = [
                  on_focus_lost_hide=True),
         DropDown("calculator", "alacritty -e numbat",
                  opacity=0.95,
-                 on_focus_lost_hide=True)]),
+                 on_focus_lost_hide=False)]),
     Group("dev", layout='max',
           matches=[Match(wm_class=["Code",
                                    "Emacs"])]),
