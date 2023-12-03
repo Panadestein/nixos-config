@@ -61,7 +61,8 @@ rofiw: str = "rofi -show window -show-icons"
 cl_pal: Dict[str, List[str]] = {
     "cazure": ["#4b8bbe", "#4b8bbe"],
     "sunglow": ["#ffe873", "#ffe873"],
-    "amag": ["#c678dd", "#c678dd"]
+    "amag": ["#c678dd", "#c678dd"],
+    "deepr": ["#8B0000"]
 }
 
 # Define keybindings
@@ -257,10 +258,11 @@ WIDGETS: List[Any] = [
             'Button1':
             lambda: qtile.spawn("alacritty -e ipython")}
     ),
+    widget.Spacer(length=5),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground="888888"
+        foreground=cl_pal["deepr"]
     ),
     widget.GroupBox(
         fontsize=15,
@@ -278,7 +280,7 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#ffe873'
+        foreground=cl_pal["deepr"]
     ),
     widget.Prompt(),
     widget.WindowName(max_chars=50,
@@ -287,7 +289,7 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#046307'
+        foreground=cl_pal["deepr"]
     ),
     widget.Volume(
         fmt='Vol: {}',
@@ -296,7 +298,7 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#ffe873'
+        foreground=cl_pal["deepr"]
     ),
     widget.CPU(
         format="CPU {load_percent}%",
@@ -308,7 +310,7 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#ffe873'
+        foreground=cl_pal["deepr"]
     ),
     widget.Battery(
         format="Bat{char}: {percent:2.0%}",
@@ -323,13 +325,13 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#ffe873'
+        foreground=cl_pal["deepr"]
     ),
     widget.Systray(),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#ffe873'
+        foreground=cl_pal["deepr"]
     ),
     widget.Clock(format='%d.%m %a %I:%M %p',
                  mouse_callbacks={
@@ -340,7 +342,7 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#ffe873'
+        foreground=cl_pal["deepr"]
     ),
     widget.KeyboardLayout(
         configured_keyboards=['us', 'de', 'us altgr-intl'],
