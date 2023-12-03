@@ -276,11 +276,7 @@ WIDGETS: List[Any] = [
     widget.Prompt(),
     widget.WindowName(max_chars=50,
                       foreground=cl_pal["cazure"]),
-    widget.CurrentLayout(
-        padding=5,
-        foreground=cl_pal["sunglow"]
-    ),
-    widget.CurrentLayoutIcon(),
+    widget.CurrentLayoutIcon(scale=0.8,),
     widget.TextBox("❘", foreground='#ffe873'),
     widget.Volume(
         fmt='Vol: {}',
