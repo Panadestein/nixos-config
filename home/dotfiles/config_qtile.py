@@ -280,6 +280,7 @@ WIDGETS: List[Any] = [
         padding=5,
         foreground=cl_pal["sunglow"]
     ),
+    widget.CurrentLayoutIcon(),
     widget.TextBox("❘", foreground='#ffe873'),
     widget.Volume(
         fmt='Vol: {}',
