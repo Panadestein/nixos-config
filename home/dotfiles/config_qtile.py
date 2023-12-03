@@ -260,7 +260,7 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#540704'
+        foreground="888888"
     ),
     widget.GroupBox(
         fontsize=15,
@@ -287,7 +287,7 @@ WIDGETS: List[Any] = [
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground='#ffe873'
+        foreground='#046307'
     ),
     widget.Volume(
         fmt='Vol: {}',
