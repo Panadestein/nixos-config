@@ -100,6 +100,7 @@ in
     exercism
     fortls
     haskell-language-server
+    hyperfine
     neovide
     nil
     shellcheck
