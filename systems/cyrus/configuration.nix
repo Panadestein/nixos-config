@@ -248,7 +248,7 @@
     gfortran
     julia-bin
     mono
-    nixpkgs-stable.qt6.full
+    qt6.full
     (let
       my-python-packages = python-packages: with python-packages; [
         # Language server protocol
