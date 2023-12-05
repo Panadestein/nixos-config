@@ -143,11 +143,13 @@ in
     # Latex
     texlive.combined.scheme-full
     # Spell checkers and dictionaries
-    aspell
-    aspellDicts.de
-    aspellDicts.en
-    aspellDicts.es
-    aspellDicts.fr
+    (aspellWithDicts (dicts: with dicts; [ en
+                                           en-computers
+                                           en-science
+                                           es
+                                           de
+                                           fr
+                                         ]))
     hunspell
     hunspellDicts.de_DE
     hunspellDicts.de_DE
