@@ -63,6 +63,7 @@ in
     xfce.xfconf
     # Terminal based apps
     alacritty
+    gdu
     ranger
     # Text editors
     neovim
