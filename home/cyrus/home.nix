@@ -27,6 +27,7 @@ in
     fzf
     htop
     lolcat
+    nushell
     nvtop-amd
     poppler_utils
     qemu
