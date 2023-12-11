@@ -222,6 +222,9 @@ in
   # Papis
   home.file.".config/papis/config".source = ../dotfiles/config_papis;
 
+  # Nushell
+  home.file.".config/nushell/env.nu".source = ../dotfiles/env.nu;
+
   # Translate Shell
   xdg.configFile."translate-shell/init.trans".source = ../dotfiles/init.trans;
   home.file.".config/translate-shell/happiness.trans".source = ../dotfiles/happiness.trans;
