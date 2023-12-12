@@ -15,22 +15,25 @@ in
     asciidoctor
     bat
     bc
+    bottom
     brightnessctl
     calcurse
     ccls
     code-minimap
     cowsay
     dconf2nix
+    dysk
     fd
     figlet
     fortune
     fzf
     htop
     lolcat
-    nushell
     nvtop-amd
     poppler_utils
     qemu
+    ripgrep
+    sd
     tmate
     tmux
     trayer
@@ -73,7 +76,6 @@ in
     gnuplot
     graphviz
     maxima
-    numbat
     papis
     pymol
     sage
@@ -120,6 +122,11 @@ in
     nodejs
     racket
     sbcl
+    # Shells
+    fish
+    numbat
+    nushell
+    starship
     # Internet and communications
     brave
     firefox
