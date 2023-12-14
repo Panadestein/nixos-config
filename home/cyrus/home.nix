@@ -150,7 +150,7 @@ in
     hugo
     skribilo
     # Latex
-    #texlive.combined.scheme-full
+    texlive.combined.scheme-full
     # Spell checkers and dictionaries
     (aspellWithDicts (dicts: with dicts; [ en
                                            en-computers
