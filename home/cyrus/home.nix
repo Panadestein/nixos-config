@@ -107,9 +107,11 @@ in
     hyperfine
     neovide
     nil
+    rust-analyzer
     shellcheck
     valgrind
     # Programming languages
+    cargo
     chez
     clojure
     gcc
@@ -121,6 +123,7 @@ in
     mpich
     nodejs
     racket
+    rustc
     sbcl
     # Shells
     fish
