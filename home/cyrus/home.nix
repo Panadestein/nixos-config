@@ -130,9 +130,9 @@ in
     nushell
     starship
     # Advanced calculators
+    fend
     frink
     numbat
-    rink
     # Internet and communications
     brave
     firefox
