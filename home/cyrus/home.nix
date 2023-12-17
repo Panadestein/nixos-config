@@ -127,9 +127,12 @@ in
     sbcl
     # Shells
     fish
-    numbat
     nushell
     starship
+    # Advanced calculators
+    frink
+    numbat
+    rink
     # Internet and communications
     brave
     firefox
