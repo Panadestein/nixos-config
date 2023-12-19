@@ -156,3 +156,8 @@ vterm_cmd() {
 find_file() {
     vterm_cmd find-file "$(realpath "${@:-.}")"
 }
+
+poc() {
+    local query="$*"
+    papis open 'collections : "'"$query"'"'
+}
