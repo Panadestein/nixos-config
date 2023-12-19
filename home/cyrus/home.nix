@@ -17,7 +17,7 @@ in
     bc
     bottom
     brightnessctl
-    calcurse
+    calcure
     ccls
     code-minimap
     cowsay

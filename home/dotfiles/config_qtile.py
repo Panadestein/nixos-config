@@ -337,7 +337,7 @@ WIDGETS: List[Any] = [
                  mouse_callbacks={
                      'Button1':
                      lambda: qtile.spawn(
-                         "alacritty -e calcurse")
+                         "alacritty -e calcure")
                  }),
     widget.Sep(
         linewidth=3,
