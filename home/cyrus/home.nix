@@ -69,6 +69,7 @@ in
     alacritty
     gdu
     ranger
+    yazi
     # Text editors
     neovim
     # Science
@@ -101,7 +102,6 @@ in
     povray
     # Programming utilities
     cmake
-    exercism
     fortls
     haskell-language-server
     hyperfine
@@ -136,8 +136,6 @@ in
     # Internet and communications
     brave
     firefox
-    mattermost-desktop
-    qutebrowser
     skypeforlinux
     nixpkgs-stable.slack
     tdesktop
