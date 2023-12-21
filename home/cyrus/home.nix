@@ -127,7 +127,7 @@ in
     sbcl
     # Shells
     fish
-    nushell
+    nushellFull
     starship
     # Advanced calculators
     fend
