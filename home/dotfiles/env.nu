@@ -1,4 +1,4 @@
-# Panadestein's Nushell Environment Config
+# Panadestein's Nushell Env
 
 def create_left_prompt [] {
     # Colors of the integral

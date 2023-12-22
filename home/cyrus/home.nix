@@ -235,6 +235,7 @@ in
 
   # Nushell
   home.file.".config/nushell/env.nu".source = ../dotfiles/env.nu;
+  home.file.".config/nushell/config.nu".source = ../dotfiles/config.nu;
 
   # Translate Shell
   xdg.configFile."translate-shell/init.trans".source = ../dotfiles/init.trans;
