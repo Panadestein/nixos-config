@@ -1,5 +1,7 @@
 # Panadestein's Nushell Env
 
+$env.STARSHIP_SHELL = "nu"
+
 def create_left_prompt [] {
     # Colors of the integral
     let braket_color = (if (is-admin) { ansi red_bold } else { ansi light_green_bold })
