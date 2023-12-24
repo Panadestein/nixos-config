@@ -71,7 +71,7 @@ keys: List[Key] = [
     # Applications
     Key([mod], "Return", lazy.spawn(terminal),
         desc="Launches detected terminal"),
-    Key([mod, "shift"], "Return", lazy.spawn("alacritty -e ipython"),
+    Key([mod, "shift"], "Return", lazy.spawn("alacritty -e xonsh"),
         desc="Launches a handy Ipython session"),
     Key([mod], "r", lazy.spawn("rofi -show drun -show-icons"),
         desc="Toggles the Rofi launcher"),
@@ -256,7 +256,7 @@ WIDGETS: List[Any] = [
         scale="True",
         mouse_callbacks={
             'Button1':
-            lambda: qtile.spawn("alacritty -e ipython")}
+            lambda: qtile.spawn("alacritty -e xonsh")}
     ),
     widget.Spacer(length=5),
     widget.Sep(

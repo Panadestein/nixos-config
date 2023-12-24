@@ -1,7 +1,5 @@
 # Panadestein's Nushell Env
 
-$env.STARSHIP_SHELL = "nu"
-
 # My prompt
 def create_left_prompt [] {
     # Colors of the integral
@@ -18,13 +16,8 @@ def create_left_prompt [] {
     $path_segment
 }
 
-# Staship prompt
-def create_left_prompt_st [] {
-    starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
-}
-
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| create_left_prompt_st }
+$env.PROMPT_COMMAND = {|| create_left_prompt }
 $env.PROMPT_COMMAND_RIGHT = {|| "" }
 
 # Set prompt indicator

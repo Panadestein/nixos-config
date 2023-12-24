@@ -1,0 +1,4 @@
+# Panadestein's xonsh config
+
+$XONSH_COLOR_STYLE = 'default'
+$PROMPT="{BOLD_RED}[{BOLD_BLUE}π {BOLD_WHITE}→ {BOLD_YELLOW}{cwd_base}{BOLD_RED}]{curr_branch: {GREEN}[{}]} "

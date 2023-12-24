@@ -129,7 +129,6 @@ in
     # Shells
     fish
     nushellFull
-    starship
     xonsh
     # Advanced calculators
     fend
@@ -238,6 +237,9 @@ in
   # Nushell
   home.file.".config/nushell/env.nu".source = ../dotfiles/env.nu;
   home.file.".config/nushell/config.nu".source = ../dotfiles/config.nu;
+
+  # Xonsh
+  home.file.".xonshrc".source = ../dotfiles/xonshrc;
 
   # Translate Shell
   xdg.configFile."translate-shell/init.trans".source = ../dotfiles/init.trans;
