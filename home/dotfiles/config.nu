@@ -9,6 +9,8 @@ $env.config = {
     }
 }
 
+$env.LS_COLORS = (vivid generate snazzy | str trim)
+
 #-----------------------------
 # Aliases
 #-----------------------------

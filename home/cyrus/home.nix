@@ -69,6 +69,7 @@ in
     alacritty
     gdu
     ranger
+    vivid
     yazi
     # Text editors
     neovim
@@ -129,6 +130,7 @@ in
     fish
     nushellFull
     starship
+    xonsh
     # Advanced calculators
     fend
     frink
