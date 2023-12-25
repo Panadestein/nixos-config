@@ -1,4 +1,35 @@
 # Panadestein's xonsh config
 
+#--------------------------
+# Theme and prompt
+#--------------------------
+
 $XONSH_COLOR_STYLE = 'default'
 $PROMPT="{BOLD_RED}[{BOLD_BLUE}π {BOLD_WHITE}→ {BOLD_YELLOW}{cwd_base}{BOLD_RED}]{curr_branch: {GREEN}[{}]} "
+
+#--------------------------
+# Aliases
+#--------------------------
+
+# Emacs
+aliases['e'] = 'emacsclient'
+aliases['en'] = 'emacsclient'
+aliases['cde'] = 'cd ~/.emacs.d'
+aliases['E'] = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit"
+
+# (Neo)vim
+aliases['v'] = 'nvim'
+aliases['cfv'] = 'vim ~/.vimrc'
+aliases['sv'] = 'sudo nvim'
+aliases['cfn'] = 'neovide --maximized ~/.config/nvim/init.vim'
+aliases['n'] = 'neovide --maximized'
+
+# Generic
+aliases['c'] = 'code -r'
+aliases['r'] = 'ranger'
+aliases['t'] = 'trans'
+aliases['ka'] = 'killall'
+aliases['jnb'] = 'jupyter notebook'
+aliases['jour1'] = 'journalctl -p 3 -xb'
+aliases['jour2'] = 'journalctl -xb | rg rror'
+aliases['meteo'] = 'curl http://wttr.in'

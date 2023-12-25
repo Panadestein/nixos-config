@@ -64,6 +64,10 @@ def isrun [proc] {
 
 # Utils
 
+def E [fil] {
+    with-env [SUDO_EDITOR "emacsclient -t -a emacs"] {sudoedit $fil}
+}
+
 def poc [...col: string] {
     let redcol = $col | reduce { |it, acc| $acc + " " + $it}
     let st  = 'collections : ' | append $'"($redcol)"' | str join ' '

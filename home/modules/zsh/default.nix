@@ -25,6 +25,7 @@
       sz = "source ~/.zshrc";
       t = "trans";
       v = "nvim";
+      xo = "xonsh";
       # Aliases for configuration files
       cde = "cd ~/.emacs.d/";
       cfb = "e ~/.bashrc";
