@@ -185,7 +185,7 @@ keys.extend([Key([mod], "F1",
 
 groups: List[Union[Group, ScratchPad]] = [
     ScratchPad("scratchpad", [
-        DropDown("term", "alacritty",
+        DropDown("term", "alacritty -e xonsh",
                  x=0.0,
                  y=0.0,
                  width=1.0,
