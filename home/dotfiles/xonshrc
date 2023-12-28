@@ -1,21 +1,31 @@
 # Panadestein's xonsh config
 
-#--------------------------
+# --------------------------
 # Theme and prompt
-#--------------------------
+# --------------------------
 
 $XONSH_COLOR_STYLE = 'default'
-$PROMPT="{BOLD_RED}[{BOLD_BLUE}π {BOLD_WHITE}→ {BOLD_YELLOW}{cwd_base}{BOLD_RED}]{curr_branch: {GREEN}[{}]} "
+$XONSH_STYLE_OVERRIDES['completion-menu'] = 'bg:#333333 #EEEEEE'
+$PROMPT = "{BOLD_RED}[{BOLD_BLUE}π {BOLD_WHITE}→ {BOLD_YELLOW}{cwd_base}{BOLD_RED}]{curr_branch: {BOLD_RED}[{BOLD_GREEN}{}{BOLD_RED}]} "
 
-#--------------------------
+# --------------------------
 # Aliases
-#--------------------------
+# --------------------------
 
 # Emacs
+
+
+def esudo(args, stdin=None):
+    """Emacs with sudo."""
+    env = {"SUDO_EDITOR": "emacsclient -t -a emacs"}
+    $[sudoedit @ (args)]
+
+
+aliases['E'] = esudo
+
 aliases['e'] = 'emacsclient'
 aliases['en'] = 'emacsclient'
 aliases['cde'] = 'cd ~/.emacs.d'
-aliases['E'] = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit"
 
 # (Neo)vim
 aliases['v'] = 'nvim'
