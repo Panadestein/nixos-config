@@ -14,15 +14,12 @@ $PROMPT = "{BOLD_RED}[{BOLD_BLUE}π {BOLD_WHITE}→ {BOLD_YELLOW}{cwd_base}{BOLD
 
 # Emacs
 
-
 def esudo(args, stdin=None):
     """Emacs with sudo."""
     env = {"SUDO_EDITOR": "emacsclient -t -a emacs"}
-    $[sudoedit @ (args)]
-
+    $[sudoedit @(args)]
 
 aliases['E'] = esudo
-
 aliases['e'] = 'emacsclient'
 aliases['en'] = 'emacsclient'
 aliases['cde'] = 'cd ~/.emacs.d'
