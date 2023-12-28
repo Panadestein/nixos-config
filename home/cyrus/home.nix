@@ -80,7 +80,6 @@ in
     maxima
     papis
     pymol
-    sage
     # Office
     calibre
     crow-translate
