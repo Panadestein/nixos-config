@@ -63,15 +63,15 @@
     plugins = with pkgs.fishPlugins; [
       {
         name = "grc";
-        src = grc.src
+        src = grc.src;
       }
       {
         name = "fzf-fish";
-        src = fzf-fish.src
+        src = fzf-fish.src;
       }
       {
         name = "z";
-        src = z.src
+        src = z.src;
       }
     ];
 
