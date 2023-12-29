@@ -238,6 +238,17 @@ in
   home.file.".config/nushell/config.nu".source = ../dotfiles/config.nu;
 
   # Xonsh
+  programs.xonsh = {
+    enable = true;
+    package = pkgs.xonsh.override {
+      extraPackages = ps: [
+        ps.numpy
+        ps.scipy
+        ps.matplotlib
+        ps.sympy
+      ];
+    };
+  };
   home.file.".xonshrc".source = ../dotfiles/xonshrc;
 
   # Translate Shell
