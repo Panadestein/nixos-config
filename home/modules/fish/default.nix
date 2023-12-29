@@ -41,6 +41,7 @@
       jour1 = "journalctl -p 3 -xb";
       jour2 = "journalctl -xb | grep rror";
       ka = "killall";
+      ls = "eza"
       n = "neovide --maximized";
       r = "ranger";
       sb = "source ~/.bashrc";
