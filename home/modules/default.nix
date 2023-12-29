@@ -1,5 +1,6 @@
 [
-  ./emacs
-  ./zsh
   ./dconf
+  ./emacs
+  ./fish
+  ./zsh
 ]

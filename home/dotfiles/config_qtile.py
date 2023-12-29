@@ -71,7 +71,7 @@ keys: List[Key] = [
     # Applications
     Key([mod], "Return", lazy.spawn(terminal),
         desc="Launches detected terminal"),
-    Key([mod, "shift"], "Return", lazy.spawn("alacritty -e xonsh"),
+    Key([mod, "shift"], "Return", lazy.spawn("alacritty -e fish"),
         desc="Launches a handy Ipython session"),
     Key([mod], "r", lazy.spawn("rofi -show drun -show-icons"),
         desc="Toggles the Rofi launcher"),
@@ -185,7 +185,7 @@ keys.extend([Key([mod], "F1",
 
 groups: List[Union[Group, ScratchPad]] = [
     ScratchPad("scratchpad", [
-        DropDown("term", "alacritty -e xonsh",
+        DropDown("term", "alacritty -e fish",
                  x=0.0,
                  y=0.0,
                  width=1.0,
