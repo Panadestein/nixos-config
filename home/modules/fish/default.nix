@@ -5,6 +5,10 @@
     enable = true;
 
     interactiveShellInit = ''
+      # Set variables
+      set -g fish_greeting
+ 
+      # Set prompt
       function fish_prompt
           set_color yellow --bold
           echo -n '⌈'

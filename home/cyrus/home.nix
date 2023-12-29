@@ -28,6 +28,7 @@ in
     figlet
     fortune
     fzf
+    grc
     htop
     lolcat
     nvtop-amd
