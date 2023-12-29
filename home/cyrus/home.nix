@@ -128,7 +128,6 @@ in
     # Shells
     fish
     nushellFull
-    xonsh
     # Advanced calculators
     fend
     frink
