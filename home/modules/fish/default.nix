@@ -5,8 +5,12 @@
     enable = true;
 
     interactiveShellInit = ''
-      # Set variables
+      # Remove greeting message
       set -g fish_greeting
+
+      # Better man pager
+      set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+      set -x MANROFFOPT "-c"
  
       # Set prompt
       function fish_prompt
