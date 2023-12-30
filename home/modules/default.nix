@@ -1,4 +1,5 @@
 [
+  ./bash
   ./dconf
   ./emacs
   ./fish
