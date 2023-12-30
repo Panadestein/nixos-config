@@ -4,6 +4,4 @@
   ./emacs
   ./fish
   ./zsh
-
-
 ]
