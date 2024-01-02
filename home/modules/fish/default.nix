@@ -15,19 +15,19 @@
       # Set prompt
       function fish_prompt
           set_color yellow --bold
-          echo -n '⌈'
+          echo -n '⌊'
 
           set_color red --bold
           echo -n φ
 
           set_color white --bold
-          echo -n ' ⊗ '
+          echo -n ' ∈ '
 
           set_color blue --bold
           echo -n (basename (pwd))
 
           set_color yellow --bold
-          echo -n '⌋'
+          echo -n '⌉'
 
           set_color green --bold
           printf '%s ' (fish_git_prompt)

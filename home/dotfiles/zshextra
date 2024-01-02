@@ -36,7 +36,7 @@ prompt_nix_shell() {
 }
 
 PROMPT='$(prompt_nix_shell)'
-PROMPT+="%B(%B%{$fg[blue]%}ζ%{$reset_color%} %B. %{$fg[yellow]%}%1d%{$reset_color%}%B)%{$reset_color%} "
+PROMPT+="%B(%B%{$fg[blue]%}ζ%{$reset_color%} %B∀ %{$fg[yellow]%}%1d%{$reset_color%}%B)%{$reset_color%} "
 PROMPT+='$(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[cyan]%}"

@@ -6,7 +6,7 @@
 
 $XONSH_COLOR_STYLE = 'default'
 $XONSH_STYLE_OVERRIDES['completion-menu'] = 'bg:#333333 #EEEEEE'
-$PROMPT = "{BOLD_RED}[{BOLD_BLUE}χ {BOLD_WHITE}→ {BOLD_YELLOW}{cwd_base}{BOLD_RED}]{curr_branch: {BOLD_RED}[{BOLD_GREEN}{}{BOLD_RED}]} "
+$PROMPT = "{BOLD_RED}[{BOLD_BLUE}χ {BOLD_WHITE}⊗ {BOLD_YELLOW}{cwd_base}{BOLD_RED}]{curr_branch: {BOLD_RED}[{BOLD_GREEN}{}{BOLD_RED}]} "
 
 # --------------------------
 # Aliases
