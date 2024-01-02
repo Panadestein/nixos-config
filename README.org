@@ -11,6 +11,7 @@
 * Panadestein's Nix/NixOS Configuration
 
 [[file:./home/dotfiles/images/some_apps.png]]
+[[file:./home/dotfiles/images/my_shells.png]]
 
 Welcome to my personal flake [[https://nixos.org/][Nix/NixOS]] configuration, powered by [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration
 is designed to be production-ready (according to my personal requirements) and comes with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]]
