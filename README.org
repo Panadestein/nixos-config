@@ -10,12 +10,12 @@
 
 * Panadestein's Nix/NixOS Configuration
 
-#+BEGIN_EXPORT html
+#+BEGIN_HTML
 <div>
     <img src="./home/dotfiles/images/some_apps.png" style="width:48%; margin-right:2%;">
     <img src="./home/dotfiles/images/my_shells.png" style="width:48%;">
 </div>
-#+END_EXPORT
+#+END_HTML
 
 Welcome to my personal flake [[https://nixos.org/][Nix/NixOS]] configuration, powered by [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration
 is designed to be production-ready (according to my personal requirements) and comes with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]]
