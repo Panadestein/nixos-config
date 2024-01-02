@@ -33,6 +33,10 @@
           printf '%s ' (fish_git_prompt)
           set_color normal
       end
+
+      # Ensure fzf.fish history instead of fzf
+      bind \cr _fzf_search_history
+      bind -M insert \cr _fzf_search_history
     '';
 
     shellAliases = {
