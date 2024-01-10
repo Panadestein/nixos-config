@@ -202,7 +202,7 @@ in
   xdg.configFile."rofi/file-browser".source = ../dotfiles/rofi_browser;
 
   # Alacritty
-  xdg.configFile."alacritty/alacritty.yml".source = ../dotfiles/alacritty.yml;
+  xdg.configFile."alacritty/alacritty.toml".source = ../dotfiles/alacritty.toml;
   programs.alacritty = {
     enable = true;
   };
