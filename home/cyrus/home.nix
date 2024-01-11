@@ -137,8 +137,9 @@ in
     # Internet and communications
     brave
     firefox
-    skypeforlinux
     nixpkgs-stable.slack
+    nyxt
+    skypeforlinux
     tdesktop
     whatsapp-for-linux
     zoom-us
@@ -153,7 +154,6 @@ in
     # Web
     bundler
     hugo
-    skribilo
     # Latex
     texlive.combined.scheme-full
     # Spell checkers and dictionaries
