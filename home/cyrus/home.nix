@@ -17,7 +17,7 @@ in
     bc
     bottom
     brightnessctl
-    #calcure
+    calcurse
     ccls
     code-minimap
     cowsay
@@ -55,6 +55,7 @@ in
     arc-theme
     cairo
     glib
+    gnome.gnome-calendar
     gnome.simple-scan
     gobject-introspection
     gtk3
@@ -138,7 +139,7 @@ in
     brave
     firefox
     nixpkgs-stable.slack
-    nyxt
+    #nyxt
     skypeforlinux
     tdesktop
     whatsapp-for-linux
@@ -146,7 +147,7 @@ in
     # Leisure (NES, SNES and N64)
     (retroarch.override {
       cores = with libretro; [
-        mupen64plus
+        #mupen64plus
         nestopia
         snes9x
       ];
