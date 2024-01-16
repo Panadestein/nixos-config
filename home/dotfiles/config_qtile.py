@@ -339,7 +339,7 @@ WIDGETS: List[Any] = [
                  mouse_callbacks={
                      'Button1':
                      lambda: qtile.spawn(
-                         "alacritty -e gnome-calendar")
+                         "gnome-calendar")
                  }),
     widget.Sep(
         linewidth=3,

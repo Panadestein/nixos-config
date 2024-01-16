@@ -37,6 +37,19 @@
       # Ensure fzf.fish history instead of fzf
       bind \cr _fzf_search_history
       bind -M insert \cr _fzf_search_history
+
+      # Useful functions
+      function emhash
+          set head_hash (git rev-parse HEAD)
+
+          if test -n "$head_hash"
+              echo "Hash of HEAD: $head_hash"
+              set url "https://github.com/Panadestein/emacsd/archive/$head_hash.tar.gz"
+              nix-prefetch-url --unpack $url
+          else
+              echo "Error: Unable to retrieve HEAD hash. Are you in a Git repository?"
+          end
+      end
     '';
 
     shellAliases = {
