@@ -147,7 +147,7 @@ in
     # Leisure (NES, SNES and N64)
     (retroarch.override {
       cores = with libretro; [
-        mupen64plus
+        #mupen64plus
         nestopia
         snes9x
       ];
