@@ -106,6 +106,7 @@ in
     # Programming utilities
     cmake
     fortls
+    gh
     haskell-language-server
     hyperfine
     neovide
@@ -119,7 +120,6 @@ in
     clojure
     gcc
     gdb
-    gh
     ghc
     gnumake
     jdk11
@@ -140,7 +140,7 @@ in
     brave
     firefox
     nixpkgs-stable.slack
-    #nyxt
+    nyxt
     skypeforlinux
     tdesktop
     whatsapp-for-linux
@@ -172,6 +172,8 @@ in
     hunspellDicts.en_US
     hunspellDicts.fr-moderne
     languagetool
+    # Security
+    keepassxc
   ];
 
   # Git
