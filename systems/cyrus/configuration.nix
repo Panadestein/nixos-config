@@ -338,8 +338,13 @@
     enableSSHSupport = true;
   };
 
-  # Enable docker (rarely needed but still)
-  virtualisation.docker.enable = true;
+  # Virtualization setup, only docker at the moment
+  virtualisation = {
+    docker = {
+      enable = true;
+      extraOptions = "--default-ulimit nofile=65536:65536";
+    };
+  };
 
   # Additional services
   services.actkbd.enable = true;
