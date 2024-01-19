@@ -137,7 +137,6 @@ in
     frink
     numbat
     # Internet and communications
-    archivebox
     brave
     firefox
     nixpkgs-stable.slack
