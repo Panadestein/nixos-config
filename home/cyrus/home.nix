@@ -61,7 +61,6 @@ in
     gtk3
     guake
     loupe
-    siglo
     # Xfce packages
     xfce.exo
     (xfce.thunar.override {
