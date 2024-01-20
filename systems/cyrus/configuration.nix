@@ -49,7 +49,7 @@
   };
 
   # Use the latest linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Load AMD CPU microcode
   hardware.cpu.amd.updateMicrocode = true;
@@ -91,9 +91,6 @@
 
   # Network configuration
   networking = {
-    useDHCP = false;
-    interfaces.enp2s0f0.useDHCP = true;
-    interfaces.enp5s0.useDHCP = true;
     networkmanager.enable = true;
   };
   programs.nm-applet.enable = true;
