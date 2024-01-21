@@ -49,7 +49,7 @@
   };
 
   # Use the latest linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Load AMD CPU microcode and firmware
   hardware.cpu.amd.updateMicrocode = true;
@@ -92,8 +92,6 @@
 
   # Network configuration
   networking = {
-    useDHCP = false;
-    interfaces.wlp2s0.useDHCP = true;
     networkmanager = {
       enable = true;
       wifi.powersave = lib.mkDefault false;
@@ -370,6 +368,29 @@
       PrivateTmp = true;
       ProtectSystem = "full";
       Nice = 10;
+    };
+  };
+
+  # Wifi sevice fix for P16s
+  systemd.services = {
+    ath11k-fix = {
+      enable = true;
+
+      description = "Suspend fix for ath11k_pci";
+      before = [ "sleep.target" ];
+
+      unitConfig = {
+        StopWhenUnneeded = "yes";
+      };
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = "yes";
+        ExecStart = "/run/current-system/sw/bin/modprobe -r ath11k_pci";
+        ExecStop = "/run/current-system/sw/bin/modprobe ath11k_pci";
+      };
+
+      wantedBy = [ "sleep.target" ];
     };
   };
 
