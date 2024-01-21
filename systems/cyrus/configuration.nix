@@ -51,8 +51,9 @@
   # Use the latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
-  # Load AMD CPU microcode
+  # Load AMD CPU microcode and firmware
   hardware.cpu.amd.updateMicrocode = true;
+  hardware.firmware = [ pkgs.linux-firmware ];
 
   # Kernel parameters and modules
   boot.initrd.kernelModules = [ "amdgpu" "hid-apple"];
@@ -91,7 +92,10 @@
 
   # Network configuration
   networking = {
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.powersave = lib.mkDefault false;
+    };
   };
   programs.nm-applet.enable = true;
 
@@ -225,8 +229,10 @@
     file
     git
     inxi
+    iw
     killall
     libtool
+    linux-firmware
     pavucontrol
     pciutils
     rsync

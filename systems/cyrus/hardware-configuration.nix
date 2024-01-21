@@ -32,18 +32,18 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Additional wifi firmware
-  hardware.firmware = [
-    (
-      let
-        ath11_file = builtins.fetchurl {
-          url = "https://github.com/kvalo/ath11k-firmware/raw/540105aa5c0903b5f773d4e80b8501e8da5217e7/WCN6855/hw2.0/board-2.bin";
-          sha256 = "1wrygyhakjgk7icwv5wqri54zbss8fw7qmn8f197jbha4wx2qqdj";
-        };
-      in
-        pkgs.runCommandNoCC "ath11k_blade" {} ''
-         mkdir -p $out/lib/firmware/WCN6855/hw2.0/
-         cp ${ath11_file} $out/lib/firmware/WCN6855/hw2.0/board-2.bin
-      ''
-    )
-  ];
+  #hardware.firmware = [
+  #  (
+  #    let
+  #      ath11_file = builtins.fetchurl {
+  #        url = "https://github.com/kvalo/ath11k-firmware/raw/540105aa5c0903b5f773d4e80b8501e8da5217e7/WCN6855/hw2.0/board-2.bin";
+  #        sha256 = "1wrygyhakjgk7icwv5wqri54zbss8fw7qmn8f197jbha4wx2qqdj";
+  #      };
+  #    in
+  #      pkgs.runCommandNoCC "ath11k_blade" {} ''
+  #       mkdir -p $out/lib/firmware/WCN6855/hw2.0/
+  #       cp ${ath11_file} $out/lib/firmware/WCN6855/hw2.0/board-2.bin
+  #    ''
+  #  )
+  #];
 }
