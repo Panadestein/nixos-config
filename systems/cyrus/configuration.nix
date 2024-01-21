@@ -55,6 +55,11 @@
   hardware.cpu.amd.updateMicrocode = true;
   hardware.firmware = [ pkgs.linux-firmware ];
 
+  # And this is when you give up (for now)
+  boot.blacklistedKernelModules = [
+    "ath11k_pci"
+  ];
+
   # Kernel parameters and modules
   boot.initrd.kernelModules = [ "amdgpu" "hid-apple"];
   boot.kernelParams = [
@@ -122,7 +127,7 @@
     defaultSession = "none+qtile";
     gdm = {
       enable = false;
-      wayland = false;
+      wayland = true;
     };
     lightdm = {
       enable = true;
@@ -374,7 +379,7 @@
   # Wifi sevice fix for P16s
   systemd.services = {
     ath11k-fix = {
-      enable = true;
+      enable = false;
 
       description = "Suspend fix for ath11k_pci";
       before = [ "sleep.target" ];
