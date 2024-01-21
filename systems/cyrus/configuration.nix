@@ -92,6 +92,8 @@
 
   # Network configuration
   networking = {
+    useDHCP = false;
+    interfaces.wlp2s0.useDHCP = true;
     networkmanager = {
       enable = true;
       wifi.powersave = lib.mkDefault false;
@@ -232,7 +234,6 @@
     iw
     killall
     libtool
-    linux-firmware
     pavucontrol
     pciutils
     rsync
