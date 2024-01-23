@@ -12,6 +12,7 @@ in
   # User packages
   home.packages = with pkgs; [
     # General utilities
+    any-nix-shell
     asciidoctor
     bat
     bc

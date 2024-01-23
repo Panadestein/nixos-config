@@ -50,6 +50,9 @@
               echo "Error: Unable to retrieve HEAD hash. Are you in a Git repository?"
           end
       end
+
+      # Entering nix-shells
+      any-nix-shell fish --info-right | source
     '';
 
     shellAliases = {
