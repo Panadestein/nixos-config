@@ -167,8 +167,10 @@
     [ pkgs.xdg-desktop-portal-gtk ];
 
   # Configure keymap in X11
-  services.xserver.layout = "us,de";
-  services.xserver.xkbVariant = "altgr-intl";
+  services.xserver.xkb = {
+    layout = "us,de";
+    variant = "altgr-intl";
+  };
 
   # Printing support with CUPS
   services.printing = {
