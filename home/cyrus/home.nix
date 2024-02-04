@@ -142,6 +142,7 @@ in
     nixpkgs-stable.slack
     skypeforlinux
     tdesktop
+    thunderbird
     whatsapp-for-linux
     zoom-us
     # Leisure (NES, SNES and N64)
