@@ -87,6 +87,9 @@
       starwars = "telnet towel.blinkenlights.nl";
       wo = ''figlet -t "$(hostname)" | lolcat'';
       meteo = "curl http://wttr.in";
+      # Supercomputers
+      barb = "ssh -i ~/.ssh/id_rsa it4i-rpanades@barbora.it4i.cz";
+      karo = "ssh -i ~/.ssh/id_rsa it4i-rpanades@karolina.it4i.cz";
     };
 
     plugins = with pkgs.fishPlugins; [

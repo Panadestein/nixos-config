@@ -9,6 +9,7 @@ r"""Qtile configuration.
 100% PEP8 compliant.
 """
 from typing import Any, Dict, List, Union
+import re
 import os
 import socket
 import subprocess
@@ -198,23 +199,27 @@ groups: List[Union[Group, ScratchPad]] = [
                  opacity=0.95,
                  on_focus_lost_hide=False)]),
     Group("dev", layout='max',
-          matches=[Match(wm_class=["Code",
-                                   "Emacs"])]),
+          matches=[Match(
+              wm_class=re.compile(r"^(Code|Emacs)$"))
+          ]),
     Group("tty", layout='monadtall'),
     Group("doc", layout='monadtall'),
     Group("www", layout='monadtall',
-          matches=[Match(wm_class=["firefox",
-                                   "Brave-browser",
-                                   "Nyxt"])]),
+          matches=[Match(
+              wm_class=re.compile(r"^(firefox|Brave\-browser|Nyxt)$"))
+          ]),
     Group("msg", layout='monadtall',
-          matches=[Match(wm_class=["Mattermost",
-                                   "Slack",
-                                   "TelegramDesktop"])]),
+          matches=[Match(
+              wm_class=re.compile(r"^(Mattermost|Slack|TelegramDesktop)$")
+          )]),
     Group("com", layout='monadtall',
-          matches=[Match(wm_class=["Skype",
-                                   "zoom"])]),
+          matches=[Match(
+              wm_class=re.compile(r"^(Skype|zoom)$")
+          )]),
     Group("rnd", layout='monadtall',
-          matches=[Match(wm_class=["retroarch"])]),
+          matches=[Match(
+              wm_class=re.compile(r"^(retroarch)$"))
+          ]),
     Group("art", layout='floating')
 ]
 

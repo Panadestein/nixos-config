@@ -261,7 +261,7 @@
     (let
       my-python-packages = python-packages: with python-packages; [
         # Language server protocol
-        python-lsp-server
+        ruff-lsp
         # Scientific libraries
         ipython
         ipykernel
