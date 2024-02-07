@@ -8,16 +8,18 @@ r"""Qtile configuration.
 
 100% PEP8 compliant.
 """
-from typing import Any, Dict, List, Union
-import re
+from __future__ import annotations
+
+import logging
 import os
+import re
 import socket
 import subprocess
 from pathlib import Path
-from libqtile import qtile
-from libqtile import bar, layout, widget, hook
-from libqtile.config import (
-    Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown)
+from typing import Any
+
+from libqtile import bar, hook, layout, qtile, widget
+from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
 from libqtile.dgroups import simple_key_binder
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -25,7 +27,7 @@ from libqtile.utils import guess_terminal
 # Define helper functions
 
 
-def parse_keys(keys_obj: List[Key]) -> str:
+def parse_keys(keys_obj: list[Key]) -> str:
     """Format string of defined keybindings."""
     key_help = ""
     for k in keys_obj:
@@ -49,7 +51,7 @@ mod: str = "mod4"
 terminal: str = guess_terminal()
 dgroups_key_binder = simple_key_binder("mod4")
 xrancmd: str = f"{Path.home()}/.config/scripts/randr_conf.sh"
-prompt: str = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+prompt: str = f'{os.environ["USER"]}@{socket.gethostname()}: '
 rofifm: str = (
     "fd | rofi -show-icons -display-file-browser-extended 'Search' "
     "-show file-browser-extended -file-browser-stdin"
@@ -59,16 +61,16 @@ rofiw: str = "rofi -show window -show-icons"
 # Useful colors
 # https://www.schemecolor.com/python-logo-colors.php
 
-cl_pal: Dict[str, List[str]] = {
+cl_pal: dict[str, list[str]] = {
     "cazure": ["#4b8bbe", "#4b8bbe"],
     "sunglow": ["#ffe873", "#ffe873"],
     "amag": ["#c678dd", "#c678dd"],
-    "deepr": ["#8B0000"]
+    "deepr": ["#8B0000"],
 }
 
 # Define keybindings
 
-keys: List[Key] = [
+keys: list[Key] = [
     # Applications
     Key([mod], "Return", lazy.spawn(terminal),
         desc="Launches detected terminal"),
@@ -98,24 +100,24 @@ keys: List[Key] = [
         desc="Takes a screenshot"),
 
     # Language
-    Key([mod], 'i', lazy.widget["keyboardlayout"].next_keyboard(),
+    Key([mod], "i", lazy.widget["keyboardlayout"].next_keyboard(),
         desc="Cycle through keyboard layouts"),
 
     # Dropdown terminal
-    Key([], 'F12', lazy.group['scratchpad'].dropdown_toggle('term'),
+    Key([], "F12", lazy.group["scratchpad"].dropdown_toggle("term"),
         desc="Toggles scratchpad terminal"),
-    Key([mod], 'c', lazy.group['scratchpad'].dropdown_toggle('calculator'),
+    Key([mod], "c", lazy.group["scratchpad"].dropdown_toggle("calculator"),
         desc="Toggles the numbat calculator"),
 
     # Media Keys
-    Key([], 'XF86AudioLowerVolume', lazy.spawn("amixer set Master 5%- unmute"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 5%- unmute"),
         desc="Lowers volume"),
-    Key([], 'XF86AudioRaiseVolume', lazy.spawn("amixer set Master 5%+ unmute"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 5%+ unmute"),
         desc="Raises volume"),
-    Key([], 'XF86MonBrightnessDown',   lazy.spawn("brightnessctl -q s 10%-"),
-        desc=("Decreases brightness")),
-    Key([], 'XF86MonBrightnessUp',   lazy.spawn("brightnessctl -q s +10%"),
-        desc=("Increases brightness")),
+    Key([], "XF86MonBrightnessDown",   lazy.spawn("brightnessctl -q s 10%-"),
+        desc="Decreases brightness"),
+    Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl -q s +10%"),
+        desc="Increases brightness"),
 
     # Display Manager
     Key([mod], "o", lazy.spawn("dm-tool lock"),
@@ -186,7 +188,7 @@ keys.extend([Key([mod], "F1",
 
 # Define groups (workspaces)
 
-groups: List[Union[Group, ScratchPad]] = [
+groups: list[Group | ScratchPad] = [
     ScratchPad("scratchpad", [
         DropDown("term", "alacritty -e fish",
                  x=0.0,
@@ -198,78 +200,78 @@ groups: List[Union[Group, ScratchPad]] = [
         DropDown("calculator", "alacritty -e numbat",
                  opacity=0.95,
                  on_focus_lost_hide=False)]),
-    Group("dev", layout='max',
+    Group("dev", layout="max",
           matches=[Match(
-              wm_class=re.compile(r"^(Code|Emacs)$"))
+              wm_class=re.compile(r"^(Code|Emacs)$")),
           ]),
-    Group("tty", layout='monadtall'),
-    Group("doc", layout='monadtall'),
-    Group("www", layout='monadtall',
+    Group("tty", layout="monadtall"),
+    Group("doc", layout="monadtall"),
+    Group("www", layout="monadtall",
           matches=[Match(
-              wm_class=re.compile(r"^(firefox|Brave\-browser|Nyxt)$"))
+              wm_class=re.compile(r"^(firefox|Brave\-browser|Nyxt)$")),
           ]),
-    Group("msg", layout='monadtall',
+    Group("msg", layout="monadtall",
           matches=[Match(
-              wm_class=re.compile(r"^(Mattermost|Slack|TelegramDesktop)$")
+              wm_class=re.compile(r"^(Mattermost|Slack|TelegramDesktop)$"),
           )]),
-    Group("com", layout='monadtall',
+    Group("com", layout="monadtall",
           matches=[Match(
-              wm_class=re.compile(r"^(Skype|zoom)$")
+              wm_class=re.compile(r"^(Skype|zoom)$"),
           )]),
-    Group("rnd", layout='monadtall',
+    Group("rnd", layout="monadtall",
           matches=[Match(
-              wm_class=re.compile(r"^(retroarch)$"))
+              wm_class=re.compile(r"^(retroarch)$")),
           ]),
-    Group("art", layout='floating')
+    Group("art", layout="floating"),
 ]
 
 # Layouts
 
-layout_theme: Dict[str, Union[str, int]] = {
+layout_theme: dict[str, str | int] = {
     "border_width": 1,
     "border_focus": "#8f3d3d",
-    "border_normal": "#267CB9"
+    "border_normal": "#267CB9",
 }
 
-layouts: List[Any] = [
+layouts: list[Any] = [
     # No need for more than this
     layout.Max(**layout_theme),
     layout.MonadTall(**layout_theme,
                      single_border_width=0,
                      single_margin=0,
                      margin=6,
-                     new_client_position='bottom'),
+                     new_client_position="bottom"),
     layout.Columns(**layout_theme,
                    margin=4,
                    margin_on_single=0),
-    layout.Floating(**layout_theme)
+    layout.Floating(**layout_theme),
 ]
 
 # Widgets configuration
 
-widget_defaults: Dict[str, Union[str, int]] = dict(
-    font='Fira Code',
-    fontsize=14,
-    padding=3,
-)
+widget_defaults: dict[str, str | int] = {
+    "font": "Fira Code",
+    "fontsize": 14,
+    "padding": 3,
+}
 
-extension_defaults: Dict[str, Union[str, int]] = widget_defaults.copy()
+extension_defaults: dict[str, str | int] = widget_defaults.copy()
 
 # Screens configuration
 
-WIDGETS: List[Any] = [
+WIDGETS: list[Any] = [
     widget.Image(
         filename="~/.config/qtile/python_icon.png",
         scale="True",
         mouse_callbacks={
-            'Button1':
-            lambda: qtile.spawn("alacritty -e xonsh")}
+            "Button1":
+            lambda: qtile.spawn("alacritty -e xonsh")},
     ),
     widget.Spacer(length=5),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
     widget.GroupBox(
         fontsize=15,
@@ -282,42 +284,42 @@ WIDGETS: List[Any] = [
         highlight_method="block",
         block_highlight_text_color=cl_pal["amag"],
         borderwidth=3,
-        rounded=True
+        rounded=True,
     ),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
     widget.Prompt(),
     widget.WindowName(max_chars=50,
                       foreground=cl_pal["cazure"]),
-    widget.CurrentLayoutIcon(scale=0.8,),
+    widget.CurrentLayoutIcon(scale=0.8),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
     widget.Volume(
-        fmt='Vol: {}',
-        padding=5
+        fmt="Vol: {}",
+        padding=5,
     ),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
     widget.CPU(
         format="CPU {load_percent}%",
         mouse_callbacks={
-            'Button1':
-            lambda: qtile.spawn("alacritty -e htop")
-        }
+            "Button1":
+            lambda: qtile.spawn("alacritty -e htop"),
+        },
     ),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
     widget.Battery(
         format="Bat{char}: {percent:2.0%}",
@@ -326,37 +328,37 @@ WIDGETS: List[Any] = [
         empty_char="∅",
         unknown_char="◆",
         foreground=cl_pal["sunglow"],
-        low_foreground='FF0000',
+        low_foreground="FF0000",
         notify_below=0.1,
         low_percentage=0.2),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
     widget.Systray(),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
-    widget.Clock(format='%d.%m %a %I:%M %p',
+    widget.Clock(format="%d.%m %a %I:%M %p",
                  mouse_callbacks={
-                     'Button1':
+                     "Button1":
                      lambda: qtile.spawn(
-                         "gnome-calendar")
+                         "gnome-calendar"),
                  }),
     widget.Sep(
         linewidth=3,
         padding=10,
-        foreground=cl_pal["deepr"]
+        foreground=cl_pal["deepr"],
     ),
     widget.KeyboardLayout(
-        configured_keyboards=['us', 'de', 'us altgr-intl'],
-        foreground=cl_pal["sunglow"])
+        configured_keyboards=["us", "de", "us altgr-intl"],
+        foreground=cl_pal["sunglow"]),
 ]
 
-screens: List[Screen] = [
+screens: list[Screen] = [
     Screen(
         top=bar.Bar(
             WIDGETS,
@@ -368,58 +370,61 @@ screens: List[Screen] = [
     Screen(
         wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
         wallpaper_mode="fill",
-    )
+    ),
 ]
 
 # Floating window control
 
-mouse: List[Union[Drag, Click]] = [
+mouse: list[Drag | Click] = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 # Internal Qtile options
 
-dgroups_app_rules: List[Any] = []
-follow_mouse_focus = True
-bring_front_click = True
-cursor_warp = True
+dgroups_app_rules: list[Any] = []
+follow_mouse_focus: bool = True
+bring_front_click: bool = True
+cursor_warp: bool = True
 
 floating_layout = layout.Floating(float_rules=[
     *layout.Floating.default_float_rules,
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='pinentry'),  # GPG key password entry
-    Match(wm_class='Gnome-screenshot'),  # A screenshot utility
-    Match(wm_class='mpv'),  # A powerful media player
-    Match(wm_class='matplotlib'),  # It is all about plotting
+    Match(wm_class="ssh-askpass"),  # ssh-askpass
+    Match(title="pinentry"),  # GPG key password entry
+    Match(wm_class="Gnome-screenshot"),  # A screenshot utility
+    Match(wm_class="mpv"),  # A powerful media player
+    Match(wm_class="matplotlib"),  # It is all about plotting
     Match(wm_class="Thunar"),  # Better float than sorry
     Match(wm_class="File-roller"),  # Better float than sorry
 ])
 
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
-auto_minimize = True
+auto_fullscreen: bool = True
+focus_on_window_activation: str = "smart"
+reconfigure_screens: bool = True
+auto_minimize: bool = True
 
 # Screen event hook
 
 
 @ hook.subscribe.screen_change
-def screen_event(ev: Any) -> None:
+def screen_event(_: str) -> None:
     """Reload xrandr configuration in case of screen changes.
 
     This hook ensures that only one monitor will be used at the time,
     defaulting to external.
     """
+    script_path = Path.home() / ".config/scripts/randr_conf.sh"
     try:
-        subprocess.call([f"{Path.home()}/.config/scripts/randr_conf.sh"])
-    except Exception as e:
-        print(f"Failed to execute xrandr hook: {e}")
+        result = subprocess.run(
+            [script_path], capture_output=True, text=True, check=True)
+        logging.info("Successfully executed xrandr hook: %s", {result.stdout})
+    except subprocess.CalledProcessError:
+        logging.exception("Failed to execute xrandr hook")
 
 
 # Dirty Java hack
 
-wmname = "LG3D"
+wmname: str = "LG3D"
