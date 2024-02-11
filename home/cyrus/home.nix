@@ -173,7 +173,8 @@ in
     hunspellDicts.fr-moderne
     languagetool
     # Security
-    keepassxc
+    pass
+    rofi-pass
   ];
 
   # Git
