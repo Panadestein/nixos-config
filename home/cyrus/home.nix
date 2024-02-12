@@ -173,7 +173,11 @@ in
     hunspellDicts.fr-moderne
     languagetool
     # Security
-    pass
+    (pass.withExtensions
+      (exts: [
+        exts.pass-otp
+        exts.pass-import
+      ]))
     rofi-pass
   ];
 

@@ -84,6 +84,8 @@ keys: list[Key] = [
         desc="Toggles the Rofi window switcher"),
     Key([mod], "b", lazy.spawn(["sh", "-c", rofifm]),
         desc="Launches the Rofi file browser"),
+    Key([mod], "p", lazy.spawn("rofi-pass"),
+        desc="Launches GNU Pass."),
     Key([mod, "shift"], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
     Key([mod], "w", lazy.spawn("firefox"),
