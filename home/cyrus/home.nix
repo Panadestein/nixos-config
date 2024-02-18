@@ -111,6 +111,7 @@ in
     hyperfine
     neovide
     nil
+    nixfmt
     rust-analyzer
     shellcheck
     valgrind
@@ -177,6 +178,7 @@ in
       (exts: [
         exts.pass-otp
         exts.pass-import
+        exts.pass-update
       ]))
     rofi-pass
   ];
