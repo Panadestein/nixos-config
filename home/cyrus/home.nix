@@ -116,6 +116,8 @@ in
     shellcheck
     valgrind
     # Programming languages
+    cbqn
+    bqn386
     cargo
     chez
     clojure
