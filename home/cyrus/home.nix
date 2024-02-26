@@ -116,7 +116,7 @@ in
     shellcheck
     valgrind
     # Programming languages
-    cbqn
+    cbqn-standalone-replxx
     bqn386
     cargo
     chez
@@ -151,7 +151,7 @@ in
     # Leisure (NES, SNES and N64)
     (retroarch.override {
       cores = with libretro; [
-        #mupen64plus
+        mupen64plus
         nestopia
         snes9x
       ];
