@@ -6,7 +6,6 @@
 "     |_| \_|  \_/  |___|_|  |_|
 "
 " A simple Neovi(m|de) configuration
-"   (dankly optimized for Neovide)
 "-----------------------------------
 
 "----------------------------------------
@@ -76,6 +75,7 @@ call plug#begin("~/.config/nvim/plugged")
  Plug 'davidhalter/jedi-vim'
  Plug 'neomake/neomake'
  Plug 'akinsho/toggleterm.nvim'
+ Plug 'git@git.sr.ht:~detegr/nvim-bqn'
 call plug#end()
 
 "----------------------------------------
