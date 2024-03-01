@@ -117,7 +117,6 @@ in
     valgrind
     # Programming languages
     cbqn-standalone-replxx
-    bqn386
     cargo
     chez
     clojure
@@ -132,6 +131,7 @@ in
     racket
     rustc
     sbcl
+    uiua
     # Shells
     nushellFull
     xonsh

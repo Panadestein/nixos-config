@@ -75,7 +75,8 @@ call plug#begin("~/.config/nvim/plugged")
  Plug 'davidhalter/jedi-vim'
  Plug 'neomake/neomake'
  Plug 'akinsho/toggleterm.nvim'
- Plug 'git@git.sr.ht:~detegr/nvim-bqn'
+ Plug 'https://git.sr.ht/~detegr/nvim-bqn'
+ Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
 call plug#end()
 
 "----------------------------------------

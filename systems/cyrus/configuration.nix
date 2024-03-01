@@ -319,16 +319,19 @@
 
   # Fonts
   fonts.packages = with pkgs; [
+    bqn386
     dina-font
     fira-code
     fira-code-symbols
     font-awesome
+    iosevka
     liberation_ttf
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     proggyfonts
     source-code-pro
+    uiua386
     (nerdfonts.override { fonts = [ "FiraCode" "SourceCodePro" ]; })
   ];
 
