@@ -95,6 +95,7 @@ in
     xournalpp
     # Videos
     ffmpeg
+    kooha
     mpv
     yt-dlp
     # Image editing
