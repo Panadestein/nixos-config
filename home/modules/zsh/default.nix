@@ -5,8 +5,8 @@
     enable = true;
     autocd = true;
     dotDir = ".config/zsh";
-    enableAutosuggestions = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
 
     shellAliases = {
       # General aliases
