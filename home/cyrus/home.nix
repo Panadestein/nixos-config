@@ -32,7 +32,7 @@ in
     grc
     htop
     lolcat
-    nvtop-amd
+    nvtopPackages.amd
     poppler_utils
     qemu
     ripgrep
@@ -110,6 +110,7 @@ in
     gh
     haskell-language-server
     hyperfine
+    mob
     neovide
     nil
     nixfmt
