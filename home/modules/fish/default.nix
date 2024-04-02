@@ -90,6 +90,7 @@
       # Supercomputers
       barb = "ssh -i ~/.ssh/id_rsa it4i-rpanades@barbora.it4i.cz";
       karo = "ssh -i ~/.ssh/id_rsa it4i-rpanades@karolina.it4i.cz";
+      lumi = "ssh -i ~/.ssh/id_ed25519 rpanades2@lumi.csc.fi";
     };
 
     plugins = with pkgs.fishPlugins; [
