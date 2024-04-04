@@ -113,7 +113,7 @@ in
     mob
     neovide
     nil
-    nixfmt
+    nixfmt-classic
     rust-analyzer
     shellcheck
     valgrind
