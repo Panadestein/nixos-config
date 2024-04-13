@@ -124,7 +124,6 @@
 
   # Display manager
   services.xserver.displayManager = {
-    defaultSession = "none+qtile";
     gdm = {
       enable = false;
       wayland = true;
@@ -136,6 +135,7 @@
       }; 
     };
   };
+  services.displayManager.defaultSession = "none+qtile";
 
   # Window managers
   services.xserver.windowManager = {
