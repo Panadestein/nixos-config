@@ -17,6 +17,9 @@
 
     # The QChem flake. Contains several quantum chemistry packages
     qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
+
+    # Ranger-like nix config inspector
+    nix-inspect.url = "github:bluskript/nix-inspect";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

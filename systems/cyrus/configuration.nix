@@ -250,6 +250,7 @@
     which
     # Terminal and CLI utilities
     zsh
+    inputs.nix-inspect.packages.default
     # Text editors and office
     emacs-git
     vim_configurable
