@@ -84,7 +84,7 @@ in
     papis
     pymol
     # Office
-    calibre
+    #  calibre
     crow-translate
     djvulibre
     evince
