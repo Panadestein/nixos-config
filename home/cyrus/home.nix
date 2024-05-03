@@ -185,6 +185,7 @@ in
         exts.pass-update
       ]))
     rofi-pass
+    step-cli
   ];
 
   # Git
