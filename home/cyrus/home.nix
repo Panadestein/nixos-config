@@ -144,6 +144,7 @@ in
     # Internet and communications
     brave
     firefox
+    google-chrome
     nixpkgs-stable.slack
     skypeforlinux
     tdesktop
