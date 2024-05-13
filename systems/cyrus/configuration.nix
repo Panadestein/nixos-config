@@ -256,7 +256,7 @@
     vim_configurable
     # Programming languages (here to avoid environment clashes)
     gfortran
-    julia-bin
+    #  julia-bin
     mono
     qt6.full
     (let
