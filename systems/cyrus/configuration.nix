@@ -170,7 +170,7 @@
   services.xserver.xkb = {
     layout = "us,bqn,de";
     variant = "altgr-intl";
-    xkbOptions = "grp:switch";
+    options = "grp:switch";
   };
 
   # Printing support with CUPS
