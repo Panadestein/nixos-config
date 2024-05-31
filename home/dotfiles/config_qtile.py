@@ -106,7 +106,7 @@ keys: list[Key] = [
         desc="Takes a screenshot"),
 
     # Language
-    Key([mod], "y", lazy.widget["keyboardlayout"].next_keyboard(),
+    Key([mod], "i", lazy.widget["keyboardlayout"].next_keyboard(),
         desc="Cycle through keyboard layouts"),
 
     # Dropdown terminal
@@ -365,7 +365,7 @@ WIDGETS: list[Any] = [
         foreground=cl_pal["deepr"],
     ),
     widget.KeyboardLayout(
-        configured_keyboards=["us altgr-intl", "de", "bqn"],
+        configured_keyboards=["us", "de", "us altgr-intl"],
         foreground=cl_pal["sunglow"]),
 ]
 
@@ -420,7 +420,7 @@ auto_minimize: bool = True
 # Screen event hook
 
 
-@ hook.subscribe.screen_change
+@hook.subscribe.screen_change
 def screen_event(_: str) -> None:
     """Reload xrandr configuration in case of screen changes.
 
@@ -436,6 +436,23 @@ def screen_event(_: str) -> None:
         logging.exception("Failed to execute xrandr hook")
 
 
+@hook.subscribe.startup
+def autostart():
+    """Hateful hack to get xkb to work.
+
+    This should be handled by configuration.nix, except
+    that it does not work.
+    """
+    try:
+        result = subprocess.run(
+            ["setxkbmap", "-layout", "us,bqn,de", "-option", "grp:switch"],
+            capture_output=True, text=True, check=True)
+        logging.info("Successfully executed xkb startup hook: %s",
+                     {result.stdout})
+    except subprocess.CalledProcessError:
+        logging.exception("Failed to execute xkb startup hook")
+
 # Dirty Java hack
+
 
 wmname: str = "LG3D"
