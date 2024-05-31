@@ -365,7 +365,7 @@ WIDGETS: list[Any] = [
         foreground=cl_pal["deepr"],
     ),
     widget.KeyboardLayout(
-        configured_keyboards=["us", "de", "us altgr-intl"],
+        configured_keyboards=["us", "de"],
         foreground=cl_pal["sunglow"]),
 ]
 
