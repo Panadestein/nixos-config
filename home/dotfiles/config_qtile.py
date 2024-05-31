@@ -106,7 +106,7 @@ keys: list[Key] = [
         desc="Takes a screenshot"),
 
     # Language
-    Key([mod], "i", lazy.widget["keyboardlayout"].next_keyboard(),
+    Key([mod], "y", lazy.widget["keyboardlayout"].next_keyboard(),
         desc="Cycle through keyboard layouts"),
 
     # Dropdown terminal
@@ -365,7 +365,7 @@ WIDGETS: list[Any] = [
         foreground=cl_pal["deepr"],
     ),
     widget.KeyboardLayout(
-        configured_keyboards=["us", "de"],
+        configured_keyboards=["us altgr-intl", "de", "bqn"],
         foreground=cl_pal["sunglow"]),
 ]
 
