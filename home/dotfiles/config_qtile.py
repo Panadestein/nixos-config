@@ -57,6 +57,10 @@ rofifm: str = (
     "-show file-browser-extended -file-browser-stdin"
 )
 rofiw: str = "rofi -show window -show-icons"
+cbqn: str = (
+    """alacritty -o 'font.normal.family="BQN386 Unicode"'
+    -e zsh -c 'figlet "BQN" | lolcat && cbqn --version && bqn'"""
+)
 
 # Useful colors
 # https://www.schemecolor.com/python-logo-colors.php
@@ -110,6 +114,8 @@ keys: list[Key] = [
         desc="Toggles scratchpad terminal"),
     Key([mod], "c", lazy.group["scratchpad"].dropdown_toggle("calculator"),
         desc="Toggles the numbat calculator"),
+    Key([mod], "a", lazy.group["scratchpad"].dropdown_toggle("bqn"),
+        desc="Toggles the CBQN repl"),
 
     # Media Keys
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 5%- unmute"),
@@ -200,6 +206,9 @@ groups: list[Group | ScratchPad] = [
                  opacity=0.9,
                  on_focus_lost_hide=True),
         DropDown("calculator", "alacritty -e numbat",
+                 opacity=0.95,
+                 on_focus_lost_hide=False),
+        DropDown("bqn", cbqn,
                  opacity=0.95,
                  on_focus_lost_hide=False)]),
     Group("dev", layout="max",

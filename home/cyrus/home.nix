@@ -40,6 +40,7 @@ in
     tmate
     tmux
     trayer
+    tree
     ueberzugpp
     universal-ctags
     volumeicon
