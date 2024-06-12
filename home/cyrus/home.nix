@@ -136,7 +136,7 @@ in
     sbcl
     uiua
     # Shells
-    nushellFull
+    nushell
     xonsh
     # Advanced calculators
     fend
