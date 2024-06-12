@@ -58,7 +58,7 @@ rofifm: str = (
 )
 rofiw: str = "rofi -show window -show-icons"
 cbqn: str = (
-    """alacritty -o 'font.normal.family="BQN386 Unicode"'
+    """alacritty -o 'font.normal.family="BQN386 Unicode"' -o 'font.size=60'
     -e zsh -c 'figlet "BQN" | lolcat && cbqn --version && bqn'"""
 )
 
@@ -209,6 +209,10 @@ groups: list[Group | ScratchPad] = [
                  opacity=0.95,
                  on_focus_lost_hide=False),
         DropDown("bqn", cbqn,
+                 x=0.0,
+                 y=0.0,
+                 width=1.0,
+                 height=1.0,
                  opacity=0.95,
                  on_focus_lost_hide=False)]),
     Group("dev", layout="max",
