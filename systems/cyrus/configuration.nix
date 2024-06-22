@@ -134,7 +134,7 @@
       }; 
     };
   };
-  services.displayManager.defaultSession = "none+qtile";
+  services.displayManager.defaultSession = "qtile";
 
   # Window managers
   services.xserver.windowManager = {
