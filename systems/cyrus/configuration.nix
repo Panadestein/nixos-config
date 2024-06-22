@@ -116,7 +116,6 @@
 
   # Configure AMD graphics
   services.xserver.videoDrivers = [ "amdgpu" ];
-  hardware.opengl.driSupport = true;
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
   ];
