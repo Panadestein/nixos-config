@@ -20,6 +20,9 @@
 
     # Ranger-like nix config inspector
     nix-inspect.url = "github:bluskript/nix-inspect";
+
+    # The best bibliography manager ever
+    papis.url = "github:papis/papis";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

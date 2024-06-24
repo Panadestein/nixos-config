@@ -82,7 +82,6 @@ in
     gnuplot
     graphviz
     maxima
-    papis
     pymol
     # Office
     calibre
