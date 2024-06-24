@@ -116,7 +116,7 @@
 
   # Configure AMD graphics
   services.xserver.videoDrivers = [ "amdgpu" ];
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     amdvlk
   ];
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
