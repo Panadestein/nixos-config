@@ -57,12 +57,12 @@ in
     arc-theme
     cairo
     glib
-    gnome.gnome-calendar
-    gnome.simple-scan
+    gnome-calendar
     gobject-introspection
     gtk3
     guake
     loupe
+    simple-scan
     # Xfce packages
     xfce.exo
     (xfce.thunar.override {
@@ -293,7 +293,7 @@ in
   home.pointerCursor = {
     x11.enable = true;
     name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     size = 25;
   };
 
@@ -314,11 +314,11 @@ in
     enable = true;
     iconTheme = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
     cursorTheme = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
       size = 25;
     };
     theme = {
