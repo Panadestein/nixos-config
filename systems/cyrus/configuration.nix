@@ -187,11 +187,9 @@
   hardware.sane.enable = true;
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   nixpkgs.config.pulseaudio = true;
-  sound.mediaKeys.enable = true;
 
   # Bluetooth support
   hardware.bluetooth = {
