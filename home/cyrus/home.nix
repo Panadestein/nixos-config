@@ -78,7 +78,6 @@ in
     # Text editors
     neovim
     # Science
-    avogadro2
     gnuplot
     graphviz
     maxima
