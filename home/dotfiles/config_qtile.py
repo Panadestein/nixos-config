@@ -118,10 +118,12 @@ keys: list[Key] = [
         desc="Toggles the CBQN repl"),
 
     # Media Keys
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 5%- unmute"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
         desc="Lowers volume"),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 5%+ unmute"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
         desc="Raises volume"),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+        desc="Toggles sound"),
     Key([], "XF86MonBrightnessDown",   lazy.spawn("brightnessctl -q s 10%-"),
         desc="Decreases brightness"),
     Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl -q s +10%"),
@@ -315,7 +317,7 @@ WIDGETS: list[Any] = [
         padding=10,
         foreground=cl_pal["deepr"],
     ),
-    widget.Volume(
+    widget.PulseVolume(
         fmt="Vol: {}",
         padding=5,
     ),

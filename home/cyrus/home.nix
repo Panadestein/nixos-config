@@ -81,7 +81,6 @@ in
     gnuplot
     graphviz
     maxima
-    pymol
     # Office
     calibre
     crow-translate
