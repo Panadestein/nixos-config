@@ -427,8 +427,8 @@ auto_minimize: bool = True
 # Screen event hook
 
 
-@hook.subscribe.screen_change
-def screen_event(_: str) -> None:
+@hook.subscribe.screens_reconfigured
+def screen_event() -> None:
     """Reload xrandr configuration in case of screen changes.
 
     This hook ensures that only one monitor will be used at the time,
