@@ -423,10 +423,11 @@ focus_on_window_activation: str = "smart"
 reconfigure_screens: bool = True
 auto_minimize: bool = True
 
+
 # Screen event hook
 
 
-@hook.subscribe.screen_change
+#  @hook.subscribe.screen_change
 def screen_event(_: str) -> None:
     """Reload xrandr configuration in case of screen changes.
 
@@ -458,7 +459,7 @@ def autostart():
     except subprocess.CalledProcessError:
         logging.exception("Failed to execute xkb startup hook")
 
-# Dirty Java hack
 
+# Dirty Java hack
 
 wmname: str = "LG3D"
