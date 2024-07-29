@@ -420,7 +420,7 @@ floating_layout = layout.Floating(float_rules=[
 
 auto_fullscreen: bool = True
 focus_on_window_activation: str = "smart"
-reconfigure_screens: bool = False
+reconfigure_screens: bool = True
 auto_minimize: bool = True
 
 # Screen event hook
