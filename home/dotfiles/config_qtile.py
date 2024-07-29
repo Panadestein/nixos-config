@@ -427,7 +427,7 @@ auto_minimize: bool = True
 # Screen event hook
 
 
-#  @hook.subscribe.screen_change
+@hook.subscribe.screen_change
 def screen_event(_: str) -> None:
     """Reload xrandr configuration in case of screen changes.
 
