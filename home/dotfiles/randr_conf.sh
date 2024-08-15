@@ -23,20 +23,20 @@ MONS=$(xrandr -q | grep -c " connected")
 if [ "$MONS" -gt 2 ]; then
     xrandr --output "$LAP" --off\
 	   --output "$HDMI" --off\
-	   --output "$DP0" --auto --primary
+	   --output "$DP0" --auto
 elif [ "$MONS" -eq 2 ]; then
     if xrandr | grep "$DP0 connected"; then
 	xrandr --output "$LAP" --off\
-	       --output "$DP0" --auto --primary
+	       --output "$DP0" --auto
     elif xrandr | grep "$DP1 connected"; then
 	xrandr --output "$LAP" --off\
-	       --output "$DP1" --auto --primary
+	       --output "$DP1" --auto
     elif xrandr | grep "$HDMI connected"; then
 	xrandr --output "$LAP" --off\
-	       --output "$HDMI" --auto --primary
+	       --output "$HDMI" --auto
     fi
 else
-    xrandr --output "$LAP" --auto --primary\
+    xrandr --output "$LAP" --auto\
 	   --output "$DP0" --off\
 	   --output "$DP1" --off\
 	   --output "$HDMI" --off
