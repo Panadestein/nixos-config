@@ -41,7 +41,7 @@ in
     tmux
     trayer
     tree
-    ueberzugpp
+    nixpkgs-stable.ueberzugpp
     universal-ctags
     volumeicon
     xclip
