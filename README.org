@@ -18,7 +18,7 @@
 #+END_HTML
 
 Welcome to my personal flake [[https://nixos.org/][Nix/NixOS]] configuration, powered by [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration
-is designed to be production-ready (according to my personal requirements) and comes with the [[https://xmonad.org/][xmonad]] and [[http://www.qtile.org/][Qtile]]
+is designed to be production-ready (according to my personal requirements) and comes with the [[https://xmonad.org/][xmonad]] and [[https://qtile.org/screenshots/][Qtile]]
 tiling window managers. Additionally, I have a declarative configuration for the [[https://release.gnome.org/][gnome]]
 desktop environment, although it's not my primary environment.
 
