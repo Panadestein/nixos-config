@@ -118,15 +118,15 @@ keys: list[Key] = [
         desc="Toggles the CBQN repl"),
 
     # Media Keys
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
         desc="Lowers volume"),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),
         desc="Raises volume"),
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+    Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
         desc="Toggles sound"),
-    Key([], "XF86MonBrightnessDown",   lazy.spawn("brightnessctl -q s 10%-"),
+    Key([], "XF86MonBrightnessDown",   lazy.spawn("brightnessctl -q s 5%-"),
         desc="Decreases brightness"),
-    Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl -q s +10%"),
+    Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl -q s +5%"),
         desc="Increases brightness"),
 
     # Display Manager

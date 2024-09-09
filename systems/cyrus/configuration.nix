@@ -186,11 +186,6 @@
   # Scanners
   hardware.sane.enable = true;
 
-  # Enable sound.
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  nixpkgs.config.pulseaudio = true;
-
   # Bluetooth support
   hardware.bluetooth = {
     enable = true;
@@ -356,6 +351,15 @@
       enable = true;
       extraOptions = "--default-ulimit nofile=65536:65536";
     };
+  };
+
+  # Audio service
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 
   # Additional services
