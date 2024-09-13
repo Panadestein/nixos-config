@@ -140,6 +140,7 @@ in
     frink
     numbat
     # Internet and communications
+    archivebox
     brave
     firefox
     google-chrome
