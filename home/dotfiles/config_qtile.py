@@ -381,11 +381,11 @@ screens: list[Screen] = [
             WIDGETS,
             28,
         ),
-        wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
+        wallpaper=f"{Path.home()}/.config/qtile/PiN_EFOehme.jpg",
         wallpaper_mode="fill",
     ),
     Screen(
-        wallpaper=f"{Path.home()}/.config/qtile/tc_feyn.png",
+        wallpaper=f"{Path.home()}/.config/qtile/PiN_EFOehme.jpg",
         wallpaper_mode="fill",
     ),
 ]

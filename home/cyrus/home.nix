@@ -119,6 +119,7 @@ in
     cbqn-standalone-replxx
     cargo
     chez
+    chicken
     clojure
     gcc
     gdb
