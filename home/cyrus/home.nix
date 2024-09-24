@@ -300,6 +300,7 @@ in
   xdg.configFile."qtile/config.py".source = ../dotfiles/config_qtile.py;
   home.file.".config/qtile/python_icon.png".source = ../dotfiles/images/python_icon.png;
   home.file.".config/qtile/tc_feyn.png".source = ../dotfiles/images/tc_feyn.png;
+  home.file.".config/qtile/PiN_EFOehme.jpg".source = ../dotfiles/images/PiN_EFOehme.jpg;
   home.file.".config/qtile/cc_tram.jpg".source = ../dotfiles/images/cc_tram.jpg;
 
   # Set LightDM avatar (https://wiki.archlinux.org/title/LightDM#Changing_your_avatar)
