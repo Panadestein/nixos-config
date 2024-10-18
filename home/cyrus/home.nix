@@ -113,6 +113,7 @@ in
     nil
     nixfmt-classic
     rust-analyzer
+    samply
     shellcheck
     valgrind
     # Programming languages
