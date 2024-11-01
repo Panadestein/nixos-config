@@ -127,7 +127,6 @@ in
     ghc
     gnumake
     jdk11
-    julia-bin
     leiningen
     mpich
     nodejs
