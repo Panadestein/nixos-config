@@ -74,7 +74,6 @@ in
     gdu
     ranger
     vivid
-    yazi
     # Text editors
     neovim
     # Science
