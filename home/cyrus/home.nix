@@ -127,6 +127,7 @@ in
     ghc
     gnumake
     jdk11
+    lean4
     leiningen
     mpich
     nodejs
