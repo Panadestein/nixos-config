@@ -145,7 +145,7 @@ in
     brave
     firefox
     google-chrome
-    nixpkgs-stable.slack
+    slack
     skypeforlinux
     tdesktop
     thunderbird
