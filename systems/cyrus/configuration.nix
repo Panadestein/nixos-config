@@ -134,7 +134,7 @@
       }; 
     };
   };
-  services.displayManager.defaultSession = "qtile";
+  services.displayManager.defaultSession = lib.mkForce "qtile";
 
   # Window managers
   services.xserver.windowManager = {
@@ -149,7 +149,6 @@
     };
     qtile = {
       enable = true;
-      package = pkgs.python3Packages.qtile;
     };
     stumpwm = {
       enable = false;

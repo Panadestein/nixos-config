@@ -23,9 +23,15 @@
 
     # The best bibliography manager ever
     papis.url = "github:papis/papis";
+
+    # The best window manager I know
+    qtile-flake = {
+      url = "github:qtile/qtile";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, qtile-flake, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -51,7 +57,7 @@
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
-              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable qtile-flake.overlays.default ]; })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {
