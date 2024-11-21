@@ -85,7 +85,7 @@ in
     crow-translate
     djvulibre
     evince
-    libreoffice-fresh
+    libreoffice
     ltex-ls
     pandoc
     translate-shell
