@@ -152,13 +152,13 @@ in
     whatsapp-for-linux
     zoom-us
     # Leisure (NES, SNES and N64)
-    (retroarch.withCores {
-      cores = with libretro; [
+    retroarch.withCores (
+      cores: with libretro; [
         mupen64plus
         nestopia
         snes9x
-      ];
-    })
+      ]
+    )
     # Web
     bundler
     hugo
