@@ -152,7 +152,7 @@ in
     whatsapp-for-linux
     zoom-us
     # Leisure (NES, SNES and N64)
-    (retroarch.override {
+    (retroarch.withCores {
       cores = with libretro; [
         mupen64plus
         nestopia
