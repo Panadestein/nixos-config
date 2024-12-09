@@ -327,8 +327,7 @@
     proggyfonts
     source-code-pro
     uiua386
-    nerd-fonts.fira_code
-    nerd-fonts.source_code_pro
+    nerd-fonts.fira-code
   ];
 
   # Gnome apps configuration
