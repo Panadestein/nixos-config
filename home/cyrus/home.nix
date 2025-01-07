@@ -212,10 +212,9 @@ in
     terminal = "${pkgs.alacritty}/bin/alacritty";
     theme = "arthur";
     extraConfig = {
-      modi = "window,drun,run,ssh,file-browser-extended";
+      modi = "window,drun,run,ssh";
     };
   };
-  xdg.configFile."rofi/file-browser".source = ../dotfiles/rofi_browser;
 
   # Alacritty
   xdg.configFile."alacritty/alacritty.toml".source = ../dotfiles/alacritty.toml;
