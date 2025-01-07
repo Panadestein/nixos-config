@@ -100,7 +100,6 @@ in
     imagemagick
     inkscape
     pdftk
-    povray
     # Programming utilities
     cmake
     fortls
