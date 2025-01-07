@@ -150,7 +150,6 @@ in
     tdesktop
     thunderbird
     whatsapp-for-linux
-    zoom-us
     # Leisure (NES, SNES and N64)
     (retroarch.withCores (
       cores: with libretro; [
