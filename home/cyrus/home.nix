@@ -209,7 +209,7 @@ in
   # Rofi
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi.override { plugins = [ pkgs.rofi-file-browser ]; };
+    package = pkgs.rofi;
     terminal = "${pkgs.alacritty}/bin/alacritty";
     theme = "arthur";
     extraConfig = {

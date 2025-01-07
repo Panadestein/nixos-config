@@ -52,10 +52,7 @@ terminal: str = guess_terminal()
 dgroups_key_binder = simple_key_binder("mod4")
 xrancmd: str = f"{Path.home()}/.config/scripts/randr_conf.sh"
 prompt: str = f'{os.environ["USER"]}@{socket.gethostname()}: '
-rofifm: str = (
-    "fd | rofi -show-icons -display-file-browser-extended 'Search' "
-    "-show file-browser-extended -file-browser-stdin"
-)
+rofifm: str = "rofi -show filebrowser"
 rofiw: str = "rofi -show window -show-icons"
 cbqn: str = (
     """alacritty -o 'font.normal.family="BQN386 Unicode"' -o 'font.size=60'
