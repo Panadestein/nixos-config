@@ -126,6 +126,7 @@ in
     ghc
     gnumake
     jdk11
+    julia-bin
     lean4
     leiningen
     mpich
