@@ -131,6 +131,7 @@ in
     leiningen
     mpich
     nodejs
+    octave
     racket
     rustc
     sbcl
