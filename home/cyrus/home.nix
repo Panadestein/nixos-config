@@ -102,6 +102,7 @@ in
     pdftk
     # Programming utilities
     cmake
+    cudaPackages.nsight_systems
     fortls
     gh
     haskell-language-server
