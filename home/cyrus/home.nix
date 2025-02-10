@@ -79,7 +79,6 @@ in
     # Science
     gnuplot
     graphviz
-    maxima
     # Office
     calibre
     crow-translate
