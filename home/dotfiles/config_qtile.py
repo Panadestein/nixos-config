@@ -368,7 +368,7 @@ WIDGETS: list[Any] = [
         foreground=cl_pal["deepr"],
     ),
     widget.KeyboardLayout(
-        configured_keyboards=["us", "de", "us altgr-intl"],
+        configured_keyboards=["us"],
         foreground=cl_pal["sunglow"]),
 ]
 
@@ -438,22 +438,6 @@ def screen_event(_: str) -> None:
     except subprocess.CalledProcessError:
         logging.exception("Failed to execute xrandr hook")
 
-
-@hook.subscribe.startup
-def autostart():
-    """Hateful hack to get xkb to work.
-
-    This should be handled by configuration.nix, except
-    that it does not work.
-    """
-    try:
-        result = subprocess.run(
-            ["setxkbmap", "-layout", "us,bqn,de", "-option", "grp:switch"],
-            capture_output=True, text=True, check=True)
-        logging.info("Successfully executed xkb startup hook: %s",
-                     {result.stdout})
-    except subprocess.CalledProcessError:
-        logging.exception("Failed to execute xkb startup hook")
 
 # Dirty Java hack
 
