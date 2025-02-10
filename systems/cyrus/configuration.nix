@@ -167,7 +167,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us,bqn";
-    option = "grp:switch";
+    options = "grp:switch";
   };
 
   # Printing support with CUPS
