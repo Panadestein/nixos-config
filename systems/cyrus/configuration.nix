@@ -174,8 +174,8 @@
   services.printing = {
     enable = true;
     drivers = [
-      pkgs.hplip
-      pkgs.hplipWithPlugin
+      pkgs.nixpkgs-stable.hplip
+      pkgs.nixpkgs-stable.hplipWithPlugin
     ];
   };
   services.avahi.enable = true;
