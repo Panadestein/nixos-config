@@ -115,7 +115,6 @@ in
     shellcheck
     valgrind
     # Programming languages
-    cbqn-standalone-replxx
     cargo
     chez
     chicken
