@@ -2,6 +2,7 @@
 { inputs, config, lib, pkgs, ... }:
 let
   hm = inputs.home-manager.lib.hm;
+  cbqn = pkgs.callPackage ../modules/cbqn/default.nix { };
 in
 {
   # Import home-manager modules
@@ -100,6 +101,7 @@ in
     inkscape
     pdftk
     # Programming utilities
+    cbqn
     cmake
     fortls
     gh
