@@ -1,4 +1,4 @@
-{ lib, stdenv, pkg-config, libffi, fetchFromGitHub }:
+{ config, lib, stdenv, pkg-config, libffi, fetchFromGitHub }:
 let
   version = "rolling";
   cbqnSrc = fetchFromGitHub {
