@@ -46,7 +46,7 @@ in stdenv.mkDerivation {
     "notui=1"
     "REPLXX=1"
     "f=-march=znver4"
-    "has=avx2"
+    "target_from_cc=1"
   ];
 
   dontConfigure = true;
