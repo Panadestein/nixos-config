@@ -314,7 +314,6 @@
 
   # Fonts
   fonts.packages = with pkgs; [
-    bqn386
     dina-font
     fira-code
     fira-code-symbols

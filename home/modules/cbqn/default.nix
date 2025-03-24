@@ -4,8 +4,8 @@ let
   cbqnSrc = fetchFromGitHub {
     owner = "dzaima";
     repo = "CBQN";
-    rev = "60b848f1b7ded26942acdcf44abc6f5d68c94448";
-    hash = "sha256-PEwlRJIrIRLs25Pm4uB9SJ0lmFkyqs0wavaVmurf14w=";
+    rev = "09642a354f124630996a6ae4e8442089625cd907";
+    hash = "sha256-jLi9uqBWGVJlhwHWDvfyd2EI3ldvjfXK9ZVCj2c0LsI=";
   };
 
   cbqnBytecode = fetchFromGitHub {
