@@ -43,6 +43,7 @@ in
     tmux
     trayer
     tree
+    nix-prefetch-git
     nixpkgs-stable.ueberzugpp
     universal-ctags
     volumeicon

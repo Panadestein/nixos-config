@@ -5,7 +5,7 @@ let
     owner = "dzaima";
     repo = "CBQN";
     rev = "09642a354f124630996a6ae4e8442089625cd907";
-    hash = "sha256-jLi9uqBWGVJlhwHWDvfyd2EI3ldvjfXK9ZVCj2c0LsI=";
+    hash = "sha256-M1dEB4o+nXXzq/96/PvBKL3sLH84y1XYrv3yknGzhmw=";
     fetchSubmodules = true;
   };
 in stdenv.mkDerivation {
