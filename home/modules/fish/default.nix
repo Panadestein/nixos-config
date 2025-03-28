@@ -51,6 +51,18 @@
           end
       end
 
+      function bqnhash
+          set head_hash (git rev-parse HEAD)
+
+          if test -n "$head_hash"
+              echo "Hash of HEAD: $head_hash"
+              set url "https://github.com/dzaima/CBQN/archive/$head_hash.tar.gz"
+              nix-prefetch-url --unpack $url
+          else
+              echo "Error: Unable to retrieve HEAD hash. Are you in a Git repository?"
+          end
+      end
+
       # Entering nix-shells
       any-nix-shell fish --info-right | source
     '';
