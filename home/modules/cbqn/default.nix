@@ -16,11 +16,10 @@ in stdenv.mkDerivation {
   nativeBuildInputs = [ pkg-config ];
   buildInputs       = [ libffi ];
 
-  # Pass the system C compiler appropriately.
+  # Set the system C compiler
   makeFlags = [ "CC=${stdenv.cc.targetPrefix}cc" ];
 
-  # Use o3n for a native build, disable fancy UI output, enable REPLXX,
-  # and enforce AVX2 optimizations for your machine.
+  # Customize build for maximum performance.
   buildFlags = [
     "o3"
     "notui=1"

@@ -57,7 +57,7 @@
           if test -n "$head_hash"
               echo "Hash of HEAD: $head_hash"
               set url "https://github.com/dzaima/CBQN/archive/$head_hash.tar.gz"
-              nix-prefetch-url --unpack $url
+              nix hash convert --hash-algo sha256 $(nix-prefetch-url --unpack $url)
           else
               echo "Error: Unable to retrieve HEAD hash. Are you in a Git repository?"
           end
