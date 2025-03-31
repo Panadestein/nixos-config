@@ -268,7 +268,7 @@ in
   xdg.configFile."translate-shell/init.trans".source = ../dotfiles/init.trans;
   home.file.".config/translate-shell/happiness.trans".source = ../dotfiles/happiness.trans;
 
-  # Picom, disables if not using a WM
+  # Picom, disable if not using a WM
   services.picom = {
     enable = true;
     activeOpacity = 1.0;
@@ -282,6 +282,7 @@ in
       "90:class_g = 'Alacritty'"
     ];
     backend = "glx";
+    vSync = true;
   };
 
   # Extra Xsession config
