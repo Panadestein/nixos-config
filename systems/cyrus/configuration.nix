@@ -115,7 +115,7 @@
   services.xserver.enable = true;
 
   # Configure AMD graphics
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk
   ];
