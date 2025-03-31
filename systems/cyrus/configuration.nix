@@ -49,7 +49,7 @@
   };
 
   # Use the latest linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Load AMD CPU microcode and firmware
   hardware.cpu.amd.updateMicrocode = true;
@@ -115,7 +115,7 @@
   services.xserver.enable = true;
 
   # Configure AMD graphics
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk
   ];
