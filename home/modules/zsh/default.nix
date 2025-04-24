@@ -60,7 +60,7 @@
       size = 10000000;
     };
 
-    initExtra = builtins.readFile ../../dotfiles/zshextra;
+    initContent = builtins.readFile ../../dotfiles/zshextra;
 
     oh-my-zsh = {
       enable = true;
