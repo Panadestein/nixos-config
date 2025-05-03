@@ -103,7 +103,6 @@ in
     inkscape
     pdftk
     # Programming utilities
-    cbqn
     cmake
     fortls
     gh
@@ -113,6 +112,7 @@ in
     neovide
     nil
     nixfmt-classic
+    ride
     rpi-imager
     rust-analyzer
     samply
@@ -120,9 +120,11 @@ in
     valgrind
     # Programming languages
     cargo
+    cbqn
     chez
     chicken
     clojure
+    (dyalog.override {acceptLicense = true;})
     gcc
     gdb
     ghc
