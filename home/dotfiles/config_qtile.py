@@ -56,7 +56,7 @@ rofifm: str = "rofi -show filebrowser"
 rofiw: str = "rofi -show window -show-icons"
 cbqn: str = (
     """alacritty -o 'font.normal.family="BQN386 Unicode"' -o 'font.size=60'
-    -e zsh -c 'figlet "BQN" | lolcat && cbqn --version && bqn'"""
+    -e zsh -c 'figlet "BQN" | lolcat 2>/dev/null && cbqn --version && bqn'"""
 )
 
 # Useful colors
