@@ -152,7 +152,6 @@ in
     firefox
     google-chrome
     slack
-    skypeforlinux
     tdesktop
     thunderbird
     whatsapp-for-linux
