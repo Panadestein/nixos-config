@@ -112,6 +112,7 @@ in
     neovide
     nil
     nixfmt-classic
+    openblas
     ride
     rpi-imager
     rust-analyzer
