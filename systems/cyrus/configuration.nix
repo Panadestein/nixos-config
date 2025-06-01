@@ -156,7 +156,7 @@
   };
   
   # Desktop environment
-  services.xserver.desktopManager.gnome.enable = false;
+  services.desktopManager.gnome.enable = false;
   xdg.portal.enable = lib.mkIf
     (!config.services.xserver.desktopManager.gnome.enable)
     true;
