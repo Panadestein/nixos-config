@@ -158,10 +158,10 @@
   # Desktop environment
   services.desktopManager.gnome.enable = false;
   xdg.portal.enable = lib.mkIf
-    (!config.services.xserver.desktopManager.gnome.enable)
+    (!config.services.desktopManager.gnome.enable)
     true;
   xdg.portal.configPackages = lib.mkIf
-    (!config.services.xserver.desktopManager.gnome.enable)
+    (!config.services.desktopManager.gnome.enable)
     [ pkgs.xdg-desktop-portal-gtk ];
 
   # Configure keymap in X11
