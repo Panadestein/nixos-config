@@ -16,6 +16,7 @@ in
     # General utilities
     any-nix-shell
     asciidoctor
+    awscli
     bat
     bc
     bottom
