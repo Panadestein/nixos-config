@@ -108,7 +108,9 @@ in
     fortls
     gh
     haskell-language-server
+    hotspot
     hyperfine
+    linuxKernel.packages.linux_zen.perf
     mob
     neovide
     nil
