@@ -112,6 +112,7 @@ in
     hyperfine
     linuxKernel.packages.linux_zen.perf
     mob
+    mpi
     neovide
     nil
     nixfmt-classic
