@@ -138,7 +138,6 @@ in
     julia-bin
     lean4
     leiningen
-    mpich
     nodejs
     octave
     racket
