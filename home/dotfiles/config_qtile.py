@@ -308,7 +308,7 @@ WIDGETS: list[Any] = [
     widget.Prompt(),
     widget.WindowName(max_chars=50,
                       foreground=cl_pal["cazure"]),
-    widget.CurrentLayoutIcon(scale=0.8),
+    widget.CurrentLayout(scale=0.8),
     widget.Sep(
         linewidth=3,
         padding=10,
