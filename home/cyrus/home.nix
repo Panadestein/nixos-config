@@ -312,7 +312,7 @@ in
   # Qtile configuration
   xdg.configFile."qtile/config.py".source = ../dotfiles/config_qtile.py;
   home.file.".config/qtile/python_icon.png".source = ../dotfiles/images/python_icon.png;
-  home.file.".config/qtile/bqn_logo.svg".source = ../dotfiles/images/bqn_logo.svg;
+  home.file.".config/qtile/bqn_logo.png".source = ../dotfiles/images/bqn_logo.png;
   home.file.".config/qtile/tc_feyn.png".source = ../dotfiles/images/tc_feyn.png;
   home.file.".config/qtile/PiN_EFOehme.jpg".source = ../dotfiles/images/PiN_EFOehme.jpg;
   home.file.".config/qtile/cc_tram.jpg".source = ../dotfiles/images/cc_tram.jpg;

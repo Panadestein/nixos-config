@@ -275,7 +275,7 @@ extension_defaults: dict[str, str | int] = widget_defaults.copy()
 
 WIDGETS: list[Any] = [
     widget.Image(
-        filename="~/.config/qtile/bqn_logo.svg",
+        filename="~/.config/qtile/bqn_logo.png",
         scale="True",
         mouse_callbacks={
             "Button1":
