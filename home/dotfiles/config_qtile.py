@@ -275,11 +275,11 @@ extension_defaults: dict[str, str | int] = widget_defaults.copy()
 
 WIDGETS: list[Any] = [
     widget.Image(
-        filename="~/.config/qtile/python_icon.png",
+        filename="~/.config/qtile/bqn_logo.svg",
         scale="True",
         mouse_callbacks={
             "Button1":
-            lambda: qtile.spawn("alacritty -e xonsh")},
+            lambda: qtile.spawn(cbqn)},
     ),
     widget.Spacer(length=5),
     widget.Sep(
