@@ -4,6 +4,7 @@ let
   hm = inputs.home-manager.lib.hm;
   cbqn = pkgs.callPackage ../modules/cbqn/default.nix { };
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
+  dyalog_kernel = pkgs.callPackage ../modules/dyalog/default.nix { };
 in
 {
   # Import home-manager modules
@@ -130,6 +131,7 @@ in
     chicken
     clojure
     (dyalog.override {acceptLicense = true;})
+    dyalog_kernel
     gcc
     gdb
     ghc
