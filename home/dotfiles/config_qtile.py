@@ -111,7 +111,7 @@ keys: list[Key] = [
         desc="Toggles scratchpad terminal"),
     Key([mod], "c", lazy.group["scratchpad"].dropdown_toggle("calculator"),
         desc="Toggles the numbat calculator"),
-    Key([mod], "a", lazy.group["scratchpad"].dropdown_toggle("bqn"),
+    Key([mod, "shift"], "a", lazy.group["scratchpad"].dropdown_toggle("bqn"),
         desc="Toggles the CBQN repl"),
 
     # Media Keys
@@ -275,11 +275,11 @@ extension_defaults: dict[str, str | int] = widget_defaults.copy()
 
 WIDGETS: list[Any] = [
     widget.Image(
-        filename="~/.config/qtile/bqn_logo.png",
+        filename="~/.config/qtile/fish_logo.png",
         scale="True",
         mouse_callbacks={
             "Button1":
-            lambda: qtile.spawn(cbqn)},
+            lambda: qtile.spawn("alacritty -e fish")},
     ),
     widget.Spacer(length=5),
     widget.Sep(
