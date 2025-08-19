@@ -57,6 +57,7 @@
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {
