@@ -151,6 +151,7 @@
     };
     qtile = {
       enable = true;
+      package = inputs."qtile-flake".packages.${pkgs.system}.default;
     };
     stumpwm = {
       enable = false;
