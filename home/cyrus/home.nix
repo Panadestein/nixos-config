@@ -92,6 +92,7 @@ in
     libreoffice
     ltex-ls
     pandoc
+    readeck
     translate-shell
     xournalpp
     # Videos
@@ -159,6 +160,7 @@ in
     google-chrome
     slack
     tdesktop
+    teams
     thunderbird
     whatsapp-for-linux
     # Leisure (NES, SNES and N64)
