@@ -32,7 +32,9 @@
   
   # Nix configuration
   nix = {
+    optimise.automatic = true;
     settings = {
+      auto-optimise-store = true;
       substituters = [
         "https://nix-community.cachix.org/"
         "https://cache.nixos.org/"

@@ -204,6 +204,16 @@ in
   # Make sure fontconfig gets updated
   fonts.fontconfig.enable = true;
 
+  # Nix CLI helper
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      dates = "weekly";
+      extraArgs = "--delete-older-than 7d";
+    };
+  };
+
   # Git
   programs.git = {
     enable = true;
