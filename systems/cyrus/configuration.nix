@@ -102,6 +102,10 @@
     networkmanager = {
       enable = true;
       wifi.powersave = lib.mkDefault false;
+      plugins = with pkgs; [
+        networkmanager-l2tp
+        networkmanager-openvpn
+      ];
     };
   };
   programs.nm-applet.enable = true;
