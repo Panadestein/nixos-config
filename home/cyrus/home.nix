@@ -112,13 +112,13 @@ in
     haskell-language-server
     hotspot
     hyperfine
-    linuxKernel.packages.linux_zen.perf
     mob
     mpi
     neovide
     nil
     nixfmt-classic
     openblas
+    perf
     ride
     rpi-imager
     rust-analyzer
