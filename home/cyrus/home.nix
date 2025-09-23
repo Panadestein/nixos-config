@@ -41,6 +41,7 @@ in
     qemu
     ripgrep
     sd
+    step-cli
     tmate
     tmux
     trayer
