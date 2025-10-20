@@ -47,11 +47,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1759655261,
-        "narHash": "sha256-VqbnVGL7+eb0px3tx9szi38BC+J8ONBi4QAkKPXiokw=",
+        "lastModified": 1760927413,
+        "narHash": "sha256-mOAYOFN9UD1FebRXs3hC/y+gcgQBCt2dZDHR/RQubSE=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "85a72536d0224341ffdfb9fbb724f5ef15476dd6",
+        "rev": "a8454b748dc8ccc7f1a233e34ed7a350c8c498f0",
         "type": "github"
       },
       "original": {
@@ -101,11 +101,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759573136,
-        "narHash": "sha256-ILSPD0Dm8p0w0fCVzOx98ZH8yFDrR75GmwmH3fS2VnE=",
+        "lastModified": 1760929667,
+        "narHash": "sha256-nZh6uvc71nVNaf/y+wesnjwsmJ6IZZUnP2EzpZe48To=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5f06ceafc6c9b773a776b9195c3f47bbe1defa43",
+        "rev": "189c21cf879669008ccf06e78a553f17e88d8ef0",
         "type": "github"
       },
       "original": {
@@ -179,11 +179,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1759381078,
-        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "lastModified": 1760878510,
+        "narHash": "sha256-K5Osef2qexezUfs0alLvZ7nQFTGS9DL2oTVsIXsqLgs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "rev": "5e2a59a5b1a82f89f2c7e598302a9cacebb72a67",
         "type": "github"
       },
       "original": {
@@ -195,11 +195,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1759580034,
-        "narHash": "sha256-YWo57PL7mGZU7D4WeKFMiW4ex/O6ZolUS6UNBHTZfkI=",
+        "lastModified": 1760725957,
+        "narHash": "sha256-tdoIhL/NlER290HfSjOkgi4jfmjeqmqrzgnmiMtGepE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3bcc93c5f7a4b30335d31f21e2f1281cba68c318",
+        "rev": "81b927b14b7b3988334d5282ef9cba802e193fe1",
         "type": "github"
       },
       "original": {
@@ -243,11 +243,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1759381078,
-        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "lastModified": 1760878510,
+        "narHash": "sha256-K5Osef2qexezUfs0alLvZ7nQFTGS9DL2oTVsIXsqLgs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "rev": "5e2a59a5b1a82f89f2c7e598302a9cacebb72a67",
         "type": "github"
       },
       "original": {
@@ -296,11 +296,11 @@
         "pyproject-nix": "pyproject-nix_2"
       },
       "locked": {
-        "lastModified": 1759516006,
-        "narHash": "sha256-PSu6pSQcbsyME+hbcywDmW1TIOoaGyPfnuD5Za0tf/0=",
+        "lastModified": 1760902566,
+        "narHash": "sha256-EbOFx7i3Cg1TTE4nww4UqKAnC1npqSnNkIpCinop35o=",
         "owner": "papis",
         "repo": "papis",
-        "rev": "28eca7eed6397b018060619e8cc4a5a30a59b693",
+        "rev": "6104b94b5c690e773857eaca6b4daf6cabf4172f",
         "type": "github"
       },
       "original": {
@@ -420,11 +420,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1759234981,
-        "narHash": "sha256-jxuW/Z8koEC7dKHvot19jxaI6f1cjnTIQosWm/k7190=",
+        "lastModified": 1759761842,
+        "narHash": "sha256-cHBtUko0pbeIjE5HJv3UT8p8mtBVm+N7GZE77jL922c=",
         "owner": "Nix-QChem",
         "repo": "NixOS-QChem",
-        "rev": "e758ffc457377db522ce071b802292b0b156161b",
+        "rev": "0b3545697ebcf4615672061851e30bdc07587eee",
         "type": "github"
       },
       "original": {
@@ -440,11 +440,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759595360,
-        "narHash": "sha256-SQtKaxbejw5CuGeK7lHvlp3gQCCPXhD10Ev2bYSrKJM=",
+        "lastModified": 1760192682,
+        "narHash": "sha256-9FEcuFcyRagGSpVqPcy31PJU4UL4Cx9Rt+lRiTByjH4=",
         "owner": "qtile",
         "repo": "qtile",
-        "rev": "4829c11c9ef1102216bbc55cb6f67f336319d569",
+        "rev": "e64810d907c292ebd9a451579fbd961a04936efa",
         "type": "github"
       },
       "original": {
