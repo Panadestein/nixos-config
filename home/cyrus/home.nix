@@ -218,12 +218,15 @@ in
   # Git
   programs.git = {
     enable = true;
-    userName = "Panadestein";
-    userEmail = "rpana92@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Panadestein";
+        email = "rpana92@gmail.com";
+      };
       credential.helper = "${
         pkgs.git.override { withLibsecret = true; }
-      }/bin/git-credential-libsecret";};
+      }/bin/git-credential-libsecret";
+    };
   };
 
   # VScode configuration
