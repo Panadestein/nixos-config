@@ -154,7 +154,7 @@
     };
     qtile = {
       enable = true;
-      package = inputs."qtile-flake".packages.${pkgs.system}.default;
+      package = inputs."qtile-flake".packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     stumpwm = {
       enable = false;
@@ -247,8 +247,8 @@
     which
     # Terminal and CLI utilities
     zsh
-    inputs.nix-inspect.packages.${pkgs.system}.default
-    inputs.papis.packages.${pkgs.system}.default
+    inputs.nix-inspect.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.papis.packages.${pkgs.stdenv.hostPlatform.system}.default
     # Text editors and office
     emacs-git
     vim_configurable

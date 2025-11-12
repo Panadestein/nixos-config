@@ -33,7 +33,7 @@
 
   outputs = { self, nixpkgs, home-manager, qtile-flake, ... }@inputs:
     let
-      stdenv.hostPlatform.system = "x86_64-linux";
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
