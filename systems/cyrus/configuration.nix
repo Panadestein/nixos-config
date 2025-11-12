@@ -251,7 +251,7 @@
     inputs.papis.packages.${pkgs.stdenv.hostPlatform.system}.default
     # Text editors and office
     emacs-git
-    vim_configurable
+    vim-full
     # Programming languages (here to avoid environment clashes)
     gfortran
     mono
