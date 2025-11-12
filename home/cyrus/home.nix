@@ -160,7 +160,7 @@ in
     slack
     telegram-desktop
     thunderbird
-    whatsapp-for-linux
+    wasistlos
     # Leisure (NES, SNES and N64)
     (retroarch.withCores (
       cores: with libretro; [
