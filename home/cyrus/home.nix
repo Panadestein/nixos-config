@@ -36,7 +36,7 @@ in
     htop
     lolcat
     nvtopPackages.amd
-    poppler_utils
+    poppler-utils
     qemu
     ripgrep
     sd
