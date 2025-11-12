@@ -412,5 +412,5 @@
   };
 
   # State version
-  pkgs.stdenv.hostPlatform.system.stateVersion = "24.05";
+  system.stateVersion = "24.05";
 }
