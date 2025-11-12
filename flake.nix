@@ -35,13 +35,13 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-        inherit system;
+        system = prev.stdenv.hostPlatform.system;
         config = { allowUnfree = true; };
       };
       # Nest stable channel into default unstable
       overlay-stable = final: prev: {
         nixpkgs-stable = import inputs.nixpkgs-stable {
-          inherit system;
+          system = prev.stdenv.hostPlatform.system;
           config.allowUnfree = true;
         };
       };
