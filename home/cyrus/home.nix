@@ -158,7 +158,7 @@ in
     firefox
     google-chrome
     slack
-    tdesktop
+    telegram-desktop
     thunderbird
     whatsapp-for-linux
     # Leisure (NES, SNES and N64)
