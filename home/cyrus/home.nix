@@ -120,7 +120,6 @@ in
     openblas
     perf
     ride
-    rpi-imager
     rust-analyzer
     samply
     shellcheck
