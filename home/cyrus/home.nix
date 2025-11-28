@@ -4,6 +4,7 @@ let
   hm = inputs.home-manager.lib.hm;
   cbqn = pkgs.callPackage ../modules/cbqn/default.nix { };
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
+  grr = pkgs.callPackage ../modules/grr/default.nix { };
 in
 {
   # Import home-manager modules
@@ -109,6 +110,7 @@ in
     cmake
     fortls
     gh
+    grr
     haskell-language-server
     hotspot
     hyperfine
