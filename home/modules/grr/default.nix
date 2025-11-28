@@ -137,6 +137,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     mkdir -p $out/share/java/grr
+    mkdir -p $out/share/applications
 
     # Artifacts produced by build.py (grr.jar, lib/, res/)
     cp grr.jar $out/share/java/grr/
@@ -155,15 +156,15 @@ stdenv.mkDerivation rec {
 
     # Desktop entry for rofi
     cat > $out/share/applications/grr.desktop <<EOF
-    [Desktop Entry]
-    Type=Application
-    Version=1.0
-    Name=grr
-    Comment=A GUI for gdb, rr, perf, and more
-    Exec=grr
-    Terminal=false
-    Categories=Development;Debugger;
-    EOF
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=grr
+Comment=A GUI for gdb, rr, perf, and more
+Exec=grr
+Terminal=false
+Categories=Development;Debugger;
+EOF
 
     runHook postInstall
   '';
