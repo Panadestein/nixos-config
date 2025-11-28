@@ -150,7 +150,20 @@ stdenv.mkDerivation rec {
     makeWrapper ${jdk17}/bin/java $out/bin/grr \
       --add-flags "-DRES_DIR=$out/share/java/grr/res -ea -cp $out/share/java/grr/grr.jar:$out/share/java/grr/lib/* dz.Main" \
       --prefix PATH : ${lib.makeBinPath runtimeDeps} \
-      --set LD_LIBRARY_PATH ${lib.makeLibraryPath runtimeLibs}
+      --set LD_LIBRARY_PATH ${lib.makeLibraryPath runtimeLibs} \
+      --set _JAVA_AWT_WM_NONREPARENTING 1
+
+    # Desktop entry for rofi
+    cat > $out/share/applications/grr.desktop <<EOF
+    [Desktop Entry]
+    Type=Application
+    Version=1.0
+    Name=grr
+    Comment=A GUI for gdb, rr, perf, and more
+    Exec=grr
+    Terminal=false
+    Categories=Development;Debugger;
+    EOF
 
     runHook postInstall
   '';
