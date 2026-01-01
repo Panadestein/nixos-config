@@ -197,6 +197,11 @@ in
     rofi-pass
   ];
 
+  # Add missing path for maestral
+  xdg.systemDirs.data = [
+    "${pkgs.gtk3}/share/gsettings-schemas/gtk+3-${pkgs.gtk3.version}"
+  ];
+
   # Make sure fontconfig gets updated
   fonts.fontconfig.enable = true;
 
