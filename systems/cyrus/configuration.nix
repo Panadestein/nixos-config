@@ -336,12 +336,7 @@
   ];
 
   # Gnome apps configuration
-  programs.dconf.enable = true;
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    gnome-music
-  ]);
+  programs.dconf.enable = false;
 
   # Gnupg configuration
   programs.gnupg.agent = {
