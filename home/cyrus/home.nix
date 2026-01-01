@@ -92,7 +92,6 @@ in
     libreoffice
     ltex-ls
     pandoc
-    readeck
     translate-shell
     xournalpp
     # Videos
