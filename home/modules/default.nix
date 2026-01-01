@@ -1,6 +1,6 @@
 [
   ./bash
-  ./dconf
+  #./dconf
   ./emacs
   ./fish
   ./zsh

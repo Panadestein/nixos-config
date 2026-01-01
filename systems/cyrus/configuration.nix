@@ -336,7 +336,7 @@
   ];
 
   # Gnome apps configuration
-  programs.dconf.enable = false;
+  programs.dconf.enable = true;
 
   # Gnupg configuration
   programs.gnupg.agent = {
