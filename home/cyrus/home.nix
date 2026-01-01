@@ -44,7 +44,6 @@ in
     step-cli
     tmate
     tmux
-    trayer
     tree
     nix-prefetch-git
     nixpkgs-stable.ueberzugpp
