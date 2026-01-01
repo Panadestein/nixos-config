@@ -119,7 +119,6 @@ in
     nixfmt-classic
     openblas
     perf
-    ride
     rust-analyzer
     samply
     shellcheck
