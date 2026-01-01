@@ -70,11 +70,11 @@ in
     loupe
     simple-scan
     # Xfce packages
-    xfce.exo
-    (xfce.thunar.override {
-      thunarPlugins = [xfce.thunar-archive-plugin];
+    xfconf
+    exo
+    (thunar.override {
+      thunarPlugins = [thunar-archive-plugin];
     })
-    xfce.xfconf
     # Terminal based apps
     alacritty
     gdu
