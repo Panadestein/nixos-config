@@ -126,24 +126,24 @@
   # Display manager
   services.displayManager = {
     gdm = {
-      enable = false;
+      enable = true;
       wayland = true;
     };
   };
   services.xserver.displayManager = {
     lightdm = {
-      enable = true;
+      enable = false;
       greeters.enso = {
         enable = true;
       }; 
     };
   };
-  services.displayManager.defaultSession = lib.mkForce "qtile";
+  services.displayManager.defaultSession = lib.mkForce "gnome";
 
   # Window managers
   services.xserver.windowManager = {
     xmonad = {
-      enable = true;
+      enable = false;
       enableContribAndExtras = true;
       extraPackages = haskellPackages: [
         haskellPackages.xmonad
@@ -152,7 +152,7 @@
       ];
     };
     qtile = {
-      enable = true;
+      enable = false;
       package = inputs."qtile-flake".packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     stumpwm = {
@@ -161,7 +161,7 @@
   };
   
   # Desktop environment
-  services.desktopManager.gnome.enable = false;
+  services.desktopManager.gnome.enable = true;
   xdg.portal.enable = lib.mkIf
     (!config.services.desktopManager.gnome.enable)
     true;
@@ -301,6 +301,9 @@
       pyqt6
     ]))
   ];
+
+  # Wayland electron apps
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Emacs configuration
   services.emacs = {
