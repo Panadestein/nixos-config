@@ -374,6 +374,8 @@
   systemd.user.services.maestral = {
     enable = true;
     description = "Maestral";
+    after = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.maestral-gui}/bin/maestral_qt";
@@ -381,6 +383,10 @@
       PrivateTmp = true;
       ProtectSystem = "full";
       Nice = 10;
+      Environment = [
+        "QT_QPA_PLATFORM=xcb"
+        "QT_QPA_PLATFORMTHEME=generic"
+      ];
     };
   };
 
