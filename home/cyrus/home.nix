@@ -64,6 +64,7 @@ in
     glib
     gnome-calendar
     gobject-introspection
+    gnome-tweaks
     gtk3
     guake
     loupe
