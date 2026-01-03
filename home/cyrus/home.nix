@@ -63,8 +63,9 @@ in
     cairo
     glib
     gnome-calendar
-    gobject-introspection
+    gnome-pass-search-provider
     gnome-tweaks
+    gobject-introspection
     gtk3
     guake
     loupe
@@ -261,6 +262,9 @@ in
     enable = true;
   };
 
+  # Guake
+  xdg.configFile."guake/guake-init.sh".source = ../dotfiles/guake-init.sh;
+
   # Vim and Neovim
   home.file.".vimrc".source = ../dotfiles/vimrc;
   xdg.configFile."nvim/init.vim".source = ../dotfiles/init.vim;
@@ -312,7 +316,7 @@ in
   xsession = {
     windowManager = {
       xmonad = {
-        enable = true;
+        enable = false;
         enableContribAndExtras = true;
         config = ../dotfiles/xmonad.hs;
       };

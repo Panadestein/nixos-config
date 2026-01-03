@@ -95,7 +95,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   # Enable fish shell
-  programs.fish.enable = false;
+  programs.fish.enable = true;
 
   # Network configuration
   networking = {
