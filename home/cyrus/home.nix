@@ -33,6 +33,7 @@ in
     figlet
     fortune
     fzf
+    gpaste
     grc
     htop
     lolcat
@@ -49,6 +50,7 @@ in
     nixpkgs-stable.ueberzugpp
     universal-ctags
     volumeicon
+    wl-clipboard
     xclip
     xdg-utils
     xdotool
@@ -204,6 +206,9 @@ in
     "${pkgs.gtk3}/share/gsettings-schemas/gtk+3-${pkgs.gtk3.version}"
   ];
 
+  # GPaste
+  programs.gpaste.enable = true;
+
   # Make sure fontconfig gets updated
   fonts.fontconfig.enable = true;
 
@@ -348,7 +353,7 @@ in
 
   # GTk theme, disabled if using Gnome
   gtk = {
-    enable = true;
+    enable = false;
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
