@@ -303,7 +303,11 @@
   ];
 
   # Wayland electron apps
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    COLORTERM = "truecolor";
+    TERM = "xterm-256color";
+  };
 
   # Emacs configuration
   services.emacs = {
