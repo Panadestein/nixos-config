@@ -33,7 +33,6 @@ in
     figlet
     fortune
     fzf
-    gpaste
     grc
     htop
     lolcat
@@ -205,9 +204,6 @@ in
   xdg.systemDirs.data = [
     "${pkgs.gtk3}/share/gsettings-schemas/gtk+3-${pkgs.gtk3.version}"
   ];
-
-  # GPaste
-  programs.gpaste.enable = true;
 
   # Make sure fontconfig gets updated
   fonts.fontconfig.enable = true;

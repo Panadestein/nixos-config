@@ -335,6 +335,9 @@
     nerd-fonts.fira-code
   ];
 
+  # GPaste
+  programs.gpaste.enable = true;
+
   # Gnome apps configuration
   programs.dconf.enable = true;
 
