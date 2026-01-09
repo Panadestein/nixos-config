@@ -24,7 +24,6 @@ in
     brightnessctl
     calcurse
     ccls
-    chafa
     code-minimap
     cowsay
     dconf2nix
@@ -48,6 +47,7 @@ in
     tree
     nix-prefetch-git
     universal-ctags
+    ueberzugpp
     volumeicon
     wl-clipboard
     xclip
