@@ -30,7 +30,7 @@ alias n = neovide --maximized
 
 # Generic
 alias c = code -r
-alias r = ranger
+alias y = yazi
 alias t = trans
 alias ka = killall
 alias jnb = jupyter notebook

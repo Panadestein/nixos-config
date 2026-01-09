@@ -14,10 +14,12 @@ $PROMPT = "{BOLD_RED}[{BOLD_BLUE}χ {BOLD_WHITE}⊗ {BOLD_YELLOW}{cwd_base}{BOLD
 
 # Emacs
 
+
 def esudo(args, stdin=None):
     """Emacs with sudo."""
     env = {"SUDO_EDITOR": "emacsclient -t -a emacs"}
-    $[sudoedit @(args)]
+    $[sudoedit @ (args)]
+
 
 aliases['E'] = esudo
 aliases['e'] = 'emacsclient'
@@ -33,7 +35,7 @@ aliases['n'] = 'neovide --maximized'
 
 # Generic
 aliases['c'] = 'code -r'
-aliases['r'] = 'ranger'
+aliases['y'] = 'yazi'
 aliases['t'] = 'trans'
 aliases['ka'] = 'killall'
 aliases['jnb'] = 'jupyter notebook'

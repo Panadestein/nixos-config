@@ -9,7 +9,7 @@ picktool = fzf
 [settings]
 default-library = panalib
 opentool = rifle
-file-browser = ranger
+file-browser = yazi
 add-edit = True
 
 

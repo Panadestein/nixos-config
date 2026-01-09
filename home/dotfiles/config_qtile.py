@@ -97,7 +97,7 @@ keys: list[Key] = [
         desc="Launches VS Code"),
     Key([mod, "shift"], "f", lazy.spawn("thunar"),
         desc="Launches the Thunar file browser"),
-    Key([mod], "f", lazy.spawn("alacritty -e ranger"),
+    Key([mod], "f", lazy.spawn("alacritty -e yazi"),
         desc="Launches the Ranger file browser"),
     Key([], "Print", lazy.spawn("flameshot gui"),
         desc="Takes a screenshot"),

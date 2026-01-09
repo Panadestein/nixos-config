@@ -80,7 +80,6 @@ in
     # Terminal based apps
     alacritty
     gdu
-    ranger
     vivid
     # Text editors
     neovim
@@ -272,9 +271,6 @@ in
   # Vim and Neovim
   home.file.".vimrc".source = ../dotfiles/vimrc;
   xdg.configFile."nvim/init.vim".source = ../dotfiles/init.vim;
-
-  # Ranger
-  xdg.configFile."ranger/rc.conf".source = ../dotfiles/rc.conf;
 
   # Thunar
   xdg.configFile."xfce4/helpers.rc".source = ../dotfiles/helpers_xfce.rc;

@@ -20,7 +20,7 @@
       jour2 = "journalctl -xb | grep rror";
       ka = "killall";
       n = "neovide --maximized";
-      r = "ranger";
+      y = "yazi";
       sb = "source ~/.bashrc";
       sv = "sudo nvim";
       sz = "source ~/.zshrc";
