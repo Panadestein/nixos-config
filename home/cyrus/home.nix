@@ -24,6 +24,7 @@ in
     brightnessctl
     calcurse
     ccls
+    chafa
     code-minimap
     cowsay
     dconf2nix
@@ -46,7 +47,6 @@ in
     tmux
     tree
     nix-prefetch-git
-    nixpkgs-stable.ueberzugpp
     universal-ctags
     volumeicon
     wl-clipboard
@@ -91,7 +91,6 @@ in
     calibre
     crow-translate
     djvulibre
-    evince
     libreoffice
     ltex-ls
     pandoc
