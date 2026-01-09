@@ -8,7 +8,7 @@ picktool = fzf
 
 [settings]
 default-library = panalib
-opentool = rifle
+opentool = xdg-open
 file-browser = yazi
 add-edit = True
 
