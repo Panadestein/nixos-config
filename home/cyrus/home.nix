@@ -24,6 +24,7 @@ in
     brightnessctl
     calcurse
     ccls
+    chafa
     code-minimap
     cowsay
     dconf2nix
@@ -248,6 +249,9 @@ in
       modi = "window,drun,run,ssh";
     };
   };
+
+  # Yazi
+  programs.yazi.enable = true;
 
   # Alacritty
   xdg.configFile."alacritty/alacritty.toml".source = ../dotfiles/alacritty.toml;
