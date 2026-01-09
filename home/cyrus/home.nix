@@ -118,7 +118,7 @@ in
     mpi
     neovide
     nil
-    nixfmt-classic
+    nixfmt
     openblas
     perf
     rust-analyzer
