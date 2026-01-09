@@ -48,7 +48,6 @@ in
     tree
     nix-prefetch-git
     universal-ctags
-    ueberzugpp
     volumeicon
     wl-clipboard
     xclip
