@@ -26,12 +26,6 @@ with open(os.path.expanduser('~/.config/zsh/.zshrc')) as bashrc:
 
     c.AliasManager.user_aliases = aliases
 
-# Setting up a cool greeting message
-
-ban = subprocess.run(['figlet', 'Ipython'],
-                     stdout=subprocess.PIPE).stdout.decode('utf-8')
-c.InteractiveShell.banner1 = ban
-
 # Customize the default prompt and color scheme
 
 c.InteractiveShell.colors = 'Linux'

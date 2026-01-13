@@ -20,6 +20,10 @@
   nixpkgs.overlays = [
     # Emacs overlay
     (import inputs.emacs-overlay)
+    # Use a stable wireplumber
+    (final: prev: {
+      wireplumber = final.nixpkgs-stable.wireplumber;
+    })
   ];
 
   # Nixpkgs configuration

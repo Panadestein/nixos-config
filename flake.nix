@@ -3,7 +3,7 @@
 
   inputs = {
     # The nixpkgs channels
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-manager following the unstable channel
