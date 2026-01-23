@@ -61,11 +61,6 @@
   hardware.cpu.amd.updateMicrocode = true;
   hardware.firmware = [ pkgs.linux-firmware ];
 
-  # And this is when you give up (for now)
-  boot.blacklistedKernelModules = [
-    "ath11k_pci"
-  ];
-
   # Kernel parameters and modules
   boot.initrd.kernelModules = [ "amdgpu" "hid-apple"];
   boot.kernelParams = [
@@ -401,27 +396,22 @@
     };
   };
 
-  # Wifi sevice fix for P16s
-  systemd.services = {
-    ath11k-fix = {
-      enable = false;
-
-      description = "Suspend fix for ath11k_pci";
-      before = [ "sleep.target" ];
-
-      unitConfig = {
-        StopWhenUnneeded = "yes";
-      };
-
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = "yes";
-        ExecStart = "/run/current-system/sw/bin/modprobe -r ath11k_pci";
-        ExecStop = "/run/current-system/sw/bin/modprobe ath11k_pci";
-      };
-
-      wantedBy = [ "sleep.target" ];
-    };
+  # Nasty P16's bug (https://bugzilla.kernel.org/show_bug.cgi?id=214649)
+  powerManagement = {
+    enable = true;
+    powerDownCommands = ''
+      systemctl stop NetworkManager.service systemd-networkd.service systemd-networkd.socket
+      ${pkgs.kmod}/bin/modprobe -r ath11k_pci || true
+    '';
+    resumeCommands = ''
+      ${pkgs.kmod}/bin/modprobe ath11k_pci
+      if systemctl is-enabled NetworkManager.service; then
+        systemctl start NetworkManager.service
+      fi
+      if systemctl is-enabled systemd-networkd.service; then
+        systemctl start systemd-networkd.service
+      fi
+    '';
   };
 
   # State version
