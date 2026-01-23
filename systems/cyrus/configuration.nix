@@ -400,17 +400,13 @@
   powerManagement = {
     enable = true;
     powerDownCommands = ''
-      systemctl stop NetworkManager.service systemd-networkd.service systemd-networkd.socket
+      systemctl stop NetworkManager.service
+      sleep 1
       ${pkgs.kmod}/bin/modprobe -r ath11k_pci || true
     '';
     resumeCommands = ''
       ${pkgs.kmod}/bin/modprobe ath11k_pci
-      if systemctl is-enabled NetworkManager.service; then
-        systemctl start NetworkManager.service
-      fi
-      if systemctl is-enabled systemd-networkd.service; then
-        systemctl start systemd-networkd.service
-      fi
+      systemctl start NetworkManager.service
     '';
   };
 
