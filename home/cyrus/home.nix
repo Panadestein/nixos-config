@@ -82,6 +82,7 @@ in
     gdu
     vivid
     # Text editors
+    antigravity-fhs
     neovim
     # Science
     gnuplot
