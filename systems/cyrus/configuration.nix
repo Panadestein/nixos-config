@@ -90,7 +90,10 @@
   time.timeZone = "Europe/Berlin";
 
   # Enable virtualisation
-  virtualisation.vmware.host.enable = true;
+  virtualisation.vmware = {
+    host.enable = true;
+    guest.enable = true;
+  };
 
   # Set zsh as default shell
   programs.zsh.enable = true;
@@ -122,7 +125,10 @@
   services.xserver.enable = true;
 
   # Configure AMD graphics
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [
+    "amdgpu"
+    "vmware"
+  ];
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
 
   # Display manager
