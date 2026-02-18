@@ -109,7 +109,6 @@ in
     cmake
     fortls
     gh
-    grr
     haskell-language-server
     hotspot
     hyperfine
