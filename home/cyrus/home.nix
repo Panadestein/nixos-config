@@ -4,7 +4,6 @@ let
   hm = inputs.home-manager.lib.hm;
   cbqn = pkgs.callPackage ../modules/cbqn/default.nix { };
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
-  grr = pkgs.callPackage ../modules/grr/default.nix { };
 in
 {
   # Import home-manager modules
@@ -250,7 +249,10 @@ in
   };
 
   # Yazi
-  programs.yazi.enable = true;
+  programs.yazi = {
+    enable = true;
+    shellWrapperName = "y";
+  };
 
   # Alacritty
   xdg.configFile."alacritty/alacritty.toml".source = ../dotfiles/alacritty.toml;
