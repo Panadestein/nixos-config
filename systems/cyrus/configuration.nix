@@ -89,6 +89,9 @@
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
+  # Enable virtualisation
+  virtualisation.vmware.host.enable = true;
+
   # Set zsh as default shell
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
