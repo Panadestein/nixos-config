@@ -308,6 +308,7 @@
       # Qt backend
       pyqt6
     ]))
+    uv
   ];
 
   # Wayland electron apps
@@ -323,6 +324,9 @@
     package = pkgs.emacs-git;
     defaultEditor = true;
   };
+
+  # Make your life easier
+  programs.nix-ld.enable = true;
 
   # Enable Java
   programs.java.enable = true;
