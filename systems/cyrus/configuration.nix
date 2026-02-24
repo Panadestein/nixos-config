@@ -279,8 +279,6 @@
         sympy
         # Qt backend
         pyqt6
-        # Documentation
-        sphinx
         # Linters
         autopep8
         flake8
