@@ -72,10 +72,6 @@ in
     simple-scan
     # Xfce packages
     xfconf
-    exo
-    (thunar.override {
-      thunarPlugins = [thunar-archive-plugin];
-    })
     # Terminal based apps
     alacritty
     gdu
