@@ -24,6 +24,24 @@
     (final: prev: {
       wireplumber = final.nixpkgs-stable.wireplumber;
     })
+    # Guake is a mess, but there's nothing better
+    (final: prev: {
+      guake = (prev.guake.override {
+        python311 = final.python313;
+        python311Packages = final.python313Packages;
+      }).overrideAttrs (old: rec {
+        version = "3.10.1";
+        src = prev.fetchFromGitHub {
+          owner = "Guake";
+          repo = "guake";
+          rev = version;
+          hash = final.lib.fakeHash; 
+        };
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [
+          final.python313Packages.distutils
+        ];
+      });
+    })
   ];
 
   # Nixpkgs configuration
