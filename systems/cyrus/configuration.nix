@@ -29,15 +29,8 @@
       guake = (prev.guake.override {
         python311 = final.python313;
         python311Packages = final.python313Packages;
-      }).overrideAttrs (old: rec {
-        version = "3.10.1";
-        src = prev.fetchFromGitHub {
-          owner = "Guake";
-          repo = "guake";
-          rev = version;
-          hash = final.lib.fakeHash; 
-        };
-        propagatedBuildInputs = old.propagatedBuildInputs ++ [
+      }).overrideAttrs (old: {
+        propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [
           final.python313Packages.distutils
         ];
       });
