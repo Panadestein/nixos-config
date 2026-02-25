@@ -83,7 +83,6 @@ in
     gnuplot
     graphviz
     # Office
-    calibre
     crow-translate
     djvulibre
     libreoffice
