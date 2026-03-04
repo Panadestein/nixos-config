@@ -24,17 +24,6 @@
     (final: prev: {
       wireplumber = final.nixpkgs-stable.wireplumber;
     })
-    # Guake is a mess, but there's nothing better
-    (final: prev: {
-      guake = (prev.guake.override {
-        python311 = final.python313;
-        python311Packages = final.python313Packages;
-      }).overrideAttrs (old: {
-        propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [
-          final.python313Packages.distutils
-        ];
-      });
-    })
   ];
 
   # Nixpkgs configuration
