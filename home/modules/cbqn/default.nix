@@ -1,4 +1,4 @@
-{ config, lib, stdenv, pkg-config, libffi, fetchFromGitHub }:
+{ config, lib, clangStdenv, pkg-config, libffi, fetchFromGitHub }:
 let
   version = "rolling";
   cbqnSrc = fetchFromGitHub {
@@ -8,7 +8,7 @@ let
     hash = "sha256-SG4txcdUb0AtLGsD3xYWo9BAAD1C1cutfllIvYdUnKc=";
     fetchSubmodules = true;
   };
-in stdenv.mkDerivation {
+in clangStdenv.mkDerivation {
   pname = "cbqn";
   version = version;
   src = cbqnSrc;
@@ -16,10 +16,10 @@ in stdenv.mkDerivation {
   nativeBuildInputs = [ pkg-config ];
   buildInputs       = [ libffi ];
 
-  # Set the system C compiler
-  makeFlags = [ "CC=${stdenv.cc.targetPrefix}cc" ];
+  # Set the system C compiler to Clang
+  makeFlags = [ "CC=${clangStdenv.cc.targetPrefix}cc" ];
 
-  # Customize build for maximum performance.
+  # Customize build for maximum performance on Zen 4.
   buildFlags = [
     "o3"
     "notui=1"
