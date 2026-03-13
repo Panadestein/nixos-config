@@ -55,7 +55,7 @@
   };
 
   # Set the linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Load AMD CPU microcode and firmware
   hardware.cpu.amd.updateMicrocode = true;
@@ -406,28 +406,6 @@
       ];
     };
   };
-
-  # Nasty P16's bug (https://bugzilla.kernel.org/show_bug.cgi?id=214649)
-  powerManagement = {
-    enable = true;
-    powerDownCommands = ''
-      systemctl stop NetworkManager.service || true
-      sleep 1
-      ${pkgs.kmod}/bin/modprobe -r ath11k_pci qrtr_mhi mhi || true
-      echo 1 > /sys/bus/pci/devices/0000:02:00.0/remove || true
-    '';
-    resumeCommands = ''
-      echo 1 > /sys/bus/pci/rescan
-      sleep 1
-      ${pkgs.kmod}/bin/modprobe ath11k_pci
-      systemctl start NetworkManager.service
-    '';
-  };
-
-  # Additional udev rules
-  services.udev.extraRules = ''
-    SUBSYSTEM=="usb", ATTR{idVendor}=="1949", ATTR{idProduct}=="9981", ENV{GVFS_DISABLE_MOUNT}="1"
-  '';
 
   # State version
   system.stateVersion = "24.05";
