@@ -407,8 +407,6 @@
     };
   };
 
-    systemd.services.pre-sleep.enable = false;
-  systemd.services.pre-shutdown.enable = false;
   # State version
   system.stateVersion = "24.05";
 }
