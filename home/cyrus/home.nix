@@ -79,6 +79,9 @@ in
     # Text editors
     antigravity-fhs
     neovim
+    # AI
+    codex
+    gemini-cli-bin
     # Science
     gnuplot
     graphviz

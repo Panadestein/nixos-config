@@ -411,11 +411,14 @@
   powerManagement = {
     enable = true;
     powerDownCommands = ''
-      systemctl stop NetworkManager.service
+      systemctl stop NetworkManager.service || true
       sleep 1
-      ${pkgs.kmod}/bin/modprobe -r ath11k_pci || true
+      ${pkgs.kmod}/bin/modprobe -r ath11k_pci qrtr_mhi mhi || true
+      echo 1 > /sys/bus/pci/devices/0000:02:00.0/remove || true
     '';
     resumeCommands = ''
+      echo 1 > /sys/bus/pci/rescan
+      sleep 1
       ${pkgs.kmod}/bin/modprobe ath11k_pci
       systemctl start NetworkManager.service
     '';
