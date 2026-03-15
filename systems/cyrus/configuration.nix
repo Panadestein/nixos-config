@@ -324,7 +324,13 @@
   };
 
   # Make your life easier
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      zlib
+      libgcc
+    ];
+  };
 
   # Enable Java
   programs.java.enable = true;
