@@ -328,7 +328,7 @@
     enable = true;
     libraries = with pkgs; [
       zlib
-      libgcc
+      stdenv.cc.cc.lib
     ];
   };
 
