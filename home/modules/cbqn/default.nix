@@ -4,8 +4,8 @@ let
   cbqnSrc = fetchFromGitHub {
     owner = "dzaima";
     repo = "CBQN";
-    rev = "d62f73bc42c91ba2fbc6202398f4b51a70dde628";
-    hash = "sha256-EqLDdbmlqbKW4qTbpl+v0QHCoxdbUNLH0DF/0mHUpMY=";
+    rev = "d56147be877693eaed351745782c258bd7424de7";
+    hash = "sha256-6VOTwoxIBko8z8jKWQlF3GOc4noR+I2taa3CGJOEFqI=";
     fetchSubmodules = true;
   };
 in clangStdenv.mkDerivation {
