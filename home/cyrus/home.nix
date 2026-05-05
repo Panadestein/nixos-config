@@ -147,7 +147,6 @@ in
     nushell
     xonsh
     # Advanced calculators
-    fend
     frink
     numbat
     # Internet and communications
@@ -157,7 +156,6 @@ in
     slack
     telegram-desktop
     thunderbird
-    wasistlos
     # Leisure (NES, SNES and N64)
     (retroarch.withCores (
       cores: with libretro; [
