@@ -2,7 +2,8 @@
 { inputs, config, lib, pkgs, ... }:
 let
   hm = inputs.home-manager.lib.hm;
-  cbqn = pkgs.callPackage ../modules/cbqn/default.nix { };
+  cbqn_default = pkgs.callPackage ../modules/cbqn/default.nix { };
+  cbqn_complex = inputs.cbqn-complex.packages.${pkgs.system}.default;
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
 in
 {
@@ -35,6 +36,7 @@ in
     fzf
     grc
     htop
+    jq
     lolcat
     nvtopPackages.amd
     poppler-utils
@@ -123,7 +125,7 @@ in
     valgrind
     # Programming languages
     cargo
-    cbqn
+    cbqn_complex
     chez
     chicken
     clojure

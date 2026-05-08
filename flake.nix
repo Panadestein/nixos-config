@@ -12,6 +12,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Custom flake with complex number's support for CBQN
+    cbqn-complex = {
+      url = "github:Panadestein/complex_cbqn";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
