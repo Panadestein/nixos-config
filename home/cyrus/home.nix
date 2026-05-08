@@ -3,7 +3,7 @@
 let
   hm = inputs.home-manager.lib.hm;
   cbqn_default = pkgs.callPackage ../modules/cbqn/default.nix { };
-  cbqn_complex = inputs.cbqn-complex.packages.${pkgs.system}.default;
+  cbqn_complex = inputs.cbqn-complex.packages.${pkgs.stdenv.hostPlatform.system}.default;
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
 in
 {
