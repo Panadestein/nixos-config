@@ -21,6 +21,12 @@
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
+    # The Google Antigravity flake
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # The QChem flake. Contains several quantum chemistry packages
     qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
 
