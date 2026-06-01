@@ -132,12 +132,7 @@
   services.xserver.deviceSection = ''Option "TearFree" "true"'';
 
   # Display manager
-  services.displayManager = {
-    gdm = {
-      enable = true;
-      wayland = true;
-    };
-  };
+  services.displayManager.gdm.enable = true;
   services.xserver.displayManager = {
     lightdm = {
       enable = false;
