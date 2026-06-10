@@ -16,7 +16,7 @@ IPY_CMD="clear; figlet 'IPython' | command lolcat; exec ipython"
 guake --new-tab=. --rename-current-tab="IPython" --execute-command="$IPY_CMD"
 
 # Julia
-JULIA_CMD="clear; figlet 'Julia' | command lolcat; exec julia"
+JULIA_CMD="clear; figlet 'Julia' | command lolcat; julia --version; exec julia --banner=no"
 guake --new-tab=. --rename-current-tab="Julia" --execute-command="$JULIA_CMD"
 
 # Numbat
@@ -28,4 +28,7 @@ guake --select-tab=0
 guake --execute-command="exit"
 
 # Land on the new Fish tab, which should now be tab 0
+guake --select-tab=0
+xdotool type --delay 0 'exit'
+xdotool key Return
 guake --select-tab=0
