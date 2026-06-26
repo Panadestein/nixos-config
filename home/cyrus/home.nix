@@ -86,6 +86,7 @@ in
     antigravity.google-antigravity-ide
     antigravity.google-antigravity-cli
     codex
+    claude-code
     # Science
     gnuplot
     graphviz
