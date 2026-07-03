@@ -143,7 +143,6 @@ in
     nodejs
     octave
     racket
-    ride
     rustc
     sbcl
     uiua
