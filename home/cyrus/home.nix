@@ -132,7 +132,6 @@ in
     chez
     chicken
     clojure
-    (dyalog.override {acceptLicense = true;})
     gcc
     gdb
     ghc
