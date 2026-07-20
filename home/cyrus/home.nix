@@ -327,7 +327,7 @@ in
 
   # Pointer cursor
   home.pointerCursor = {
-    x11.enable = true;
+    enable = true;
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
     size = 25;
