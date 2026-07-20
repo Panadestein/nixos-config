@@ -170,7 +170,7 @@ in
     bundler
     hugo
     # Latex
-    texlive.combined.scheme-full
+    texliveFull
     # Spell checkers and dictionaries
     (aspellWithDicts (dicts: with dicts; [ en
                                            en-computers
