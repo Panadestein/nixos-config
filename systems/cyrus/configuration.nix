@@ -133,14 +133,6 @@
 
   # Display manager
   services.displayManager.gdm.enable = true;
-  services.xserver.displayManager = {
-    lightdm = {
-      enable = false;
-      greeters.enso = {
-        enable = true;
-      }; 
-    };
-  };
   services.displayManager.defaultSession = lib.mkForce "gnome";
 
   # Window managers
