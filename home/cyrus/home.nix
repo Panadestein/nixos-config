@@ -62,7 +62,6 @@ in
     picom
     xmobar
     # GTK packages
-    arc-theme
     cairo
     glib
     gnome-calendar
@@ -359,10 +358,6 @@ in
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
       size = 25;
-    };
-    theme = {
-      name = "Arc-Dark";
-      package = pkgs.arc-theme;
     };
     gtk3.extraConfig = {
       Settings = ''
