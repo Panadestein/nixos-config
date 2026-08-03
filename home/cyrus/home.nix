@@ -155,7 +155,12 @@ in
     brave
     firefox
     google-chrome
-    slack
+    (slack.overrideAttrs (old: {
+      postFixup = (old.postFixup or "") + ''
+        substituteInPlace $out/share/applications/slack.desktop \
+          --replace-fail 'Exec=' 'Exec=env GTK_THEME=Adwaita:dark '
+      '';
+    }))
     telegram-desktop
     thunderbird
     # Leisure (NES, SNES and N64)
