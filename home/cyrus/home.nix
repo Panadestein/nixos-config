@@ -155,7 +155,7 @@ in
     firefox
     google-chrome
     localsend
-    signal
+    signal-desktop
     (slack.overrideAttrs (old: {
       postFixup = (old.postFixup or "") + ''
         substituteInPlace $out/share/applications/slack.desktop \
