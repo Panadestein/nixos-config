@@ -148,7 +148,6 @@ in
     nushell
     xonsh
     # Advanced calculators
-    frink
     numbat
     # Internet and communications
     brave
