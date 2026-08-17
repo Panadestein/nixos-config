@@ -78,7 +78,7 @@ in
     alacritty
     gdu
     vivid
-    # Text editors
+    # Text editors other than Emacs
     neovim
     # AI
     antigravity.default
@@ -155,6 +155,7 @@ in
     brave
     firefox
     google-chrome
+    localsend
     (slack.overrideAttrs (old: {
       postFixup = (old.postFixup or "") + ''
         substituteInPlace $out/share/applications/slack.desktop \
