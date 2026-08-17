@@ -58,7 +58,6 @@ in
     # Windowm manager utilities
     dmenu
     flameshot
-    nitrogen
     picom
     xmobar
     # GTK packages
