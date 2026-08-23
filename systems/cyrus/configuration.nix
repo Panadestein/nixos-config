@@ -114,6 +114,12 @@
   };
   programs.nm-applet.enable = true;
 
+  # LocalSend
+  firewall.interfaces.wlp2s0 = {
+    allowedTCPPorts = [ 53317 ];
+    allowedUDPPorts = [ 53317 ];
+  };
+
   # Select internationalization properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
