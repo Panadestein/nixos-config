@@ -40,11 +40,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785742871,
-        "narHash": "sha256-oYvbPczdNyUxAilXlBCGbZeZPcGtcaARk7TZqjVNqDE=",
+        "lastModified": 1787574910,
+        "narHash": "sha256-hW2+TzuJ7m06agKY15dBNlXOruFai7psMFxLSnzuMUA=",
         "owner": "Panadestein",
         "repo": "complex_cbqn",
-        "rev": "d38d701fe7d2931e5386c10de206929cb6b3adb1",
+        "rev": "34d069199865189889089c64149fdd543dabf2c3",
         "type": "github"
       },
       "original": {

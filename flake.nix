@@ -68,18 +68,7 @@
             modules = [
               ({ config, pkgs, ... }: {
                 nixpkgs.overlays = [ overlay-stable ];
-
                 nix.registry.llm-agents.flake = inputs.llm-agents;
-
-                nix.settings = {
-                  extra-substituters = [
-                    "https://cache.numtide.com"
-                  ];
-
-                  extra-trusted-public-keys = [
-                    "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-                  ];
-                };
               })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
