@@ -21,11 +21,8 @@
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
-    # The Google Antigravity flake
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # LLM agents
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     # The QChem flake. Contains several quantum chemistry packages
     qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
@@ -69,7 +66,21 @@
             inherit system;
             specialArgs = { inherit inputs; };
             modules = [
-              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+              ({ config, pkgs, ... }: {
+                nixpkgs.overlays = [ overlay-stable ];
+
+                nix.registry.llm-agents.flake = inputs.llm-agents;
+
+                nix.settings = {
+                  extra-substituters = [
+                    "https://cache.numtide.com"
+                  ];
+
+                  extra-trusted-public-keys = [
+                    "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+                  ];
+                };
+              })
               ./systems/${rechnerNixOS}/configuration.nix
               home-manager.nixosModules.home-manager
               {

@@ -4,7 +4,6 @@ let
   hm = inputs.home-manager.lib.hm;
   cbqn_default = pkgs.callPackage ../modules/cbqn/default.nix { };
   cbqn_complex = inputs.cbqn-complex.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  antigravity = inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system};
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
 in
 {
@@ -79,12 +78,6 @@ in
     vivid
     # Text editors other than Emacs
     neovim
-    # AI
-    antigravity.default
-    antigravity.google-antigravity-ide
-    antigravity.google-antigravity-cli
-    codex
-    claude-code
     # Science
     gnuplot
     graphviz
