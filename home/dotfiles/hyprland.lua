@@ -174,7 +174,7 @@ bind(mod .. " + SHIFT + F", hl.dsp.exec_cmd("nautilus --new-window"), "Launch Na
 bind(mod .. " + F", hl.dsp.exec_cmd(terminal .. " -e yazi"), "Launch Yazi")
 bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("waypaper --folder $HOME/.local/share/wallpapers/oehme --backend hyprpaper"), "Choose a wallpaper")
 bind(mod .. " + CTRL + W", hl.dsp.exec_cmd("wallpaper-next"), "Cycle to the next wallpaper")
-bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"), "Capture a region to the clipboard")
+bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/Screenshots"), "Capture a region")
 
 -- Keyboard layout and scratchpads
 bind(mod .. " + I", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"), "Cycle keyboard layouts")
