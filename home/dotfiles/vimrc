@@ -10,7 +10,6 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'morhetz/gruvbox'
 Plugin 'lervag/vimtex'
 Plugin 'fatih/vim-go'
 Plugin 'SirVer/ultisnips'
@@ -31,9 +30,9 @@ set wrap
 " Theming ensuring spell highlight
 augroup my_colours
   autocmd!
-  autocmd ColorScheme gruvbox hi SpellBad cterm=reverse
+  autocmd ColorScheme oehme hi SpellBad cterm=reverse
 augroup END
-colorscheme gruvbox
+colorscheme oehme
 set background=dark
 highlight Normal ctermbg=None
 

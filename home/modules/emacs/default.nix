@@ -1,5 +1,5 @@
 # Emacs configuration
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.file.".emacs.d/" = {
     source = pkgs.fetchFromGitHub {

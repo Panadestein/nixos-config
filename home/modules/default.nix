@@ -2,5 +2,10 @@
   ./bash
   ./emacs
   ./fish
+  ./ghostty
+  ./vim
+  ./vivid
+  ./wallpaper-next
+  ./waybar
   ./zsh
 ]

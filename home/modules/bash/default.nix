@@ -1,11 +1,11 @@
 # Bash config
-{ config, lib, pkgs, ... }:
-{
+_: {
   programs.bash = {
     enable = true;
     enableCompletion = true;
 
     bashrcExtra = ''
+      export LS_COLORS="$(vivid generate oehme)"
       PS1='\[\e[1;34m\]|\[\e[0m\]\[\e[1;33m\]β\[\e[0m\]\[\e[1;34m\] ⊂\[\e[0m\] \[\e[1;32m\]\W\[\e[0m\]\[\e[1;34m\]|\[\e[0m\] '
     '';
 
@@ -19,19 +19,18 @@
       jour1 = "journalctl -p 3 -xb";
       jour2 = "journalctl -xb | grep rror";
       ka = "killall";
-      n = "neovide --maximized";
+      n = "nvim";
       y = "yazi";
       sb = "source ~/.bashrc";
       sv = "sudo nvim";
       sz = "source ~/.zshrc";
       t = "trans";
       v = "nvim";
-      xo = "xonsh";
       # Aliases for configuration files
       cde = "cd ~/.emacs.d/";
       cfb = "e ~/.bashrc";
       cfe = "e ~/.emacs.d/init.el";
-      cfn = "neovide --maximized ~/.config/nvim/init.vim";
+      cfn = "nvim ~/.config/nvim/init.lua";
       cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
       vz = "nvim ~/.zshrc";

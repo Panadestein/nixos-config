@@ -1,5 +1,8 @@
 # Fish config
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
+let
+  theme = import ../../theme.nix;
+in
 {
   programs.fish = {
     enable = true;
@@ -11,28 +14,7 @@
       # Better man pager
       set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
       set -x MANROFFOPT "-c"
- 
-      # Set prompt
-      function fish_prompt
-          set_color yellow --bold
-          echo -n '⌊'
-
-          set_color red --bold
-          echo -n φ
-
-          set_color white --bold
-          echo -n ' ∈ '
-
-          set_color blue --bold
-          echo -n (basename (pwd))
-
-          set_color yellow --bold
-          echo -n '⌉'
-
-          set_color green --bold
-          printf '%s ' (fish_git_prompt)
-          set_color normal
-      end
+      set -gx LS_COLORS (vivid generate oehme)
 
       # Ensure fzf.fish history instead of fzf
       bind \cr _fzf_search_history
@@ -78,19 +60,19 @@
       jour2 = "journalctl -xb | grep rror";
       ka = "killall";
       ls = "eza";
-      n = "neovide --maximized";
+      n = "nvim";
       y = "yazi";
       sb = "source ~/.bashrc";
       sv = "sudo nvim";
       sz = "source ~/.zshrc";
       t = "trans";
       v = "nvim";
-      xo = "xonsh";
+      wgnord = "sudo wgnord";
       # Aliases for configuration files
       cde = "cd ~/.emacs.d/";
       cfb = "e ~/.bashrc";
       cfe = "e ~/.emacs.d/init.el";
-      cfn = "neovide --maximized ~/.config/nvim/init.vim";
+      cfn = "nvim ~/.config/nvim/init.lua";
       cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
       vz = "nvim ~/.zshrc";
@@ -120,5 +102,58 @@
       }
     ];
 
+  };
+
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      add_newline = false;
+      palette = "oehme";
+      format = "$directory$git_branch$git_status$nix_shell$cmd_duration$line_break$character";
+
+      palettes.oehme = {
+        blue = theme.blue;
+        cyan = theme.cyan;
+        foreground = theme.foreground;
+        green = theme.green;
+        magenta = theme.magenta;
+        orange = theme.orange;
+        red = theme.red;
+        yellow = theme.yellow;
+      };
+
+      directory = {
+        format = "[$path]($style)[$read_only]($read_only_style) ";
+        style = "bold blue";
+        read_only = " ro";
+        read_only_style = "bold red";
+        truncation_length = 4;
+        truncate_to_repo = false;
+      };
+      git_branch = {
+        format = "[$symbol$branch(:$remote_branch)]($style) ";
+        symbol = "git:";
+        style = "bold magenta";
+      };
+      git_status = {
+        format = "([$all_status$ahead_behind]($style) )";
+        style = "bold yellow";
+      };
+      nix_shell = {
+        format = "[$symbol$name]($style) ";
+        symbol = "nix:";
+        style = "bold cyan";
+      };
+      cmd_duration = {
+        min_time = 2000;
+        format = "[$duration]($style) ";
+        style = "bold orange";
+      };
+      character = {
+        success_symbol = "[❯](bold green) ";
+        error_symbol = "[❯](bold red) ";
+      };
+    };
   };
 }

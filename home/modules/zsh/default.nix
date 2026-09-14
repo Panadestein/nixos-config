@@ -1,5 +1,5 @@
 # Zsh config
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -18,19 +18,19 @@
       jour1 = "journalctl -p 3 -xb";
       jour2 = "journalctl -xb | grep rror";
       ka = "killall";
-      n = "neovide --maximized";
+      n = "nvim";
       y = "yazi";
       sb = "source ~/.bashrc";
       sv = "sudo nvim";
       sz = "source ~/.zshrc";
       t = "trans";
       v = "nvim";
-      xo = "xonsh";
+      wgnord = "sudo wgnord";
       # Aliases for configuration files
       cde = "cd ~/.emacs.d/";
       cfb = "e ~/.bashrc";
       cfe = "e ~/.emacs.d/init.el";
-      cfn = "neovide --maximized ~/.config/nvim/init.vim";
+      cfn = "nvim ~/.config/nvim/init.lua";
       cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
       vz = "nvim ~/.zshrc";
@@ -60,7 +60,10 @@
       size = 10000000;
     };
 
-    initContent = builtins.readFile ../../dotfiles/zshextra;
+    initContent = ''
+      export LS_COLORS="$(vivid generate oehme)"
+      ${builtins.readFile ../../dotfiles/zshextra}
+    '';
 
     oh-my-zsh = {
       enable = true;

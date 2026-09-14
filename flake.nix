@@ -12,6 +12,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Determinate Nix and its daemon for NixOS.
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+
     # Custom flake with complex number's support for CBQN
     cbqn-complex = {
       url = "github:Panadestein/complex_cbqn";
@@ -24,71 +27,116 @@
     # LLM agents
     llm-agents.url = "github:numtide/llm-agents.nix";
 
-    # The QChem flake. Contains several quantum chemistry packages
-    qchem-overlay.url = "github:Nix-QChem/NixOS-QChem";
-
     # Ranger-like nix config inspector
     nix-inspect.url = "github:bluskript/nix-inspect";
 
     # The best bibliography manager ever
     papis.url = "github:papis/papis";
 
-    # The best window manager I know
-    qtile-flake = {
-      url = "github:qtile/qtile";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, qtile-flake, ... }@inputs:
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config.allowUnfree = true;
       };
+      scientificPython = pkgs.python3.withPackages (
+        pythonPackages: with pythonPackages; [
+          ipykernel
+          ipython
+          jupyterlab
+          matplotlib
+          numpy
+          pandas
+          scikit-learn
+          scipy
+        ]
+      );
       # Nest stable channel into default unstable
-      overlay-stable = final: prev: {
+      overlay-stable = _: _: {
         nixpkgs-stable = import inputs.nixpkgs-stable {
           inherit system;
           config.allowUnfree = true;
         };
       };
 
-      # Systems and users (Bergman's reference here)
+      # System and user (Bergman's reference here)
       persona = "loren";
       rechnerNixOS = "cyrus";
-      rechnerNonNixOS = "atabey";
     in
-      {
-        nixosConfigurations = {
-          ${rechnerNixOS} = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = { inherit inputs; };
-            modules = [
-              ({ config, pkgs, ... }: {
-                nixpkgs.overlays = [ overlay-stable ];
-                nix.registry.llm-agents.flake = inputs.llm-agents;
-              })
-              ./systems/${rechnerNixOS}/configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.extraSpecialArgs = { inherit inputs; };
-                home-manager.users.${persona} = ./home/${rechnerNixOS}/home.nix;
-              }
-            ];
-          };
-        };
-
-        homeConfigurations.${persona} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+    {
+      nixosConfigurations = {
+        ${rechnerNixOS} = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
-            ./home/${rechnerNonNixOS}/home.nix
+            {
+              nixpkgs.overlays = [ overlay-stable ];
+              nix.registry.llm-agents.flake = inputs.llm-agents;
+            }
+            inputs.determinate.nixosModules.default
+            ./systems/${rechnerNixOS}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                backupFileExtension = "backup";
+                extraSpecialArgs = { inherit inputs; };
+                users.${persona} = ./home/${rechnerNixOS}/home.nix;
+              };
+            }
+          ];
+        };
+      };
+
+      devShells.${system} = {
+        default = pkgs.mkShellNoCC {
+          name = "nixos-config";
+          packages = with pkgs; [
+            deadnix
+            nixfmt
+            statix
           ];
         };
 
-        packages.${system}.${persona} = self.homeConfigurations.${persona}.activationPackage;
+        python = pkgs.mkShellNoCC {
+          name = "scientific-python";
+          packages = [ scientificPython ];
+        };
+
+        c-cpp = pkgs.mkShell {
+          name = "c-cpp";
+          packages = with pkgs; [
+            clang-tools
+            cmake
+            gcc
+            gdb
+            ninja
+            pkg-config
+            valgrind
+          ];
+        };
+
+        fortran-mpi = pkgs.mkShell {
+          name = "fortran-mpi";
+          packages = with pkgs; [
+            cmake
+            fortls
+            fypp
+            gfortran
+            ninja
+            openmpi
+            pkg-config
+          ];
+        };
+
+        julia = pkgs.mkShellNoCC {
+          name = "julia";
+          packages = [ pkgs.julia-bin ];
+        };
       };
+    };
 }

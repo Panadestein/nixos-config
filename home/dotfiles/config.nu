@@ -9,7 +9,7 @@ $env.config = {
     }
 }
 
-$env.LS_COLORS = (vivid generate snazzy | str trim)
+$env.LS_COLORS = (vivid generate oehme | str trim)
 
 #-----------------------------
 # Aliases
@@ -25,8 +25,8 @@ alias cfe = e ~/.emacs.d/init.el
 alias v = nvim
 alias cfv = vim ~/.vimrc
 alias sv = sudo nvim
-alias cfn = neovide --maximized ~/.config/nvim/init.vim
-alias n = neovide --maximized
+alias cfn = nvim ~/.config/nvim/init.lua
+alias n = nvim
 
 # Generic
 alias c = code -r

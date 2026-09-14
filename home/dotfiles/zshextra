@@ -93,12 +93,6 @@ yta() {
     mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
 }
 
-xpcon() {
-    # Set external displayport monitor
-    xrandr --output eDP --primary --auto\
-	   --output DisplayPort-"$1" --left-of eDP --auto
-}
-
 cls() {
     # Who doesn't do this?
     cd "$1"; ls;

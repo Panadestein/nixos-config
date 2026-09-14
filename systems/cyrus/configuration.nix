@@ -1,27 +1,65 @@
 #-----------------------------
-#    _   _ _       ___  ____  
-#   | \ | (_)_  __/ _ \/ ___| 
-#   |  \| | \ \/ / | | \___ \ 
+#    _   _ _       ___  ____
+#   | \ | (_)_  __/ _ \/ ___|
+#   |  \| | \ \/ / | | \___ \
 #   | |\  | |>  <| |_| |___) |
-#   |_| \_|_/_/\_\\___/|____/ 
+#   |_| \_|_/_/\_\\___/|____/
 #
 #      Panadestein's NixOS
 #-----------------------------
 
-{ config, pkgs, lib, inputs, ... }:
 {
-  imports =
-    [
-      # Hardware of current machine
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+let
+  theme = import ../../home/theme.nix;
+  hyprlandSession = pkgs.writeShellScript "hyprland-session" ''
+    exec ${lib.getExe config.programs.uwsm.package} start -e -D Hyprland -g -1 hyprland.desktop >/dev/null 2>&1
+  '';
+  zoomUs = pkgs.zoom-us.override {
+    hyprlandXdgDesktopPortalSupport = true;
+    pulseaudioSupport = true;
+  };
+  zoomLaunch = pkgs.writeShellScript "zoom-wayland-launch" ''
+    zoomConfig="$HOME/.config/zoomus.conf"
+    ${pkgs.coreutils}/bin/mkdir -p "$HOME/.config"
+    ${pkgs.coreutils}/bin/touch "$zoomConfig"
+
+    if ${pkgs.gnugrep}/bin/grep -q '^xwayland=' "$zoomConfig"; then
+      ${pkgs.gnused}/bin/sed -i 's/^xwayland=.*/xwayland=false/' "$zoomConfig"
+    else
+      printf '%s\n' 'xwayland=false' >> "$zoomConfig"
+    fi
+
+    export QT_QPA_PLATFORM=wayland
+    export XDG_CURRENT_DESKTOP=Hyprland
+    exec ${zoomUs}/bin/zoom "$@"
+  '';
+  zoomWayland = pkgs.symlinkJoin {
+    name = "zoom-us-wayland";
+    paths = [ zoomUs ];
+    postBuild = ''
+      rm "$out/bin/zoom"
+      ln -s ${zoomLaunch} "$out/bin/zoom"
+    '';
+  };
+in
+{
+  imports = [
+    # Hardware of current machine
+    ./hardware-configuration.nix
+  ];
 
   # Overlays
   nixpkgs.overlays = [
     # Emacs overlay
     (import inputs.emacs-overlay)
     # Use a stable wireplumber
-    (final: prev: {
+    (final: _: {
       wireplumber = final.nixpkgs-stable.wireplumber;
     })
   ];
@@ -33,7 +71,7 @@
       inxi = pkgs.inxi.override { withRecommends = true; };
     };
   };
-  
+
   # Nix configuration
   nix = {
     optimise.automatic = true;
@@ -52,7 +90,10 @@
         "root"
         "loren"
       ];
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 
@@ -64,20 +105,34 @@
   hardware.firmware = [ pkgs.linux-firmware ];
 
   # Kernel parameters and modules
-  boot.initrd.kernelModules = [ "amdgpu" "hid-apple"];
+  boot.initrd.kernelModules = [
+    "amdgpu"
+    "hid-apple"
+  ];
   boot.kernelParams = [
     "quiet"
     "loglevel=3"
-    "rd.systemd.show_status=auto"
+    "systemd.show_status=false"
+    "rd.systemd.show_status=false"
     "rd.udev.log_level=3"
+    "udev.log_level=3"
+    "vt.global_cursor_default=0"
+    "fbcon=nodefer"
     "hid_apple.fnmode=0"
     "psmouse.synaptics_intertouch=0"
   ];
+  boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
   boot.plymouth.enable = true;
+  boot.plymouth.extraConfig = "DeviceTimeout=5\n";
+  systemd.settings.Manager.ShowStatus = false;
+  boot.kernel.sysctl = {
+    "kernel.printk" = "3 3 3 3";
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
+    timeout = 0;
     systemd-boot.enable = false;
     efi.canTouchEfiVariables = true;
     grub.enable = true;
@@ -90,12 +145,6 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
-
-  # Enable virtualisation
-  virtualisation.vmware = {
-    host.enable = true;
-    guest.enable = true;
-  };
 
   # Set zsh as default shell
   programs.zsh.enable = true;
@@ -113,12 +162,16 @@
         networkmanager-openvpn
       ];
     };
-    firewall.interfaces.wlp2s0 = {
-      allowedTCPPorts = [ 53317 ];
-      allowedUDPPorts = [ 53317 ];
+    firewall = {
+      checkReversePath = "loose";
+      interfaces.wlp2s0 = {
+        allowedTCPPorts = [ 53317 ];
+        allowedUDPPorts = [ 53317 ];
+      };
     };
   };
   programs.nm-applet.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Select internationalization properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -127,54 +180,56 @@
     keyMap = "us";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # Hyprland is the only graphical session. UWSM owns its systemd lifecycle.
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+  programs.dconf.enable = true;
 
-  # Configure AMD graphics
-  services.xserver.videoDrivers = [
-    "amdgpu"
-    "vmware"
-  ];
-  services.xserver.deviceSection = ''Option "TearFree" "true"'';
-
-  # Display manager
-  services.displayManager.gdm.enable = true;
-  services.displayManager.defaultSession = lib.mkForce "gnome";
-
-  # Window managers
-  services.xserver.windowManager = {
-    xmonad = {
-      enable = false;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages: [
-        haskellPackages.xmonad
-        haskellPackages.xmonad-contrib
-        haskellPackages.xmonad-extras
-      ];
+  programs.chromium = {
+    enable = true;
+    extraOpts = {
+      BrowserThemeColor = theme.background;
+      BrowserColorScheme = "device";
     };
-    qtile = {
-      enable = false;
-      package = inputs."qtile-flake".packages.${pkgs.stdenv.hostPlatform.system}.default;
-    };
-    stumpwm = {
-      enable = false;
+    initialPrefs.browser.theme = {
+      color_scheme = 0;
+      color_scheme2 = 0;
     };
   };
-  
-  # Desktop environment
-  services.desktopManager.gnome.enable = true;
-  xdg.portal.enable = lib.mkIf
-    (!config.services.desktopManager.gnome.enable)
-    true;
-  xdg.portal.configPackages = lib.mkIf
-    (!config.services.desktopManager.gnome.enable)
-    [ pkgs.xdg-desktop-portal-gtk ];
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us,bqn";
-    options = "grp:switch";
+  # Fingerprint authentication is exposed through PAM to greetd
+  services.fprintd.enable = true;
+  security.pam.services.greetd.fprintAuth = true;
+  security.pam.services.hyprlock.fprintAuth = true;
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        command = "${hyprlandSession}";
+        user = "loren";
+      };
+      default_session = {
+        command = "${lib.getExe' pkgs.greetd "agreety"} --cmd ${lib.escapeShellArg "${hyprlandSession}"}";
+        user = "greeter";
+      };
+    };
   };
+  systemd.services.greetd.serviceConfig.Type = lib.mkForce "simple";
+  systemd.services.plymouth-quit = {
+    restartIfChanged = false;
+    serviceConfig.ExecStart = [
+      ""
+      "-${pkgs.plymouth}/bin/plymouth quit --retain-splash"
+    ];
+  };
+  security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services.hyprlock.enableGnomeKeyring = true;
+
+  # Update UEFI and supported peripheral firmware through LVFS.
+  services.fwupd.enable = true;
 
   # Printing support with CUPS
   services.printing = {
@@ -197,28 +252,20 @@
   };
   services.blueman.enable = true;
 
-  # Enable touchpad support
-  services.libinput = {
-    enable = true;
-    touchpad = {
-      tapping = true;
-      naturalScrolling = true;
-      scrollMethod = "twofinger";
-    };
-  };
-
   # User account and configuration
   users.users.loren = {
     isNormalUser = true;
     home = "/home/loren";
     createHome = true;
-    extraGroups = [ "wheel"
-                    "audio"
-                    "input"
-                    "docker"
-                    "networkmanager" 
-                    "systemd-journal" 
-                    "video"];
+    extraGroups = [
+      "wheel"
+      "audio"
+      "input"
+      "docker"
+      "networkmanager"
+      "systemd-journal"
+      "video"
+    ];
   };
 
   # Global packages, minimal to avoid polluting environment
@@ -245,60 +292,68 @@
     usbutils
     wget
     which
+    wgnord
+    wireguard-tools
+    zoomWayland
     # Terminal and CLI utilities
     zsh
     inputs.nix-inspect.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.papis.packages.${pkgs.stdenv.hostPlatform.system}.default
     # Text editors and office
-    emacs-git
+    emacs-git-pgtk
     vim-full
     # Programming languages (here to avoid environment clashes)
     gfortran
     mono
-    (let
-      my-python-packages = python-packages: with python-packages; [
-        # Language server protocol
-        ruff
+    (
+      let
+        my-python-packages =
+          python-packages: with python-packages; [
+            # Language server protocol
+            ruff
+            # Scientific libraries
+            ipython
+            ipykernel
+            jupyter
+            matplotlib
+            mpmath
+            numpy
+            pandas
+            scikit-learn
+            scipy
+            sympy
+            # Qt backend
+            pyqt6
+            # Linters
+            autopep8
+            flake8
+            jedi
+            mypy
+            pydocstyle
+            pylint
+            # Web
+            tornado
+            # Hy utilities
+            hy
+            # Dependencies
+            pickleshare
+          ];
+        python-with-my-packages = python3.withPackages my-python-packages;
+      in
+      python-with-my-packages
+    )
+    (hy.withPackages (
+      py-packages: with py-packages; [
         # Scientific libraries
-        ipython
-        ipykernel
-        jupyter
-        matplotlib
-        mpmath
         numpy
+        matplotlib
         pandas
-        scikit-learn
         scipy
         sympy
         # Qt backend
         pyqt6
-        # Linters
-        autopep8
-        flake8
-        jedi
-        mypy
-        pydocstyle
-        pylint
-        # Web
-        tornado
-        # Hy utilities
-        hy
-        # Dependencies
-        pickleshare
-      ];
-      python-with-my-packages = python3.withPackages my-python-packages;
-    in
-      python-with-my-packages)
-    (hy.withPackages (py-packages: with py-packages; [
-      # Scientific libraries
-      numpy
-      matplotlib
-      pandas
-      scipy
-      sympy
-      # Qt backend
-      pyqt6
-    ]))
+      ]
+    ))
     uv
   ];
 
@@ -312,7 +367,7 @@
   # Emacs configuration
   services.emacs = {
     enable = true;
-    package = pkgs.emacs-git;
+    package = pkgs.emacs-git-pgtk;
     defaultEditor = true;
   };
 
@@ -328,15 +383,13 @@
   # Enable Java
   programs.java.enable = true;
 
-  # Use Flatpak, just in case
-  services.flatpak.enable = true;
-
   # Fonts
   fonts.packages = with pkgs; [
     dina-font
     fira-code
     fira-code-symbols
     font-awesome
+    inter
     iosevka
     liberation_ttf
     noto-fonts
@@ -346,13 +399,20 @@
     source-code-pro
     uiua386
     nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
   ];
-
-  # GPaste
-  programs.gpaste.enable = true;
-
-  # Gnome apps configuration
-  programs.dconf.enable = true;
+  fonts.fontconfig.defaultFonts = {
+    monospace = [ "JetBrainsMono Nerd Font" ];
+    sansSerif = [
+      "Inter"
+      "Noto Sans"
+    ];
+    serif = [
+      "Noto Serif"
+      "Liberation Serif"
+    ];
+    emoji = [ "Noto Color Emoji" ];
+  };
 
   # Gnupg configuration
   programs.gnupg.agent = {
@@ -378,33 +438,68 @@
   };
 
   # Additional services
-  services.actkbd.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   services.gvfs.enable = true;
+  services.udisks2.enable = true;
   services.openssh.enable = true;
   services.upower.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  services.dbus = {
-    enable = true;
-    packages = [ pkgs.dconf ];
+  services.dbus.enable = true;
+  # User target and services sequenced after initial session unlock
+  systemd.user.targets.post-unlock = {
+    description = "Post-unlock user services";
+    bindsTo = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+  };
+  systemd.user.services.nm-applet = {
+    after = [ "post-unlock.target" ];
+    wantedBy = lib.mkForce [ "post-unlock.target" ];
   };
   systemd.user.services.maestral = {
     enable = true;
     description = "Maestral";
-    after = [ "graphical-session.target" ];
+    after = [ "post-unlock.target" ];
     partOf = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
+    wantedBy = [ "post-unlock.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.maestral-gui}/bin/maestral_qt";
       Restart = "on-failure";
       PrivateTmp = true;
       ProtectSystem = "full";
       Nice = 10;
-      Environment = [
-        "QT_QPA_PLATFORM=xcb"
-        "QT_QPA_PLATFORMTHEME=generic"
-      ];
     };
   };
+
+  # WireGuard & wgnord (NordVPN) directory & template provisioning
+  systemd.tmpfiles.rules = [
+    "d /etc/wireguard 0700 root root -"
+    "d /var/lib/wgnord 0700 root root -"
+    "C /var/lib/wgnord/template.conf 0600 root root - ${pkgs.writeText "wgnord-template.conf" ''
+      [Interface]
+      PrivateKey = PRIVKEY
+      Address = 10.5.0.2/32
+      MTU = 1350
+      DNS = 103.86.96.100 103.86.99.100
+
+      [Peer]
+      PublicKey = SERVER_PUBKEY
+      AllowedIPs = 0.0.0.0/0, ::/0
+      Endpoint = SERVER_IP:51820
+      PersistentKeepalive = 25
+    ''}"
+  ];
+
+  # Passwordless sudo for wgnord
+  security.sudo.extraRules = [
+    {
+      users = [ "loren" ];
+      commands = [
+        {
+          command = "${pkgs.wgnord}/bin/wgnord";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 
   # State version
   system.stateVersion = "24.05";

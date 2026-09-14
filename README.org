@@ -18,9 +18,8 @@
 #+END_HTML
 
 Welcome to my personal flake [[https://nixos.org/][Nix/NixOS]] configuration, powered by [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration
-is designed to be production-ready (according to my personal requirements) and comes with the [[https://xmonad.org/][xmonad]] and [[https://qtile.org/screenshots/][Qtile]]
-tiling window managers. Additionally, I have a declarative configuration for the [[https://release.gnome.org/][gnome]]
-desktop environment, although it's not my primary environment.
+is designed to be production-ready (according to my personal requirements) and uses [[https://hypr.land/][Hyprland]]
+on Wayland.
 
 ** Remarks:
 
@@ -52,15 +51,20 @@ or all of them together:
   nix flake update
 #+end_src
 
-**** Non-NixOS
+**** Development shells
 
-I maintain a second configuration for non-NixOS hosts (tested in Guix System so far), which is
-called [[https://en.wikipedia.org/wiki/Atabey_(goddess)][atabey]]. Here I build only the home configuration:
+The principal flake provides small, current nixpkgs-based development environments:
 
-#+begin_src bash
-  nix build .#<USERNAME>
-  ./result/activate
-#+end_src
+| Command                          | Environment                                      |
+|----------------------------------+--------------------------------------------------|
+| =nix develop=                    | Nix formatting and static analysis               |
+| =nix develop .#python=           | Scientific Python and Jupyter                    |
+| =nix develop .#c-cpp=            | C/C++ compilers, build tools and debugging        |
+| =nix develop .#fortran-mpi=      | Fortran, Open MPI, fortls and fypp                |
+| =nix develop .#julia=            | Julia                                             |
+
+Home Manager enables direnv and nix-direnv for Bash, Fish and Zsh. The repository's
+=.envrc= selects the default maintenance shell; approve it once with =direnv allow=.
 
 *** Using nix-channels
 
