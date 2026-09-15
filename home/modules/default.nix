@@ -3,6 +3,7 @@
   ./emacs
   ./fish
   ./ghostty
+  ./pass
   ./vim
   ./vivid
   ./wallpaper-next
