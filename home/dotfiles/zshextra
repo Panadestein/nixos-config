@@ -79,13 +79,12 @@ tpy() {
 }
 
 ldiff() {
-    if [ -z "$1" ] || [ -z "$2" ]; then return; fi
-    f1=$(basename "$1")
-    f2=$(basename "$2")
-    cat -n "$1" > "/tmp/$f1"
-    cat -n "$2" > "/tmp/$f2"
-    nvim -d "/tmp/$f1" "/tmp/$f2"
-    rm "/tmp/$f1" "/tmp/$f2"
+    if (( $# != 2 )); then
+        print -u2 'Usage: ldiff FILE FILE'
+        return 1
+    fi
+    # Process substitution avoids overwriting /tmp files with shared basenames.
+    nvim -R -d =(cat -n -- "$1") =(cat -n -- "$2")
 }
 
 yta() {
@@ -109,8 +108,13 @@ nixvars() {
 }
 
 recscr() {
-    # Simple, silent screen record (for laptop's screen)
-    ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0 Videos/"$1"
+    # Record the Wayland display; stop recording with Ctrl+C.
+    if (( $# != 1 )); then
+        print -u2 'Usage: recscr FILENAME.mp4'
+        return 1
+    fi
+    mkdir -p "$HOME/Videos" || return
+    wf-recorder -f "$HOME/Videos/$1"
 }
 
 pab() {

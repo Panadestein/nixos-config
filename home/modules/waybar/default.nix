@@ -67,7 +67,18 @@ in
       };
       clock = {
         format = "{:%a %d %b  %H:%M}";
-        tooltip = false;
+        tooltip = true;
+        tooltip-format = "<tt>{calendar}</tt>";
+        calendar = {
+          mode-mon-col = 3;
+          on-scroll = 1;
+          format = {
+            months = "<span color='${theme.brightForeground}'><b>{}</b></span>";
+            weekdays = "<span color='${theme.muted}'>{}</span>";
+            days = "<span color='${theme.foreground}'>{}</span>";
+            today = "<span color='${theme.accent}'><b><u>{}</u></b></span>";
+          };
+        };
       };
       tray = {
         spacing = 8;
@@ -136,6 +147,18 @@ in
         color: ${theme.lightForeground};
         font-weight: bold;
         padding: 0 12px;
+      }
+
+      tooltip {
+        background: ${theme.lighterBackground};
+        border: 1px solid ${theme.selection};
+        border-radius: 8px;
+      }
+
+      tooltip label {
+        color: ${theme.foreground};
+        font-family: "JetBrainsMono Nerd Font";
+        padding: 6px 8px;
       }
 
       .modules-right {

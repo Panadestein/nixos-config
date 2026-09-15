@@ -18,7 +18,7 @@
 let
   theme = import ../../home/theme.nix;
   hyprlandSession = pkgs.writeShellScript "hyprland-session" ''
-    exec ${lib.getExe config.programs.uwsm.package} start -e -D Hyprland -g -1 hyprland.desktop >/dev/null 2>&1
+    exec ${lib.getExe config.programs.uwsm.package} start -e -D Hyprland -g -1 hyprland.desktop
   '';
   zoomUs = pkgs.zoom-us.override {
     hyprlandXdgDesktopPortalSupport = true;
@@ -130,9 +130,9 @@ in
     "kernel.printk" = "3 3 3 3";
   };
 
-  # Use the systemd-boot EFI boot loader.
+  # GRUB provides access to earlier generations if an upgrade fails to boot.
   boot.loader = {
-    timeout = 0;
+    timeout = 5;
     systemd-boot.enable = false;
     efi.canTouchEfiVariables = true;
     grub.enable = true;
@@ -199,18 +199,10 @@ in
     };
   };
 
-  # Fingerprint authentication is exposed through PAM to greetd
-  services.fprintd.enable = true;
-  security.pam.services.greetd.fprintAuth = true;
-  security.pam.services.hyprlock.fprintAuth = true;
-
   services.greetd = {
     enable = true;
     settings = {
-      initial_session = {
-        command = "${hyprlandSession}";
-        user = "loren";
-      };
+      # Always authenticate with the greeter before launching the session.
       default_session = {
         command = "${lib.getExe' pkgs.greetd "agreety"} --cmd ${lib.escapeShellArg "${hyprlandSession}"}";
         user = "greeter";
@@ -361,7 +353,6 @@ in
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     COLORTERM = "truecolor";
-    TERM = "xterm-256color";
   };
 
   # Emacs configuration
@@ -444,28 +435,30 @@ in
   services.openssh.enable = true;
   services.upower.enable = true;
   services.dbus.enable = true;
-  # User target and services sequenced after initial session unlock
-  systemd.user.targets.post-unlock = {
-    description = "Post-unlock user services";
-    bindsTo = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-  };
   systemd.user.services.nm-applet = {
-    after = [ "post-unlock.target" ];
-    wantedBy = lib.mkForce [ "post-unlock.target" ];
+    after = [ "graphical-session.target" ];
+    wantedBy = lib.mkForce [ "graphical-session.target" ];
   };
-  systemd.user.services.maestral = {
-    enable = true;
-    description = "Maestral";
-    after = [ "post-unlock.target" ];
+  systemd.user.services.dropbox = {
+    description = "Dropbox";
+    after = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
-    wantedBy = [ "post-unlock.target" ];
+    wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.maestral-gui}/bin/maestral_qt";
+      ExecStart = "${pkgs.dropbox}/bin/dropbox";
       Restart = "on-failure";
-      PrivateTmp = true;
       ProtectSystem = "full";
       Nice = 10;
+    };
+  };
+  systemd.user.services.udiskie = {
+    description = "Removable-media tray service";
+    after = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.udiskie}/bin/udiskie --tray";
+      Restart = "on-failure";
     };
   };
 

@@ -51,6 +51,7 @@
           matplotlib
           numpy
           pandas
+          pyqt6
           scikit-learn
           scipy
         ]

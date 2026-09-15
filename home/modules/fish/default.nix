@@ -61,10 +61,7 @@ in
       ka = "killall";
       ls = "eza";
       n = "nvim";
-      y = "yazi";
-      sb = "source ~/.bashrc";
       sv = "sudo nvim";
-      sz = "source ~/.zshrc";
       t = "trans";
       v = "nvim";
       wgnord = "sudo wgnord";
@@ -75,7 +72,7 @@ in
       cfn = "nvim ~/.config/nvim/init.lua";
       cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
-      vz = "nvim ~/.zshrc";
+      vz = "nvim ~/.config/zsh/.zshrc";
       # Less frequently used aliases
       jnb = "jupyter notebook";
       starwars = "telnet towel.blinkenlights.nl";
@@ -95,10 +92,6 @@ in
       {
         name = "fzf-fish";
         src = fzf-fish.src;
-      }
-      {
-        name = "z";
-        src = z.src;
       }
     ];
 

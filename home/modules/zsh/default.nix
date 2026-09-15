@@ -19,10 +19,9 @@
       jour2 = "journalctl -xb | grep rror";
       ka = "killall";
       n = "nvim";
-      y = "yazi";
       sb = "source ~/.bashrc";
       sv = "sudo nvim";
-      sz = "source ~/.zshrc";
+      sz = "source ${config.xdg.configHome}/zsh/.zshrc";
       t = "trans";
       v = "nvim";
       wgnord = "sudo wgnord";
@@ -33,7 +32,7 @@
       cfn = "nvim ~/.config/nvim/init.lua";
       cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
-      vz = "nvim ~/.zshrc";
+      vz = "nvim ${config.xdg.configHome}/zsh/.zshrc";
       # Less frequently used aliases
       jnb = "jupyter notebook";
       starwars = "telnet towel.blinkenlights.nl";

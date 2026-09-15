@@ -1,7 +1,7 @@
 " Vundle configuration (plugin management)
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=@vundle@
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'

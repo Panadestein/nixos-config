@@ -49,6 +49,7 @@ in
     ripgrep
     sd
     step-cli
+    tealdeer
     tmate
     tmux
     tree
@@ -56,9 +57,11 @@ in
     universal-ctags
     udiskie
     waypaper
+    wf-recorder
     wl-clipboard
     xdg-utils
     yaru-theme
+    dropbox-cli
     # Screenshot utility
     hyprshot
     # GTK packages
@@ -179,11 +182,6 @@ in
     ]))
   ];
 
-  # Add missing path for maestral
-  xdg.systemDirs.data = [
-    "${pkgs.gtk3}/share/gsettings-schemas/gtk+3-${pkgs.gtk3.version}"
-  ];
-
   # Make sure fontconfig gets updated
   fonts.fontconfig = {
     enable = true;
@@ -218,6 +216,22 @@ in
     enableFishIntegration = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      dark = true;
+      navigate = true;
+    };
   };
 
   # Plain Chromium; its Oehme color and dark/light behavior are set by the
@@ -429,7 +443,7 @@ in
           font_family = "JetBrainsMono Nerd Font";
           placeholder_text = "Password";
           check_text = "Authenticating…";
-          fail_text = "$PAMFAIL$FPRINTFAIL";
+          fail_text = "$PAMFAIL";
         }
       ];
       label = [
@@ -475,26 +489,28 @@ in
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        after_sleep_cmd = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
+        # Wait for the compositor to confirm the lock before releasing sleep.
+        inhibit_sleep = 3;
         ignore_dbus_inhibit = false;
       };
       listener = [
-        # Turn screen black (DPMS off) after 60 seconds of being locked
+        # Turn off a manually locked display after 60 seconds of inactivity.
         {
           timeout = 60;
-          on-timeout = "pidof hyprlock && hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = ''pidof hyprlock && hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })' '';
+          on-resume = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
         }
         # Lock screen after 10 minutes of general inactivity
         {
           timeout = 600;
           on-timeout = "loginctl lock-session";
         }
-        # Turn display off after 11 minutes of general inactivity
+        # Turn the display off one minute after automatic locking.
         {
           timeout = 660;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = ''hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })' '';
+          on-resume = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
         }
         # Suspend system after 30 minutes of inactivity
         {

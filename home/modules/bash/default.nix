@@ -20,10 +20,8 @@ _: {
       jour2 = "journalctl -xb | grep rror";
       ka = "killall";
       n = "nvim";
-      y = "yazi";
       sb = "source ~/.bashrc";
       sv = "sudo nvim";
-      sz = "source ~/.zshrc";
       t = "trans";
       v = "nvim";
       # Aliases for configuration files
@@ -33,7 +31,7 @@ _: {
       cfn = "nvim ~/.config/nvim/init.lua";
       cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
-      vz = "nvim ~/.zshrc";
+      vz = "nvim ~/.config/zsh/.zshrc";
       # Less frequently used aliases
       jnb = "jupyter notebook";
       starwars = "telnet towel.blinkenlights.nl";

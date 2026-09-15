@@ -64,10 +64,6 @@ hl.config({
 
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
-hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprlock && (systemctl --user start post-unlock.target; udiskie --tray &)")
-end)
-
 local shortcutHelp = {}
 
 local function bind(keys, dispatcher, description, options)
@@ -85,6 +81,25 @@ local function toggleSpecial(name)
     hl.dispatch(hl.dsp.workspace.toggle_special(name))
 end
 
+local pendingScratchpads = {}
+
+local function launchScratchpad(name, command, rules)
+    -- A failed process never emits window.open. Allow a retry after a bounded
+    -- wait, and keep old timers from clearing a newer launch attempt.
+    local attempt = {}
+    pendingScratchpads[name] = attempt
+    hl.timer(function()
+        if pendingScratchpads[name] == attempt then
+            pendingScratchpads[name] = nil
+            hl.notification.create({
+                text = "Scratchpad " .. name .. " did not open; press its shortcut to retry",
+                timeout = 5000,
+            })
+        end
+    end, { timeout = 15000, type = "oneshot" })
+    hl.exec_cmd(command, rules)
+end
+
 local function scratchpad(name, command, rules)
     local workspace = "special:" .. name
     rules = rules or {}
@@ -98,12 +113,11 @@ local function scratchpad(name, command, rules)
             return
         end
 
-        hl.exec_cmd(command, rules)
-        hl.timer(function()
-            if #hl.get_workspace_windows(workspace) > 0 then
-                toggleSpecial(name)
-            end
-        end, { timeout = 180, type = "oneshot" })
+        if pendingScratchpads[name] then
+            return
+        end
+
+        launchScratchpad(name, command, rules)
     end
 end
 
@@ -131,24 +145,43 @@ local function fishDropdown()
         return
     end
 
-    hl.exec_cmd(
+    if pendingScratchpads.term then
+        return
+    end
+
+    launchScratchpad("term",
         terminal
             .. " --gtk-single-instance=false --class="
             .. fishDropdownClass
             .. " -e fish"
     )
-    hl.timer(function()
-        if #hl.get_workspace_windows(workspace) > 0 then
-            toggleSpecial("term")
-        end
-    end, { timeout = 180, type = "oneshot" })
 end
 
 -- Some applications inherit the terminal's activation workspace when launched
 -- from a link. Keep the scratchpad exclusive to its Fish window, then reveal
 -- the application on the monitor's ordinary workspace.
 hl.on("window.open", function(window)
-    if window == nil or window.class == fishDropdownClass then
+    if window == nil then
+        return
+    end
+
+    if pendingScratchpads.term and window.class == fishDropdownClass then
+        pendingScratchpads.term = nil
+        toggleSpecial("term")
+        return
+    end
+
+    if window.workspace ~= nil then
+        for name, pending in pairs(pendingScratchpads) do
+            if pending and window.workspace.name == "special:" .. name then
+                pendingScratchpads[name] = nil
+                toggleSpecial(name)
+                return
+            end
+        end
+    end
+
+    if window.class == fishDropdownClass then
         return
     end
 
@@ -179,7 +212,7 @@ bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/Screenshots"
 -- Keyboard layout and scratchpads
 bind(mod .. " + I", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"), "Cycle keyboard layouts")
 bind("F12", fishDropdown, "Toggle the Fish drop-down terminal")
-bind(mod .. " + C", scratchpad("calculator", terminal .. " -e numbat", {
+bind(mod .. " + C", scratchpad("calculator", terminal .. " --gtk-single-instance=false -e numbat", {
     size = "70% 70%",
     opacity = 0.95,
 }), "Toggle the Numbat scratchpad")
@@ -205,7 +238,7 @@ bind(mod .. " + CTRL + R", function()
     hl.notification.create({ text = "Reloading Hyprland configuration", timeout = 1500 })
     hl.exec_cmd("hyprctl reload")
 end, "Reload the active Hyprland configuration")
-bind(mod .. " + CTRL + Q", hl.dsp.exit(), "Exit Hyprland")
+bind(mod .. " + CTRL + Q", hl.dsp.exec_cmd("uwsm stop"), "Exit Hyprland")
 
 -- The first five workspaces are always visible in Waybar; the remaining
 -- numbered bindings create their workspace when first selected.
@@ -221,9 +254,21 @@ end
 
 bind(mod .. " + RIGHT", hl.dsp.focus({ workspace = "e+1" }), "Switch to the next workspace")
 bind(mod .. " + LEFT", hl.dsp.focus({ workspace = "e-1" }), "Switch to the previous workspace")
+bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }), "Switch to the next workspace", { mouse = true })
+bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }), "Switch to the previous workspace", { mouse = true })
 
 -- Window and layout controls
 bind(mod .. " + Q", hl.dsp.window.close(), "Close the focused window")
+bind("CTRL + ALT + Delete", function()
+    local active = hl.get_active_workspace()
+    local name = active and active.name or "1"
+    for _, w in ipairs(hl.get_workspace_windows(name)) do
+        hl.dispatch(hl.dsp.window.close({ window = w }))
+    end
+end, "Close all windows on the active workspace")
+bind(mod .. " + G", hl.dsp.group.toggle(), "Toggle window grouping")
+bind(mod .. " + ALT + G", hl.dsp.exec_raw("moveoutofgroup"), "Move window out of group")
+bind(mod .. " + ALT + TAB", hl.dsp.group.next(), "Cycle between windows in group")
 bind(mod .. " + U", hl.dsp.window.fullscreen(), "Toggle fullscreen")
 bind(mod .. " + T", hl.dsp.window.float({ action = "toggle" }), "Toggle floating")
 bind(mod .. " + H", hl.dsp.focus({ direction = "left" }), "Focus left")

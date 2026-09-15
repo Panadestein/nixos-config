@@ -37,7 +37,8 @@ in
         "15=${theme.brightForeground}"
       ];
       background-opacity = 0.96;
-      scrollback-limit = 5000;
+      # Ghostty measures this in bytes, including the visible screen.
+      scrollback-limit = 50 * 1024 * 1024;
       window-padding-x = 10;
       window-padding-y = 10;
     };

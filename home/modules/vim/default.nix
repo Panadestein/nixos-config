@@ -40,11 +40,17 @@ in
 {
   home.packages = with pkgs; [
     neovim
+    pyright
   ];
 
   # Vim and Neovim
-  home.file.".vimrc".source = ../../dotfiles/vimrc;
+  home.file.".vimrc".source = pkgs.replaceVars ../../dotfiles/vimrc {
+    vundle = "${pkgs.vimPlugins.Vundle-vim}";
+  };
   home.file.".vim/colors/oehme.vim".text = vimTheme;
-  xdg.configFile."nvim/init.lua".source = ../../dotfiles/init.lua;
+  xdg.configFile."nvim/init.lua".text = ''
+    vim.opt.runtimepath:prepend("${pkgs.vimPlugins.vim-plug}")
+  ''
+  + builtins.readFile ../../dotfiles/init.lua;
   xdg.configFile."nvim/colors/oehme.vim".text = vimTheme;
 }

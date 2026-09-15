@@ -16,32 +16,51 @@
 </p>
 #+END_HTML
 
-Welcome to my personal flake [[https://nixos.org/][Nix/NixOS]] configuration, powered by [[https://nix-community.github.io/home-manager/][home-manager]]. This configuration
-is designed to be production-ready (according to my personal requirements) and uses [[https://hypr.land/][Hyprland]]
-on Wayland.
+Wellcome to my [[https://nixos.org/][NixOS]] system flake, with [[https://nix-community.github.io/home-manager/][Home Manager]] configuring the user environment.
+The machine is named [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]], after the engineer of *The Mysterious Island*.
+Its Wayland desktop is built around [[https://hypr.land/][Hyprland]] and takes its visual cue from
+[[https://en.wikipedia.org/wiki/Ernst_Ferdinand_Oehme][Ernst Ferdinand Oehme]]; the tracked wallpaper collection is documented
+[[file:home/wallpapers/oehme/README.md][alongside the works]].
 
-** Remarks:
+** Cyrus
 
-This configuration is specifically tailored for AMD hardware, hence, modifications might
-be necessary to suit other machines.
+This configuration is tailored to one AMD laptop, not intended as a general-purpose module.
+It brings together:
 
-*** Using flakes
+- a UWSM-managed Hyprland session, Waybar, Ghostty, Nautilus, and a Wayland-native desktop workflow;
+- Home Manager-managed shell and application configuration, including Fish, Starship, direnv, and nix-direnv;
+- declarative wallpapers through Hyprpaper and Waypaper, with a keyboard shortcut to cycle the Oehme collection;
+- practical laptop integration: docked-display handling, lock and idle services, firmware updates, printing, and WireGuard/NordVPN tooling;
+- a small set of flake development shells for Nix maintenance, scientific Python, C/C++, Fortran/MPI, and Julia.
 
-Nix [[https://www.tweag.io/blog/2020-07-31-nixos-flakes/][flakes]] is the preferred way to utilize this configuration. The use of flakes enhances the reproducibility
-of the system and enables seamless support for multiple machines via the =flake.nix= file.
+** Rebuilding
 
-**** NixOS
-
-My NixOS machine is called [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]]. Here I build the home and system configuration together as follows:
+Run commands from the repository root. First validate the flake and build the
+system and Home Manager configuration without activating it:
 
 #+begin_src bash
-  sudo nixos-rebuild --flake .#<HOSTNAME> switch
+  nix flake check --no-write-lock-file
+  nix build --no-link .#nixosConfigurations.cyrus.config.system.build.toplevel
 #+end_src
 
-Upgrading the system implies updating the inputs one at the time:
+A build checks generated files and package dependencies; it cannot exercise docking
+or suspend on hardware. New files must be added with =git add= before a Git-backed flake
+can see them.
+
+Apply the configuration:
 
 #+begin_src bash
-  sudo nix flake lock --update-input <INPUT>
+  sudo nixos-rebuild switch --flake .#cyrus
+#+end_src
+
+Log out and back in after changes to the session environment or compositor.
+=Super+Ctrl+R= reloads the /installed/ Hyprland configuration; repository edits
+take effect after rebuilding.
+
+Update one input at a time, then repeat the checks above:
+
+#+begin_src bash
+  nix flake update <INPUT>
 #+end_src
 
 or all of them together:
@@ -50,7 +69,54 @@ or all of them together:
   nix flake update
 #+end_src
 
-**** Development shells
+Keep =flake.lock= committed. Neither updates nor builds require =sudo=.
+If an activated generation causes trouble, use =sudo nixos-rebuild switch --rollback=;
+GRUB also offers previous generations during its five-second boot menu.
+Keep the existing =stateVersion= values when upgrading: they describe compatibility
+defaults, not the desired NixOS release.
+
+** Finding your way around
+
+| File or directory                  | Purpose                                     |
+|------------------------------------+---------------------------------------------|
+| =flake.nix= and =flake.lock=        | Inputs, host, development shells and checks |
+| =systems/cyrus/=                   | Hardware, boot, login and system services   |
+| =home/cyrus/home.nix=              | Applications, desktop services and displays |
+| =home/dotfiles/hyprland.lua=        | Keybindings, window rules and scratchpads   |
+| =home/modules/=                    | Shells, editors, Waybar and helpers         |
+| =home/theme.nix=                   | Shared Oehme palette                        |
+
+** Desktop essentials
+
+=Super+F1= shows the shortcut list generated from the bindings themselves.
+
+| Shortcut          | Action                         |
+|-------------------+--------------------------------|
+| =Super+Return=    | Ghostty with Fish              |
+| =Super+R=         | Application launcher           |
+| =F12=             | Fish drop-down terminal        |
+| =Super+C=         | Numbat calculator scratchpad   |
+| =Super+F=         | Yazi                           |
+| =Print=           | Region screenshot              |
+| =Super+Shift+W=   | Wallpaper chooser              |
+| =Super+Ctrl+W=    | Next painting                  |
+| =Super+O=         | Lock                           |
+| =Super+Ctrl+Q=    | Log out through UWSM           |
+
+In Bash, Fish and Zsh, =y= opens Yazi and changes the shell's directory on exit.
+In Zsh, =recscr demo.mp4= records the Wayland display to =~/Videos/=; stop with Ctrl+C.
+Idle locking starts at ten minutes, display power-off at eleven, and suspend at thirty.
+Kanshi selects the Lenovo display when docked and the laptop panel otherwise.
+
+For session problems, start with =hyprctl configerrors=,
+=systemctl --user --failed= and =journalctl --user -b -u hypridle -u kanshi -u waybar=.
+
+Vim's Vundle and Neovim's vim-plug bootstrap are provided by Nix. Their plugin
+lists still use mutable user installations: run =:PluginInstall= in Vim or
+=:PlugInstall= in Neovim on a fresh home directory. Emacs is fetched from the
+pinned =emacsd= revision and tangled by Home Manager on change.
+
+** Development shells
 
 The principal flake provides small, current nixpkgs-based development environments:
 
@@ -64,20 +130,3 @@ The principal flake provides small, current nixpkgs-based development environmen
 
 Home Manager enables direnv and nix-direnv for Bash, Fish and Zsh. The repository's
 =.envrc= selects the default maintenance shell; approve it once with =direnv allow=.
-
-*** Using nix-channels
-
-The flake configuration can be easily transformed into a non-flake, channel based one.
-For example, if you want to use the =nixos-unstable= you could do:
-
-#+begin_src bash
-  sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-  sudo nixos-rebuild switch --upgrade
-#+end_src
-
-When using a hybrid workflow (e.g. to keep using =nix-shell= in a flake system)
-it is important to update the channels without rebuilding:
-
-#+begin_src bash
-  nix-channel --update
-#+end_src

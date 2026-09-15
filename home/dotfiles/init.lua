@@ -21,7 +21,9 @@ vim.opt.showmode = false          -- Prevent non-normal modes showing in Powerli
 vim.opt.wildmode = { "longest", "list" } -- Bash-like tab completions
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.spell = true              -- Enable spell checking
-vim.opt.backupdir = vim.fn.expand("~/.config/nvim/cache") -- Directory to store backup files
+local backup_dir = vim.fn.stdpath("state") .. "/backup"
+vim.fn.mkdir(backup_dir, "p")
+vim.opt.backupdir = backup_dir .. "//" -- Keep full paths to avoid basename collisions
 vim.opt.termguicolors = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
