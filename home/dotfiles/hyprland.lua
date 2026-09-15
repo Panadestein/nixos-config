@@ -64,6 +64,10 @@ hl.config({
 
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
+hl.on("hyprland.start", function()
+    hl.exec_cmd("pidof hyprlock || hyprlock")
+end)
+
 local shortcutHelp = {}
 
 local function bind(keys, dispatcher, description, options)

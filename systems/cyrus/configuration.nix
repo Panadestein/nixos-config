@@ -199,10 +199,18 @@ in
     };
   };
 
+  # Fingerprint authentication is exposed through PAM to greetd
+  services.fprintd.enable = true;
+  security.pam.services.greetd.fprintAuth = true;
+  security.pam.services.hyprlock.fprintAuth = true;
+
   services.greetd = {
     enable = true;
     settings = {
-      # Always authenticate with the greeter before launching the session.
+      initial_session = {
+        command = "${hyprlandSession}";
+        user = "loren";
+      };
       default_session = {
         command = "${lib.getExe' pkgs.greetd "agreety"} --cmd ${lib.escapeShellArg "${hyprlandSession}"}";
         user = "greeter";
