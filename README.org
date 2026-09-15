@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT HTML
 <a href="https://raw.githubusercontent.com/Panadestein/nixos-config/main/LICENSE.md">
 <img alt="GPLv3" src="https://img.shields.io/github/license/Panadestein/nixos-config" />
 </a>
@@ -6,15 +6,15 @@
 <a href="https://builtwithnix.org">
 <img alt="Build with Nix" src="https://builtwithnix.org/badge.svg" />
 </a>
-#+END_HTML
+#+END_EXPORT
 
 * Panadestein's Nix/NixOS Configuration
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT HTML
 <p align="center">
   <img alt="Cyrus Hyprland desktop" src="./home/screenshots/desk.png" style="max-width:100%;">
 </p>
-#+END_HTML
+#+END_EXPORT
 
 Wellcome to my [[https://nixos.org/][NixOS]] system flake, with [[https://nix-community.github.io/home-manager/][Home Manager]] configuring the user environment.
 The machine is named [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]], after the engineer of *The Mysterious Island*.
@@ -69,9 +69,6 @@ or all of them together:
   nix flake update
 #+end_src
 
-Keep =flake.lock= committed. Neither updates nor builds require =sudo=.
-If an activated generation causes trouble, use =sudo nixos-rebuild switch --rollback=;
-GRUB also offers previous generations during its five-second boot menu.
 Keep the existing =stateVersion= values when upgrading: they describe compatibility
 defaults, not the desired NixOS release.
 
@@ -88,7 +85,7 @@ defaults, not the desired NixOS release.
 
 ** Desktop essentials
 
-=Super+F1= shows the shortcut list generated from the bindings themselves.
+=Super+F1= shows the shortcut list generated from the bindings themselves. Some examples:
 
 | Shortcut          | Action                         |
 |-------------------+--------------------------------|
@@ -103,18 +100,10 @@ defaults, not the desired NixOS release.
 | =Super+O=         | Lock                           |
 | =Super+Ctrl+Q=    | Log out through UWSM           |
 
-In Bash, Fish and Zsh, =y= opens Yazi and changes the shell's directory on exit.
-In Zsh, =recscr demo.mp4= records the Wayland display to =~/Videos/=; stop with Ctrl+C.
 Idle locking starts at ten minutes, display power-off at eleven, and suspend at thirty.
 Kanshi selects the Lenovo display when docked and the laptop panel otherwise.
-
 For session problems, start with =hyprctl configerrors=,
 =systemctl --user --failed= and =journalctl --user -b -u hypridle -u kanshi -u waybar=.
-
-Vim's Vundle and Neovim's vim-plug bootstrap are provided by Nix. Their plugin
-lists still use mutable user installations: run =:PluginInstall= in Vim or
-=:PlugInstall= in Neovim on a fresh home directory. Emacs is fetched from the
-pinned =emacsd= revision and tangled by Home Manager on change.
 
 ** Development shells
 
@@ -124,9 +113,9 @@ The principal flake provides small, current nixpkgs-based development environmen
 |----------------------------------+--------------------------------------------------|
 | =nix develop=                    | Nix formatting and static analysis               |
 | =nix develop .#python=           | Scientific Python and Jupyter                    |
-| =nix develop .#c-cpp=            | C/C++ compilers, build tools and debugging        |
-| =nix develop .#fortran-mpi=      | Fortran, Open MPI, fortls and fypp                |
-| =nix develop .#julia=            | Julia                                             |
+| =nix develop .#c-cpp=            | C/C++ compilers, build tools and debugging       |
+| =nix develop .#fortran-mpi=      | Fortran, Open MPI, fortls and fypp               |
+| =nix develop .#julia=            | Julia                                            |
 
 Home Manager enables direnv and nix-direnv for Bash, Fish and Zsh. The repository's
 =.envrc= selects the default maintenance shell; approve it once with =direnv allow=.
