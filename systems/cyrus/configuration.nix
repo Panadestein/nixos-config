@@ -18,7 +18,7 @@
 let
   theme = import ../../home/theme.nix;
   hyprlandSession = pkgs.writeShellScript "hyprland-session" ''
-    exec ${lib.getExe config.programs.uwsm.package} start -e -D Hyprland -g -1 hyprland.desktop
+    exec ${lib.getExe config.programs.uwsm.package} start -e -D Hyprland -g -1 hyprland.desktop >/dev/null 2>&1
   '';
   zoomUs = pkgs.zoom-us.override {
     hyprlandXdgDesktopPortalSupport = true;

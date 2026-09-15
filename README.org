@@ -79,6 +79,8 @@ defaults, not the desired NixOS release.
 |-------------------+--------------------------------|
 | =Super+Return=    | Ghostty with Fish              |
 | =Super+R=         | Application launcher           |
+| =Super+P=         | Password menu (copy)           |
+| =Super+Shift+P=   | Password menu (type)           |
 | =F12=             | Fish drop-down terminal        |
 | =Super+C=         | Numbat calculator scratchpad   |
 | =Super+F=         | Yazi                           |

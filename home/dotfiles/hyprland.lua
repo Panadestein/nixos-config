@@ -204,6 +204,8 @@ bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal .. " -e fish"), "Launc
 bind(mod .. " + R", hl.dsp.exec_cmd("rofi -show drun -show-icons"), "Open the application launcher")
 bind(mod .. " + TAB", hl.dsp.exec_cmd("rofi -show window -show-icons"), "Open the window switcher")
 bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("rofi -show run"), "Run a command")
+bind(mod .. " + P", hl.dsp.exec_cmd("passmenu"), "Open password menu")
+bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("passmenu --type"), "Type password from menu")
 bind(mod .. " + W", hl.dsp.exec_cmd("firefox"), "Launch Firefox")
 bind(mod .. " + E", hl.dsp.exec_cmd("emacsclient -c"), "Launch an Emacs client frame")
 bind(mod .. " + V", hl.dsp.exec_cmd("code"), "Launch VS Code")
