@@ -200,13 +200,14 @@ end)
 
 -- Applications
 bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal), "Launch Ghostty")
-bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal .. " -e fish"), "Launch a Fish session")
+bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal .. " -e ipython"), "Launch a Jupyter session")
 bind(mod .. " + R", hl.dsp.exec_cmd("rofi -show drun -show-icons"), "Open the application launcher")
 bind(mod .. " + TAB", hl.dsp.exec_cmd("rofi -show window -show-icons"), "Open the window switcher")
 bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("rofi -show run"), "Run a command")
 bind(mod .. " + P", hl.dsp.exec_cmd("passmenu"), "Open password menu")
 bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("passmenu --type"), "Type password from menu")
 bind(mod .. " + W", hl.dsp.exec_cmd("firefox"), "Launch Firefox")
+bind(mod .. " + C", hl.dsp.exec_cmd("chromium"), "Launch Chromium")
 bind(mod .. " + E", hl.dsp.exec_cmd("emacsclient -c"), "Launch an Emacs client frame")
 bind(mod .. " + V", hl.dsp.exec_cmd("code"), "Launch VS Code")
 bind(mod .. " + SHIFT + F", hl.dsp.exec_cmd("nautilus --new-window"), "Launch Nautilus")
@@ -218,7 +219,7 @@ bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/Screenshots"
 -- Keyboard layout and scratchpads
 bind(mod .. " + I", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"), "Cycle keyboard layouts")
 bind("F12", fishDropdown, "Toggle the Fish drop-down terminal")
-bind(mod .. " + C", scratchpad("calculator", terminal .. " --gtk-single-instance=false -e numbat", {
+bind(mod .. " + N", scratchpad("calculator", terminal .. " --gtk-single-instance=false -e numbat", {
     size = "70% 70%",
     opacity = 0.95,
 }), "Toggle the Numbat scratchpad")
