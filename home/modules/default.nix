@@ -9,6 +9,7 @@
   ./nushell
   ./papis
   ./pass
+  ./starship
   ./translate-shell
   ./vim
   ./vivid
