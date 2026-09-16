@@ -19,14 +19,12 @@
 Welcome to my [[https://nixos.org/][NixOS]] system flake, with [[https://nix-community.github.io/home-manager/][Home Manager]] 
 shaping the user environment.
 
-The machine is named [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]], after Verne's engineer: practical,
-resourceful, and perhaps an appropriate patron for a system built rather deliberately. Its Wayland desktop
-is centred on [[https://hypr.land/][Hyprland]], with an emphasis on coherence, robustness, and a certain
-austere beauty rather than configuration for its own sake.
+The machine is named [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]], after Verne's engineer and my childhood hero.
+Its Wayland desktop uses [[https://hypr.land/][Hyprland]] exclusively. The config emphasises coherence, robustness, and
+minimalism: no bullshit features for its own sake.
 
-Visually, the system draws much of its character from the landscapes of 
-[[https://en.wikipedia.org/wiki/Ernst_Ferdinand_Oehme][Ernst Ferdinand Oehme]]. 
-The tracked wallpaper collection, together with notes on the works, lives
+Visually, the system draws its character from the landscapes of [[https://en.wikipedia.org/wiki/Ernst_Ferdinand_Oehme][Ernst Ferdinand Oehme]],
+an unsung hero of the German Romantic period. The tracked wallpaper collection, together with notes on the works, lives
 [[file:home/wallpapers/oehme/README.md][here]].
 
 
