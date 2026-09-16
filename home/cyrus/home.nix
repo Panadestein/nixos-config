@@ -461,6 +461,27 @@ in
 
   # Desktop entries for applications with missing or launcher-incompatible icons
   xdg.desktopEntries = {
+    emacsclient = {
+      name = "Emacs (Client)";
+      genericName = "Text Editor";
+      comment = "Edit text";
+      icon = "emacs";
+      exec = "emacsclient --reuse-frame --no-wait --alternate-editor= %F";
+      terminal = false;
+      categories = [
+        "Development"
+        "TextEditor"
+      ];
+      mimeType = [
+        "text/plain"
+        "text/markdown"
+        "text/org"
+        "x-scheme-handler/org-protocol"
+      ];
+      settings = {
+        StartupWMClass = "Emacs";
+      };
+    };
     julia = {
       name = "Julia";
       comment = "High-performance language for technical computing";
