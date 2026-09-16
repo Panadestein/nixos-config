@@ -77,7 +77,7 @@ defaults, not the desired NixOS release.
 | =systems/cyrus/=                   | Hardware, boot, login and system services   |
 | =home/cyrus/home.nix=              | Applications, desktop services and displays |
 | =home/dotfiles/hyprland.lua=       | Keybindings, window rules and scratchpads   |
-| =home/modules/=                    | Shells, editors, Waybar and helpers         |
+| =home/modules/=                    | Shells, editors, desktop and helpers        |
 | =home/theme.nix=                   | Shared Oehme palette                        |
 
 ** Desktop essentials

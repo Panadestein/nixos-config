@@ -3,6 +3,7 @@
   ./emacs
   ./fish
   ./ghostty
+  ./hyprland
   ./pass
   ./vim
   ./vivid
