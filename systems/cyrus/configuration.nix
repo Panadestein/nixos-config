@@ -399,6 +399,8 @@ in
     uiua386
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
+    emacs-all-the-icons-fonts
   ];
   fonts.fontconfig.defaultFonts = {
     monospace = [ "JetBrainsMono Nerd Font" ];
