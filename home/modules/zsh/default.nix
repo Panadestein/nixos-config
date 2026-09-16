@@ -61,7 +61,7 @@
 
     initContent = ''
       export LS_COLORS="$(vivid generate oehme)"
-      ${builtins.readFile ../../dotfiles/zshextra}
+      ${builtins.readFile ./zshextra}
     '';
 
     oh-my-zsh = {

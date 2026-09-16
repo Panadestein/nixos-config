@@ -4,7 +4,12 @@
   ./fish
   ./ghostty
   ./hyprland
+  ./julia
+  ./matplotlib
+  ./nushell
+  ./papis
   ./pass
+  ./translate-shell
   ./vim
   ./vivid
   ./wallpaper-next

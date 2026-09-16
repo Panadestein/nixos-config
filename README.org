@@ -74,7 +74,7 @@ defaults, not the desired NixOS release.
 | =flake.nix= and =flake.lock=       | Inputs, host, development shells and checks |
 | =systems/cyrus/=                   | Hardware, boot, login and system services   |
 | =home/cyrus/home.nix=              | Applications, desktop services and displays |
-| =home/dotfiles/hyprland.lua=       | Keybindings, window rules and scratchpads   |
+| =home/modules/hyprland/config.lua= | Keybindings, window rules and scratchpads   |
 | =home/modules/=                    | Shells, editors, desktop and helpers        |
 | =home/theme.nix=                   | Shared Oehme palette                        |
 

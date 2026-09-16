@@ -79,7 +79,6 @@ in
     libreoffice
     ltex-ls
     pandoc
-    translate-shell
     xournalpp
     # Videos
     ffmpeg
@@ -117,13 +116,10 @@ in
     ghc
     gnumake
     jdk11
-    julia-bin
     nodejs
     racket
     rustc
     sbcl
-    # Shells
-    nushell
     # Advanced calculators
     numbat
     # Internet and communications
@@ -392,23 +388,6 @@ in
     };
   };
 
-  # Ipython
-  home.file.".ipython/profile_default/ipython_config.py".source = ../dotfiles/ipython_config.py;
-
-  # Matplotlib (ensure Qt backend)
-  home.file.".config/matplotlib/matplotlibrc".source = ../dotfiles/matplotlibrc;
-
-  # Papis
-  home.file.".config/papis/config".source = ../dotfiles/config_papis;
-
-  # Nushell
-  home.file.".config/nushell/env.nu".source = ../dotfiles/env.nu;
-  home.file.".config/nushell/config.nu".source = ../dotfiles/config.nu;
-
-  # Translate Shell
-  xdg.configFile."translate-shell/init.trans".source = ../dotfiles/init.trans;
-  home.file.".config/translate-shell/happiness.trans".source = ../dotfiles/happiness.trans;
-
   # Pointer cursor
   home.pointerCursor = {
     enable = true;
@@ -452,48 +431,13 @@ in
   xdg.dataFile."wallpapers/oehme".source = wallpaperSource;
 
   # Icon assets and fallbacks
-  xdg.dataFile."icons/hicolor/scalable/apps/julia.svg".source = ../dotfiles/icons/julia.svg;
   xdg.dataFile."icons/hicolor/256x256/apps/preferences-system.png".source =
     "${pkgs.yaru-theme}/share/icons/Yaru/256x256/apps/preferences-system.png";
   xdg.dataFile."icons/hicolor/256x256/apps/preferences-system-network.png".source =
     "${pkgs.yaru-theme}/share/icons/Yaru/256x256/categories/preferences-system-network.png";
-  xdg.dataFile."icons/hicolor/256x256/apps/gnome-books.png".source =
-    "${pkgs.yaru-theme}/share/icons/Yaru/256x256/apps/gnome-books.png";
 
   # Desktop entries for applications with missing or launcher-incompatible icons
   xdg.desktopEntries = {
-    emacsclient = {
-      name = "Emacs (Client)";
-      genericName = "Text Editor";
-      comment = "Edit text";
-      icon = "emacs";
-      exec = "emacsclient --reuse-frame --no-wait --alternate-editor= %F";
-      terminal = false;
-      categories = [
-        "Development"
-        "TextEditor"
-      ];
-      mimeType = [
-        "text/plain"
-        "text/markdown"
-        "text/org"
-        "x-scheme-handler/org-protocol"
-      ];
-      settings = {
-        StartupWMClass = "Emacs";
-      };
-    };
-    julia = {
-      name = "Julia";
-      comment = "High-performance language for technical computing";
-      icon = "julia";
-      exec = "${pkgs.ghostty}/bin/ghostty -e julia";
-      terminal = false;
-      categories = [
-        "Development"
-        "Science"
-      ];
-    };
     nm-connection-editor = {
       name = "Advanced Network Configuration";
       comment = "Manage and change your network connection settings";
@@ -506,18 +450,6 @@ in
         "Settings"
         "X-GNOME-NetworkSettings"
       ];
-    };
-    papis = {
-      name = "papis-open";
-      comment = "Launches the Papis document opener after picking a library";
-      icon = "gnome-books";
-      exec = "${pkgs.ghostty}/bin/ghostty -e papis --pick-lib open";
-      terminal = false;
-      categories = [
-        "Office"
-        "ConsoleOnly"
-      ];
-      mimeType = [ "inode/directory" ];
     };
     uuctl = {
       name = "uuctl";

@@ -17,7 +17,7 @@ in
     portalPackage = null;
     configType = "lua";
     systemd.enable = false;
-    extraLuaFiles."config" = pkgs.replaceVars ../../dotfiles/hyprland.lua {
+    extraLuaFiles."config" = pkgs.replaceVars ./config.lua {
       blue = stripHash theme.blue;
       magenta = stripHash theme.magenta;
       muted = stripHash theme.muted;

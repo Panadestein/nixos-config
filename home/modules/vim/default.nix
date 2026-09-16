@@ -44,13 +44,13 @@ in
   ];
 
   # Vim and Neovim
-  home.file.".vimrc".source = pkgs.replaceVars ../../dotfiles/vimrc {
+  home.file.".vimrc".source = pkgs.replaceVars ./vimrc {
     vundle = "${pkgs.vimPlugins.Vundle-vim}";
   };
   home.file.".vim/colors/oehme.vim".text = vimTheme;
   xdg.configFile."nvim/init.lua".text = ''
     vim.opt.runtimepath:prepend("${pkgs.vimPlugins.vim-plug}")
   ''
-  + builtins.readFile ../../dotfiles/init.lua;
+  + builtins.readFile ./init.lua;
   xdg.configFile."nvim/colors/oehme.vim".text = vimTheme;
 }
