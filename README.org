@@ -1,8 +1,4 @@
 #+BEGIN_HTML
-<a href="https://raw.githubusercontent.com/Panadestein/nixos-config/main/LICENSE.md">
-<img alt="GPLv3" src="https://img.shields.io/github/license/Panadestein/nixos-config" />
-</a>
-
 <a href="https://builtwithnix.org">
 <img alt="Build with Nix" src="https://builtwithnix.org/badge.svg" />
 </a>
