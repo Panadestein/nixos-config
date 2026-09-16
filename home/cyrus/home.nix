@@ -192,6 +192,7 @@ in
   # Nix CLI helper
   programs.nh = {
     enable = true;
+    flake = "/home/loren/.config/nixos";
     clean = {
       enable = true;
       dates = "weekly";
