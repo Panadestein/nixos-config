@@ -244,7 +244,12 @@ in
   programs.system-config-printer.enable = true;
 
   # Scanners
-  hardware.sane.enable = true;
+  hardware.sane = {
+    enable = true;
+    extraBackends = [
+      pkgs.sane-airscan
+    ];
+  };
 
   # Bluetooth support
   hardware.bluetooth = {
@@ -265,6 +270,8 @@ in
       "networkmanager"
       "systemd-journal"
       "video"
+      "scanner"
+      "lp"
     ];
   };
 

@@ -7,6 +7,7 @@
 }:
 let
   cbqn_complex = inputs.cbqn-complex.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  cliamp = inputs.cliamp.packages.${pkgs.stdenv.hostPlatform.system}.default;
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
   theme = import ../theme.nix;
   wallpaperSource = ../wallpapers/oehme;
@@ -68,7 +69,9 @@ in
     loupe
     nautilus
     papers
+    simple-scan
     # Terminal based apps
+    cliamp
     gdu
     # Science
     gnuplot
