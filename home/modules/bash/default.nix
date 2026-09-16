@@ -6,7 +6,6 @@ _: {
 
     bashrcExtra = ''
       export LS_COLORS="$(vivid generate oehme)"
-      PS1='\[\e[1;34m\]|\[\e[0m\]\[\e[1;33m\]β\[\e[0m\]\[\e[1;34m\] ⊂\[\e[0m\] \[\e[1;32m\]\W\[\e[0m\]\[\e[1;34m\]|\[\e[0m\] '
     '';
 
     shellAliases = {
