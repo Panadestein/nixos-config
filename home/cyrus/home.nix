@@ -515,6 +515,10 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      "text/plain" = [ "emacsclient.desktop" ];
+      "text/markdown" = [ "emacsclient.desktop" ];
+      "text/org" = [ "emacsclient.desktop" ];
+      "x-scheme-handler/org-protocol" = [ "emacsclient.desktop" ];
       "application/pdf" = [ "org.gnome.Papers.desktop" ];
       "application/x-bzpdf" = [ "org.gnome.Papers.desktop" ];
       "application/x-gzpdf" = [ "org.gnome.Papers.desktop" ];
