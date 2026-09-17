@@ -59,13 +59,14 @@ hl.config({
         disable_hyprland_logo = true,
         force_default_wallpaper = 0,
         focus_on_activate = true,
+        allow_session_lock_restore = true,
     },
 })
 
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("pidof hyprlock || hyprlock")
+    hl.exec_cmd("@systemctl@ --user start hyprlock.service")
 end)
 
 local shortcutHelp = {}
@@ -238,7 +239,7 @@ bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -q set 5%-"), "Decr
 bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -q set +5%"), "Increase brightness", { locked = true, repeating = true })
 
 -- Session controls
-bind(mod .. " + O", hl.dsp.exec_cmd("hyprlock"), "Lock the screen")
+bind(mod .. " + O", hl.dsp.exec_cmd("@systemctl@ --user start hyprlock.service"), "Lock the screen")
 bind(mod .. " + SHIFT + X", hl.dsp.exec_cmd("shutdown now"), "Shut down")
 bind(mod .. " + SHIFT + BACKSPACE", hl.dsp.exec_cmd("reboot"), "Reboot")
 bind(mod .. " + CTRL + R", function()

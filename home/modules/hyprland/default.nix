@@ -22,6 +22,7 @@ in
       magenta = stripHash theme.magenta;
       muted = stripHash theme.muted;
       darkerBackground = stripHash theme.darkerBackground;
+      systemctl = "${pkgs.systemd}/bin/systemctl";
     };
   };
 
@@ -105,13 +106,27 @@ in
     };
   };
 
+  # Restore the lock screen if Hyprlock crashes during display reconfiguration.
+  systemd.user.services.hyprlock = {
+    Unit = {
+      Description = "Hyprland screen locker";
+      PartOf = [ "graphical-session.target" ];
+      StartLimitIntervalSec = 0;
+    };
+    Service = {
+      ExecStart = "${pkgs.hyprlock}/bin/hyprlock";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
   # Hyprland idle daemon: turns screen black when locked and handles sleep/suspend
   services.hypridle = {
     enable = true;
     systemdTarget = "wayland-session@hyprland.desktop.target";
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd = "${pkgs.systemd}/bin/systemctl --user start hyprlock.service";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
         # Wait for the compositor to confirm the lock before releasing sleep.
