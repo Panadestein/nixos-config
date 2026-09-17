@@ -58,10 +58,6 @@ in
   nixpkgs.overlays = [
     # Emacs overlay
     (import inputs.emacs-overlay)
-    # Use a stable wireplumber
-    (final: _: {
-      wireplumber = final.nixpkgs-stable.wireplumber;
-    })
   ];
 
   # Nixpkgs configuration
@@ -235,8 +231,8 @@ in
   services.printing = {
     enable = true;
     drivers = [
-      pkgs.nixpkgs-stable.hplip
-      pkgs.nixpkgs-stable.hplipWithPlugin
+      pkgs.hplip
+      pkgs.hplipWithPlugin
     ];
   };
   services.avahi.enable = true;

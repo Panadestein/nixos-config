@@ -3,7 +3,6 @@
 
   inputs = {
     # The nixpkgs channels
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-manager following the unstable channel
@@ -61,14 +60,6 @@
           scipy
         ]
       );
-      # Nest stable channel into default unstable
-      overlay-stable = _: _: {
-        nixpkgs-stable = import inputs.nixpkgs-stable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
-
       # System and user (Bergman's reference here)
       persona = "loren";
       rechnerNixOS = "cyrus";
@@ -80,7 +71,6 @@
           specialArgs = { inherit inputs; };
           modules = [
             {
-              nixpkgs.overlays = [ overlay-stable ];
               nix.registry.llm-agents.flake = inputs.llm-agents;
             }
             inputs.determinate.nixosModules.default
