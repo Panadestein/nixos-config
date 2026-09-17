@@ -28,7 +28,6 @@ _: {
       cfb = "e ~/.bashrc";
       cfe = "e ~/.emacs.d/init.el";
       cfn = "nvim ~/.config/nvim/init.lua";
-      cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
       vz = "nvim ~/.config/zsh/.zshrc";
       # Less frequently used aliases

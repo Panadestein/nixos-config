@@ -1,8 +1,8 @@
-# Vim and Neovim configuration
+# Neovim configuration
 { pkgs, ... }:
 let
   theme = import ../../theme.nix;
-  vimTheme = ''
+  nvimTheme = ''
     set background=dark
     highlight clear
     if exists("syntax_on") | syntax reset | endif
@@ -43,14 +43,9 @@ in
     pyright
   ];
 
-  # Vim and Neovim
-  home.file.".vimrc".source = pkgs.replaceVars ./vimrc {
-    vundle = "${pkgs.vimPlugins.Vundle-vim}";
-  };
-  home.file.".vim/colors/oehme.vim".text = vimTheme;
   xdg.configFile."nvim/init.lua".text = ''
     vim.opt.runtimepath:prepend("${pkgs.vimPlugins.vim-plug}")
   ''
   + builtins.readFile ./init.lua;
-  xdg.configFile."nvim/colors/oehme.vim".text = vimTheme;
+  xdg.configFile."nvim/colors/oehme.vim".text = nvimTheme;
 }

@@ -11,7 +11,7 @@
   ./pass
   ./starship
   ./translate-shell
-  ./vim
+  ./neovim
   ./vivid
   ./wallpaper-next
   ./waybar

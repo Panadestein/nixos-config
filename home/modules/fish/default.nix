@@ -42,6 +42,28 @@
           end
       end
 
+      function ns --description "Open a shell with nixpkgs packages"
+          if test (count $argv) -eq 0
+              echo "Usage: ns PACKAGE..." >&2
+              return 2
+          end
+
+          set -l packages
+          for package in $argv
+              set -a packages "nixpkgs#$package"
+          end
+          command nix --quiet shell $packages
+      end
+
+      function nr --description "Run a nixpkgs package command"
+          if test (count $argv) -eq 0
+              echo "Usage: nr PACKAGE [ARG...]" >&2
+              return 2
+          end
+
+          command nix --quiet shell "nixpkgs#$argv[1]" --command $argv
+      end
+
       # Entering nix-shells
       any-nix-shell fish --info-right | source
     '';
@@ -67,7 +89,6 @@
       cfb = "e ~/.bashrc";
       cfe = "e ~/.emacs.d/init.el";
       cfn = "nvim ~/.config/nvim/init.lua";
-      cfv = "vim ~/.vimrc";
       vb = "nvim ~/.bashrc";
       vz = "nvim ~/.config/zsh/.zshrc";
       # Less frequently used aliases
