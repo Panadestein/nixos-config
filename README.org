@@ -13,14 +13,14 @@
 #+END_HTML
 
 Welcome to my [[https://nixos.org/][NixOS]] system flake, with [[https://nix-community.github.io/home-manager/][Home Manager]] 
-shaping the user environment.
+shaping the user environment. After many turbulent iterations and headaches, this is the deepest local minimum I have found.
 
-The machine is named [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]], after Verne's engineer and my childhood hero.
-Its Wayland desktop uses [[https://hypr.land/][Hyprland]] exclusively. The config emphasises coherence, robustness, and
+The machine is named [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]], after Verne's engineer and one of my childhood heroes.
+Its Wayland desktop runs [[https://hypr.land/][Hyprland]] exclusively. The config emphasises coherence, robustness, and
 minimalism: no bullshit features for its own sake.
 
 Visually, the system draws its character from the landscapes of [[https://en.wikipedia.org/wiki/Ernst_Ferdinand_Oehme][Ernst Ferdinand Oehme]],
-an unsung hero of the German Romantic period. The tracked wallpaper collection, together with notes on the works, lives
+an unsung figure of the German Romantic period. The tracked wallpaper collection, together with notes on the works, lives
 [[file:home/assets/wallpapers/oehme/README.md][here]].
 
 
