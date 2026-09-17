@@ -10,7 +10,7 @@ let
   cliamp = inputs.cliamp.packages.${pkgs.stdenv.hostPlatform.system}.default;
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
   theme = import ../theme.nix;
-  wallpaperSource = ../wallpapers/oehme;
+  wallpaperSource = ../assets/wallpapers/oehme;
 in
 {
   dconf.enable = true;

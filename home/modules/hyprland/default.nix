@@ -5,7 +5,7 @@
 }:
 let
   theme = import ../../theme.nix;
-  wallpaperSource = ../../wallpapers/oehme;
+  wallpaperSource = ../../assets/wallpapers/oehme;
   defaultWallpaper = "${wallpaperSource}/01-burg-scharfenberg-bei-nacht.jpg";
   stripHash = color: builtins.substring 1 6 color;
 in
