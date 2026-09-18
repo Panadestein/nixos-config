@@ -26,12 +26,14 @@ an unsung figure of the German Romantic period. The tracked wallpaper collection
 
 ** Rebuilding
 
-Run commands from the repository root. First validate the flake and build the
-system and Home Manager configuration without activating it:
+Run commands from the repository root. I prefer [[https://github.com/nix-community/nh][nh]] for NixOS builds and
+deployments: it knows this flake's configured location, selects the local host,
+and provides useful build output and package diffs. First validate the flake and
+build the system and Home Manager configuration without activating it:
 
 #+begin_src bash
   nix flake check --no-write-lock-file
-  nix build --no-link .#nixosConfigurations.cyrus.config.system.build.toplevel
+  nh os build
 #+end_src
 
 A build checks generated files and package dependencies; it cannot exercise docking
@@ -41,7 +43,7 @@ can see them.
 Apply the configuration:
 
 #+begin_src bash
-  sudo nixos-rebuild switch --flake .#cyrus
+  nh os switch
 #+end_src
 
 Log out and back in after changes to the session environment or compositor.
@@ -59,6 +61,11 @@ or all of them together:
 #+begin_src bash
   nix flake update
 #+end_src
+
+=nh= can also update inputs as part of a build or deployment (=nh os build
+--update=, =nh os switch --update=, or =--update-input <INPUT>=), but it does
+not provide a lockfile-only update command. Use =nix flake update= when the
+intent is to update and review =flake.lock= before building.
 
 Keep the existing =stateVersion= values when upgrading: they describe compatibility
 defaults, not the desired NixOS release.
