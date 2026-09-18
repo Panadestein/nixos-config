@@ -330,6 +330,25 @@ for _, rule in ipairs({
     hl.window_rule({ name = "float-" .. rule.name, match = match, float = true })
 end
 
+for _, rule in ipairs({
+    { name = "portal", class = "^(xdg-desktop-portal-gtk)$" },
+    {
+        name = "dialogs",
+        title = "^(Open Files?|Save Files?|Save As|All Files|Choose Files?|Select a File|Abrir archivos?|Guardar como.*)$",
+    },
+}) do
+    local match = {}
+    if rule.class then match.class = rule.class end
+    if rule.title then match.title = rule.title end
+    hl.window_rule({
+        name = "file-picker-" .. rule.name,
+        match = match,
+        float = true,
+        size = { "960", "640" },
+        center = true,
+    })
+end
+
 -- Add the help binding last so the menu contains every shortcut.
 local helpText = table.concat(shortcutHelp, "\n")
 bind(mod .. " + F1", hl.dsp.exec_cmd(
