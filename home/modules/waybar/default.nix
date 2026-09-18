@@ -13,7 +13,7 @@ in
     settings.mainBar = {
       layer = "top";
       position = "top";
-      height = 34;
+      height = 42;
       spacing = 0;
 
       modules-left = [
@@ -81,7 +81,7 @@ in
         };
       };
       tray = {
-        spacing = 8;
+        spacing = 10;
         tooltip = false;
       };
     };
@@ -91,7 +91,7 @@ in
         border: none;
         border-radius: 0;
         font-family: "JetBrainsMono Nerd Font";
-        font-size: 16px;
+        font-size: 20px;
         min-height: 0;
       }
 
@@ -102,19 +102,19 @@ in
       }
 
       #workspaces {
-        margin: 3px 6px;
+        margin: 4px 8px;
       }
 
       #workspaces button {
-        border-radius: 5px;
+        border-radius: 6px;
         color: ${theme.muted};
-        margin-right: 2px;
-        padding: 0 8px;
+        margin-right: 3px;
+        padding: 0 10px;
       }
 
       #workspaces button:not(.empty):not(.active) {
         background: ${theme.lighterBackground};
-        box-shadow: inset 0 -2px ${theme.accent};
+        box-shadow: inset 0 -3px ${theme.accent};
         color: ${theme.brightBlue};
       }
 
@@ -146,27 +146,27 @@ in
       #clock {
         color: ${theme.lightForeground};
         font-weight: bold;
-        padding: 0 12px;
+        padding: 0 15px;
       }
 
       tooltip {
         background: ${theme.lighterBackground};
         border: 1px solid ${theme.selection};
-        border-radius: 8px;
+        border-radius: 10px;
       }
 
       tooltip label {
         color: ${theme.foreground};
         font-family: "JetBrainsMono Nerd Font";
-        padding: 6px 8px;
+        padding: 8px 10px;
       }
 
       .modules-right {
         background: ${theme.lighterBackground};
         border: 1px solid ${theme.selection};
-        border-radius: 10px;
-        margin: 4px 8px 4px 0;
-        padding: 0 3px;
+        border-radius: 12px;
+        margin: 5px 10px 5px 0;
+        padding: 0 4px;
       }
 
       #language,
@@ -174,8 +174,8 @@ in
       #cpu,
       #battery,
       #tray {
-        border-radius: 7px;
-        padding: 0 8px;
+        border-radius: 9px;
+        padding: 0 10px;
       }
 
       #language { color: ${theme.magenta}; }

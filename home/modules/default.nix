@@ -1,5 +1,6 @@
 [
   ./bash
+  ./desktop
   ./emacs
   ./fish
   ./ghostty

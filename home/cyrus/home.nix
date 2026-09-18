@@ -10,11 +10,8 @@ let
   cliamp = inputs.cliamp.packages.${pkgs.stdenv.hostPlatform.system}.default;
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
   theme = import ../theme.nix;
-  wallpaperSource = ../assets/wallpapers/oehme;
 in
 {
-  dconf.enable = true;
-
   # Import home-manager modules
   imports = builtins.concatMap import [
     ../modules
@@ -351,7 +348,7 @@ in
               status = "enable";
               mode = "1920x1200@60.10Hz";
               position = "0,0";
-              scale = 1.25;
+              scale = 1.0;
             }
           ];
         };
@@ -369,7 +366,7 @@ in
               status = "enable";
               mode = "2560x1440@59.95Hz";
               position = "0,0";
-              scale = 1.25;
+              scale = 1.0;
             }
           ];
         };
@@ -388,113 +385,6 @@ in
       default-timeout = 5000;
       font = "Inter 11";
       text-color = theme.foreground;
-    };
-  };
-
-  # Pointer cursor
-  home.pointerCursor = {
-    enable = true;
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 25;
-  };
-
-  dconf.settings."org/gnome/desktop/interface" = {
-    color-scheme = "prefer-dark";
-    cursor-theme = "Adwaita";
-    cursor-size = 25;
-    font-name = "Inter 11";
-    gtk-theme = "Yaru-dark";
-    icon-theme = "Yaru-blue-dark";
-    monospace-font-name = "JetBrainsMono Nerd Font 11";
-    text-scaling-factor = 1.3636;
-  };
-
-  xdg.configFile."gtk-3.0/settings.ini".text = ''
-    [Settings]
-    gtk-theme-name=Yaru-dark
-    gtk-icon-theme-name=Yaru-blue-dark
-    gtk-cursor-theme-name=Adwaita
-    gtk-cursor-theme-size=25
-    gtk-font-name=Inter 11
-    gtk-application-prefer-dark-theme=1
-  '';
-  xdg.configFile."gtk-4.0/settings.ini".text = ''
-    [Settings]
-    gtk-theme-name=Yaru-dark
-    gtk-icon-theme-name=Yaru-blue-dark
-    gtk-cursor-theme-name=Adwaita
-    gtk-cursor-theme-size=25
-    gtk-font-name=Inter 11
-    gtk-application-prefer-dark-theme=1
-    gtk-interface-color-scheme=2
-  '';
-
-  # Present the repository-tracked paintings as one user-facing gallery.
-  xdg.dataFile."wallpapers/oehme".source = wallpaperSource;
-
-  # Icon assets and fallbacks
-  xdg.dataFile."icons/hicolor/256x256/apps/preferences-system.png".source =
-    "${pkgs.yaru-theme}/share/icons/Yaru/256x256/apps/preferences-system.png";
-  xdg.dataFile."icons/hicolor/256x256/apps/preferences-system-network.png".source =
-    "${pkgs.yaru-theme}/share/icons/Yaru/256x256/categories/preferences-system-network.png";
-
-  # Desktop entries for applications with missing or launcher-incompatible icons
-  xdg.desktopEntries = {
-    nm-connection-editor = {
-      name = "Advanced Network Configuration";
-      comment = "Manage and change your network connection settings";
-      icon = "preferences-system-network";
-      exec = "nm-connection-editor";
-      terminal = false;
-      categories = [
-        "GNOME"
-        "GTK"
-        "Settings"
-        "X-GNOME-NetworkSettings"
-      ];
-    };
-    uuctl = {
-      name = "uuctl";
-      genericName = "User unit manager";
-      comment = "Select and perform actions on user systemd units";
-      icon = "preferences-system";
-      exec = "uuctl";
-      terminal = false;
-      categories = [
-        "Utility"
-        "Settings"
-      ];
-    };
-  };
-
-  # Default MIME applications
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/plain" = [ "emacsclient.desktop" ];
-      "text/markdown" = [ "emacsclient.desktop" ];
-      "text/org" = [ "emacsclient.desktop" ];
-      "x-scheme-handler/org-protocol" = [ "emacsclient.desktop" ];
-      "application/pdf" = [ "org.gnome.Papers.desktop" ];
-      "application/x-bzpdf" = [ "org.gnome.Papers.desktop" ];
-      "application/x-gzpdf" = [ "org.gnome.Papers.desktop" ];
-      "application/x-xzpdf" = [ "org.gnome.Papers.desktop" ];
-      "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
-      "image/png" = [ "org.gnome.Loupe.desktop" ];
-      "image/webp" = [ "org.gnome.Loupe.desktop" ];
-      "image/gif" = [ "org.gnome.Loupe.desktop" ];
-      "image/svg+xml" = [ "org.gnome.Loupe.desktop" ];
-      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-      "application/x-gnome-saved-search" = [ "org.gnome.Nautilus.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "x-scheme-handler/about" = [ "firefox.desktop" ];
-      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-      "x-scheme-handler/slack" = [ "slack.desktop" ];
-      "x-scheme-handler/antigravity" = [ "antigravity.desktop" ];
-      "x-scheme-handler/claude-cli" = [ "claude-code-url-handler.desktop" ];
     };
   };
 

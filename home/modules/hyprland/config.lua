@@ -7,7 +7,7 @@ hl.monitor({
     output = "",
     mode = "highres",
     position = "auto",
-    scale = 1.25,
+    scale = 1.0,
 })
 
 hl.env("XCURSOR_SIZE", "25")
@@ -135,10 +135,10 @@ hl.window_rule({
     match = { class = "^" .. fishDropdownClass .. "$" },
     workspace = "special:term silent",
     float = true,
-    -- Match the usable area of a single regular window: Waybar reserves 34px
+    -- Match the usable area of a single regular window: Waybar reserves 42px
     -- at the top and the normal outer edge (gap + border) is 12px.
-    size = { "monitor_w-24", "monitor_h-58" },
-    move = { "12", "46" },
+    size = { "monitor_w-24", "monitor_h-66" },
+    move = { "12", "54" },
     no_max_size = true,
     opacity = 0.96,
 })
@@ -200,20 +200,20 @@ hl.on("window.open", function(window)
 end)
 
 -- Applications
-bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal), "Launch Ghostty")
-bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal .. " -e ipython"), "Launch a Jupyter session")
-bind(mod .. " + R", hl.dsp.exec_cmd("rofi -show drun -show-icons"), "Open the application launcher")
+bind(mod .. " + RETURN", hl.dsp.exec_cmd("uwsm app -- " .. terminal), "Launch Ghostty")
+bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("uwsm app -- " .. terminal .. " -e ipython"), "Launch a Jupyter session")
+bind(mod .. " + R", hl.dsp.exec_cmd('rofi -show drun -show-icons -run-command "uwsm app -- {cmd}"'), "Open the application launcher")
 bind(mod .. " + TAB", hl.dsp.exec_cmd("rofi -show window -show-icons"), "Open the window switcher")
-bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("rofi -show run"), "Run a command")
+bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd('rofi -show run -run-command "uwsm app -- {cmd}"'), "Run a command")
 bind(mod .. " + P", hl.dsp.exec_cmd("passmenu"), "Open password menu")
 bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("passmenu --type"), "Type password from menu")
-bind(mod .. " + W", hl.dsp.exec_cmd("firefox"), "Launch Firefox")
-bind(mod .. " + C", hl.dsp.exec_cmd("chromium"), "Launch Chromium")
-bind(mod .. " + E", hl.dsp.exec_cmd("emacsclient -c"), "Launch an Emacs client frame")
-bind(mod .. " + V", hl.dsp.exec_cmd("code"), "Launch VS Code")
-bind(mod .. " + SHIFT + F", hl.dsp.exec_cmd("nautilus --new-window"), "Launch Nautilus")
-bind(mod .. " + F", hl.dsp.exec_cmd(terminal .. " -e yazi"), "Launch Yazi")
-bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("waypaper --folder $HOME/.local/share/wallpapers/oehme --backend hyprpaper"), "Choose a wallpaper")
+bind(mod .. " + W", hl.dsp.exec_cmd("uwsm app -- firefox"), "Launch Firefox")
+bind(mod .. " + C", hl.dsp.exec_cmd("uwsm app -- chromium"), "Launch Chromium")
+bind(mod .. " + E", hl.dsp.exec_cmd("uwsm app -- emacsclient -c"), "Launch an Emacs client frame")
+bind(mod .. " + V", hl.dsp.exec_cmd("uwsm app -- code"), "Launch VS Code")
+bind(mod .. " + SHIFT + F", hl.dsp.exec_cmd("uwsm app -- nautilus --new-window"), "Launch Nautilus")
+bind(mod .. " + F", hl.dsp.exec_cmd("uwsm app -- " .. terminal .. " -e yazi"), "Launch Yazi")
+bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("uwsm app -- waypaper --folder $HOME/.local/share/wallpapers/oehme --backend hyprpaper"), "Choose a wallpaper")
 bind(mod .. " + CTRL + W", hl.dsp.exec_cmd("wallpaper-next"), "Cycle to the next wallpaper")
 bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/Screenshots"), "Capture a region")
 
