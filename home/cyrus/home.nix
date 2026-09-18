@@ -252,8 +252,6 @@ in
     enable = true;
     # Wayland support is merged into the main Rofi package in current nixpkgs.
     package = pkgs.rofi;
-    terminal = "${pkgs.ghostty}/bin/ghostty";
-    font = "Inter 12";
     theme =
       let
         inherit (config.lib.formats.rasi) mkLiteral;
@@ -316,7 +314,9 @@ in
           vertical-align = mkLiteral "0.5";
         };
       };
-    extraConfig = {
+    settings = {
+      terminal = "${pkgs.ghostty}/bin/ghostty";
+      font = "Inter 12";
       modi = "window,drun,run,ssh";
       icon-theme = "Yaru-blue-dark";
       show-icons = true;
