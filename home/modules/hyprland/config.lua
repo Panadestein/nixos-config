@@ -143,6 +143,20 @@ hl.window_rule({
     opacity = 0.96,
 })
 
+-- Keep browsers and communication clients in predictable workspaces. `silent`
+-- routes a newly mapped window without switching focus to its workspace.
+hl.window_rule({
+    name = "web-workspace",
+    match = { class = "^(firefox|Firefox|chromium|Chromium|chromium-browser)$" },
+    workspace = "4 silent",
+})
+
+hl.window_rule({
+    name = "communication-workspace",
+    match = { class = "^(Slack|slack|signal|Signal|TelegramDesktop|telegramdesktop|org.telegram.desktop)$" },
+    workspace = "5 silent",
+})
+
 local function fishDropdown()
     local workspace = "special:term"
     if #hl.get_workspace_windows(workspace) > 0 then
