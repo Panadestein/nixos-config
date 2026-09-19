@@ -20,7 +20,7 @@ Its Wayland desktop runs [[https://hypr.land/][Hyprland]] exclusively. The confi
 minimalism: no bullshit features for its own sake.
 
 Visually, the system draws its character from the landscapes of [[https://en.wikipedia.org/wiki/Ernst_Ferdinand_Oehme][Ernst Ferdinand Oehme]],
-an unsung figure of the German Romantic period. The tracked wallpaper collection, together with notes on the works, lives
+an unsung painter of the German Romantic period. The tracked wallpaper collection, together with notes on the works, lives
 [[file:home/assets/wallpapers/oehme/README.md][here]].
 
 

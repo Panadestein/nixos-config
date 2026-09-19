@@ -14,14 +14,20 @@
     # Determinate Nix and its daemon for NixOS.
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
 
-    # Custom flake with complex number's support for CBQN
-    cbqn-complex = {
-      url = "github:Panadestein/complex_cbqn";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # CBQN's development branch, pinned by flake.lock.
+    cbqn = {
+      url = "git+https://github.com/dzaima/CBQN?ref=develop&submodules=1";
+      flake = false;
     };
 
     # The Emacs overlay
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+
+    # Personal Emacs configuration, pinned by flake.lock.
+    emacs-config = {
+      url = "github:Panadestein/emacsd";
+      flake = false;
+    };
 
     # LLM agents
     llm-agents.url = "github:numtide/llm-agents.nix";

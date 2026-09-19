@@ -34,24 +34,23 @@
         "type": "github"
       }
     },
-    "cbqn-complex": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
+    "cbqn": {
+      "flake": false,
       "locked": {
-        "lastModified": 1787574910,
-        "narHash": "sha256-hW2+TzuJ7m06agKY15dBNlXOruFai7psMFxLSnzuMUA=",
-        "owner": "Panadestein",
-        "repo": "complex_cbqn",
-        "rev": "34d069199865189889089c64149fdd543dabf2c3",
-        "type": "github"
+        "lastModified": 1789737715,
+        "narHash": "sha256-42lN7brNhmtWoHr+pdofeSqaIk2Br1osVuR0eefpYzU=",
+        "ref": "develop",
+        "rev": "50f1cdbd2063edb13de27ef55bdcca2c76439698",
+        "revCount": 4102,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/dzaima/CBQN"
       },
       "original": {
-        "owner": "Panadestein",
-        "repo": "complex_cbqn",
-        "type": "github"
+        "ref": "develop",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/dzaima/CBQN"
       }
     },
     "cliamp": {
@@ -169,6 +168,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "dream2nix",
+        "type": "github"
+      }
+    },
+    "emacs-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789846420,
+        "narHash": "sha256-FIKaAuPAcFlCRGQHT7esMtb8FPx/nbxLXQmXC5wfwh8=",
+        "owner": "Panadestein",
+        "repo": "emacsd",
+        "rev": "9decd5f99334b54eef1901120c094caa98bc5d7c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Panadestein",
+        "repo": "emacsd",
         "type": "github"
       }
     },
@@ -715,9 +730,10 @@
     },
     "root": {
       "inputs": {
-        "cbqn-complex": "cbqn-complex",
+        "cbqn": "cbqn",
         "cliamp": "cliamp",
         "determinate": "determinate",
+        "emacs-config": "emacs-config",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
