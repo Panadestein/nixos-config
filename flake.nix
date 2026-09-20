@@ -43,6 +43,12 @@
       url = "github:bjarneo/cliamp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Declarative disk partitioning and formatting
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

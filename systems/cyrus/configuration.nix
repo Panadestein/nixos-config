@@ -52,6 +52,10 @@ in
   imports = [
     # Hardware of current machine
     ./hardware-configuration.nix
+
+    # Disko partitioning (uncomment and remove fileSystems in hardware-configuration.nix when transitioning to LUKS+Btrfs):
+    # inputs.disko.nixosModules.disko
+    # ./disko.nix
   ];
 
   # Overlays
