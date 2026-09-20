@@ -25,9 +25,6 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                # Extra performance and SSD longevity flags:
-                # - allowDiscards: Enables SSD TRIM commands through the LUKS layer
-                # - bypassWorkqueues: Bypasses kernel crypto workqueues for lower NVMe latency
                 settings = {
                   allowDiscards = true;
                   bypassWorkqueues = true;
@@ -64,11 +61,6 @@
                         "noatime"
                       ];
                     };
-                    # Optional: uncomment if hibernation or a dedicated swapfile is desired:
-                    # "/swap" = {
-                    #   mountpoint = "/.swapvol";
-                    #   swap.swapfile.size = "32G";
-                    # };
                   };
                 };
               };
