@@ -44,7 +44,10 @@ in
   ];
 
   xdg.configFile."nvim/init.lua".text = ''
-    vim.opt.runtimepath:prepend("${pkgs.vimPlugins.vim-plug}")
+    -- Nix packages vim-plug with plug.vim at its root rather than under
+    -- autoload/.  Source it explicitly so plug#begin is available on a
+    -- freshly installed system.
+    vim.cmd.source("${pkgs.vimPlugins.vim-plug}/plug.vim")
   ''
   + builtins.readFile ./init.lua;
   xdg.configFile."nvim/colors/oehme.vim".text = nvimTheme;
