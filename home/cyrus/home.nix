@@ -392,5 +392,5 @@ in
   };
 
   # State version
-  home.stateVersion = "22.05";
+  home.stateVersion = "26.05";
 }
