@@ -41,14 +41,11 @@ in
   home.packages = with pkgs; [
     neovim
     pyright
+    tree-sitter
   ];
 
-  xdg.configFile."nvim/init.lua".text = ''
-    -- Nix packages vim-plug with plug.vim at its root rather than under
-    -- autoload/.  Source it explicitly so plug#begin is available on a
-    -- freshly installed system.
-    vim.cmd.source("${pkgs.vimPlugins.vim-plug}/plug.vim")
-  ''
-  + builtins.readFile ./init.lua;
-  xdg.configFile."nvim/colors/oehme.vim".text = nvimTheme;
+  xdg.configFile = {
+    "nvim/init.lua".source = ./init.lua;
+    "nvim/colors/oehme.vim".text = nvimTheme;
+  };
 }
