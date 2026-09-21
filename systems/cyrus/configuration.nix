@@ -155,9 +155,6 @@ in
 
   # Network configuration
   networking = {
-    # The router assigned by DHCP currently does not resolve public names.
-    # These are also needed on a first boot, when Emacs bootstraps straight.el
-    # and Neovim installs its vim-plug-managed plugins.
     nameservers = [
       "1.1.1.1"
       "9.9.9.9"
