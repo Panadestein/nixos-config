@@ -345,6 +345,7 @@ for _, rule in ipairs({
 end
 
 for _, rule in ipairs({
+    { name = "nautilus", class = "^([Oo]rg\\.[Gg]nome\\.[Nn]autilus|[Nn]autilus)$" },
     { name = "portal", class = "^(xdg-desktop-portal-gtk)$" },
     {
         name = "dialogs",
