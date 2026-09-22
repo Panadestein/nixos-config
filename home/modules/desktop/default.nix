@@ -2,6 +2,15 @@
 {
   dconf.enable = true;
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    documents = "$HOME/Documents";
+    download = "$HOME/Downloads";
+    pictures = "$HOME/Pictures";
+    videos = "$HOME/Videos";
+  };
+
   home.pointerCursor = {
     enable = true;
     name = "Adwaita";

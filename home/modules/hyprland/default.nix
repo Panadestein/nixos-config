@@ -8,6 +8,20 @@ let
   wallpaperSource = ../../assets/wallpapers/oehme;
   defaultWallpaper = "${wallpaperSource}/01-burg-scharfenberg-bei-nacht.jpg";
   stripHash = color: builtins.substring 1 6 color;
+  cliphistMenu = pkgs.writeShellApplication {
+    name = "cliphist-menu";
+    runtimeInputs = [
+      pkgs.cliphist
+      pkgs.rofi
+      pkgs.wl-clipboard
+    ];
+    text = ''
+      selection=$(cliphist list | rofi -dmenu -i -no-custom -p "Clipboard" \
+        -mesg "Enter: copy to clipboard    Esc: close") || exit 0
+      [ -n "$selection" ] || exit 0
+      printf '%s\n' "$selection" | cliphist decode | wl-copy
+    '';
+  };
 in
 {
   # Hyprland native Lua configuration and session utilities
@@ -23,7 +37,13 @@ in
       muted = stripHash theme.muted;
       darkerBackground = stripHash theme.darkerBackground;
       systemctl = "${pkgs.systemd}/bin/systemctl";
+      cliphistMenu = "${cliphistMenu}/bin/cliphist-menu";
     };
+  };
+
+  services.cliphist = {
+    enable = true;
+    systemdTargets = [ "wayland-session@hyprland.desktop.target" ];
   };
 
   # Hyprlock screen locker
@@ -197,6 +217,7 @@ in
 
   # Hyprland session packages
   home.packages = [
+    cliphistMenu
     pkgs.hyprshot
   ];
 }
