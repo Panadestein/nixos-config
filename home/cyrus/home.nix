@@ -176,150 +176,150 @@ in
     };
   };
 
-  # Nix CLI helper
-  programs.nh = {
-    enable = true;
-    flake = "/home/loren/.config/nixos";
-    clean = {
+  programs = {
+    # Nix CLI helper
+    nh = {
       enable = true;
-      dates = "weekly";
-      extraArgs = "--keep-since 7d";
-    };
-  };
-
-  # Per-project development environments
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
-    options = {
-      dark = true;
-      navigate = true;
-    };
-  };
-
-  # Plain Chromium; its Oehme color and dark/light behavior are set by the
-  # system policy alongside the rest of the desktop theme.
-  programs.chromium.enable = true;
-
-  # Git
-  programs.git = {
-    enable = true;
-    signing.format = null;
-    settings = {
-      user = {
-        name = "Panadestein";
-        email = "rpana92@gmail.com";
+      flake = "/home/loren/.config/nixos";
+      clean = {
+        enable = true;
+        dates = "weekly";
+        extraArgs = "--keep-since 7d";
       };
-      credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
     };
-  };
 
-  # VScode configuration
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ fortran-language-server ]);
-  };
+    # Per-project development environments
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
-  # Native Wayland application launcher and window switcher
-  programs.rofi = {
-    enable = true;
-    # Wayland support is merged into the main Rofi package in current nixpkgs.
-    package = pkgs.rofi;
-    theme =
-      let
-        inherit (config.lib.formats.rasi) mkLiteral;
-      in
-      {
-        "*" = {
-          background = mkLiteral theme.background;
-          background-alt = mkLiteral theme.lighterBackground;
-          foreground = mkLiteral theme.foreground;
-          selected = mkLiteral theme.selection;
-          accent = mkLiteral theme.accent;
-          background-color = mkLiteral "transparent";
-          text-color = mkLiteral "@foreground";
-        };
-        window = {
-          width = mkLiteral "720px";
-          border = mkLiteral "2px";
-          border-color = mkLiteral "@selected";
-          border-radius = mkLiteral "14px";
-          background-color = mkLiteral "@background";
-          padding = mkLiteral "18px";
-        };
-        mainbox = {
-          children = map mkLiteral [
-            "inputbar"
-            "listview"
-          ];
-          spacing = mkLiteral "14px";
-        };
-        inputbar = {
-          children = map mkLiteral [ "entry" ];
-          background-color = mkLiteral "@background-alt";
-          border-radius = mkLiteral "9px";
-          padding = mkLiteral "12px";
-          spacing = mkLiteral "10px";
-        };
-        entry = {
-          placeholder = "";
-        };
-        listview = {
-          columns = 1;
-          lines = 9;
-          fixed-height = false;
-          scrollbar = false;
-          spacing = mkLiteral "5px";
-        };
-        element = {
-          border-radius = mkLiteral "8px";
-          padding = mkLiteral "10px";
-          spacing = mkLiteral "12px";
-        };
-        "element selected.normal" = {
-          background-color = mkLiteral "@selected";
-          text-color = mkLiteral theme.brightForeground;
-        };
-        "element-icon" = {
-          size = mkLiteral "28px";
-        };
-        "element-text" = {
-          vertical-align = mkLiteral "0.5";
-        };
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        dark = true;
+        navigate = true;
       };
-    settings = {
-      terminal = "${pkgs.ghostty}/bin/ghostty";
-      font = "Inter 12";
-      modi = "window,drun,run,ssh";
-      icon-theme = "Yaru-blue-dark";
-      show-icons = true;
-      drun-display-format = "{name}";
+    };
+
+    # Oehme themed Chromium
+    chromium.enable = true;
+
+    # Git
+    git = {
+      enable = true;
+      signing.format = null;
+      settings = {
+        user = {
+          name = "Panadestein";
+          email = "rpana92@gmail.com";
+        };
+        credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+      };
+    };
+
+    # VScode configuration
+    vscode = {
+      enable = true;
+      package = pkgs.vscode.fhsWithPackages (ps: with ps; [ fortran-language-server ]);
+    };
+
+    # Native Wayland application launcher and window switcher
+    rofi = {
+      enable = true;
+      # Wayland support is merged into the main Rofi package in current nixpkgs.
+      package = pkgs.rofi;
+      theme =
+        let
+          inherit (config.lib.formats.rasi) mkLiteral;
+        in
+        {
+          "*" = {
+            background = mkLiteral theme.background;
+            background-alt = mkLiteral theme.lighterBackground;
+            foreground = mkLiteral theme.foreground;
+            selected = mkLiteral theme.selection;
+            accent = mkLiteral theme.accent;
+            background-color = mkLiteral "transparent";
+            text-color = mkLiteral "@foreground";
+          };
+          window = {
+            width = mkLiteral "720px";
+            border = mkLiteral "2px";
+            border-color = mkLiteral "@selected";
+            border-radius = mkLiteral "14px";
+            background-color = mkLiteral "@background";
+            padding = mkLiteral "18px";
+          };
+          mainbox = {
+            children = map mkLiteral [
+              "inputbar"
+              "listview"
+            ];
+            spacing = mkLiteral "14px";
+          };
+          inputbar = {
+            children = map mkLiteral [ "entry" ];
+            background-color = mkLiteral "@background-alt";
+            border-radius = mkLiteral "9px";
+            padding = mkLiteral "12px";
+            spacing = mkLiteral "10px";
+          };
+          entry = {
+            placeholder = "";
+          };
+          listview = {
+            columns = 1;
+            lines = 9;
+            fixed-height = false;
+            scrollbar = false;
+            spacing = mkLiteral "5px";
+          };
+          element = {
+            border-radius = mkLiteral "8px";
+            padding = mkLiteral "10px";
+            spacing = mkLiteral "12px";
+          };
+          "element selected.normal" = {
+            background-color = mkLiteral "@selected";
+            text-color = mkLiteral theme.brightForeground;
+          };
+          "element-icon" = {
+            size = mkLiteral "28px";
+          };
+          "element-text" = {
+            vertical-align = mkLiteral "0.5";
+          };
+        };
+      settings = {
+        terminal = "${pkgs.ghostty}/bin/ghostty";
+        font = "Inter 12";
+        modi = "window,drun,run,ssh";
+        icon-theme = "Yaru-blue-dark";
+        show-icons = true;
+        drun-display-format = "{name}";
+      };
+    };
+
+    # Yazi
+    yazi = {
+      enable = true;
+      shellWrapperName = "y";
     };
   };
 
-  # Yazi
-  programs.yazi = {
-    enable = true;
-    shellWrapperName = "y";
-  };
-
-  # Keep one active display: the external Lenovo while docked, otherwise the
-  # laptop panel. Explicit modes select each panel's highest resolution.
+  # Keep one active display: the external Lenovo while docked, otherwise the laptop
   services.kanshi = {
     enable = true;
     systemdTarget = "wayland-session@hyprland.desktop.target";

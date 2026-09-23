@@ -19,14 +19,16 @@ in
       palette = "oehme";
 
       palettes.oehme = {
-        blue = theme.blue;
-        cyan = theme.cyan;
-        foreground = theme.foreground;
-        green = theme.green;
-        magenta = theme.magenta;
-        orange = theme.orange;
-        red = theme.red;
-        yellow = theme.yellow;
+        inherit (theme)
+          blue
+          cyan
+          foreground
+          green
+          magenta
+          orange
+          red
+          yellow
+          ;
       };
 
       character = {

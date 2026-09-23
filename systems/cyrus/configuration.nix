@@ -70,47 +70,129 @@ in
     };
   };
 
-  # Set the linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    # Set the linux kernel
+    kernelPackages = pkgs.linuxPackages_latest;
 
-  # Load AMD CPU microcode and firmware
-  hardware.cpu.amd.updateMicrocode = true;
-  hardware.firmware = [ pkgs.linux-firmware ];
+    # Kernel parameters and modules
+    initrd = {
+      kernelModules = [
+        "amdgpu"
+        "hid-apple"
+      ];
+      verbose = false;
+    };
+    kernelParams = [
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=false"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_level=3"
+      "vt.global_cursor_default=0"
+      "fbcon=nodefer"
+      "hid_apple.fnmode=0"
+      "psmouse.synaptics_intertouch=0"
+    ];
+    consoleLogLevel = 0;
+    plymouth = {
+      enable = true;
+      extraConfig = "DeviceTimeout=5\n";
+    };
+    kernel.sysctl = {
+      "kernel.printk" = "3 3 3 3";
+    };
 
-  # Kernel parameters and modules
-  boot.initrd.kernelModules = [
-    "amdgpu"
-    "hid-apple"
-  ];
-  boot.kernelParams = [
-    "quiet"
-    "loglevel=3"
-    "systemd.show_status=false"
-    "rd.systemd.show_status=false"
-    "rd.udev.log_level=3"
-    "udev.log_level=3"
-    "vt.global_cursor_default=0"
-    "fbcon=nodefer"
-    "hid_apple.fnmode=0"
-    "psmouse.synaptics_intertouch=0"
-  ];
-  boot.consoleLogLevel = 0;
-  boot.initrd.verbose = false;
-  boot.plymouth.enable = true;
-  boot.plymouth.extraConfig = "DeviceTimeout=5\n";
-  systemd.settings.Manager.ShowStatus = false;
-  boot.kernel.sysctl = {
-    "kernel.printk" = "3 3 3 3";
+    # GRUB provides access to earlier generations if an upgrade fails to boot.
+    loader = {
+      timeout = 5;
+      systemd-boot.enable = false;
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+      };
+    };
   };
 
-  # GRUB provides access to earlier generations if an upgrade fails to boot.
-  boot.loader = {
-    timeout = 5;
-    systemd-boot.enable = false;
-    efi.canTouchEfiVariables = true;
-    grub.enable = true;
-    grub.efiSupport = true;
-    grub.device = "nodev";
+  # Load AMD CPU microcode and firmware
+  hardware = {
+    cpu.amd.updateMicrocode = true;
+    firmware = [ pkgs.linux-firmware ];
+
+    # Scanners
+    sane = {
+      enable = true;
+      extraBackends = [
+        pkgs.sane-airscan
+      ];
+    };
+
+    # Bluetooth support
+    bluetooth.enable = true;
+  };
+
+  systemd = {
+    settings.Manager.ShowStatus = false;
+    services = {
+      NetworkManager-wait-online.enable = false;
+      greetd.serviceConfig.Type = lib.mkForce "simple";
+      plymouth-quit = {
+        restartIfChanged = false;
+        serviceConfig.ExecStart = [
+          ""
+          "-${pkgs.plymouth}/bin/plymouth quit --retain-splash"
+        ];
+      };
+    };
+    user.services = {
+      nm-applet = {
+        after = [ "graphical-session.target" ];
+        wantedBy = lib.mkForce [ "graphical-session.target" ];
+      };
+      dropbox = {
+        description = "Dropbox";
+        after = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.dropbox}/bin/dropbox";
+          Restart = "on-failure";
+          ProtectSystem = "full";
+          Nice = 10;
+        };
+      };
+      udiskie = {
+        description = "Removable-media tray service";
+        after = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.udiskie}/bin/udiskie --tray";
+          Restart = "on-failure";
+        };
+      };
+    };
+
+    # WireGuard & wgnord (NordVPN) directory & template provisioning
+    tmpfiles.rules = [
+      "d /etc/wireguard 0700 root root -"
+      "d /var/lib/wgnord 0700 root root -"
+      "C /var/lib/wgnord/template.conf 0600 root root - ${pkgs.writeText "wgnord-template.conf" ''
+        [Interface]
+        PrivateKey = PRIVKEY
+        Address = 10.5.0.2/32
+        MTU = 1350
+        DNS = 103.86.96.100 103.86.99.100
+
+        [Peer]
+        PublicKey = SERVER_PUBKEY
+        AllowedIPs = 0.0.0.0/0, ::/0
+        Endpoint = SERVER_IP:51820
+        PersistentKeepalive = 25
+      ''}"
+    ];
   };
 
   # Set hostname
@@ -119,12 +201,56 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  # Set zsh as default shell
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  programs = {
+    # Set zsh as default shell
+    zsh.enable = true;
 
-  # Enable fish shell
-  programs.fish.enable = true;
+    # Enable fish shell
+    fish.enable = true;
+
+    # NetworkManager tray applet
+    nm-applet.enable = true;
+
+    # Hyprland is the only graphical session. UWSM owns its systemd lifecycle.
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+    dconf.enable = true;
+    chromium = {
+      enable = true;
+      extraOpts = {
+        BrowserThemeColor = theme.background;
+        BrowserColorScheme = "device";
+      };
+      initialPrefs.browser.theme = {
+        color_scheme = 0;
+        color_scheme2 = 0;
+      };
+    };
+
+    # Printing configuration UI
+    system-config-printer.enable = true;
+
+    # Run dynamically linked executables intended for conventional Linux systems.
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        zlib
+        stdenv.cc.cc.lib
+      ];
+    };
+
+    java.enable = true;
+
+    # GnuPG agent
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
+  users.defaultUserShell = pkgs.zsh;
 
   # Network configuration
   networking = {
@@ -147,8 +273,6 @@ in
       };
     };
   };
-  programs.nm-applet.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Select internationalization properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -157,82 +281,92 @@ in
     keyMap = "us";
   };
 
-  # Hyprland is the only graphical session. UWSM owns its systemd lifecycle.
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-  programs.dconf.enable = true;
+  services = {
+    # Fingerprint authentication
+    fprintd.enable = true;
 
-  programs.chromium = {
-    enable = true;
-    extraOpts = {
-      BrowserThemeColor = theme.background;
-      BrowserColorScheme = "device";
-    };
-    initialPrefs.browser.theme = {
-      color_scheme = 0;
-      color_scheme2 = 0;
-    };
-  };
-
-  # Fingerprint authentication is exposed through PAM to greetd
-  services.fprintd.enable = true;
-  security.pam.services.greetd.fprintAuth = true;
-  security.pam.services.hyprlock.fprintAuth = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "${hyprlandSession}";
-        user = "loren";
-      };
-      default_session = {
-        command = "${lib.getExe' pkgs.greetd "agreety"} --cmd ${lib.escapeShellArg "${hyprlandSession}"}";
-        user = "greeter";
+    greetd = {
+      enable = true;
+      settings = {
+        initial_session = {
+          command = "${hyprlandSession}";
+          user = "loren";
+        };
+        default_session = {
+          command = "${lib.getExe' pkgs.greetd "agreety"} --cmd ${lib.escapeShellArg "${hyprlandSession}"}";
+          user = "greeter";
+        };
       };
     };
+
+    # Update UEFI and supported peripheral firmware through LVFS.
+    fwupd.enable = true;
+
+    # Printing support with CUPS and mDNS discovery
+    printing = {
+      enable = true;
+      drivers = [
+        pkgs.hplip
+        pkgs.hplipWithPlugin
+      ];
+    };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+    };
+    blueman.enable = true;
+
+    # Emacs daemon
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-git-pgtk;
+      defaultEditor = true;
+    };
+
+    # Audio service
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+
+    # Desktop and system integration
+    gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+    openssh.enable = true;
+    upower.enable = true;
+    dbus.enable = true;
   };
-  systemd.services.greetd.serviceConfig.Type = lib.mkForce "simple";
-  systemd.services.plymouth-quit = {
-    restartIfChanged = false;
-    serviceConfig.ExecStart = [
-      ""
-      "-${pkgs.plymouth}/bin/plymouth quit --retain-splash"
+
+  # Fingerprint authentication is exposed through PAM to greetd and Hyprlock.
+  security = {
+    pam.services = {
+      greetd = {
+        fprintAuth = true;
+        enableGnomeKeyring = true;
+      };
+      hyprlock = {
+        fprintAuth = true;
+        enableGnomeKeyring = true;
+      };
+    };
+    rtkit.enable = true;
+
+    # Passwordless sudo for wgnord
+    sudo.extraRules = [
+      {
+        users = [ "loren" ];
+        commands = [
+          {
+            command = "${pkgs.wgnord}/bin/wgnord";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
     ];
   };
-  security.pam.services.greetd.enableGnomeKeyring = true;
-  security.pam.services.hyprlock.enableGnomeKeyring = true;
-
-  # Update UEFI and supported peripheral firmware through LVFS.
-  services.fwupd.enable = true;
-
-  # Printing support with CUPS
-  services.printing = {
-    enable = true;
-    drivers = [
-      pkgs.hplip
-      pkgs.hplipWithPlugin
-    ];
-  };
-  services.avahi.enable = true;
-  services.avahi.nssmdns4 = true;
-  programs.system-config-printer.enable = true;
-
-  # Scanners
-  hardware.sane = {
-    enable = true;
-    extraBackends = [
-      pkgs.sane-airscan
-    ];
-  };
-
-  # Bluetooth support
-  hardware.bluetooth = {
-    enable = true;
-  };
-  services.blueman.enable = true;
 
   # User account and configuration
   users.users.loren = {
@@ -320,25 +454,6 @@ in
     COLORTERM = "truecolor";
   };
 
-  # Emacs configuration
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs-git-pgtk;
-    defaultEditor = true;
-  };
-
-  # Make your life easier
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      zlib
-      stdenv.cc.cc.lib
-    ];
-  };
-
-  # Enable Java
-  programs.java.enable = true;
-
   # Fonts
   fonts.packages = with pkgs; [
     dina-font
@@ -372,12 +487,6 @@ in
     emoji = [ "Noto Color Emoji" ];
   };
 
-  # Gnupg configuration
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
   # Virtualization setup, only docker at the moment
   virtualisation = {
     docker = {
@@ -385,81 +494,6 @@ in
       extraOptions = "--default-ulimit nofile=65536:65536";
     };
   };
-
-  # Audio service
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Additional services
-  services.gnome.gnome-keyring.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
-  services.openssh.enable = true;
-  services.upower.enable = true;
-  services.dbus.enable = true;
-  systemd.user.services.nm-applet = {
-    after = [ "graphical-session.target" ];
-    wantedBy = lib.mkForce [ "graphical-session.target" ];
-  };
-  systemd.user.services.dropbox = {
-    description = "Dropbox";
-    after = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.dropbox}/bin/dropbox";
-      Restart = "on-failure";
-      ProtectSystem = "full";
-      Nice = 10;
-    };
-  };
-  systemd.user.services.udiskie = {
-    description = "Removable-media tray service";
-    after = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.udiskie}/bin/udiskie --tray";
-      Restart = "on-failure";
-    };
-  };
-
-  # WireGuard & wgnord (NordVPN) directory & template provisioning
-  systemd.tmpfiles.rules = [
-    "d /etc/wireguard 0700 root root -"
-    "d /var/lib/wgnord 0700 root root -"
-    "C /var/lib/wgnord/template.conf 0600 root root - ${pkgs.writeText "wgnord-template.conf" ''
-      [Interface]
-      PrivateKey = PRIVKEY
-      Address = 10.5.0.2/32
-      MTU = 1350
-      DNS = 103.86.96.100 103.86.99.100
-
-      [Peer]
-      PublicKey = SERVER_PUBKEY
-      AllowedIPs = 0.0.0.0/0, ::/0
-      Endpoint = SERVER_IP:51820
-      PersistentKeepalive = 25
-    ''}"
-  ];
-
-  # Passwordless sudo for wgnord
-  security.sudo.extraRules = [
-    {
-      users = [ "loren" ];
-      commands = [
-        {
-          command = "${pkgs.wgnord}/bin/wgnord";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
 
   # State version
   system.stateVersion = "26.05";

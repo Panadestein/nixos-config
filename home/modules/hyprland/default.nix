@@ -1,8 +1,5 @@
 # Hyprland desktop environment suite (Hyprland, Hyprlock, Hypridle, Hyprpaper, Hyprpolkitagent)
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
   theme = import ../../theme.nix;
   wallpaperSource = ../../assets/wallpapers/oehme;
@@ -25,12 +22,71 @@ in
       systemctl = "${pkgs.systemd}/bin/systemctl";
     };
   };
+  services = {
+    cliphist = {
+      enable = true;
+      systemdTargets = [ "wayland-session@hyprland.desktop.target" ];
+    };
 
-  services.cliphist = {
-    enable = true;
-    systemdTargets = [ "wayland-session@hyprland.desktop.target" ];
+    # Hyprland idle daemon: turns screen black when locked and handles sleep/suspend
+    hypridle = {
+      enable = true;
+      systemdTarget = "wayland-session@hyprland.desktop.target";
+      settings = {
+        general = {
+          lock_cmd = "${pkgs.systemd}/bin/systemctl --user start hyprlock.service";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
+          # Wait for the compositor to confirm the lock before releasing sleep.
+          inhibit_sleep = 3;
+          ignore_dbus_inhibit = false;
+        };
+        listener = [
+          # Turn off a manually locked display after 60 seconds of inactivity.
+          {
+            timeout = 60;
+            on-timeout = ''pidof hyprlock && hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })' '';
+            on-resume = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
+          }
+          # Lock screen after 10 minutes of general inactivity
+          {
+            timeout = 600;
+            on-timeout = "loginctl lock-session";
+          }
+          # Turn the display off one minute after automatic locking.
+          {
+            timeout = 660;
+            on-timeout = ''hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })' '';
+            on-resume = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
+          }
+          # Suspend system after 30 minutes of inactivity
+          {
+            timeout = 1800;
+            on-timeout = "systemctl suspend";
+          }
+        ];
+      };
+    };
+
+    # Hyprpaper wallpaper daemon
+    hyprpaper = {
+      enable = true;
+      systemdTarget = "wayland-session@hyprland.desktop.target";
+      settings = {
+        splash = false;
+        wallpaper = [
+          {
+            monitor = "";
+            path = defaultWallpaper;
+            fit_mode = "cover";
+          }
+        ];
+      };
+    };
+
+    # Polkit authentication agent for Hyprland
+    hyprpolkitagent.enable = true;
   };
-
   # Hyprlock screen locker
   programs.hyprlock = {
     enable = true;
@@ -110,7 +166,6 @@ in
       ];
     };
   };
-
   # Restore the lock screen if Hyprlock crashes during display reconfiguration.
   systemd.user.services.hyprlock = {
     Unit = {
@@ -124,66 +179,6 @@ in
       RestartSec = 1;
     };
   };
-
-  # Hyprland idle daemon: turns screen black when locked and handles sleep/suspend
-  services.hypridle = {
-    enable = true;
-    systemdTarget = "wayland-session@hyprland.desktop.target";
-    settings = {
-      general = {
-        lock_cmd = "${pkgs.systemd}/bin/systemctl --user start hyprlock.service";
-        before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
-        # Wait for the compositor to confirm the lock before releasing sleep.
-        inhibit_sleep = 3;
-        ignore_dbus_inhibit = false;
-      };
-      listener = [
-        # Turn off a manually locked display after 60 seconds of inactivity.
-        {
-          timeout = 60;
-          on-timeout = ''pidof hyprlock && hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })' '';
-          on-resume = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
-        }
-        # Lock screen after 10 minutes of general inactivity
-        {
-          timeout = 600;
-          on-timeout = "loginctl lock-session";
-        }
-        # Turn the display off one minute after automatic locking.
-        {
-          timeout = 660;
-          on-timeout = ''hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })' '';
-          on-resume = ''hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' '';
-        }
-        # Suspend system after 30 minutes of inactivity
-        {
-          timeout = 1800;
-          on-timeout = "systemctl suspend";
-        }
-      ];
-    };
-  };
-
-  # Hyprpaper wallpaper daemon
-  services.hyprpaper = {
-    enable = true;
-    systemdTarget = "wayland-session@hyprland.desktop.target";
-    settings = {
-      splash = false;
-      wallpaper = [
-        {
-          monitor = "";
-          path = defaultWallpaper;
-          fit_mode = "cover";
-        }
-      ];
-    };
-  };
-
-  # Polkit authentication agent for Hyprland
-  services.hyprpolkitagent.enable = true;
-
   # Restore wallpaper into hyprpaper when graphical session starts
   systemd.user.services.waypaper-restore = {
     Unit = {
@@ -199,7 +194,6 @@ in
     };
     Install.WantedBy = [ "graphical-session.target" ];
   };
-
   # Hyprland session packages
   home.packages = [
     pkgs.hyprshot

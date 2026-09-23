@@ -11,6 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Declarative Git hooks and flake checks, executed by prek.
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Determinate Nix and its daemon for NixOS.
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
 
@@ -56,6 +62,15 @@
         inherit system;
         config.allowUnfree = true;
       };
+      preCommitCheck = inputs.git-hooks.lib.${system}.run {
+        src = ./.;
+        package = pkgs.prek;
+        hooks = {
+          deadnix.enable = true;
+          nixfmt.enable = true;
+          statix.enable = true;
+        };
+      };
       scientificPython = pkgs.python3.withPackages (
         pythonPackages: with pythonPackages; [
           jupyterlab
@@ -95,14 +110,13 @@
         };
       };
 
+      checks.${system}.pre-commit = preCommitCheck;
+
       devShells.${system} = {
         default = pkgs.mkShellNoCC {
           name = "nixos-config";
-          packages = with pkgs; [
-            deadnix
-            nixfmt
-            statix
-          ];
+          inherit (preCommitCheck) shellHook;
+          packages = preCommitCheck.enabledPackages;
         };
 
         python = pkgs.mkShellNoCC {

@@ -1,4 +1,10 @@
-{ lib, pkgs, pkg-config, libffi, src }:
+{
+  lib,
+  pkgs,
+  pkg-config,
+  libffi,
+  src,
+}:
 
 let
   nativeStdenv = pkgs.impureUseNativeOptimizations pkgs.stdenv;
@@ -49,7 +55,11 @@ nativeStdenv.mkDerivation {
   meta = {
     description = "Native-optimized CBQN";
     homepage = "https://github.com/dzaima/CBQN";
-    license = [ lib.licenses.lgpl3Only lib.licenses.mit lib.licenses.asl20 ];
+    license = [
+      lib.licenses.lgpl3Only
+      lib.licenses.mit
+      lib.licenses.asl20
+    ];
     mainProgram = "cbqn";
     platforms = lib.platforms.linux;
   };

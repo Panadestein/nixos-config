@@ -13,8 +13,7 @@ in
       font-family = "JetBrainsMono Nerd Font";
       font-size = 12;
       command = "direct:${pkgs.fish}/bin/fish";
-      background = theme.background;
-      foreground = theme.foreground;
+      inherit (theme) background foreground;
       cursor-color = theme.accent;
       selection-background = theme.selection;
       selection-foreground = theme.brightForeground;

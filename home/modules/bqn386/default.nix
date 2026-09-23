@@ -1,4 +1,8 @@
-{ lib, stdenvNoCC, fetchFromGitHub }:
+{
+  lib,
+  stdenvNoCC,
+  fetchFromGitHub,
+}:
 
 stdenvNoCC.mkDerivation {
   pname = "bqn386_git";
@@ -11,7 +15,10 @@ stdenvNoCC.mkDerivation {
     hash = "sha256-7GW4W08d5sB9EIlPPTol29nWA64pPF+8PvrugrRkXtA=";
   };
 
-  outputs = [ "out" "woff2" ];
+  outputs = [
+    "out"
+    "woff2"
+  ];
 
   installPhase = ''
     runHook preInstall
