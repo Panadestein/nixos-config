@@ -11,7 +11,6 @@ _: {
     shellAliases = {
       # General aliases
       c = "code -r";
-      cow = "fortune | cowsay";
       e = "emacsclient";
       E = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit";
       en = "emacsclient -c -nw";

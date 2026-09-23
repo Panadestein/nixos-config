@@ -4,7 +4,7 @@
 </a>
 #+END_HTML
 
-* Panadestein's Nix/NixOS Configuration
+* NixOS Configuration
 
 #+BEGIN_HTML
 <p align="center">
@@ -12,8 +12,9 @@
 </p>
 #+END_HTML
 
-Welcome to my [[https://nixos.org/][NixOS]] system flake, with [[https://nix-community.github.io/home-manager/][Home Manager]] 
-shaping the user environment. After many turbulent iterations and headaches, this is the deepest local minimum I have found.
+Welcome to my [[https://nixos.org/][NixOS]] system flake, using [[https://nix-community.github.io/home-manager/][Home Manager]] 
+for the user environment. After many turbulent iterations and headaches, this is the deepest local minimum I have found; a world
+reborn.
 
 The machine is named [[https://en.wikipedia.org/wiki/Cyrus_Smith][cyrus]], after Verne's engineer and one of my childhood heroes.
 Its Wayland desktop runs [[https://hypr.land/][Hyprland]] exclusively. The config emphasises coherence, robustness, and

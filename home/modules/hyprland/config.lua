@@ -225,7 +225,11 @@ bind(mod .. " + W", hl.dsp.exec_cmd("uwsm app -- firefox"), "Launch Firefox")
 bind(mod .. " + C", hl.dsp.exec_cmd("uwsm app -- chromium"), "Launch Chromium")
 bind(mod .. " + E", hl.dsp.exec_cmd("uwsm app -- emacsclient -c"), "Launch an Emacs client frame")
 bind(mod .. " + V", hl.dsp.exec_cmd("uwsm app -- code"), "Launch VS Code")
-bind(mod .. " + SHIFT + V", hl.dsp.exec_cmd("@cliphistMenu@"), "Choose from clipboard history")
+bind(mod .. " + SHIFT + V", hl.dsp.exec_cmd("sh -c " .. shellQuote([[
+    selection=$(cliphist list | rofi -dmenu -i -no-custom -display-columns 2 -p Clipboard \
+        -theme-str 'inputbar { children: [ "prompt", "entry" ]; }') &&
+    [ -n "$selection" ] && printf '%s\n' "$selection" | cliphist decode | wl-copy
+]])), "Choose from clipboard history")
 bind(mod .. " + SHIFT + F", hl.dsp.exec_cmd("uwsm app -- nautilus --new-window"), "Launch Nautilus")
 bind(mod .. " + F", hl.dsp.exec_cmd("uwsm app -- " .. terminal .. " -e yazi"), "Launch Yazi")
 bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("uwsm app -- waypaper --folder $HOME/.local/share/wallpapers/oehme --backend hyprpaper"), "Choose a wallpaper")

@@ -17,4 +17,5 @@
   ./wallpaper-next
   ./waybar
   ./zsh
+  ./zoom
 ]

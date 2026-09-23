@@ -14,7 +14,6 @@
       cde = "cd ~/.emacs.d/";
       cfe = "emacsclient ~/.emacs.d/init.el";
       cfn = "nvim ~/.config/nvim/init.lua";
-      cow = "fortune | cowsay";
       e = "emacsclient";
       en = "emacsclient -c -nw";
       jnb = "jupyter notebook";

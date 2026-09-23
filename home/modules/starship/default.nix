@@ -14,7 +14,7 @@ in
     settings = {
       add_newline = true;
       command_timeout = 200;
-      format = "[$directory$git_branch$git_status]($style)$character";
+      format = "$cmd_duration[$directory$git_branch$git_status]($style)$character";
 
       palette = "oehme";
 
@@ -60,6 +60,12 @@ in
         staged = "";
         renamed = "";
         deleted = "";
+      };
+
+      cmd_duration = {
+        min_time = 2000;
+        format = "Took: [$duration]($style)\n";
+        style = "bold orange";
       };
     };
   };

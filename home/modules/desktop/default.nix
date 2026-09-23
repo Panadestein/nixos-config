@@ -1,15 +1,28 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   dconf.enable = true;
 
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    desktop = null;
     documents = "$HOME/Documents";
     download = "$HOME/Downloads";
+    music = null;
     pictures = "$HOME/Pictures";
+    projects = null;
+    publicShare = null;
+    templates = null;
     videos = "$HOME/Videos";
   };
+
+  # Nautilus shows GTK bookmarks in its sidebar.
+  xdg.configFile."gtk-3.0/bookmarks".text = ''
+    file://${config.home.homeDirectory}/Documents
+    file://${config.home.homeDirectory}/Downloads
+    file://${config.home.homeDirectory}/Pictures
+    file://${config.home.homeDirectory}/Videos
+  '';
 
   home.pointerCursor = {
     enable = true;
@@ -63,7 +76,6 @@
     "${pkgs.papers}/share/icons/hicolor/scalable/apps/org.gnome.Papers.svg";
   xdg.dataFile."icons/signal.png".source =
     "${pkgs.signal-desktop}/share/icons/hicolor/256x256/apps/signal-desktop.png";
-  xdg.dataFile."icons/zoom.png".source = "${pkgs.zoom-us}/share/pixmaps/Zoom.png";
   xdg.dataFile."icons/hicolor/256x256/apps/com.mitchellh.ghostty.scratchpad-fish.png".source =
     "${pkgs.ghostty}/share/icons/hicolor/256x256/apps/com.mitchellh.ghostty.png";
 

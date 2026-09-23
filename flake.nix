@@ -32,9 +32,6 @@
     # LLM agents
     llm-agents.url = "github:numtide/llm-agents.nix";
 
-    # Ranger-like nix config inspector
-    nix-inspect.url = "github:bluskript/nix-inspect";
-
     # The best bibliography manager ever
     papis.url = "github:papis/papis";
 
@@ -61,8 +58,6 @@
       };
       scientificPython = pkgs.python3.withPackages (
         pythonPackages: with pythonPackages; [
-          ipykernel
-          ipython
           jupyterlab
           matplotlib
           numpy

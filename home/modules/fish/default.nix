@@ -64,14 +64,11 @@
           command nix --quiet shell "nixpkgs#$argv[1]" --command $argv
       end
 
-      # Entering nix-shells
-      any-nix-shell fish --info-right | source
     '';
 
     shellAliases = {
       # General aliases
       c = "code -r";
-      cow = "fortune | cowsay";
       e = "emacsclient";
       E = "SUDO_EDITOR='emacsclient -t -a emacs' sudoedit";
       en = "emacsclient -c -nw";

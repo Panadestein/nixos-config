@@ -20,40 +20,13 @@ let
   hyprlandSession = pkgs.writeShellScript "hyprland-session" ''
     exec ${lib.getExe config.programs.uwsm.package} start -e -D Hyprland -g -1 hyprland.desktop >/dev/null 2>&1
   '';
-  zoomUs = pkgs.zoom-us.override {
-    hyprlandXdgDesktopPortalSupport = true;
-    pulseaudioSupport = true;
-  };
-  zoomLaunch = pkgs.writeShellScript "zoom-wayland-launch" ''
-    zoomConfig="$HOME/.config/zoomus.conf"
-    ${pkgs.coreutils}/bin/mkdir -p "$HOME/.config"
-    ${pkgs.coreutils}/bin/touch "$zoomConfig"
-
-    if ${pkgs.gnugrep}/bin/grep -q '^xwayland=' "$zoomConfig"; then
-      ${pkgs.gnused}/bin/sed -i 's/^xwayland=.*/xwayland=false/' "$zoomConfig"
-    else
-      printf '%s\n' 'xwayland=false' >> "$zoomConfig"
-    fi
-
-    export QT_QPA_PLATFORM=wayland
-    export XDG_CURRENT_DESKTOP=Hyprland
-    exec ${zoomUs}/bin/zoom "$@"
-  '';
-  zoomWayland = pkgs.symlinkJoin {
-    name = "zoom-us-wayland";
-    paths = [ zoomUs ];
-    postBuild = ''
-      rm "$out/bin/zoom"
-      ln -s ${zoomLaunch} "$out/bin/zoom"
-    '';
-  };
 in
 {
   imports = [
-    # Hardware of current machine
+    # Hardware of the current machine
     ./hardware-configuration.nix
 
-    # Declarative GPT, LUKS, and Btrfs layout.
+    # Declarative GPT, LUKS, and Btrfs layout
     inputs.disko.nixosModules.disko
     ./disko.nix
   ];
@@ -305,25 +278,17 @@ in
     which
     wgnord
     wireguard-tools
-    zoomWayland
     # Terminal and CLI utilities
     zsh
-    inputs.nix-inspect.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.papis.packages.${pkgs.stdenv.hostPlatform.system}.default
     # Text editors and office
     emacs-git-pgtk
     # Programming languages (here to avoid environment clashes)
-    gfortran
-    mono
     (
       let
         my-python-packages =
           python-packages: with python-packages; [
-            # Language server protocol
-            ruff
             # Scientific libraries
-            ipython
-            ipykernel
             jupyter
             matplotlib
             mpmath
@@ -332,38 +297,20 @@ in
             scikit-learn
             scipy
             sympy
-            # Qt backend
-            pyqt6
-            # Linters
+            # LSP and linters
+            ruff
             autopep8
             flake8
-            jedi
             mypy
             pydocstyle
             pylint
-            # Web
-            tornado
-            # Hy utilities
-            hy
-            # Dependencies
-            pickleshare
+            # Backends
+            pyqt6
           ];
         python-with-my-packages = python3.withPackages my-python-packages;
       in
       python-with-my-packages
     )
-    (hy.withPackages (
-      py-packages: with py-packages; [
-        # Scientific libraries
-        numpy
-        matplotlib
-        pandas
-        scipy
-        sympy
-        # Qt backend
-        pyqt6
-      ]
-    ))
     uv
   ];
 

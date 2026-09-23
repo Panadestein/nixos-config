@@ -23,35 +23,28 @@ in
   # User packages
   home.packages = with pkgs; [
     # General utilities
-    any-nix-shell
-    asciidoctor
     awscli2
     bat
     bc
     btop
     brightnessctl
     ccls
-    code-minimap
     cowsay
     dysk
     eza
     fd
     figlet
-    fortune
     fzf
     grc
     jq
     lolcat
     nvtopPackages.amd
     poppler-utils
-    qemu
     ripgrep
     sd
     step-cli
     tealdeer
-    tmate
     tmux
-    tree
     nix-prefetch-git
     universal-ctags
     udiskie
@@ -72,7 +65,6 @@ in
     simple-scan
     # Terminal based apps
     cliamp
-    gdu
     # Science
     gnuplot
     graphviz
@@ -105,12 +97,10 @@ in
     nixfmt
     openblas
     perf
-    rust-analyzer
     samply
     shellcheck
     valgrind
     # Programming languages
-    cargo
     cbqn
     chicken
     clojure
@@ -118,10 +108,8 @@ in
     gdb
     ghc
     gnumake
-    jdk11
     nodejs
     racket
-    rustc
     sbcl
     # Advanced calculators
     numbat
