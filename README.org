@@ -24,56 +24,9 @@ Visually, the system draws its character from the landscapes of [[https://en.wik
 an unsung painter of the German Romantic period. The tracked wallpaper collection, together with notes on the works, lives
 [[file:home/assets/wallpapers/oehme/README.md][here]].
 
+** Repository Structure & Desktop Environment
 
-** Build and apply changes
-
-Run commands from the repository root. I prefer [[https://github.com/nix-community/nh][nh]] for NixOS builds and
-deployments: it knows this flake's configured location, selects the local host,
-and provides useful build output and package diffs. First validate the flake and
-build the system and Home Manager configuration without activating it:
-
-#+begin_src bash
-  nix flake check --no-write-lock-file
-  nh os build
-#+end_src
-
-A build checks generated files and package dependencies; it cannot exercise docking
-or suspend on hardware. New files must be added with =git add= before a Git-backed flake
-can see them.
-
-Apply the configuration:
-
-#+begin_src bash
-  nh os switch
-#+end_src
-
-Log out and back in after changes to the session environment or compositor.
-=Super+Ctrl+R= reloads the /installed/ Hyprland configuration; repository edits
-take effect after rebuilding.
-
-*** Update dependencies
-
-Update one input at a time, then repeat the checks above:
-
-#+begin_src bash
-  nix flake update <INPUT>
-#+end_src
-
-or all of them together:
-
-#+begin_src bash
-  nix flake update
-#+end_src
-
-=nh= can also update inputs as part of a build or deployment (=nh os build
---update=, =nh os switch --update=, or =--update-input <INPUT>=), but it does
-not provide a lockfile-only update command. Use =nix flake update= when the
-intent is to update and review =flake.lock= before building.
-
-Keep the existing =stateVersion= values when upgrading: they describe compatibility
-defaults, not the desired NixOS release.
-
-** Repository layout
+The configuration is structured across system, user, and modular desktop layers:
 
 | File or directory                  | Purpose                                     |
 |------------------------------------+---------------------------------------------|
@@ -84,39 +37,8 @@ defaults, not the desired NixOS release.
 | =home/modules/=                    | Shells, editors, desktop and helpers        |
 | =home/theme.nix=                   | Shared Oehme palette                        |
 
-** Development environment
-
-The principal flake provides small, current nixpkgs-based development environments:
-
-| Command                          | Environment                                      |
-|----------------------------------+--------------------------------------------------|
-| =nix develop=                    | Nix formatting and static analysis               |
-| =nix develop .#python=           | Scientific Python and Jupyter                    |
-| =nix develop .#c-cpp=            | C/C++ compilers, build tools and debugging       |
-| =nix develop .#fortran-mpi=      | Fortran, Open MPI, fortls and fypp               |
-| =nix develop .#julia=            | Julia                                            |
-
-Home Manager enables direnv and nix-direnv for Bash, Fish and Zsh. The repository's
-=.envrc= selects the default maintenance shell; approve it once with =direnv allow=.
-
-*** Formatting, linting and pre-commit hooks
-
-The default development shell installs the repository's pre-commit hook. It runs
-=nixfmt= to format Nix, =statix= for style and correctness checks, and =deadnix= to
-find unused Nix code. Enter it with =nix develop= (or let direnv load it), then run
-all hooks manually before committing when useful:
-
-#+begin_src bash
-  prek run --all-files
-#+end_src
-
-=nix flake check --no-write-lock-file= also runs this hook suite as the
-=pre-commit= flake check, making it suitable for CI or a clean, reproducible
-validation pass.
-
-** Keyboard shortcuts
-
-=Super+F1= shows the shortcut list generated from the bindings themselves. Some examples:
+Daily interaction centers on Hyprland keybindings. Pressing =Super+F1= opens an on-screen cheat sheet
+generated directly from the configuration. Some of my essential shortcuts include:
 
 | Shortcut                | Action                       |
 |-------------------------+------------------------------|
@@ -137,5 +59,76 @@ validation pass.
 | =Super+Ctrl+Q=          | Log out through UWSM         |
 | =Super+Shift+Backspace= | Reboot                       |
 
-Idle locking starts at ten minutes, display power-off at eleven, and suspend at thirty.
-Kanshi selects the Lenovo display when docked and the laptop panel otherwise.
+Display layout and power management are automated: Kanshi selects my particular external Lenovo display when
+docked and the laptop panel otherwise (this is what I like), while hypridle locks the session at ten minutes,
+blanks the screen at eleven, and suspends the machine at thirty.
+
+** Building and Deployment
+
+System builds and deployments rely on [[https://github.com/nix-community/nh][nh]], which targets the local host and current flake while providing
+concise diffs and build output. To validate the flake and build both system and Home Manager
+configurations without activating them:
+
+#+begin_src bash
+  nix flake check --no-write-lock-file
+  nh os build
+#+end_src
+
+To apply and switch to the new configuration:
+
+#+begin_src bash
+  nh os switch
+#+end_src
+
+Changes to the session environment or compositor require logging out and back in. Note that =Super+Ctrl+R= only reloads the active,
+/installed/ Hyprland configuration; edits in the repository take effect only after rebuilding.
+
+*** Updating Dependencies
+
+Inputs can be updated individually to isolate changes:
+
+#+begin_src bash
+  nix flake update <INPUT>
+#+end_src
+
+or all at once:
+
+#+begin_src bash
+  nix flake update
+#+end_src
+
+While =nh= supports updating inputs during a build or switch (via =--update= or =--update-input <INPUT>=),
+it does not provide a lockfile-only update command. Running =nix flake update= directly is preferred
+when reviewing =flake.lock= diffs before building.
+
+When upgrading NixOS releases, keep existing =stateVersion= values intact: they preserve backwards-compatibility
+defaults rather than selecting the active system version.
+
+** Development Environments
+
+The principal flake provides tailored, lightweight development environments based on current nixpkgs:
+
+| Command                          | Environment                                      |
+|----------------------------------+--------------------------------------------------|
+| =nix develop=                    | Nix formatting and static analysis               |
+| =nix develop .#python=           | Scientific Python and Jupyter                    |
+| =nix develop .#c-cpp=            | C/C++ compilers, build tools and debugging       |
+| =nix develop .#fortran-mpi=      | Fortran, Open MPI, fortls and fypp               |
+| =nix develop .#julia=            | Julia                                            |
+
+Automatic environment switching is supported via =direnv= and =nix-direnv= across Bash, Fish, and Zsh.
+The repository's =.envrc= selects the default maintenance shell; approve it once with =direnv allow=.
+
+*** Code Quality & Pre-commit Hooks
+
+The default development shell installs the repository's Git hooks, which run =nixfmt= for formatting,
+=statix= for style and correctness checks, and =deadnix= to remove unused code.
+Once inside the shell (via =nix develop= or =direnv=), run the suite manually across all files with:
+
+#+begin_src bash
+  prek run --all-files
+#+end_src
+
+The same checks run during =nix flake check --no-write-lock-file= as the =pre-commit= flake check,
+ensuring consistent validation in CI and clean local passes alike.
+
