@@ -25,7 +25,7 @@ an unsung painter of the German Romantic period. The tracked wallpaper collectio
 [[file:home/assets/wallpapers/oehme/README.md][here]].
 
 
-** Rebuilding
+** Build and apply changes
 
 Run commands from the repository root. I prefer [[https://github.com/nix-community/nh][nh]] for NixOS builds and
 deployments: it knows this flake's configured location, selects the local host,
@@ -51,6 +51,8 @@ Log out and back in after changes to the session environment or compositor.
 =Super+Ctrl+R= reloads the /installed/ Hyprland configuration; repository edits
 take effect after rebuilding.
 
+*** Update dependencies
+
 Update one input at a time, then repeat the checks above:
 
 #+begin_src bash
@@ -71,7 +73,7 @@ intent is to update and review =flake.lock= before building.
 Keep the existing =stateVersion= values when upgrading: they describe compatibility
 defaults, not the desired NixOS release.
 
-** Finding your way around
+** Repository layout
 
 | File or directory                  | Purpose                                     |
 |------------------------------------+---------------------------------------------|
@@ -82,31 +84,7 @@ defaults, not the desired NixOS release.
 | =home/modules/=                    | Shells, editors, desktop and helpers        |
 | =home/theme.nix=                   | Shared Oehme palette                        |
 
-** Desktop essentials
-
-=Super+F1= shows the shortcut list generated from the bindings themselves. Some examples:
-
-| Shortcut          | Action                         |
-|-------------------+--------------------------------|
-| =Super+Return=    | Ghostty with Fish              |
-| =Super+R=         | Application launcher           |
-| =Super+P=         | Password menu (copy)           |
-| =Super+Shift+P=   | Password menu (type)           |
-| =F12=             | Fish drop-down terminal        |
-| =Super+C=         | Numbat calculator scratchpad   |
-| =Super+F=         | Yazi                           |
-| =Print=           | Region screenshot              |
-| =Super+Shift+W=   | Wallpaper chooser              |
-| =Super+Ctrl+W=    | Next painting                  |
-| =Super+O=         | Lock                           |
-| =Super+Ctrl+Q=    | Log out through UWSM           |
-
-Idle locking starts at ten minutes, display power-off at eleven, and suspend at thirty.
-Kanshi selects the Lenovo display when docked and the laptop panel otherwise.
-For session problems, start with =hyprctl configerrors=,
-=systemctl --user --failed= and =journalctl --user -b -u hypridle -u kanshi -u waybar=.
-
-** Development shells
+** Development environment
 
 The principal flake provides small, current nixpkgs-based development environments:
 
@@ -120,3 +98,44 @@ The principal flake provides small, current nixpkgs-based development environmen
 
 Home Manager enables direnv and nix-direnv for Bash, Fish and Zsh. The repository's
 =.envrc= selects the default maintenance shell; approve it once with =direnv allow=.
+
+*** Formatting, linting and pre-commit hooks
+
+The default development shell installs the repository's pre-commit hook. It runs
+=nixfmt= to format Nix, =statix= for style and correctness checks, and =deadnix= to
+find unused Nix code. Enter it with =nix develop= (or let direnv load it), then run
+all hooks manually before committing when useful:
+
+#+begin_src bash
+  prek run --all-files
+#+end_src
+
+=nix flake check --no-write-lock-file= also runs this hook suite as the
+=pre-commit= flake check, making it suitable for CI or a clean, reproducible
+validation pass.
+
+** Keyboard shortcuts
+
+=Super+F1= shows the shortcut list generated from the bindings themselves. Some examples:
+
+| Shortcut                | Action                       |
+|-------------------------+------------------------------|
+| =F12=                   | Fish drop-down terminal      |
+| =Super+Return=          | Ghostty with Fish            |
+| =Super+N=               | Numbat calculator scratchpad |
+| =Super+A=               | CBQN o3n develop branch      |
+| =Super+E=               | Emacs                        |
+| =Super+W=               | Firefox                      |
+| =Super+F=               | Yazi                         |
+| =Super+Shift+F=         | Nautilus floating window     |
+| =Super+R=               | Application launcher         |
+| =Super+P=               | Password menu                |
+| =Super+Ctrl+W=          | Next Oehme wallpaper         |
+| =Print=                 | Region screenshot            |
+| =Super+O=               | Lock                         |
+| =Super+Ctrl+R=          | Reload hyprland config       |
+| =Super+Ctrl+Q=          | Log out through UWSM         |
+| =Super+Shift+Backspace= | Reboot                       |
+
+Idle locking starts at ten minutes, display power-off at eleven, and suspend at thirty.
+Kanshi selects the Lenovo display when docked and the laptop panel otherwise.
