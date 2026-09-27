@@ -1,10 +1,11 @@
-_:
+{ inputs, pkgs, ... }:
 let
   theme = import ../../theme.nix;
 in
 {
   programs.waybar = {
     enable = true;
+    package = inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default;
     systemd = {
       enable = true;
       targets = [ "wayland-session@hyprland.desktop.target" ];

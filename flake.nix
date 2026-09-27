@@ -17,6 +17,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Hyprland's Waybar module requires the latest Waybar features
+    waybar = {
+      url = "github:Alexays/Waybar?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Determinate Nix and its daemon for NixOS.
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
 
