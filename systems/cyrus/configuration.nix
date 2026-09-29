@@ -216,7 +216,11 @@ in
       enable = true;
       withUWSM = true;
     };
+
+    # For gnome applications
     dconf.enable = true;
+
+    # System-themed Chromium
     chromium = {
       enable = true;
       extraOpts = {

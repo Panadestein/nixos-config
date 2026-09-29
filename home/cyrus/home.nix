@@ -36,6 +36,7 @@ in
     fd
     figlet
     fzf
+    gping
     grc
     jq
     lolcat
@@ -186,6 +187,17 @@ in
         enable = true;
         dates = "weekly";
         extraArgs = "--keep-since 7d";
+      };
+    };
+
+    # Shell history with Atuin
+    atuin = {
+      enable = true;
+      daemon.enable = true;
+      settings = {
+        auto_sync = false;
+        update_check = false;
+        enter_accept = false;
       };
     };
 

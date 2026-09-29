@@ -13,9 +13,8 @@
       set -x MANROFFOPT "-c"
       set -gx LS_COLORS (vivid generate oehme)
 
-      # Ensure fzf.fish history instead of fzf
-      bind \cr _fzf_search_history
-      bind -M insert \cr _fzf_search_history
+      # Configure fzf.fish without history keybinding to favor Atuin
+      fzf_configure_bindings --history=
 
       # Useful functions
       function emhash
