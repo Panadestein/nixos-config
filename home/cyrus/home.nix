@@ -30,6 +30,7 @@ in
     brightnessctl
     ccls
     cowsay
+    dust
     dysk
     eza
     fd
@@ -45,6 +46,7 @@ in
     step-cli
     tealdeer
     tmux
+    tokei
     nix-prefetch-git
     universal-ctags
     udiskie
@@ -124,7 +126,6 @@ in
       '';
     }))
     telegram-desktop
-    thunderbird
     # Leisure (NES, SNES and N64)
     (retroarch.withCores (
       _: with libretro; [
