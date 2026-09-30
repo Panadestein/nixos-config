@@ -47,12 +47,6 @@
     # The best bibliography manager ever
     papis.url = "github:papis/papis";
 
-    # Retro terminal music player
-    cliamp = {
-      url = "github:bjarneo/cliamp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Declarative disk partitioning and formatting
     disko = {
       url = "github:nix-community/disko";

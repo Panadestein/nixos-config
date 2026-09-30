@@ -10,7 +10,6 @@ let
     src = inputs.cbqn;
     inherit pkgs;
   };
-  cliamp = inputs.cliamp.packages.${pkgs.stdenv.hostPlatform.system}.default;
   bqn386_git = pkgs.callPackage ../modules/bqn386/default.nix { };
   theme = import ../theme.nix;
 in
@@ -67,7 +66,7 @@ in
     papers
     simple-scan
     # Terminal based apps
-    cliamp
+    spotify-player
     # Science
     gnuplot
     graphviz

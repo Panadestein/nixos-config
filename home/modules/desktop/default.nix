@@ -14,6 +14,7 @@
     cursor-theme = "Adwaita";
     cursor-size = 25;
     font-name = "Inter 11";
+    gtk-enable-primary-paste = true;
     gtk-theme = "Yaru-dark";
     icon-theme = "Yaru-blue-dark";
     monospace-font-name = "JetBrainsMono Nerd Font 11";
@@ -52,6 +53,7 @@
         gtk-cursor-theme-size=25
         gtk-font-name=Inter 11
         gtk-application-prefer-dark-theme=1
+        gtk-enable-primary-paste=1
       '';
       "gtk-4.0/settings.ini".text = ''
         [Settings]
@@ -62,6 +64,7 @@
         gtk-font-name=Inter 11
         gtk-application-prefer-dark-theme=1
         gtk-interface-color-scheme=2
+        gtk-enable-primary-paste=1
       '';
     };
 

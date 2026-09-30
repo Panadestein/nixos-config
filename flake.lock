@@ -53,26 +53,6 @@
         "url": "https://github.com/dzaima/CBQN"
       }
     },
-    "cliamp": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790639914,
-        "narHash": "sha256-+zpsod1EAhkkooYFLvdWU0TsiNTwIQ6+T+h40eWbC24=",
-        "owner": "bjarneo",
-        "repo": "cliamp",
-        "rev": "4cef3a2464f1804055456e58f136e951450d48f2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bjarneo",
-        "repo": "cliamp",
-        "type": "github"
-      }
-    },
     "determinate": {
       "inputs": {
         "determinate-nixd-aarch64-darwin": "determinate-nixd-aarch64-darwin",
@@ -583,7 +563,6 @@
     "root": {
       "inputs": {
         "cbqn": "cbqn",
-        "cliamp": "cliamp",
         "determinate": "determinate",
         "disko": "disko",
         "emacs-config": "emacs-config",
