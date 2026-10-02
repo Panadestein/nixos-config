@@ -34,6 +34,7 @@ in
     eza
     fd
     figlet
+    fq
     fzf
     gping
     grc

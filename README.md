@@ -1,0 +1,127 @@
+[![Build with Nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
+# NixOS Configuration
+
+<p align="center">
+  <img alt="Cyrus Hyprland desktop" src="./home/assets/screenshots/desk.png" style="max-width:100%;">
+</p>
+
+Welcome to my [NixOS](https://nixos.org/) system flake, using [Home Manager](https://nix-community.github.io/home-manager/)
+for the user environment. After many turbulent iterations and headaches, this is the deepest local minimum I have found; a world
+reborn.
+
+The machine is named [cyrus](https://en.wikipedia.org/wiki/Cyrus_Smith), after Verne's engineer and one of my childhood heroes.
+Its Wayland desktop runs [Hyprland](https://hypr.land/) exclusively. The config emphasises coherence, robustness, and
+minimalism: no bullshit features for its own sake.
+
+Visually, the system draws its character from the landscapes of [Ernst Ferdinand Oehme](https://en.wikipedia.org/wiki/Ernst_Ferdinand_Oehme),
+an unsung painter of the German Romantic period. The tracked wallpaper collection, together with notes on the works, lives
+[here](./home/assets/wallpapers/oehme/README.md).
+
+## Repository Structure & Desktop Environment
+
+The configuration is structured across system, user, and modular desktop layers:
+
+| File or directory | Purpose |
+| --- | --- |
+| `flake.nix` and `flake.lock` | Inputs, host, development shells and checks |
+| `systems/cyrus/` | Hardware, boot, login and system services |
+| `home/cyrus/home.nix` | Applications, desktop services and displays |
+| `home/modules/hyprland/config.lua` | Keybindings, window rules and scratchpads |
+| `home/modules/` | Shells, editors, desktop and helpers |
+| `home/theme.nix` | Shared Oehme palette |
+
+Daily interaction centers on Hyprland keybindings. Pressing `Super+F1` opens an on-screen cheat sheet
+generated directly from the configuration. Some of my essential shortcuts include:
+
+| Shortcut | Action |
+| --- | --- |
+| `F12` | Fish drop-down terminal |
+| `Super+Return` | Ghostty with Fish |
+| `Super+N` | Numbat calculator scratchpad |
+| `Super+A` | CBQN o3n develop branch |
+| `Super+E` | Emacs |
+| `Super+W` | Firefox |
+| `Super+F` | Yazi |
+| `Super+Shift+F` | Nautilus floating window |
+| `Super+R` | Application launcher |
+| `Super+P` | Password menu |
+| `Super+Ctrl+W` | Next Oehme wallpaper |
+| `Print` | Region screenshot |
+| `Super+O` | Lock |
+| `Super+Ctrl+R` | Reload hyprland config |
+| `Super+Ctrl+Q` | Log out through UWSM |
+| `Super+Shift+Backspace` | Reboot |
+
+Display layout and power management are automated: Kanshi selects my particular external Lenovo display when
+docked and the laptop panel otherwise (this is what I like), while hypridle locks the session at ten minutes,
+blanks the screen at eleven, and suspends the machine at thirty.
+
+## Building and Deployment
+
+System builds and deployments rely on [nh](https://github.com/nix-community/nh), which targets the local host and current flake while providing
+concise diffs and build output. To validate the flake and build both system and Home Manager
+configurations without activating them:
+
+```bash
+nix flake check --no-write-lock-file
+nh os build
+```
+
+To apply and switch to the new configuration:
+
+```bash
+nh os switch
+```
+
+Changes to the session environment or compositor require logging out and back in. Note that `Super+Ctrl+R` only reloads the active,
+*installed* Hyprland configuration; edits in the repository take effect only after rebuilding.
+
+### Updating Dependencies
+
+Inputs can be updated individually to isolate changes:
+
+```bash
+nix flake update <INPUT>
+```
+
+or all at once:
+
+```bash
+nix flake update
+```
+
+While `nh` supports updating inputs during a build or switch (via `--update` or `--update-input <INPUT>`),
+it does not provide a lockfile-only update command. Running `nix flake update` directly is preferred
+when reviewing `flake.lock` diffs before building.
+
+When upgrading NixOS releases, keep existing `stateVersion` values intact: they preserve backwards-compatibility
+defaults rather than selecting the active system version.
+
+## Development Environments
+
+The principal flake provides tailored, lightweight development environments based on current nixpkgs:
+
+| Command | Environment |
+| --- | --- |
+| `nix develop` | Nix formatting and static analysis |
+| `nix develop .#python` | Scientific Python and Jupyter |
+| `nix develop .#c-cpp` | C/C++ compilers, build tools and debugging |
+| `nix develop .#fortran-mpi` | Fortran, Open MPI, fortls and fypp |
+| `nix develop .#julia` | Julia |
+
+Automatic environment switching is supported via `direnv` and `nix-direnv` across Bash, Fish, and Zsh.
+The repository's `.envrc` selects the default maintenance shell; approve it once with `direnv allow`.
+
+### Code Quality & Pre-commit Hooks
+
+The default development shell installs the repository's Git hooks, which run `nixfmt` for formatting,
+`statix` for style and correctness checks, and `deadnix` to remove unused code.
+Once inside the shell (via `nix develop` or `direnv`), run the suite manually across all files with:
+
+```bash
+prek run --all-files
+```
+
+The same checks run during `nix flake check --no-write-lock-file` as the `pre-commit` flake check,
+ensuring consistent validation in CI and clean local passes alike.
