@@ -27,6 +27,7 @@ in
     bc
     btop
     brightnessctl
+    bubblewrap
     ccls
     cowsay
     dust
