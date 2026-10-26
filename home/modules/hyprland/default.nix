@@ -25,6 +25,7 @@ in
   services = {
     cliphist = {
       enable = true;
+      clipboardPackage = pkgs.wl-clipboard;
       systemdTargets = [ "wayland-session@hyprland.desktop.target" ];
     };
 

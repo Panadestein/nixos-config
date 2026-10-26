@@ -5,7 +5,15 @@
   ...
 }:
 let
-  passPkg = pkgs.pass-wayland.withExtensions (exts: [
+  passBase = pkgs.pass-wayland.overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace src/password-store.sh \
+        --replace-fail 'local copy_cmd=( wl-copy )' \
+        'local copy_cmd=( wl-copy --sensitive )'
+    '';
+  });
+
+  passPkg = (pkgs.pass-wayland.override { pass = passBase; }).withExtensions (exts: [
     exts.pass-otp
     exts.pass-import
     exts.pass-update

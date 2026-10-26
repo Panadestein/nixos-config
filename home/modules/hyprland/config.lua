@@ -235,6 +235,13 @@ bind(mod .. " + F", hl.dsp.exec_cmd("uwsm app -- " .. terminal .. " -e yazi"), "
 bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("uwsm app -- waypaper --folder $HOME/.local/share/wallpapers/oehme --backend hyprpaper"), "Choose a wallpaper")
 bind(mod .. " + CTRL + W", hl.dsp.exec_cmd("wallpaper-next"), "Cycle to the next wallpaper")
 bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/Screenshots"), "Capture a region")
+bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("sh -c " .. shellQuote([[
+    if pgrep -x wf-recorder >/dev/null; then
+        pkill -INT -x wf-recorder
+    else
+        mkdir -p "$HOME/Videos" && wf-recorder -f "$HOME/Videos/recording-$(date +%Y-%m-%d_%H-%M-%S).mp4"
+    fi
+]])), "Start or stop screen recording")
 
 -- Keyboard layout and scratchpads
 bind(mod .. " + I", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"), "Cycle keyboard layouts")

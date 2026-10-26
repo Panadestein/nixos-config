@@ -4,6 +4,8 @@
   programs.nushell = {
     enable = true;
 
+    loadSessionVariables = true;
+
     settings = {
       show_banner = false;
       cursor_shape.emacs = "line";

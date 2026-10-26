@@ -80,7 +80,6 @@ in
         "amdgpu"
         "hid-apple"
       ];
-      verbose = false;
     };
     kernelParams = [
       "quiet"
