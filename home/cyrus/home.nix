@@ -76,7 +76,6 @@ in
     crow-translate
     djvulibre
     libreoffice
-    ltex-ls
     pandoc
     xournalpp
     # Videos
