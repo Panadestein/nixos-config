@@ -100,7 +100,6 @@ in
     nixfmt
     openblas
     perf
-    samply
     shellcheck
     valgrind
     # Programming languages
